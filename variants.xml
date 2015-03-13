@@ -1,0 +1,50 @@
+<tool id="variants" name="Variants" version="0.0.1">
+    <description>Variant Calling SNP Pipeline</description>
+    <requirements>
+        <requirement type="package"></requirement>
+    </requirements>
+    <command>
+     rnaseq_mutation_pipeline.py
+
+#set foo = "file.txt"
+###set foo = "${snp_log.files_path}/Left_10000_filtered_variants.vcf.idx"
+--reference /N/dc2/projects/galaxyshared/trinity/pipeline_goodies/test_data/Hg19_21.fasta
+--left $left_input
+--right $right_input
+--out_dir "$snp_log.files_path"
+--threads 8 
+--log $snp_log
+--vcf /N/dc2/projects/galaxyshared/trinity/pipeline_goodies/resources/dbsnp_138.b37_Hg19.vcf 
+--update AddOrReplaceReadGroups.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,MarkDuplicates.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,GenomeAnalysisTK.jar:/N/dc2/projects/galaxyshared/trinity/GATK3.1-1 
+--plot
+    </command>
+    <macros>
+    </macros>
+    <stdio>
+      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
+    </stdio>
+    <regex match="Pipeline run failed"
+           source="stderr"
+           level="fatal"
+           description="Unknown error encountered" />
+    <inputs>
+      <param format="fasta,fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
+      <param format="fasta,fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
+      <param name="index" type="select" label="Select a reference genome" help="If your genome of interest is not listed, contact the Galaxy team">
+        <options from_data_table="snp_indexes">
+	  <filter type="sort_by" column="2"/>
+	  <validator type="no_options" message="No indexes are available for the selected input dataset"/>
+        </options>
+      </param>
+    </inputs>
+    <outputs>
+      <data format="txt" name="snp_log" label="${tool.name} on ${on_string}: log" />
+    <!--  <data format="vcf" name="variants" label="${tool.name} on ${on_string}: Variants" from_work_dir="$snp_log.files_path.Left_10000_filtered_variants.vcf"/> -->
+      <data format="binary" label="Variants_idx" from_work_dir="something/#echo str ( $foo ) #" name="test"/>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+        SNP Pipeline draft
+    </help>
+</tool>
