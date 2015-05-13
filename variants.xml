@@ -1,22 +1,25 @@
-<tool id="variants" name="Variants" version="0.0.1">
-    <description>Variant Calling SNP Pipeline</description>
+<tool id="variants" name="Mutation Pipeline" version="0.0.1">
+    <description>Mutation Pipeline for calling SNPs and variants</description>
     <requirements>
         <requirement type="package"></requirement>
     </requirements>
     <command>
      rnaseq_mutation_pipeline.py
-
-#set foo = "file.txt"
-###set foo = "${snp_log.files_path}/Left_10000_filtered_variants.vcf.idx"
---reference /N/dc2/projects/galaxyshared/trinity/pipeline_goodies/test_data/Hg19_21.fasta
+--reference /N/dc2/projects/galaxyshared/trinity/tools/FUSION_ANNOTATOR_LIB/Hg19.fa
+--index /N/dc2/projects/galaxyshared/trinity/tools/FUSION_ANNOTATOR_LIB/Hg19.fa_star_index
 --left $left_input
 --right $right_input
---out_dir "$snp_log.files_path"
+--out_dir "subdir"
 --threads 8 
---log $snp_log
---vcf /N/dc2/projects/galaxyshared/trinity/pipeline_goodies/resources/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,MarkDuplicates.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,GenomeAnalysisTK.jar:/N/dc2/projects/galaxyshared/trinity/GATK3.1-1 
 --plot
+--variant_call_mode SAM 
+--recalibrate_sam 
+--log $snp_log
+--variant_filtering_mode BCFTOOLS 
+--realign
+--vcf /N/dc2/projects/galaxyshared/trinity/pipeline_goodies/resources/dbsnp_138.b37_Hg19.vcf 
+--update AddOrReplaceReadGroups.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,MarkDuplicates.jar:/N/dc2/projects/galaxyshared/trinity/picard-tools-1.123,GenomeAnalysisTK.jar:/N/dc2/projects/galaxyshared/trinity/GATK3.1-1,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/bcftools/1.2/bin,summarize_annotate_vcf.py:/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/mutation/src,plot-vcfstats:/N/soft/rhel6/bcftools/1.2/bin >> monday_test.txt
+
     </command>
     <macros>
     </macros>
@@ -39,8 +42,8 @@
     </inputs>
     <outputs>
       <data format="txt" name="snp_log" label="${tool.name} on ${on_string}: log" />
-    <!--  <data format="vcf" name="variants" label="${tool.name} on ${on_string}: Variants" from_work_dir="$snp_log.files_path.Left_10000_filtered_variants.vcf"/> -->
-      <data format="binary" label="Variants_idx" from_work_dir="something/#echo str ( $foo ) #" name="test"/>
+      <data format="vcf" name="variants" label="${tool.name} on ${on_string}: Variants" from_work_dir="subdir/variants_annotated.vcf"/> 
+      <data format="bam" name="bamfile" label="Cool bamfile" from_work_dir="subdir/misc/Aligned.out.sorted.bam"/>
     </outputs>
     <tests>
     </tests>
