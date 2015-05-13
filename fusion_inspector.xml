@@ -1,15 +1,18 @@
 <tool id="fusion-inspector" name="Fusion-inspector" version="0.0.1">
     <description>Fusion-finding Pipeline final step</description>
     <requirements>
-        <requirement type="package"></requirement>
+      <requirement type="set_environment">FUSION_ANNOTATOR_LIB</requirement>
+      <requirement type="package"></requirement>
     </requirements>
     <command>
 ### my $usage = "usage: $0 left.fq right.fq output_directory\n\n";
 FusionInspector
+--gtf \$FUSION_ANNOTATOR_LIB/gencode.v19.rna_seq_pipeline.gtf 
+--genome_fa \$FUSION_ANNOTATOR_LIB/Hg19.fa 
 --left_fq $left_input
 --right_fq $right_input
 --fusions $fusionfile
---out_dir "$snp_log.files_path" 
+--out_dir "subdir"
 --out_prefix $out_prefix
 >> "$snp_log"
     </command>
@@ -25,14 +28,13 @@ FusionInspector
     <inputs>
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
       <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
-      <param format="txt" name="fusionfile" type="data" label="Fusion summary file" help=""/>
+      <param format="tabular" name="fusionfile" multiple="true" type="data" label="Fusion report(s)" help="Create with Star- or Trinity-fusion"/>
       <param name="out_prefix" type="text" value="Example" optional="true" label="Tag your output with a name" help="Optional"/>
     </inputs>
     <outputs>
       <data format="txt" name="snp_log" label="${tool.name} on ${on_string}: log" />
-<!--      <data format="txt" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="$snp_log.files_path/gsnap.fusions.list"/> 
--->
-
+      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Summary" from_work_dir="subdir/$out_prefix.fusion_preds.coalesced.summary.wTrinityGG.abridged "/> 
+      <data format="fasta" name="fusion_fasta" label="${tool.name} on ${on_string}: Fusion Transcripts" from_work_dir="subdir/$out_prefix.gmap_trinity_GG.fusions.fasta"/> 
     </outputs>
     <tests>
     </tests>

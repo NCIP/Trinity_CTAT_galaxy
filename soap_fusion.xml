@@ -1,14 +1,14 @@
-<tool id="star-fusion" name="Star-fusion" version="0.0.1">
-    <description>Fusion-finding Pipeline using the STAR aligner</description>
+<tool id="soap-fusion" name="SOAP-fusion" version="0.0.1">
+    <description>Fusion-finding Pipeline using SOAP Fuse</description>
     <requirements>
         <requirement type="package"></requirement>
     </requirements>
     <command>
-### my $usage = "usage: $0 left.fq right.fq output_directory\n\n";
-star-fusion
-$left_input
-$right_input
-"subdir" 
+run_SoapFuse.pl 
+--left $left_input
+--right $right_input
+--soap_fuse_config /N/dc2/projects/galaxyshared/trinity/tools/SoapFuse/SOAPfuse-v1.26/config 
+--output_dir subdir
 >> "$snp_log"
     </command>
     <macros>
@@ -26,13 +26,11 @@ $right_input
     </inputs>
     <outputs>
       <data format="txt" name="snp_log" label="${tool.name} on ${on_string}: log" />
-      <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/Aligned.sortedByCoord.out.bam"/>
-      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/STAR.fusion_candidates.sorted.txt"/> 
-
+      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/final_fusion_genes/sample/sample.final.Fusion.specific.for.genes"/> 
     </outputs>
     <tests>
     </tests>
     <help>
-        STAR-fusion Pipeline draft
+        SOAP-fusion Pipeline draft
     </help>
 </tool>
