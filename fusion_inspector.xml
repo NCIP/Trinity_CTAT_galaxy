@@ -11,6 +11,7 @@ FusionInspector
 --genome_fa \$FUSION_ANNOTATOR_LIB/Hg19.fa 
 --left_fq $left_input
 --right_fq $right_input
+--align_utils GSNAP,HISAT,STAR
 --fusions $fusionfile
 --out_dir "subdir"
 --out_prefix $out_prefix
