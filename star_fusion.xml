@@ -5,7 +5,7 @@
     </requirements>
     <command>
 ### my $usage = "usage: $0 left.fq right.fq output_directory\n\n";
-star-fusion
+star-align-then-fusion-detection
 $left_input
 $right_input
 "subdir" 
