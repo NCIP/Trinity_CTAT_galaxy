@@ -30,10 +30,22 @@ class FusionInspectorData( Html ):
         log.debug("#########  FUSION INSPECTOR DATA ############\n\n\n")
         #sys.exit(1)
 
-        self.add_composite_file('FInspector.fusion_predictions.txt', description = 'fusion predictions', mimetype = 'text/html', is_binary = False )
+        self.add_composite_file('FInspector.fusion_predictions.txt', description = 'fusion predictions',  is_binary = False )
 
-        self.add_composite_file('FInspector.fa', description = 'fusion contigs', mimetype = 'text/html', optional = True, is_binary = False )
-        self.add_composite_file('FInspector.fa.fai', description = 'fusion contigs index', mimetype = 'text/html', optional = True, is_binary = False )
+        self.add_composite_file('FInspector.fa', description = 'fusion contigs', mimetype = 'text/html', is_binary = False )
+        self.add_composite_file('FInspector.fa.fai', description = 'fusion contigs index', is_binary = False )
+        self.add_composite_file("FInspector.fusion_predictions.txt", description="fusion predictions summary", is_binary=False)
+        self.add_composite_file("FInspector.igv.FusionJuncSpan", description="fusion support for IGV viewing", is_binary=False)
+        self.add_composite_file("FInspector.consolidated.cSorted.bam", description="all fusion-supporting reads", is_binary=True)
+        self.add_composite_file("FInspector.consolidated.cSorted.bam.bai", description="bam index", is_binary=True)
+        self.add_composite_file("FInspector.junction_reads.bam.bed.sorted.bed.gz", description="junction reads in bed.gz format", is_binary=True)
+        self.add_composite_file("FInspector.junction_reads.bam.bed.sorted.bed.gz.tbi", description="tabix index for junction reads bed.gz", is_binary=True)
+        self.add_composite_file("FInspector.spanning_reads.bam.bed.sorted.bed.gz", description="spanning reads in bed.gz format", is_binary=True)
+        self.add_composite_file("FInspector.spanning_reads.bam.bed.sorted.bed.gz.tbi", description="tabix index for spanning reads bed.gz", is_binary=True)
+        self.add_composite_file("FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz", description="Trinity fusion transcript structures", is_binary=True)
+        self.add_composite_file("FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz.tbi", description="tabix index for trinity fusion transcript structures in bed.gz", is_binary=True)
+
+        
         
                 
     def generate_primary_file( self, dataset = None ):

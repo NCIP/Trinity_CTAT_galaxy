@@ -13,15 +13,23 @@ my $cmd = join(" ", @x);
 &process_cmd("mkdir -p $out_dir");
 
 my @files = qw(
+FInspector.fa
+FInspector.fa.fai
+FInspector.fusion_predictions.txt
 FInspector.igv.FusionJuncSpan
 FInspector.consolidated.cSorted.bam
+FInspector.consolidated.cSorted.bam.bai
 FInspector.junction_reads.bam.bed.sorted.bed.gz
-Finspector.junction_reads.bam.bed.sorted.bed.gz
+FInspector.junction_reads.bam.bed.sorted.bed.gz.tbi
+FInspector.junction_reads.bam.bed.sorted.bed.gz
+FInspector.junction_reads.bam.bed.sorted.bed.gz.tbi
+FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz
+FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz.tbi
 );
 
 
 foreach my $file (@files) {
-    rename($file, "$out_dir/$file") or die "Error, cannot rename file $file to $out_dir/$file";
+    &process_cmd("cp $file $out_dir/$file");    
 }
 
 
