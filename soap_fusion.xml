@@ -5,10 +5,9 @@
     </requirements>
     <command>
 run_SoapFuse.pl 
---left $left_input
---right $right_input
---soap_fuse_config /N/dc2/projects/galaxyshared/trinity/tools/SoapFuse/SOAPfuse-v1.26/config 
---output_dir subdir
+$left_input
+$right_input
+subdir
 >> "$snp_log"
     </command>
     <macros>
