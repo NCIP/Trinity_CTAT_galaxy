@@ -19,6 +19,10 @@ my $cmd = join(" ", @x);
 
 my @files = qw(
 cytoBand.txt
+FInspector.gtf
+FInspector.bed
+FInspector.bed.sorted.bed.gz
+FInspector.bed.sorted.bed.gz.tbi
 FInspector.fa
 FInspector.fa.fai
 FInspector.fusion_predictions.txt
@@ -27,8 +31,12 @@ FInspector.consolidated.cSorted.bam
 FInspector.consolidated.cSorted.bam.bai
 FInspector.junction_reads.bam.bed.sorted.bed.gz
 FInspector.junction_reads.bam.bed.sorted.bed.gz.tbi
-FInspector.junction_reads.bam.bed.sorted.bed.gz
-FInspector.junction_reads.bam.bed.sorted.bed.gz.tbi
+FInspector.junction_reads.bam
+FInspector.junction_reads.bam.bai
+FInspector.spanning_reads.bam.bed.sorted.bed.gz
+FInspector.spanning_reads.bam.bed.sorted.bed.gz.tbi
+FInspector.spanning_reads.bam
+FInspector.spanning_reads.bam.bai
 
 );
 
