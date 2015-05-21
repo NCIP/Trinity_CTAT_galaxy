@@ -16,7 +16,7 @@ FusionInspector
 --fusions $fusionfile
 --out_dir .
 --out_prefix FInspector
-### --include_Trinity
+--include_Trinity
 ${fusion_inspector_data}
 >> "$out_log"
     </command>
@@ -33,7 +33,6 @@ ${fusion_inspector_data}
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
       <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
       <param format="tabular" name="fusionfile" multiple="true" type="data" label="Fusion report(s)" help="Create with Star- or Trinity-fusion"/>
-      <param name="out_prefix" type="text" value="Example" optional="true" label="Tag your output with a name" help="Optional"/>
     </inputs>
     <outputs>
 

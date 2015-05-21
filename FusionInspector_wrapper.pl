@@ -37,6 +37,8 @@ FInspector.spanning_reads.bam.bed.sorted.bed.gz
 FInspector.spanning_reads.bam.bed.sorted.bed.gz.tbi
 FInspector.spanning_reads.bam
 FInspector.spanning_reads.bam.bai
+FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz
+FInspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed.gz.tbi
 
 );
 
