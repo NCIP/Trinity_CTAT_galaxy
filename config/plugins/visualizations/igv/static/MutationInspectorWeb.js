@@ -1,34 +1,35 @@
 function createBrowser( inspectorView ){
   // Create a browser with default (first listed sample in the sample menu)
-  var defaultSample = $("#sampleMenu li")[0].innerText;
+  //var defaultSample = $("#sampleMenu li")[0].innerText;
+  var defaultSample = $("#sampleMenu li a")[0].innerHTML;
   console.log( inspectorView[ defaultSample ][ "DNA" ] );
   console.log( inspectorView[ defaultSample ].DNA_INDEX );
   var div = $("#igvDiv")[0],
   options = {
     showNavigation: true,
     genome: "hg19",
-    //tracks: [{ url: inspectorView[ defaultSample ][ "DNA" ],
-    //           indexURL: inspectorView[ defaultSample ].DNA_INDEX,
-    //           type: "bam",
-    //           label: "Exome Sequencing (" + defaultSample + ")",
-    //           height: 150 },
-    //         { url: inspectorView[ defaultSample ][ "RNA" ],
-    //           indexURL: inspectorView[ defaultSample ].RNA_INDEX,
-    //           type: "bam",
-    //           label: "RNA-Seq Sequencing (" + defaultSample + ")",
-    //           color: "rgb( 102, 153, 255 )",
-    //           height: 150 }]
-    tracks: [{ url: "http://kcodevel.broadinstitute.org:8088/datasets/36ddb788a0f14eb3/display?to_ext=bam",
-               indexURL: "http://kcodevel.broadinstitute.org:8088/dataset/get_metadata_file?hda_id=36ddb788a0f14eb3&metadata_name=bam_index",
-               type: "bed",
+    tracks: [{ url: inspectorView[ defaultSample ][ "DNA" ],
+               indexURL: inspectorView[ defaultSample ].DNA_INDEX,
+               type: "bam",
                label: "Exome Sequencing (" + defaultSample + ")",
                height: 150 },
-             { url: "http://kcodevel.broadinstitute.org:8088/datasets/36ddb788a0f14eb3/display?to_ext=bam",
-               indexURL: "http://kcodevel.broadinstitute.org:8088/dataset/get_metadata_file?hda_id=36ddb788a0f14eb3&metadata_name=bam_index",
-               type: "bed",
+             { url: inspectorView[ defaultSample ][ "RNA" ],
+               indexURL: inspectorView[ defaultSample ].RNA_INDEX,
+               type: "bam",
                label: "RNA-Seq Sequencing (" + defaultSample + ")",
                color: "rgb( 102, 153, 255 )",
                height: 150 }]
+    //tracks: [{ url: "http://kcodevel.broadinstitute.org:8088/datasets/36ddb788a0f14eb3/display?to_ext=bam",
+    //           indexURL: "http://kcodevel.broadinstitute.org:8088/dataset/get_metadata_file?hda_id=36ddb788a0f14eb3&metadata_name=bam_index",
+    //           type: "bed",
+    //           label: "Exome Sequencing (" + defaultSample + ")",
+    //           height: 150 },
+    //         { url: "http://kcodevel.broadinstitute.org:8088/datasets/36ddb788a0f14eb3/display?to_ext=bam",
+    //           indexURL: "http://kcodevel.broadinstitute.org:8088/dataset/get_metadata_file?hda_id=36ddb788a0f14eb3&metadata_name=bam_index",
+    //           type: "bed",
+    //           label: "RNA-Seq Sequencing (" + defaultSample + ")",
+    //           color: "rgb( 102, 153, 255 )",
+    //           height: 150 }]
 
   };
   
@@ -37,32 +38,32 @@ function createBrowser( inspectorView ){
 
 function createMenus( InspectorViewCurrent ){
   // Make sample menu
-  var defaultSample = Object.keys( inspectorView )[ 0 ];
+  var defaultSample = Object.keys( InspectorViewCurrent )[ 0 ];
   var sampleMenuDropdown =  $("#sampleMenu") 
-  for( var sample in inspectorView ){
-    if( inspectorView.hasOwnProperty( sample )){
+  for( var sample in InspectorViewCurrent ){
+    if( InspectorViewCurrent.hasOwnProperty( sample )){
       sampleMenuDropdown.append( "<li><a href=\"#\">" + sample + "</a></li>" );
     }
   }
   // Add sample menu event
   // Trigger the event on the defaul sample menu
   $("#sampleMenu li").click( function(){
-    switchSample( $(this).text() );
+    switchSample( $(this).text(), InspectorViewCurrent );
   });
 
   // Update error class menus
-  updateErrorMenus( defaultSample );
+  updateErrorMenus( defaultSample, InspectorViewCurrent );
 }
 
-function updateErrorMenus( sample ){
+function updateErrorMenus( sample, InspectorViewCurrent ){
   // Update the menus for the error classes based on the given sample.
   var TPMenuDropdown =  $("#truePositive")
   var FPMenuDropdown =  $("#falsePositive") 
   var FNMenuDropdown =  $("#falseNegative") 
 
-  var TPObj = inspectorView[ sample ].TP;
-  var FPObj = inspectorView[ sample ].FP;
-  var FNObj = inspectorView[ sample ].FN;
+  var TPObj = InspectorViewCurrent[ sample ].TP;
+  var FPObj = InspectorViewCurrent[ sample ].FP;
+  var FNObj = InspectorViewCurrent[ sample ].FN;
 
   // Clear the previous list entries
   // This clears the event as well so you have to add them back
@@ -281,7 +282,7 @@ function retrieveCRAVATInfo( SNPinfo ){
         });
 }
 
-function switchSample( sampleName ){
+function switchSample( sampleName, inspectorView ){
   // Switch the sample label to the given sample.
   // Switch the samples in the browser.
   activeSample.innerText = "Sample: " + sampleName
@@ -297,13 +298,13 @@ function switchSample( sampleName ){
     // Add new tracks
     sampleTrackOptionsRNA = { url: inspectorView[ sampleName ].RNA,
                             indexURL: inspectorView[ sampleName ].RNA_INDEX,
-                            type: "bam",
+                            format: "bam",
                             label: "RNA-Seq Sequencing (" + sampleName + ")",
                             height: 150,
                             color: "rgb( 102, 153, 255 )" }
     sampleTrackOptionsDNA = { url: inspectorView[ sampleName ].DNA,
                             indexURL: inspectorView[ sampleName ].DNA_INDEX,
-                            type: "bam",
+                            format: "bam",
                             label: "exome Sequencing (" +sampleName + ")",
                             height: 150 }
     // Update the Genome
@@ -315,5 +316,5 @@ function switchSample( sampleName ){
   // Update False Negative
   console.log( "Switch sample" );
   console.log( sampleName );
-  updateErrorMenus( sampleName );
+  updateErrorMenus( sampleName, inspectorView );
 }
