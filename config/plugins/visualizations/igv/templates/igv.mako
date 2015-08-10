@@ -16,7 +16,7 @@
   <!-- Font Awesome CSS -->
   <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <!-- IGV CSS -->
-  <link rel="stylesheet" type="text/css" href="http://www.broadinstitute.org/igv/projects/igv-web/css/igv.css">
+  <link rel="stylesheet" type="text/css" href="http://igv.org/web/beta/igv-beta.css">
   <!-- Spinner from http://www.css-spinners.com/spinner/spinner -->
   <link rel="stylesheet" type="text/css" href="http://www.css-spinners.com/css/spinner/spinner.css">
   <!-- src="${h.url_for('/static/scripts/excanvas.js')}" -->
@@ -123,13 +123,25 @@
 
     // Read in data from file
     // Build website from file
-    inspectorView = null
-    pipeline_inspector = ${ h.dumps( hda.datatype.raw_dataprovider( hda ).next(), indent=2 ) };
-    inspectorView = pipeline_inspector;
-    console.log( inspectorView );
-    createMenus( inspectorView );
-    $("#sampleMenu li")[0].click();
-    resetCRAVATArea();
+    //inspectorView = null
+    //inspectorView = pipeline_inspector;
+    //console.log( inspectorView );
+    //createMenus( inspectorView );
+    //$("#sampleMenu li")[0].click();
+    //resetCRAVATArea();
+    var hdaId   = '${trans.security.encode_id( hda.id )}';
+    var hdaExt  = '${hda.ext}';
+    var ajaxUrl = "${h.url_for( controller='/datasets', action='index')}/" + hdaId + "/display?to_ext=" + hdaExt;
+    console.log( hdaId );
+    console.log( hdaExt );
+    console.log( ajaxUrl );  
+
+    $.getJSON(ajaxUrl, function(data){
+        console.log( data );
+        createMenus( data );
+        $("#sampleMenu li")[0].click();
+        resetCRAVATArea(); 
+    })
   </script>
 </body>
 </html>
