@@ -1,14 +1,15 @@
 1.Load an apache module - modxsendfile
+
 2.Set up apache, 
 
 LoadModule xsendfile_module modules/mod_xsendfile.so
 
-##Add this to your Virtualhost directive or add to your existing <Location> directive:
+Add this to your Virtualhost directive or add to your existing <Location> directive:
 
-<Location "/">
+::<Location "/">
   XSendFile on
   XSendFilePath /
-</Location>
+</Location>::
 
 
 3.Set up galaxy.ini to allow apache to send the file:
