@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<datatypes>
+    <datatype_files>
+        <datatype_file name="fusioninspectordata.py"/>
+    </datatype_files>
+    <registration>
+      <!-- composite dataset with fusioninspector outputs in the extra files path -->
+      <datatype extension="fusioninspectordata" type="galaxy.datatypes.fusioninspectordata:FusionInspectorData">
+         <display file="ctat/fusion_viewer.xml" />
+      </datatype>
+    </registration>
+</datatypes>
+
