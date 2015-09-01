@@ -116,11 +116,27 @@
     </div>
     <!-- End Annotations -->
   </div>
+ 
+  <%
+      from galaxy import model
+      users_current_history = trans.history
+      url_dict = { }
+      dataset_ids = [ trans.security.encode_id( d.id ) for d in users_current_history.datasets ]
+      output_datasets = hda.creating_job.output_datasets
+      for o in output_datasets:
+          if o.name == "output_dna_bam_path":
+             url_dict[ o.name ] = trans.security.encode_id( o.dataset_id )
+          elif o.name == "output_rna_bam_path":
+               url_dict[ o.name ] = trans.security.encode_id( o.dataset_id )
+  %>
+ 
   <!-- End tab content -->
   <!-- Scripts -->
   <script src="${h.url_for('/plugins/visualizations/igv/static/MutationInspectorWeb.js')}"></script>
   <script>
-
+    var datasetIds = ${ h.dumps( dataset_ids ) };
+    var url_dict = ${ h.dumps( url_dict ) };
+    // console.log( datasetIds );
     // Read in data from file
     // Build website from file
     //inspectorView = null
@@ -132,12 +148,27 @@
     var hdaId   = '${trans.security.encode_id( hda.id )}';
     var hdaExt  = '${hda.ext}';
     var ajaxUrl = "${h.url_for( controller='/datasets', action='index')}/" + hdaId + "/display?to_ext=" + hdaExt;
-    console.log( hdaId );
-    console.log( hdaExt );
-    console.log( ajaxUrl );  
-
+    //console.log( hdaId );
+    //console.log( hdaExt );
+    //console.log( ajaxUrl );  
     $.getJSON(ajaxUrl, function(data){
-        console.log( data );
+        //console.log( data );
+        // console.log( datasetIds );
+        var data_modified = data;
+        //console.log( data_modified );
+        for (var sample in data_modified) {
+            if( data_modified.hasOwnProperty( sample )){
+                console.log("sample: " + sample);
+                console.log("datatobemod: " + data_modified );
+                console.log("per sample: " +  data_modified[sample] );
+                inner_dataset = data_modified[sample];
+                inner_dataset[ "DNA" ] = "/datasets/" + url_dict["output_dna_bam_path"] + "/display?to_ext=bam";
+                inner_dataset[ "DNA_INDEX" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["output_dna_bam_path"] + "&metadata_name=bam_index"; 
+                inner_dataset[ "RNA" ] = "/datasets/" + url_dict["output_rna_bam_path"] + "/display?to_ext=bam"; 
+                inner_dataset[ "RNA_INDEX" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["output_rna_bam_path"] + "&metadata_name=bam_index"; 
+            }
+        }
+        console.log( data_modified );
         createMenus( data );
         $("#sampleMenu li")[0].click();
         resetCRAVATArea(); 
