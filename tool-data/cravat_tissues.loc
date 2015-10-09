@@ -1,4 +1,3 @@
-Other	Other	-	-
 Bladder 	Bladder Urothelial Carcinoma 	BLCA (TCGA) 	Jun 2013
 Blood-Lymphocyte 	Chronic Lymphocytic Leukemia 	CLL (ICGC) 	Mar 2013
 Blood-Myeloid 	Acute Myeloid Leukemia 	LAML (TCGA) 	Jun 2013
@@ -17,7 +16,7 @@ Liver-Viral	Hepatocellular Carcinoma (Viral)	HCCV (ICGC)	Mar 2013
 Lung-Adenocarcinoma	Lung Adenocarcinoma	LUAD (TCGA)	Jun 2013
 Lung-Squamous Cell	Lung Squamous Cell Carcinoma	LUSC (TCGA)	Jun 2013
 Melanoma	Melanoma	ML (Yardena Samuels lab)	Dec 2011
-Other	General purpose	OV (TCGA)	Jun 2013
+Other	 General purpose	OV (TCGA)	Jun 2013
 Ovary	Ovarian Serous Cystadenocarcinoma	OV (TCGA)	Jun 2013
 Pancreas	Pancreatic Cancer	PNCC (ICGC))	Mar 2013
 Prostate-Adenocarcinoma	Prostate Adenocarcinoma	PRAD (TCGA)	Jun 2013
