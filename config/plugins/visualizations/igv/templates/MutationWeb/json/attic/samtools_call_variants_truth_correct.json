@@ -1,0 +1,2462 @@
+{
+  "CLL-HL_pilot.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CLL-HL_pilot.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CLL-H_tumor.dna.bam", 
+    "FN": {
+      "Chr1-142813130 (1623)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813130", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16915525 (1578)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "51", 
+        "Loc": "16915525", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-1017069 (1652)": {
+        "Alt": "G", 
+        "Chr": "11", 
+        "Cov": "2", 
+        "Loc": "1017069", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-1017783 (1573)": {
+        "Alt": "G", 
+        "Chr": "11", 
+        "Cov": "0", 
+        "Loc": "1017783", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-1017789 (1538)": {
+        "Alt": "A", 
+        "Chr": "11", 
+        "Cov": "0", 
+        "Loc": "1017789", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr14-19806568 (1864)": {
+        "Alt": "G", 
+        "Chr": "14", 
+        "Cov": 0, 
+        "Loc": "19806568", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-133020132 (2841)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "133020132", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-133020151 (3167)": {
+        "Alt": "T", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "133020151", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr3-75718277 (3141)": {
+        "Alt": "T", 
+        "Chr": "3", 
+        "Cov": 0, 
+        "Loc": "75718277", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr19-24185810 (7895)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "7895", 
+        "Loc": "24185810", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr19-24185811 (7895)": {
+        "Alt": "T", 
+        "Chr": "19", 
+        "Cov": "7895", 
+        "Loc": "24185811", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr19-24185812 (7898)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "7898", 
+        "Loc": "24185812", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186128 (7995)": {
+        "Alt": "G", 
+        "Chr": "19", 
+        "Cov": "7995", 
+        "Loc": "24186128", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186133 (7998)": {
+        "Alt": "A", 
+        "Chr": "19", 
+        "Cov": "7998", 
+        "Loc": "24186133", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186147 (8010)": {
+        "Alt": "T", 
+        "Chr": "19", 
+        "Cov": "8010", 
+        "Loc": "24186147", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186149 (8011)": {
+        "Alt": "T", 
+        "Chr": "19", 
+        "Cov": "8011", 
+        "Loc": "24186149", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186151 (8013)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "8013", 
+        "Loc": "24186151", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr19-24186153 (8013)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "8013", 
+        "Loc": "24186153", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr19-55897327 (8008)": {
+        "Alt": "G", 
+        "Chr": "19", 
+        "Cov": "8008", 
+        "Loc": "55897327", 
+        "Ref": "A", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CLL-HL_pilot.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CLL-HL_pilot.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr6-133135886 (7991)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7991", 
+        "Loc": "133135886", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-31323337 (7642)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7642", 
+        "Loc": "31323337", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-11720 (7552)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7552", 
+        "Loc": "11720", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-11723 (7237)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7237", 
+        "Loc": "11723", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14767 (7961)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7961", 
+        "Loc": "14767", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-2485 (7402)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7402", 
+        "Loc": "2485", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-8702 (7679)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7679", 
+        "Loc": "8702", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-9541 (7500)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7500", 
+        "Loc": "9541", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrX-153629155 (7889)": {
+        "Alt": "G", 
+        "Chr": "X", 
+        "Cov": "7889", 
+        "Loc": "153629155", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrX-71493691 (7711)": {
+        "Alt": "T", 
+        "Chr": "X", 
+        "Cov": "7711", 
+        "Loc": "71493691", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CR08L_pilot.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CR08L_pilot.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CR08L.dna.bam", 
+    "FN": {
+      "Chr1-142813130 (2144)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813130", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr17-43131480 (2252)": {
+        "Alt": "T", 
+        "Chr": "17", 
+        "Cov": 0, 
+        "Loc": "43131480", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178735 (2594)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178735", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr22-33229830 (2395)": {
+        "Alt": "G", 
+        "Chr": "22", 
+        "Cov": 0, 
+        "Loc": "33229830", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr3-17077268 (2111)": {
+        "Alt": "T", 
+        "Chr": "3", 
+        "Cov": "0", 
+        "Loc": "17077268", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr3-37627149 (2042)": {
+        "Alt": "G", 
+        "Chr": "3", 
+        "Cov": 0, 
+        "Loc": "37627149", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr6-153344531 (2138)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": 0, 
+        "Loc": "153344531", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr7-86983715 (2417)": {
+        "Alt": "G", 
+        "Chr": "7", 
+        "Cov": 0, 
+        "Loc": "86983715", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "ChrX-320580 (2447)": {
+        "Alt": "T", 
+        "Chr": "X", 
+        "Cov": "0", 
+        "Loc": "320580", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr6-31236567 (7994)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7994", 
+        "Loc": "31236567", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-31236680 (7955)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7955", 
+        "Loc": "31236680", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31236687 (7942)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7942", 
+        "Loc": "31236687", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31236690 (7986)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7986", 
+        "Loc": "31236690", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324210 (7682)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7682", 
+        "Loc": "31324210", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324887 (7875)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7875", 
+        "Loc": "31324887", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324888 (7896)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7896", 
+        "Loc": "31324888", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324891 (7852)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7852", 
+        "Loc": "31324891", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324892 (7821)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7821", 
+        "Loc": "31324892", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324895 (7911)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7911", 
+        "Loc": "31324895", 
+        "Ref": "G", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CR08L_pilot.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CR08L_pilot.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr16-89628073 (7861)": {
+        "Alt": "A", 
+        "Chr": "16", 
+        "Cov": "7861", 
+        "Loc": "89628073", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr19-39926509 (7902)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "7902", 
+        "Loc": "39926509", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr19-39926521 (7965)": {
+        "Alt": "A", 
+        "Chr": "19", 
+        "Cov": "7965", 
+        "Loc": "39926521", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-32407709 (7980)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7980", 
+        "Loc": "32407709", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32605257 (7746)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7746", 
+        "Loc": "32605257", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-10874 (7666)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7666", 
+        "Loc": "10874", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14799 (7974)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7974", 
+        "Loc": "14799", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7542)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7542", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-15453 (7503)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7503", 
+        "Loc": "15453", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7826)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7826", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW100L_pilot.Left.fq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW100L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW100L.dna.bam", 
+    "FN": {
+      "Chr1-145323656 (3030)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "448", 
+        "Loc": "145323656", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-148017578 (3532)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "18", 
+        "Loc": "148017578", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-14804874 (5380)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "14804874", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16890598 (3787)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "67", 
+        "Loc": "16890598", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16893841 (3622)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "56", 
+        "Loc": "16893841", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr19-156581 (3383)": {
+        "Alt": "T", 
+        "Chr": "19", 
+        "Cov": 0, 
+        "Loc": "156581", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178735 (3906)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178735", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr6-79424433 (3007)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": 0, 
+        "Loc": "79424433", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr7-151962176 (2959)": {
+        "Alt": "T", 
+        "Chr": "7", 
+        "Cov": "33", 
+        "Loc": "151962176", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr1-569803 (7932)": {
+        "Alt": "A", 
+        "Chr": "1", 
+        "Cov": "7932", 
+        "Loc": "569803", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr12-127650883 (8002)": {
+        "Alt": "T", 
+        "Chr": "12", 
+        "Cov": "8002", 
+        "Loc": "127650883", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr12-127650890 (8006)": {
+        "Alt": "C", 
+        "Chr": "12", 
+        "Cov": "8006", 
+        "Loc": "127650890", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963975 (7929)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7929", 
+        "Loc": "33963975", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963991 (7932)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7932", 
+        "Loc": "33963991", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964082 (7959)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7959", 
+        "Loc": "33964082", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964091 (7966)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7966", 
+        "Loc": "33964091", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr17-33478128 (8003)": {
+        "Alt": "G", 
+        "Chr": "17", 
+        "Cov": "8003", 
+        "Loc": "33478128", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr17-33478140 (7962)": {
+        "Alt": "G", 
+        "Chr": "17", 
+        "Cov": "7962", 
+        "Loc": "33478140", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr9-79186787 (7979)": {
+        "Alt": "T", 
+        "Chr": "9", 
+        "Cov": "7979", 
+        "Loc": "79186787", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW100L_pilot.Left.fq/COMMON_ALIGNMENT/star_align_2_reads_CW100L_pilot.Left.fq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr6-32407709 (7975)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7975", 
+        "Loc": "32407709", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-10874 (7508)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7508", 
+        "Loc": "10874", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-11720 (7609)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7609", 
+        "Loc": "11720", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-11723 (7749)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7749", 
+        "Loc": "11723", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-12851 (7663)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7663", 
+        "Loc": "12851", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-14581 (7638)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7638", 
+        "Loc": "14581", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-14767 (7887)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7887", 
+        "Loc": "14767", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7853)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7853", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7914)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7914", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrX-153629155 (7729)": {
+        "Alt": "G", 
+        "Chr": "X", 
+        "Cov": "7729", 
+        "Loc": "153629155", 
+        "Ref": "A", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW101L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW101L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW101L.dna.bam", 
+    "FN": {
+      "Chr1-145273345 (3219)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "249", 
+        "Loc": "145273345", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16890428 (2755)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "123", 
+        "Loc": "16890428", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16891333 (2804)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "115", 
+        "Loc": "16891333", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16892811 (2941)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "5", 
+        "Loc": "16892811", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16907328 (4540)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "38", 
+        "Loc": "16907328", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr15-22482858 (2728)": {
+        "Alt": "G", 
+        "Chr": "15", 
+        "Cov": 0, 
+        "Loc": "22482858", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178735 (3676)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178735", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr8-71012811 (3545)": {
+        "Alt": "G", 
+        "Chr": "8", 
+        "Cov": 0, 
+        "Loc": "71012811", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "ChrX-142795438 (2820)": {
+        "Alt": "G", 
+        "Chr": "X", 
+        "Cov": 0, 
+        "Loc": "142795438", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr16-33963108 (7364)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7364", 
+        "Loc": "33963108", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963202 (7690)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7690", 
+        "Loc": "33963202", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963332 (7600)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7600", 
+        "Loc": "33963332", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964134 (7631)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7631", 
+        "Loc": "33964134", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012712 (7680)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7680", 
+        "Loc": "133012712", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-11018 (7612)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7612", 
+        "Loc": "11018", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-11468 (7529)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7529", 
+        "Loc": "11468", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-11471 (7678)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7678", 
+        "Loc": "11471", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-11915 (7365)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7365", 
+        "Loc": "11915", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-14799 (7795)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7795", 
+        "Loc": "14799", 
+        "Ref": "T", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW101L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW101L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "ChrM-10551 (7861)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7861", 
+        "Loc": "10551", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-12373 (7956)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7956", 
+        "Loc": "12373", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-12706 (7698)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7698", 
+        "Loc": "12706", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14168 (7697)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7697", 
+        "Loc": "14168", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14213 (7526)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7526", 
+        "Loc": "14213", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7677)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7677", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-15302 (7516)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7516", 
+        "Loc": "15302", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-1813 (7934)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7934", 
+        "Loc": "1813", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2123 (7723)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7723", 
+        "Loc": "2123", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-9056 (7672)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7672", 
+        "Loc": "9056", 
+        "Ref": "G", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW103L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW103L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW103L.dna.bam", 
+    "FN": {
+      "Chr1-145273345 (4412)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "216", 
+        "Loc": "145273345", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-145273366 (4272)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "235", 
+        "Loc": "145273366", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-148010987 (3906)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "209", 
+        "Loc": "148010987", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16893841 (4633)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "62", 
+        "Loc": "16893841", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr12-11546742 (3976)": {
+        "Alt": "T", 
+        "Chr": "12", 
+        "Cov": "0", 
+        "Loc": "11546742", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178735 (5684)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178735", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178798 (4160)": {
+        "Alt": "T", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178798", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr5-156479509 (4088)": {
+        "Alt": "G", 
+        "Chr": "5", 
+        "Cov": "0", 
+        "Loc": "156479509", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr8-71012811 (4347)": {
+        "Alt": "G", 
+        "Chr": "8", 
+        "Cov": 0, 
+        "Loc": "71012811", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "ChrX-142795225 (7145)": {
+        "Alt": "A", 
+        "Chr": "X", 
+        "Cov": 0, 
+        "Loc": "142795225", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr16-33963224 (7721)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7721", 
+        "Loc": "33963224", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963912 (7861)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7861", 
+        "Loc": "33963912", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964108 (7818)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7818", 
+        "Loc": "33964108", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr17-41438609 (7687)": {
+        "Alt": "C", 
+        "Chr": "17", 
+        "Cov": "7687", 
+        "Loc": "41438609", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012688 (7908)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7908", 
+        "Loc": "133012688", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012691 (7938)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7938", 
+        "Loc": "133012691", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-32412566 (7734)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7734", 
+        "Loc": "32412566", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr8-70602341 (7941)": {
+        "Alt": "G", 
+        "Chr": "8", 
+        "Cov": "7941", 
+        "Loc": "70602341", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7845)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7845", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7764)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7764", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW103L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW103L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr12-120637199 (7589)": {
+        "Alt": "A", 
+        "Chr": "12", 
+        "Cov": "7589", 
+        "Loc": "120637199", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr14-107170005 (7180)": {
+        "Alt": "C", 
+        "Chr": "14", 
+        "Cov": "7180", 
+        "Loc": "107170005", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-89628073 (7979)": {
+        "Alt": "A", 
+        "Chr": "16", 
+        "Cov": "7979", 
+        "Loc": "89628073", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-217363597 (7455)": {
+        "Alt": "T", 
+        "Chr": "2", 
+        "Cov": "7455", 
+        "Loc": "217363597", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr3-12877704 (7876)": {
+        "Alt": "A", 
+        "Chr": "3", 
+        "Cov": "7876", 
+        "Loc": "12877704", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-133135886 (8014)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "8014", 
+        "Loc": "133135886", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32410987 (7478)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7478", 
+        "Loc": "32410987", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411035 (7739)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7739", 
+        "Loc": "32411035", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-34392537 (7029)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7029", 
+        "Loc": "34392537", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr9-136216882 (7195)": {
+        "Alt": "A", 
+        "Chr": "9", 
+        "Cov": "7195", 
+        "Loc": "136216882", 
+        "Ref": "G", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW104L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW104L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW104L.dna.bam", 
+    "FN": {
+      "Chr1-142813052 (2033)": {
+        "Alt": "C", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813052", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-142813130 (2425)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813130", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-69270 (2439)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "69270", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-69897 (2251)": {
+        "Alt": "C", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "69897", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-1016776 (2176)": {
+        "Alt": "C", 
+        "Chr": "11", 
+        "Cov": "1", 
+        "Loc": "1016776", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-1016834 (3260)": {
+        "Alt": "G", 
+        "Chr": "11", 
+        "Cov": "1", 
+        "Loc": "1016834", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr15-22482858 (2120)": {
+        "Alt": "G", 
+        "Chr": "15", 
+        "Cov": "2", 
+        "Loc": "22482858", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr3-151899704 (2543)": {
+        "Alt": "A", 
+        "Chr": "3", 
+        "Cov": "0", 
+        "Loc": "151899704", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr3-151899724 (2345)": {
+        "Alt": "G", 
+        "Chr": "3", 
+        "Cov": "0", 
+        "Loc": "151899724", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr7-86983715 (2062)": {
+        "Alt": "G", 
+        "Chr": "7", 
+        "Cov": "5", 
+        "Loc": "86983715", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr15-45010012 (7971)": {
+        "Alt": "C", 
+        "Chr": "15", 
+        "Cov": "7971", 
+        "Loc": "45010012", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963224 (7950)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7950", 
+        "Loc": "33963224", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963289 (7969)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7969", 
+        "Loc": "33963289", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012458 (7985)": {
+        "Alt": "A", 
+        "Chr": "2", 
+        "Cov": "7985", 
+        "Loc": "133012458", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012459 (7985)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7985", 
+        "Loc": "133012459", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012571 (7900)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7900", 
+        "Loc": "133012571", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012655 (7986)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7986", 
+        "Loc": "133012655", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012680 (7893)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7893", 
+        "Loc": "133012680", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012807 (7983)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7983", 
+        "Loc": "133012807", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32412580 (7894)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7894", 
+        "Loc": "32412580", 
+        "Ref": "T", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW104L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW104L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr2-133012832 (7893)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7893", 
+        "Loc": "133012832", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-32407709 (7971)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7971", 
+        "Loc": "32407709", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411035 (7834)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7834", 
+        "Loc": "32411035", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr8-70602341 (7948)": {
+        "Alt": "G", 
+        "Chr": "8", 
+        "Cov": "7948", 
+        "Loc": "70602341", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-11138 (7833)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7833", 
+        "Loc": "11138", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-12635 (7819)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7819", 
+        "Loc": "12635", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-12706 (7800)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7800", 
+        "Loc": "12706", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-15498 (7843)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7843", 
+        "Loc": "15498", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-1723 (7867)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7867", 
+        "Loc": "1723", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrX-108297375 (7982)": {
+        "Alt": "C", 
+        "Chr": "X", 
+        "Cov": "7982", 
+        "Loc": "108297375", 
+        "Ref": "T", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW106L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW106L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW106L.dna.bam", 
+    "FN": {
+      "Chr1-142813052 (1748)": {
+        "Alt": "C", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813052", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-142813130 (2069)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "0", 
+        "Loc": "142813130", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-148010911 (1883)": {
+        "Alt": "A", 
+        "Chr": "1", 
+        "Cov": "103", 
+        "Loc": "148010911", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-16902823 (2179)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "63", 
+        "Loc": "16902823", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-69270 (1740)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "69270", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr17-43131480 (1753)": {
+        "Alt": "A", 
+        "Chr": "17", 
+        "Cov": "0", 
+        "Loc": "43131480", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr18-44555147 (2418)": {
+        "Alt": "G", 
+        "Chr": "18", 
+        "Cov": 0, 
+        "Loc": "44555147", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr18-44555312 (1943)": {
+        "Alt": "G", 
+        "Chr": "18", 
+        "Cov": 0, 
+        "Loc": "44555312", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-133020355 (1972)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "0", 
+        "Loc": "133020355", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr7-100551180 (1776)": {
+        "Alt": "C", 
+        "Chr": "7", 
+        "Cov": "0", 
+        "Loc": "100551180", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr16-33964134 (7588)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7588", 
+        "Loc": "33964134", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012691 (7448)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7448", 
+        "Loc": "133012691", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012712 (7697)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7697", 
+        "Loc": "133012712", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324151 (7549)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7549", 
+        "Loc": "31324151", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32412435 (7574)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7574", 
+        "Loc": "32412435", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-32412571 (7559)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7559", 
+        "Loc": "32412571", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-14366 (7602)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7602", 
+        "Loc": "14366", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-3993 (7524)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7524", 
+        "Loc": "3993", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-4025 (7560)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7560", 
+        "Loc": "4025", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-7029 (7639)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7639", 
+        "Loc": "7029", 
+        "Ref": "T", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW106L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW106L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr16-33963332 (7693)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7693", 
+        "Loc": "33963332", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr3-23960040 (7330)": {
+        "Alt": "C", 
+        "Chr": "3", 
+        "Cov": "7330", 
+        "Loc": "23960040", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-133135886 (7989)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7989", 
+        "Loc": "133135886", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32407709 (7932)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7932", 
+        "Loc": "32407709", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32410987 (7540)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7540", 
+        "Loc": "32410987", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411035 (7793)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7793", 
+        "Loc": "32411035", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411573 (7636)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7636", 
+        "Loc": "32411573", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14213 (7450)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7450", 
+        "Loc": "14213", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7725)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7725", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7791)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7791", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW107L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW107L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW107L.dna.bam", 
+    "FN": {
+      "Chr1-145273302 (4235)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "284", 
+        "Loc": "145273302", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-145273345 (4656)": {
+        "Alt": "C", 
+        "Chr": "1", 
+        "Cov": "267", 
+        "Loc": "145273345", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-14804874 (5321)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "14804874", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-6221214 (4784)": {
+        "Alt": "A", 
+        "Chr": "11", 
+        "Cov": "0", 
+        "Loc": "6221214", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-6221249 (6144)": {
+        "Alt": "G", 
+        "Chr": "11", 
+        "Cov": "0", 
+        "Loc": "6221249", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr12-11420375 (4567)": {
+        "Alt": "A", 
+        "Chr": "12", 
+        "Cov": "0", 
+        "Loc": "11420375", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr12-11546192 (4181)": {
+        "Alt": "G", 
+        "Chr": "12", 
+        "Cov": "0", 
+        "Loc": "11546192", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr12-11546781 (5038)": {
+        "Alt": "C", 
+        "Chr": "12", 
+        "Cov": "0", 
+        "Loc": "11546781", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr5-156479509 (4576)": {
+        "Alt": "G", 
+        "Chr": "5", 
+        "Cov": 0, 
+        "Loc": "156479509", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "ChrX-142795225 (4520)": {
+        "Alt": "A", 
+        "Chr": "X", 
+        "Cov": 0, 
+        "Loc": "142795225", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr2-133012571 (7957)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7957", 
+        "Loc": "133012571", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012688 (7862)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7862", 
+        "Loc": "133012688", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012691 (7925)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7925", 
+        "Loc": "133012691", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012839 (7797)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7797", 
+        "Loc": "133012839", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-89246827 (7991)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7991", 
+        "Loc": "89246827", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7821)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7821", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-1705 (7875)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7875", 
+        "Loc": "1705", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-1721 (7913)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7913", 
+        "Loc": "1721", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7910)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7910", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-9541 (7812)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7812", 
+        "Loc": "9541", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW107L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW107L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr11-8706406 (7172)": {
+        "Alt": "G", 
+        "Chr": "11", 
+        "Cov": "7172", 
+        "Loc": "8706406", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr11-8707233 (7297)": {
+        "Alt": "T", 
+        "Chr": "11", 
+        "Cov": "7297", 
+        "Loc": "8707233", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr16-89628073 (7475)": {
+        "Alt": "A", 
+        "Chr": "16", 
+        "Cov": "7475", 
+        "Loc": "89628073", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr19-39926509 (7371)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "7371", 
+        "Loc": "39926509", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-89161399 (7900)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7900", 
+        "Loc": "89161399", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-89246924 (7178)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7178", 
+        "Loc": "89246924", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-133135886 (7981)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7981", 
+        "Loc": "133135886", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr8-56985814 (6895)": {
+        "Alt": "C", 
+        "Chr": "8", 
+        "Cov": "6895", 
+        "Loc": "56985814", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-15302 (7524)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7524", 
+        "Loc": "15302", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2641 (7073)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7073", 
+        "Loc": "2641", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW109L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW109L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW109L.dna.bam", 
+    "FN": {
+      "Chr1-145273345 (3873)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "127", 
+        "Loc": "145273345", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-148017578 (3466)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": "29", 
+        "Loc": "148017578", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-14804874 (5604)": {
+        "Alt": "A", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "14804874", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-152278434 (3711)": {
+        "Alt": "T", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "152278434", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr11-6221214 (4298)": {
+        "Alt": "T", 
+        "Chr": "11", 
+        "Cov": 0, 
+        "Loc": "6221214", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-67241174 (4716)": {
+        "Alt": "A", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "67241174", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr2-8178798 (4092)": {
+        "Alt": "T", 
+        "Chr": "2", 
+        "Cov": 0, 
+        "Loc": "8178798", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr5-156479509 (4139)": {
+        "Alt": "A", 
+        "Chr": "5", 
+        "Cov": "1", 
+        "Loc": "156479509", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "ChrX-142795225 (6201)": {
+        "Alt": "A", 
+        "Chr": "X", 
+        "Cov": 0, 
+        "Loc": "142795225", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr16-33963202 (7749)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7749", 
+        "Loc": "33963202", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963224 (7748)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7748", 
+        "Loc": "33963224", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963912 (7849)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7849", 
+        "Loc": "33963912", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964108 (7807)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7807", 
+        "Loc": "33964108", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012688 (7881)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7881", 
+        "Loc": "133012688", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012691 (7925)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7925", 
+        "Loc": "133012691", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr21-9827315 (7887)": {
+        "Alt": "C", 
+        "Chr": "21", 
+        "Cov": "7887", 
+        "Loc": "9827315", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14799 (7908)": {
+        "Alt": "C", 
+        "Chr": "M", 
+        "Cov": "7908", 
+        "Loc": "14799", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "ChrM-14906 (7732)": {
+        "Alt": "G", 
+        "Chr": "M", 
+        "Cov": "7732", 
+        "Loc": "14906", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7649)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7649", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW109L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW109L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr11-8707233 (7672)": {
+        "Alt": "T", 
+        "Chr": "11", 
+        "Cov": "7672", 
+        "Loc": "8707233", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr16-89628073 (7975)": {
+        "Alt": "A", 
+        "Chr": "16", 
+        "Cov": "7975", 
+        "Loc": "89628073", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr19-39926509 (7009)": {
+        "Alt": "C", 
+        "Chr": "19", 
+        "Cov": "7009", 
+        "Loc": "39926509", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-85133216 (7988)": {
+        "Alt": "A", 
+        "Chr": "2", 
+        "Cov": "7988", 
+        "Loc": "85133216", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31323321 (6596)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "6596", 
+        "Loc": "31323321", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324154 (7189)": {
+        "Alt": "A", 
+        "Chr": "6", 
+        "Cov": "7189", 
+        "Loc": "31324154", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr6-32410987 (7092)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7092", 
+        "Loc": "32410987", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411035 (7802)": {
+        "Alt": "C", 
+        "Chr": "6", 
+        "Cov": "7802", 
+        "Loc": "32411035", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411573 (6625)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "6625", 
+        "Loc": "32411573", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32411646 (7203)": {
+        "Alt": "G", 
+        "Chr": "6", 
+        "Cov": "7203", 
+        "Loc": "32411646", 
+        "Ref": "T", 
+        "Strand": "+"
+      }
+    }
+  }, 
+  "CW116L.r1.fastq": {
+    "DNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/truth_runs/samples/CW116L.Left.fq/PREMADE_GATK_DNASEQ_LIKE_RNASEQ/CW116L.dna.bam", 
+    "FN": {
+      "Chr1-121484650 (7829)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": "1", 
+        "Loc": "121484650", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-121484779 (7877)": {
+        "Alt": "G", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "121484779", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr1-121484951 (7497)": {
+        "Alt": "C", 
+        "Chr": "1", 
+        "Cov": 0, 
+        "Loc": "121484951", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr10-42385191 (7795)": {
+        "Alt": "G", 
+        "Chr": "10", 
+        "Cov": 0, 
+        "Loc": "42385191", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr10-42385197 (7873)": {
+        "Alt": "G", 
+        "Chr": "10", 
+        "Cov": 0, 
+        "Loc": "42385197", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr10-42396143 (7807)": {
+        "Alt": "G", 
+        "Chr": "10", 
+        "Cov": "0", 
+        "Loc": "42396143", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr10-42396152 (7746)": {
+        "Alt": "T", 
+        "Chr": "10", 
+        "Cov": "0", 
+        "Loc": "42396152", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr10-42597106 (7842)": {
+        "Alt": "G", 
+        "Chr": "10", 
+        "Cov": "0", 
+        "Loc": "42597106", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr18-18519319 (7904)": {
+        "Alt": "T", 
+        "Chr": "18", 
+        "Cov": 0, 
+        "Loc": "18519319", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }, 
+      "Chr18-18519333 (7883)": {
+        "Alt": "G", 
+        "Chr": "18", 
+        "Cov": 0, 
+        "Loc": "18519333", 
+        "Ref": "NA", 
+        "Strand": "+"
+      }
+    }, 
+    "FP": {
+      "Chr16-33963086 (7829)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7829", 
+        "Loc": "33963086", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr16-33964108 (7684)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7684", 
+        "Loc": "33964108", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012674 (7828)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7828", 
+        "Loc": "133012674", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012680 (7929)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7929", 
+        "Loc": "133012680", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012688 (7828)": {
+        "Alt": "G", 
+        "Chr": "2", 
+        "Cov": "7828", 
+        "Loc": "133012688", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012691 (7861)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7861", 
+        "Loc": "133012691", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012832 (7944)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7944", 
+        "Loc": "133012832", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012839 (7842)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7842", 
+        "Loc": "133012839", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr6-31324531 (7634)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7634", 
+        "Loc": "31324531", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "Chr6-32412571 (7685)": {
+        "Alt": "T", 
+        "Chr": "6", 
+        "Cov": "7685", 
+        "Loc": "32412571", 
+        "Ref": "A", 
+        "Strand": "+"
+      }
+    }, 
+    "RNA": "/broad/sigmascratch/WU_CLL_PROJECT/rnaseq_snp_validation/snp_validation/run_real_data/alignment/samples/CW116L.r1.fastq/COMMON_ALIGNMENT/star_align_2_reads_CW116L.r1.fastq_fq_P_qtrim_fq/Aligned.out.bam", 
+    "TP": {
+      "Chr16-33963329 (7821)": {
+        "Alt": "C", 
+        "Chr": "16", 
+        "Cov": "7821", 
+        "Loc": "33963329", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr16-33963332 (7716)": {
+        "Alt": "G", 
+        "Chr": "16", 
+        "Cov": "7716", 
+        "Loc": "33963332", 
+        "Ref": "A", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012458 (7985)": {
+        "Alt": "A", 
+        "Chr": "2", 
+        "Cov": "7985", 
+        "Loc": "133012458", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012459 (7986)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7986", 
+        "Loc": "133012459", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr2-133012571 (7957)": {
+        "Alt": "C", 
+        "Chr": "2", 
+        "Cov": "7957", 
+        "Loc": "133012571", 
+        "Ref": "T", 
+        "Strand": "+"
+      }, 
+      "Chr3-39453160 (7803)": {
+        "Alt": "A", 
+        "Chr": "3", 
+        "Cov": "7803", 
+        "Loc": "39453160", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-12634 (7808)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7808", 
+        "Loc": "12634", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-1890 (7934)": {
+        "Alt": "A", 
+        "Chr": "M", 
+        "Cov": "7934", 
+        "Loc": "1890", 
+        "Ref": "G", 
+        "Strand": "+"
+      }, 
+      "ChrM-2354 (7902)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7902", 
+        "Loc": "2354", 
+        "Ref": "C", 
+        "Strand": "+"
+      }, 
+      "ChrM-9541 (7749)": {
+        "Alt": "T", 
+        "Chr": "M", 
+        "Cov": "7749", 
+        "Loc": "9541", 
+        "Ref": "C", 
+        "Strand": "+"
+      }
+    }
+  }
+}

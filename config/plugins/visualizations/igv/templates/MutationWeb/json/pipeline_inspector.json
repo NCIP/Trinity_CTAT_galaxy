@@ -1,0 +1,27 @@
+{ "CW104": { "TP": { "Chr10-123279680 (100)": {"Chr": "10", "Loc": "123279680", "Cov": "100", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr22-30421786 (45)": { "Chr": "22", "Loc": "30421786", "Cov": "45", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr3-324 (452)": { "Chr": "3", "Loc": "324", "Cov": "452", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr1-134 (465)": { "Chr": "1", "Loc": "134", "Cov": "465", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "FP": { "Chr1-34 (245)": { "Chr": "1", "Loc": "34", "Cov": "245", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr1-34 (453)": { "Chr": "1", "Loc": "34", "Cov": "453", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "FN": { "Chr1-234 (145)": { "Chr": "1", "Loc": "234", "Cov": "145", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr2-343 (415)": { "Chr": "2", "Loc": "343", "Cov": "415", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr6-345 (451)": { "Chr": "6", "Loc": "345", "Cov": "451", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr3-364 (4511)": { "Chr": "3", "Loc": "364", "Cov": "4511", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "RNA": "rna_CW104.bam",
+             "DNA": "exome_CW104.bam"
+           },
+  "CW105": { "TP": { "Chr11-34 (45)": {"Chr": "11", "Loc": "34", "Cov": "45", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr12-354 (145)": { "Chr": "12", "Loc": "354", "Cov": "145", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr13-324 (452)": { "Chr": "13", "Loc": "324", "Cov": "452", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr11-134 (465)": { "Chr": "11", "Loc": "134", "Cov": "465", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "FP": { "Chr11-34 (245)": { "Chr": "11", "Loc": "34", "Cov": "245", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr11-34 (453)": { "Chr": "11", "Loc": "34", "Cov": "453", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "FN": { "Chr11-234 (145)": { "Chr": "11", "Loc": "234", "Cov": "145", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr12-343 (415)": { "Chr": "12", "Loc": "343", "Cov": "415", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr16-345 (451)": { "Chr": "16", "Loc": "345", "Cov": "451", "Ref": "A", "Alt": "T", "Strand": "+" },
+                     "Chr13-364 (4511)": { "Chr": "13", "Loc": "364", "Cov": "4511", "Ref": "A", "Alt": "T", "Strand": "+" }},
+             "RNA": "rna_CW105.bam",
+             "DNA": "exome_CW105.bam"
+           }
+}
