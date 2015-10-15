@@ -1,0 +1,79 @@
+<tool id="mutation" name="Mutation Pipeline" version="0.0.1">
+    <description>Mutation Pipeline for calling SNPs and variants</description>
+    <requirements>
+        <requirement type="package"></requirement>
+    </requirements>
+    <command>
+rnaseq_mutation_pipeline.py 
+--index \${MUTATION_RESOURCES}/Hg19.fa_star_index 
+--reference \${MUTATION_RESOURCES}/Hg19.fa 
+--plot 
+--out_dir output
+--threads \${GALAXY_SLOTS:-8}
+--log $log
+--vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/dc2/projects/galaxyshared/trinity/fusion/Modules/sammtools-1.2/build/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin 
+--cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
+--cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
+--left $left_input
+--right $right_input
+--alignment_mode STAR
+--variant_call_mode GATK
+--variant_filtering GATK
+--darned \${MUTATION_RESOURCES}/darned_hg19.txt
+--radar \${MUTATION_RESOURCES}/radar_hg19_v2.txt
+--tissue_type $tissue_type
+--email cganote@iu.edu
+--is_hg19
+ >> $log
+
+    </command>
+    <macros>
+    </macros>
+    <stdio>
+      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
+    </stdio>
+    <regex match="Pipeline run failed"
+           source="stderr"
+           level="fatal"
+           description="Unknown error encountered" />
+    <inputs>
+      <param format="fasta,fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
+      <param format="fasta,fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
+      <param name="index" type="select" label="Select a reference genome" help="If your genome of interest is not listed, contact the Galaxy team">
+        <options from_data_table="snp_indexes">
+	  <filter type="sort_by" column="2"/>
+	  <validator type="no_options" message="No indexes are available for the selected input dataset"/>
+        </options>
+      </param>
+      <param name="tissue_type" type="select" label="Select a pathology" help="If you don't know, just choose 'General Purpose'">
+        <options from_data_table="cravat_tissues">
+	  <filter type="sort_by" column="1"/>
+	  <validator type="no_options" message="No indexes are available for the selected input dataset"/>
+        </options>
+      </param>
+      <section name="adv" title="This service uses the GATK. The GATK is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here: https://www.broadinstitute.org/gatk/about/license.html. For more information about GATK and full documentation, please visit the GATK website: https://www.broadinstitute.org." expanded="False">
+      </section>
+    </inputs>
+    <outputs>
+      <data format="txt" name="log" label="${tool.name} on ${on_string}: log" />
+      <data format="tabular" name="cancertab" label="${tool.name} on ${on_string}: Cancer Tab" from_work_dir="output/cancer.tab"/> 
+      <data format="vcf" name="cancerVariants" label="${tool.name} on ${on_string}: Cancer VCF" from_work_dir="output/cancer.vcf"/> 
+      <data format="txt" name="cancerIndex" label="${tool.name} on ${on_string}: Cancer Index" from_work_dir="output/cancer.vcf.idx"/> 
+      <data format="vcf" name="allVariants" label="${tool.name} on ${on_string}: All Variants VCF" from_work_dir="output/variants.vcf"/> 
+      <data format="bam" name="bamfile" label="Bam used in haplotype calling" from_work_dir="output/misc/recalibrated.bam"/>
+      <data name="cravat" label="Annotated (lightly filtered) VCF file" from_work_dir="output/variants_filtered_clean_snp_RNAedit_dbsnp_cosmic_filtered_cravate_annotated_all.vcf.gz"/>
+      <!--<data format="json" name="m_i_json" label="JSON File" from_work_dir="mutation_inspector.json"/> -->
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+
+.. class:: warningmark
+
+This service uses the GATK. The GATK is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here_. For more information about GATK and full documentation, please visit the GATK website_.
+
+.. _website: https://www.broadinstitute.org
+.. _here: https://www.broadinstitute.org/gatk/about/license.html
+    </help>
+</tool>

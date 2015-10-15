@@ -93,7 +93,11 @@
     </tests>
     <help>
         Trinity is a de novo transcript assembler that uses RNA-seq data as input. This tool runs all Trinity_ commands--Inchworm, Chrysalis, and Butterfly--in a single pass.
-        
+
+        This instance is running Trinity version 2.06 and uses the following command:
+        Trinity --max_memory 240G --CPU 8 --normalize_reads --monitoring --seqType seq_type --single singlefile or --left left_file --right right_file
+
+
         .. _Trinity: http://trinityrnaseq.sourceforge.net
     </help>
 </tool>
