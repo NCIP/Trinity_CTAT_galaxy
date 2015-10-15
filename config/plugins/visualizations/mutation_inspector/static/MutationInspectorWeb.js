@@ -406,7 +406,7 @@ function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt 
       mutationInspectorState.cache[ retrieveChr+':'+retrievePos ]["MuPIT Link"] = cravatData[ "MuPIT Link" ];
       }
     },
-           url: "http://staging.cravat.us/rest/service/query?mutation="+retrieveChr+"_"+retrievePos+"_+_"+retrieveRef+"_"+retrieveAlt
+           url: "//staging.cravat.us/rest/service/query?mutation="+retrieveChr+"_"+retrievePos+"_+_"+retrieveRef+"_"+retrieveAlt
   });
   return null;
 }

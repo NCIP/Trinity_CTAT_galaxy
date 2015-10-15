@@ -12,14 +12,15 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/dc2/projects/galaxyshared/trinity/fusion/Modules/sammtools-1.2/build/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin 
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/dc2/projects/galaxyshared/trinity/fusion/Modules/sammtools-1.2/build/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES} 
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input
 --right $right_input
 --alignment_mode STAR
 --variant_call_mode GATK
---variant_filtering GATK
+--variant_filtering_mode GATK
+--bed \${MUTATION_RESOURCES}/hg19.refGene.sort.bed
 --darned \${MUTATION_RESOURCES}/darned_hg19.txt
 --radar \${MUTATION_RESOURCES}/radar_hg19_v2.txt
 --tissue_type $tissue_type
@@ -57,13 +58,19 @@ rnaseq_mutation_pipeline.py
     </inputs>
     <outputs>
       <data format="txt" name="log" label="${tool.name} on ${on_string}: log" />
-      <data format="tabular" name="cancertab" label="${tool.name} on ${on_string}: Cancer Tab" from_work_dir="output/cancer.tab"/> 
-      <data format="vcf" name="cancerVariants" label="${tool.name} on ${on_string}: Cancer VCF" from_work_dir="output/cancer.vcf"/> 
-      <data format="txt" name="cancerIndex" label="${tool.name} on ${on_string}: Cancer Index" from_work_dir="output/cancer.vcf.idx"/> 
-      <data format="vcf" name="allVariants" label="${tool.name} on ${on_string}: All Variants VCF" from_work_dir="output/variants.vcf"/> 
-      <data format="bam" name="bamfile" label="Bam used in haplotype calling" from_work_dir="output/misc/recalibrated.bam"/>
+      <data format="bam" name="alignbam" label="Sorted bam from alignment" from_work_dir="output/misc/Aligned.sorted.bam"/>
+      <data format="bam" name="recalbam" label="Bam used in haplotype calling" from_work_dir="output/misc/recalibrated.bam"/>
+      <data format="vcf" name="rawvar" label="Raw variants file" from_work_dir="output/variants.vcf"/> 
+      <data format="vcf" name="filtvar" label="Variants file with minimal suggested filtering" from_work_dir="output/variants_initial_filtering.vcf"/> 
+      <data name="filtannotvar" label="Variant file filtered and annotated" from_work_dir="output/annotated_min_filtered.vcf.gz"/> 
+      <data format="vcf" name="cancerVariants" label="Variant file filtered for Cancer Studies" from_work_dir="output/cancer.vcf"/> 
+      <data format="tabular" name="cancertab" label="Text file of variants filtered for Cancer Studies" from_work_dir="output/cancer.tab"/> 
+      <data format="bed" name="bedref" label="Bed file for reference genome" from_work_dir="output/hg19.refGene.sort.bed"/>
+      <data format="json" name="vizjson" label="JSON pointing to data for the Inspector Visualization" from_work_dir="output/mutation_inspector.json"/>  
+      <!--<data format="txt" name="cancerIndex" label="${tool.name} on ${on_string}: Cancer Index" from_work_dir="output/cancer.vcf.idx"/> 
+      
       <data name="cravat" label="Annotated (lightly filtered) VCF file" from_work_dir="output/variants_filtered_clean_snp_RNAedit_dbsnp_cosmic_filtered_cravate_annotated_all.vcf.gz"/>
-      <!--<data format="json" name="m_i_json" label="JSON File" from_work_dir="mutation_inspector.json"/> -->
+      <data format="json" name="m_i_json" label="JSON File" from_work_dir="mutation_inspector.json"/> -->
     </outputs>
     <tests>
     </tests>
