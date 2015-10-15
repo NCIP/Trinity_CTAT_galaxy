@@ -32,7 +32,8 @@
   <!-- Bootstrap -->
   <script type="text/javascript" src="${h.url_for('//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')}"></script>
   <!-- IGV JS -->
-  <script type="text/javascript" src="${h.url_for('/plugins/visualizations/igv/static/scripts/igv-all.js')}"></script>
+  <!-- <script type="text/javascript" src="${h.url_for('http://igv.org/web/beta/igv-beta.js')}"></script> -->
+  <script type="text/javascript" src="${h.url_for('/plugins/visualizations/igv/static/scripts/igv-all.js')}"></script> 
   <!-- Data Table -->
   <script type="text/javascript" src="${h.url_for('//cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js')}"></script>
   <script type="text/javascript" src="${h.url_for('//cdn.datatables.net/1.10.8/js/dataTables.bootstrap.min.js')}"></script>
@@ -92,7 +93,7 @@
       for o in output_datasets:
           if o.name == "bed_path":
              url_dict[ o.name ] = trans.security.encode_id( o.dataset_id )
-          elif o.name == "rna_bam_path":
+          elif o.name == "recalibrated_bam":
                url_dict[ o.name ] = trans.security.encode_id( o.dataset_id )
   %>
 
@@ -107,8 +108,8 @@
         console.log("JSON DATA");
         console.log(data);
         var data_modified = data;
-        data_modified[ "BAM" ] = "/datasets/" + url_dict["rna_bam_path"] + "/display?to_ext=bam";
-        data_modified[ "BAM_INDEX" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["rna_bam_path"] + "&metadata_name=bam_index"; 
+        data_modified[ "BAM" ] = "/datasets/" + url_dict["recalibrated_bam"] + "/display?to_ext=bam";
+        data_modified[ "BAM_INDEX" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["recalibrated_bam"] + "&metadata_name=bam_index"; 
         data_modified[ "BED" ] = "/datasets/" + url_dict["bed_path"] + "/display?to_ext=bed"; 
         console.log("JSON DATA AFTER MODIFICATION");
         console.log(data_modified); 
