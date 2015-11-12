@@ -84,6 +84,8 @@
        viz_list2 = ['junction_bed','junction_bam','spanning_bed','spanning_bam']
        viz_list = viz_list1 + viz_list2
        for o in output_datasets:
+           if o.name == 'trinity_bed':
+              viz_list.append('trinity_bed')
            if o.name in viz_list:      
               url_dict[ o.name ] = trans.security.encode_id( o.dataset_id )
    %>
@@ -106,7 +108,8 @@
          data_modified[ "junctionReadsBai" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["junction_bam"] + "&metadata_name=bam_index";
          data_modified[ "spanningReadsBam" ] = "/datasets/" + url_dict["spanning_bam"] + "/display?to_ext=bam";
          data_modified[ "spanningReadsBai" ] = "/dataset/get_metadata_file?hda_id=" + url_dict["spanning_bam"] + "&metadata_name=bam_index";  
-         data_modified[ "spanningReads" ] = "/datasets/" + url_dict["spanning_bed"] + "/display?to_ext=bed";         
+         data_modified[ "spanningReads" ] = "/datasets/" + url_dict["spanning_bed"] + "/display?to_ext=bed"; 
+         data_modified[ "trinityBed" ] = "/datasets/" + url_dict["trinity_bed"] + "/display?to_ext=bed";        
          data_modified[ "cytoband" ] = "/datasets/" + url_dict["cytoBand"] + "/display?to_ext=txt";
          data_modified[ "reference" ] = "/datasets/" + url_dict["finspector_fa"] + "/display?to_ext=fasta";  
          data_modified[ "referenceIndex" ] = "/datasets/" + url_dict["finsepector_idx"] + "/display?to_ext=txt";

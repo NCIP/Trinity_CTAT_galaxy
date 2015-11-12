@@ -31,14 +31,6 @@ function loadIGVBrowser()
                      indexed: false,
                      order: 20
                  },
-//                 {
-//                     label: "Trinity_Fusion",
-//                     url: fusionInspectorState.cache.json.trinityBed,
-//                     displayMode: "EXPANDED",
-//                     color: "green",
-//                     indexed: false,
-//                     order: 30
-//                 },
                  {
                      url: fusionInspectorState.cache.json.junctionReads,
                      label: "Junction_Reads",
@@ -79,6 +71,16 @@ function loadIGVBrowser()
                      visibilityWindow: 2000000,
                      order: 55
                  }]};
+    if( ! ( fusionInspectorState.cache.json.trinityBed === "NA" ) ){
+        options.tracks.push({
+            label: "Trinity_Fusion",
+            url: fusionInspectorState.cache.json.trinityBed,
+            displayMode: "EXPANDED",
+            color: "green",
+            indexed: false,
+            order: 30
+        });
+    }
     fusionInspectorState.cache[ "curBrowser" ] = igv.createBrowser(divBrowser, options);
 }
 
