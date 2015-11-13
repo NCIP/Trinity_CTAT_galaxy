@@ -5,7 +5,7 @@
         <requirement type="package"></requirement>
     </requirements>
     <command>
-    sh /seq/regev_genome_portal/SOFTWARE/FUSION_INSPECTOR_NEW/FusionInspector/fusion_inspector_wrapper.sh
+    sh \$FUSION_DIR/fusion_inspector_wrapper.sh
     $fusion_candidates_list
     $left_input
     $right_input
