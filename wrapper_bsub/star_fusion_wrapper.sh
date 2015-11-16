@@ -1,0 +1,24 @@
+#!/bin/bash -l
+
+umask 0002
+
+
+LEFT_FQ=$1
+RIGHT_FQ=$2
+OUTPUTDIR=$3
+
+GENOME_LIB=$CTAT_GENOME_LIB
+
+OUTPUTDIRLASTCHAR="${OUTPUTDIR: -1}"
+if [ $OUTPUTDIRLASTCHAR != "/" ]
+then
+OUTPUTDIR="$OUTPUTDIR/"
+fi
+
+PIPEOFILENAME="pipe.out"
+PIPEEFILENAME="pipe.err"
+
+PIPERRFILE="$OUTPUTDIR$PIPEEFILENAME"
+PIPEOUTFILE="$OUTPUTDIR$PIPEOFILENAME"
+
+bsub -q regevlab -P starfusion -e $PIPERRFILE -o $PIPEOUTFILE -K -R "rusage[mem=50]" $STAR_FUSION_DIR/STAR-Fusion --genome_lib_dir $GENOME_LIB --left_fq $LEFT_FQ --right_fq $RIGHT_FQ --output_dir $OUTPUTDIR
