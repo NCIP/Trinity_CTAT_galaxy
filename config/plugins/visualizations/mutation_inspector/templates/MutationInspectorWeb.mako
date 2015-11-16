@@ -10,18 +10,18 @@
   <title>${hda.name} | ${visualization_name}</title>
 
   <!-- CSS -->
-  <!-- Bootstrap -->
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Bootstrap //maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+  <link rel="stylesheet" type="text/css" href="/static/mutation/bootstrap.min.css">
   <!-- jQuery UI CSS -->
-  <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
+  <link rel="stylesheet" type="text/css" href="/static/mutation/jquery-ui.css"/>
   <!-- Font Awesome CSS -->
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/mutation/font-awesome-4.4.0/css/font-awesome.min.css">
   <!-- IGV CSS -->
-  <link rel="stylesheet" type="text/css" href="//www.broadinstitute.org/igv/projects/igv-web/css/igv.css">
+  <link rel="stylesheet" type="text/css" href="/static/mutation/igv.css">
   <!-- Spinner from //www.css-spinners.com/spinner/spinner -->
-  <link rel="stylesheet" href="//www.css-spinners.com/css/spinner/spinner.css">
+  <link rel="stylesheet" href="/static/mutation/spinner.css">
   <!-- Associated with the Data Table -->
-  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.8/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/mutation/dataTables.bootstrap.min.css">
   <!-- Specific CSS to inspectors -->
   <link rel="stylesheet" type="text/css" href="${h.url_for('/plugins/visualizations/mutation_inspector/static/css/inspector.css')}">
 
