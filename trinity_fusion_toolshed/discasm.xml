@@ -1,11 +1,7 @@
 <tool id="discasm" name="DISCASM" version="0.0.1">
     <description>DISCASM</description>
-    <requirements>
-        <requirement type="package"></requirement>
-        <requirement type="set_environment">DISCASM_DIR</requirement> 
-    </requirements>
     <command>
-     sh \$DISCASM_DIR/discasm_fusion_wrapper.sh
+     sh discasm_fusion_toolshed_wrapper.sh
      $bam
      $chimeric
      $left_input

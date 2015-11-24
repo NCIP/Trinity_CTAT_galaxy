@@ -1,11 +1,7 @@
 <tool id="star-fusion-new" name="Star-fusion-new" version="0.0.2">
     <description>Fusion-finding Pipeline using the STAR aligner</description>
-    <requirements>
-        <requirement type="set_environment">STAR_FUSION_DIR</requirement>
-        <requirement type="package"></requirement>
-    </requirements>
     <command>
-    sh \$STAR_FUSION_DIR/star_fusion_wrapper.sh
+    sh star_fusion_toolshed_wrapper.sh
     $left_input
     $right_input
     "subdir" 

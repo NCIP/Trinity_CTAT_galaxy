@@ -1,11 +1,7 @@
 <tool id="gmap_fusion" name="GMAP-fusion" version="0.0.1">
     <description>GMAP-fusion</description>
-    <requirements>
-        <requirement type="set_environment">GMAP_FUSION_DIR</requirement>
-        <requirement type="package"></requirement>
-    </requirements>
     <command>
-    sh \$GMAP_FUSION_DIR/gmap_fusion_wrapper.sh
+    sh gmap_fusion_toolshed_wrapper.sh
     $discasm_trans
     $left_input
     $right_input

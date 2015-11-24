@@ -1,11 +1,7 @@
 <tool id="fusion-inspector-new" name="Fusion-Inspector-new" version="0.0.3">
     <description>Fusion Inspector</description>
-    <requirements>
-        <requirement type="set_environment">FUSION_DIR</requirement>
-        <requirement type="package"></requirement>
-    </requirements>
     <command>
-    sh \$FUSION_DIR/fusion_inspector_wrapper.sh
+    sh fusion_inspector_toolshed_wrapper.sh
     $fusion_candidates_list
     $left_input
     $right_input
