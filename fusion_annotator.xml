@@ -1,5 +1,5 @@
-<tool id="fusion_annotator" name="fusion_annotator" version="0.0.1">
-    <description>Fusion-Annotator</description>
+<tool id="fusion_annotator" name="Fusion Annotator" version="0.0.1">
+    <description>Fusion Annotation</description>
     <requirements>
       <requirement type="package"></requirement>
       <requirement type="set_environment">FUSION_ANNOTATOR</requirement>
@@ -26,6 +26,9 @@
     <tests>
     </tests>
     <help>
-        fusion annotator
+Fusion Annotator gives basic annotations to human fusion genes based on the Cancer Genome Atlas, the Mitelman database, OMIM, and COSMIC. Please read more here_.
+
+.. _here: https://github.com/FusionAnnotator/FusionAnnotator/wiki
+
     </help>
 </tool>

@@ -1,5 +1,5 @@
-<tool id="gmap_fusion" name="GMAP-fusion" version="0.0.1">
-    <description>GMAP-fusion</description>
+<tool id="gmap_fusion" name="GMAP fusion" version="0.0.1">
+    <description>Fusion-finding Using De novo RNA-Seq Transcript Assemblies</description>
     <requirements>
         <requirement type="set_environment">GMAP_FUSION_DIR</requirement>
         <requirement type="package"></requirement>
@@ -27,6 +27,8 @@
       <data format="tabular" name="gmapfusion_candidates" label="${tool.name} on ${on_string}: GMAP-fusion candidates" from_work_dir="subdir/GMAP-fusion.final"/>
     </outputs>
     <help>
-        GMAP-fusion 
+GMAP-fusion is a utility for identifying candidate fusion transcripts based on transcript sequences reconstructed via RNA-Seq de novo transcriptome assembly.  Please read more here_.
+
+.. _here: https://github.com/GMAP-fusion/GMAP-fusion/wiki
     </help>
 </tool>
