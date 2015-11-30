@@ -2,15 +2,16 @@
     <description>DISCASM</description>
     <requirements>
         <requirement type="package"></requirement>
-        <requirement type="set_environment">DISCASM_DIR</requirement> 
+        <requirement type="set_environment">FUSION_RESOURCES</requirement> 
     </requirements>
     <command>
-     sh \$DISCASM_DIR/discasm_fusion_wrapper.sh
-     $bam
-     $chimeric
-     $left_input
-     $right_input
-     "subdir" 
+      \$FUSION_RESOURCES/DISCASM_v0.0.1/DISCASM
+      --aligned_bam $bam 
+      --chimeric_junctions $chimeric 
+      --left_fq $left_input
+      --right_fq $right_input
+      --denovo_assembler OasesMultiK 
+      --out_dir "subdir"
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />

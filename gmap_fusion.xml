@@ -1,15 +1,16 @@
-<tool id="gmap_fusion" name="GMAP-fusion" version="0.0.1">
+<tool id="gmap-fusion" name="GMAP-fusion" version="0.0.1">
     <description>GMAP-fusion</description>
     <requirements>
-        <requirement type="set_environment">GMAP_FUSION_DIR</requirement>
+        <requirement type="set_environment">FUSION_RESOURCES</requirement>
         <requirement type="package"></requirement>
     </requirements>
     <command>
-    sh \$GMAP_FUSION_DIR/gmap_fusion_wrapper.sh
-    $discasm_trans
-    $left_input
-    $right_input
-    "subdir" 
+      \$FUSION_RESOURCES/GMAP-fusion_v0.0.1/GMAP-fusion 
+      -T $discasm_trans 
+      --left_fq $left_input
+      --right_fq $right_input
+      --genome_lib_dir \$FUSION_RESOURCES/build_dir
+      --output "subdir" 
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
