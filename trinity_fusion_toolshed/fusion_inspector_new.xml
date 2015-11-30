@@ -1,22 +1,13 @@
-<tool id="fusion-inspector-new" name="Fusion Inspector" version="0.0.3">
-    <description>In silico Validation of Fusion Transcript Predictions</description>
-    <requirements>
-        <requirement type="set_environment">FUSION_RESOURCES</requirement>
-        <requirement type="package"></requirement>
-    </requirements>
+<tool id="fusion-inspector-new" name="Fusion-Inspector-new" version="0.0.3">
+    <description>Fusion Inspector</description>
     <command>
-      \$FUSION_RESOURCES/FusionInspector_v0.3.2/FusionInspector 
-      --fusions $fusion_candidates_list
-      --genome_lib \$FUSION_RESOURCES/build_dir
-      --left_fq $left_input
-      --right $right_input
-      --out_dir "subdir"
-      --out_prefix "finspector" 
-      --prep_for_IGV 
-      --align_utils $method
-      #if $trinity_status.trinity=="true"
-      --include_Trinity
-      #end if
+    sh fusion_inspector_toolshed_wrapper.sh
+    $fusion_candidates_list
+    $left_input
+    $right_input
+    "subdir"
+    $method 
+    $trinity_status.trinity
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
@@ -28,8 +19,7 @@
     <inputs>
       <param format="tabular" name="fusion_candidates_list" type="data" multiple="True" label="Choose candidate list:" help="Fusion predictions"/>
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
-      <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
-      
+      <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>      
       <param name="method" type="select" label="Choose method:">
              <option value="HISAT">HISAT</option>
              <option value="STAR">STAR</option>
@@ -57,9 +47,24 @@
       </data>
       <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/fusion_inspector_web.json"/>
     </outputs>
+    <tests>
+      <test>
+	<param name="fusion listA" value="listA.txt" />
+	<param name="fusion listB" value="listB.txt" />
+	<param name="LeftFastq" value="left.fq" />
+	<param name="RightFastq" value="right.fq" />
+	<output name="finsepector_idx" file="finspector.fa.fai" />
+	<output name="cytoband" file="cytoband.txt" />
+	<output name="finsepector_bed" file="finspector.bed" />
+	<output name="junction_bed" file="finspector.junction_reads.bam.bed" />
+	<output name="finsepector_fasta" file="finspector.fa" />
+	<output name="junction_bam" file="junction_reads.bam" />
+	<output name="spanning_bam" file="spanning_reads.bam" />
+	<output name="spanning_bed" file="spanning_reads.bam.bed" />
+	<output name="trinity_bed" file="trinity.gff3.bed.sorted.bed" />
+      </test>
+    </tests>
     <help>
-FusionInspector is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). FusionInspector assists in fusion transcript discovery by performing a supervised analysis of fusion predictions, attempting to recover and re-score evidence for such predictions. Please read more here_.
-
-.. _here: https://github.com/FusionInspector/FusionInspector/wiki
+       Fusion Inspector New
     </help>
 </tool>

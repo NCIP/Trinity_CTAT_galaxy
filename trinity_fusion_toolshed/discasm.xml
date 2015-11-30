@@ -1,17 +1,12 @@
 <tool id="discasm" name="DISCASM" version="0.0.1">
-    <description>Discordant and Unmapped Read De novo Transcriptome Assembly</description>
-    <requirements>
-        <requirement type="package"></requirement>
-        <requirement type="set_environment">FUSION_RESOURCES</requirement> 
-    </requirements>
+    <description>DISCASM</description>
     <command>
-      \$FUSION_RESOURCES/DISCASM_v0.0.1/DISCASM
-      --aligned_bam $bam 
-      --chimeric_junctions $chimeric 
-      --left_fq $left_input
-      --right_fq $right_input
-      --denovo_assembler OasesMultiK 
-      --out_dir "subdir"
+     sh discasm_fusion_toolshed_wrapper.sh
+     $bam
+     $chimeric
+     $left_input
+     $right_input
+     "subdir" 
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
@@ -29,9 +24,14 @@
     <outputs>
       <data format="fasta" name="oases.transcripts" label="${tool.name} on ${on_string}: Oasis Transcripts" from_work_dir="subdir/oasesMultiK_out_dir/oases.transcripts.fa" />
     </outputs>
+    <tests>
+      <test>
+	<param name="Aligned bam" value="Aligned.bam" />
+	<param name="chimeric" value="chimeric.out.junction" />
+        <output name="oases.transcripts" file="oases.transcripts.fa"/>
+      </test>
+    </tests>
     <help>
-DISCASM is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). DISCASM aims to extract reads that map to reference genomes in a discordant fashion and optionally include reads that do not map to the genome at all, and perform a de novo transcriptome assembly of these reads. DISCASM relies on the output from STAR (as run via STAR-Fusion), and supports de novo transcriptome assembly using Trinity or Oases. Please read more here_.
-
-.. _here: https://github.com/DISCASM/DISCASM/wiki
+        DISCASM Draft
     </help>
 </tool>
