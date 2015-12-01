@@ -11,27 +11,27 @@
 
     <!-- CSS -->
     <!-- jQuery UI CSS -->
-    <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <!-- IGV CSS -->
-    <link rel="stylesheet" type="text/css" href="//igv.org/web/beta/igv.css">
+    <link rel="stylesheet" type="text/css" href="http://igv.org/web/beta/igv.css">
     <!-- inspector css -->
     <link rel="stylesheet" type="text/css" href="${h.url_for('/plugins/visualizations/fusion/static/css/inspector.css')}">
-    <!-- Spinner from //www.css-spinners.com/spinner/spinner -->
-    <link rel="stylesheet" type="text/css" href="//www.css-spinners.com/css/spinner/spinner.css">
+    <!-- Spinner from http://www.css-spinners.com/spinner/spinner -->
+    <link rel="stylesheet" type="text/css" href="http://www.css-spinners.com/css/spinner/spinner.css">
     <!-- Associated with the Data Table -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.8/css/dataTables.bootstrap.min.css">
 
     <!-- Scripts -->
     <!-- jQuery JS -->
-    <script type="text/javascript" src="${h.url_for('//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}"></script>
-    <script type="text/javascript" src="${h.url_for('//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')}"></script>
+    <script type="text/javascript" src="${h.url_for('http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}"></script>
+    <script type="text/javascript" src="${h.url_for('http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')}"></script>
     <!-- IGV JS-->
     <script type="text/javascript" src="${h.url_for('/plugins/visualizations/igv/static/scripts/igv-all.js')}"></script>
-    <!--<script type="text/javascript" src="${h.url_for('//igv.org/web/beta/igv-beta.js')}"></script>-->
+    <!--<script type="text/javascript" src="${h.url_for('http://igv.org/web/beta/igv-beta.js')}"></script>-->
     <!-- Data Table -->
     <script type="text/javascript" src="${h.url_for('https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js')}"></script>
     <script type="text/javascript" src="${h.url_for('https://cdn.datatables.net/1.10.8/js/dataTables.bootstrap.min.js')}"></script>
@@ -145,7 +145,7 @@
          // draw in a hidden (height = 0) div, the table is misdrawn. You have to
          // Trigger a redraw when the tab is visible so the height of the data table
          // can be correctly calculated.
-         // Thanks to //stackoverflow.com/questions/20705905/bootstrap-3-jquery-event-for-active-tab-change
+         // Thanks to http://stackoverflow.com/questions/20705905/bootstrap-3-jquery-event-for-active-tab-change
          $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
          $('#fusionTable').DataTable().columns.adjust().draw();
          })
