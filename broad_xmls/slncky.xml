@@ -45,8 +45,48 @@
     #if str($gap_extend) != "":
         --gap_extend "$gap_extend"
     #end if
+
+    #if $no_orth_search:
+        "$no_orth_search"
+    #end if
+
+    #if $no_filter:
+        "$no_filter"
+    #end if
+
+    #if $no_overlap:
+        "$no_overlap"
+    #end if
+
+    #if $no_collapse:
+        "$no_collapse"
+    #end if  
+
+    #if $no_dup:
+        "$no_dup"
+    #end if
+
+    #if $no_self:
+        "$no_self"
+    #end if
+ 
+    #if $no_coding:  
+        "$no_coding"   
+    #end if
     
-    --grid_system "lsf" --output_directory "subdir" --web 
+    #if $no_bg:
+        "$no_bg"
+    #end if   
+
+    #if $no_orf:
+        "$no_orf"
+    #end if
+ 
+    --grid_system "lsf" --web --html "$html_file" --html_files_path "$html_file.files_path"
+
+    --can_lncs "$canonical_to_lncs" --clust_info "$cluster_info" --filt_info "$filtered_info" 
+    
+    --lncs_bed "$lncs" --lncs_info "$lncs_info" --orfs "$orfs" --ortho_top "$orthologs_top" --ortho "$orthologs"
 
     </command>
 
@@ -95,14 +135,15 @@
     </inputs>
 
     <outputs>
-           <data format="text" name="canonical_to_lncs" from_work_dir="subdir/canonical_to_lncs.txt"/>
-           <data format="text" name="cluster_info" from_work_dir="subdir/cluster_info.txt"/>
-           <data format="text" name="filtered_info" from_work_dir="subdir/filtered_info.txt"/>
-           <data format="bed" name="lncs" from_work_dir="subdir/lncs.bed"/>
-           <data format="text" name="lncs.info" from_work_dir="subdir/lncs.info.txt"/>
-           <data format="text" name="orfs" from_work_dir="subdir/orfs.txt"/>
-           <data format="text" name="orthologs.top" from_work_dir="subdir/orthologs.top.txt"/>
-           <data format="text" name="orthologs" from_work_dir="subdir/orthologs.txt"/>
+           <data format="html" name="html_file" label="web_report"/>
+           <data format="text" name="canonical_to_lncs" label="canonical_to_lncs" />
+           <data format="text" name="cluster_info" label="cluster_info" />
+           <data format="text" name="filtered_info" label="filtered_info" />
+           <data format="bed" name="lncs" label="lncs" />
+           <data format="text" name="lncs_info" label="lncs.info" />
+           <data format="text" name="orfs" label="orfs" />
+           <data format="text" name="orthologs_top" label="orthologs.top" />
+           <data format="text" name="orthologs" label="orthologs" /> 
     </outputs>
 
     <stdio>
