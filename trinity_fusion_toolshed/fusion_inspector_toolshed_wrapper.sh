@@ -2,10 +2,6 @@
 
 umask 0002
 
-. /broad/software/scripts/useuse
-
-reuse .samtools-0.1.19
-
 fusions_list=$1
 LEFT_FQ=$2
 RIGHT_FQ=$3
