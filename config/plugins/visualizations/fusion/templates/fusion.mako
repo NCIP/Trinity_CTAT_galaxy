@@ -17,11 +17,11 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <!-- IGV CSS -->
-    <link rel="stylesheet" type="text/css" href="//igv.org/web/beta/igv.css">
+    <link rel="stylesheet" type="text/css" href="/static/mutation/igv.css">
     <!-- inspector css -->
     <link rel="stylesheet" type="text/css" href="${h.url_for('/plugins/visualizations/fusion/static/css/inspector.css')}">
     <!-- Spinner from //www.css-spinners.com/spinner/spinner -->
-    <link rel="stylesheet" type="text/css" href="//www.css-spinners.com/css/spinner/spinner.css">
+    <link rel="stylesheet" type="text/css" href="/static/mutation/spinner.css">
     <!-- Associated with the Data Table -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.8/css/dataTables.bootstrap.min.css">
 
