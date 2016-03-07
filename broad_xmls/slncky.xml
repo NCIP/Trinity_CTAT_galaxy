@@ -82,7 +82,7 @@
         "$no_orf"
     #end if
  
-    --grid_system "lsf" --web --html "$html_file" --html_files_path "$html_file.files_path"
+    --web --html "$html_file" --html_files_path "$html_file.files_path"
 
     --can_lncs "$canonical_to_lncs" --clust_info "$cluster_info" --filt_info "$filtered_info" 
     

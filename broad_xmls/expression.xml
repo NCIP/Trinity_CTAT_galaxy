@@ -7,29 +7,27 @@
     </requirements>
     <command>
      
-     sh \$WRAPPERS/ctat_kallisto_wrapper.sh
+     python \$WRAPPERS/ctat_expression_wrapper.py
  
-     $annot 
+     --annot_config $annot 
 
      #if $type_data.end == "single" 
-         $type_data.left_fq "NONE"
+         --left_fq $type_data.left_fq --right_fq "None"
      #end if
 
      #if $type_data.end == "pair"
-         $type_data.left_fq $type_data.right_fq 
+         --left_fq $type_data.left_fq --right_fq $type_data.right_fq 
      #end if
 
-     $bootstrap 
+     --bootstrap_samples $bootstrap 
 
      #if $bias:
-        "True"
-     #else
-        "False"
+        --bias
      #end if
- 
-     $threads 
+     
+     --threads $threads 
 
-     $seed 
+     --seed $seed 
      
     </command>
 
@@ -54,15 +52,15 @@
       </param>
       
       <param name="bias" type="boolean" truevalue="True" falsevalue="False" label="Perform sequence based bias correction" help="learns parameters for a model of sequences specific bias and corrects the abundances accordlingly."/>
-      <param name="bootstrap" type="integer" value="0" default="0" label="Number of bootstrap samples" help="default:0"/>
+      <param name="bootstrap" type="integer" value="0" default="0" label="Number of bootstrap samples" help="Number of times analyses is repeated after resampling with replacement from the data" />
       <param name="threads" type="integer" value="1" default="1" label="Number of threads to use for bootstraping" help="default:1"/>
       <param name="seed" type="integer" value="42" default="42" label="Seed for the bootstrap sampling" help="default: 42"/>
 
     </inputs>
 
     <outputs>
-           <data format="tabular" name="abundance" label="Abundance" from_work_dir="KALLISTO/abundance.tsv"/>
-           <data format="json" name="run_info" label="Run Info" from_work_dir="KALLISTO/run_info.json"/>
+           <data format="tabular" name="abundance" label="Abundance" from_work_dir="kallisto/kallisto/abundance.tsv"/>
+           <data format="json" name="run_info" label="Run Info" from_work_dir="kallisto/kallisto/run_info.json"/>
     </outputs>
 
     <stdio>
@@ -74,7 +72,15 @@
      <help>
 .. class:: infomark
  
-**KALLISTO - quantifying abundances of transcripts from RNA-Seq data**
- 
+**KALLISTO - Quantifying abundances of transcripts from RNA-Seq data with pseudoalignments**
+
+For more information:
+
+https://pachterlab.github.io/kallisto/about.html
+
+The paper for documentating Kallisto can be found here:
+
+http://arxiv.org/abs/1505.02710
+
 </help>
 </tool>

@@ -5,8 +5,8 @@
       <requirement type="set_environment">WRAPPERS</requirement>
     </requirements>
     <command>
-    sh \$WRAPPERS/fusion_annotator_wrapper.sh
-    $fusion_candidate 
+    python \$WRAPPERS/fusion_annotator_wrapper.py
+    --fusion_file $fusion_candidate >> $annotation_list 
     </command>
     <macros>
     </macros>

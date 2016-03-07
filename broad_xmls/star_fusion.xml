@@ -5,10 +5,10 @@
         <requirement type="package"></requirement>
     </requirements>
     <command>
-    sh \$WRAPPERS/star_fusion_wrapper.sh
-    $left_input
-    $right_input
-    "subdir" 
+    python \$WRAPPERS/star_fusion_wrapper.py
+    --left_fq $left_input
+    --right_fq $right_input
+    --out_dir "subdir" 
     </command>
     <macros>
     </macros>

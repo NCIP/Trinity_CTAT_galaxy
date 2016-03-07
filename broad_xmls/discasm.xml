@@ -5,12 +5,12 @@
         <requirement type="set_environment">WRAPPERS</requirement> 
     </requirements>
     <command>
-     sh \$WRAPPERS/discasm_fusion_wrapper.sh
-     $bam
-     $chimeric
-     $left_input
-     $right_input
-     "subdir" 
+     python \$WRAPPERS/discasm_fusion_wrapper.py
+     --bam $bam
+     --chimeric $chimeric
+     --left_fq $left_input
+     --right_fq $right_input
+     --out_dir "subdir" 
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
