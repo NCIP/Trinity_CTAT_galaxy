@@ -26,6 +26,8 @@
      --cvpath "$cancer_variant_vcf"
      --ctpath "$cancer_tab"
      --recabpath "$recalibrated_bam"
+     
+     --name "$name"
 
      #if $output_directory:
          --directory "$output_directory"        
@@ -33,6 +35,7 @@
     </command>
 
     <inputs>
+      <param name="name" type="text" value="mutation" label="Job Run:"/>
       <param name="sample_file" type="text" label="Sample File:"/>
       <param name="reference_genome" type="select" label="Select a reference genome:" default="hg19" help="If your genome of interest is not listed, contact the KCO Galaxy team.">
              <option value="hg19">Hg19</option>

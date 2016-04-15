@@ -46,42 +46,6 @@
         --gap_extend "$gap_extend"
     #end if
 
-    #if $no_orth_search:
-        "$no_orth_search"
-    #end if
-
-    #if $no_filter:
-        "$no_filter"
-    #end if
-
-    #if $no_overlap:
-        "$no_overlap"
-    #end if
-
-    #if $no_collapse:
-        "$no_collapse"
-    #end if  
-
-    #if $no_dup:
-        "$no_dup"
-    #end if
-
-    #if $no_self:
-        "$no_self"
-    #end if
- 
-    #if $no_coding:  
-        "$no_coding"   
-    #end if
-    
-    #if $no_bg:
-        "$no_bg"
-    #end if   
-
-    #if $no_orf:
-        "$no_orf"
-    #end if
- 
     --web --html "$html_file" --html_files_path "$html_file.files_path"
 
     --can_lncs "$canonical_to_lncs" --clust_info "$cluster_info" --filt_info "$filtered_info" 
@@ -102,26 +66,6 @@
 
       </param>
 
-      <param name= "no_orth_search" type="boolean" label="NO Ortholog Search?" truevalue="--no_orth_search" falsevalue="" help="Only filter; don't search for orthologs."/>
-
-      <param name= "no_filter" type="boolean" label="Apply NO filter?" truevalue="--no_filter" falsevalue="" help="Don't filter; only search for orthologs."/>
-
-      <param name= "overwrite" type="boolean" label="Force overwrite of trancsripts.lncs.bed?" truevalue="--overwrite" falsevalue="" help="Only if you re-run the analysis"/>
-
-      <param name= "no_overlap" type="boolean" label="Remove transcripts that overlap CODING or MAPPED_CODING gene?" truevalue="--no_overlap" falsevalue="" />
-
-      <param name= "no_collapse" type="boolean" label="Collapse overlapping transcripts into single canonical gene?" truevalue="--no_collapse" falsevalue=""/>
-
-      <param name= "no_dup" type="boolean" label="Remove transcripts that share sequence similarity with DUP genes?" truevalue="--no_dup" falsevalue=""/>
-
-      <param name= "no_self" type="boolean" label="Remove transcripts sharing sequence similarity with each other?" truevalue="--no_self" falsevalue=""/>
-
-      <param name= "no_coding" type="boolean" label="Remove transcripts that align to syntenic CODING genes?" truevalue="--no_coding" falsevalue=""/>
-
-      <param name= "no_bg" type="boolean" label="Align to shuffled background?" help="Report all alignments. Setting this option will greatly reduce slncky runtime" truevalue="--no_bg" falsevalue=""/>
-
-      <param name= "no_orf" type="boolean" label="Check for conserved ORFs?" help="Check for conserved ORFs in aligned noncoding transcripts" truevalue="--no_orf" falsevalue=""/>
-      
       <param name="min_overlap" type="float" value="0.0" label="Remove any transcript that overlap annotated coding gene greater than min_overlap" />
       <param name="min_cluster" type="integer" value="2" label="Min size of duplication clusters to remove" />
       <param name="min_coding" type="float" value="0" label="Min exonic identity to filter out transcript that aligns to orthologous coding gene" help="default is set by learning coding alignment distribution from data"/>
@@ -130,7 +74,6 @@
       <param name="pad" type="integer" value="0" label="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
       <param name="gap_open" type="text" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
       <param name="gap_extend" type="text" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
-
 
     </inputs>
 

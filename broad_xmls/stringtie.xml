@@ -5,10 +5,11 @@
     </requirements>
 
     <command>
-    python \$WRAPPERS/stringtie_wrapper.py
+    python \$WRAPPERS/ctat_stringtie_wrapper.py
     --bam_file $bam_file
-    --ref_annot $gtf_file
-    --output_gtf "stringtie_transcripts.gtf"
+    --ref_annot $ref_annot
+    --output_bed "transcripts_reconstructed.bed"
+    --output_gtf "transcripts_reconstructed.gtf"
     </command>
 
     <stdio>
@@ -19,7 +20,7 @@
            level="fatal"
            description="Unknown error encountered" />
     <inputs>
-      <param format="bam" name="bam_file" type="data" label="Aligned Bam:" help="Aligned Bam"/>
+      <param name="bam_file" type="text" label="Aligned Bam:" help="Aligned Bam"/>
       <param format="gtf" name="ref_annot" type="select" label="Reference GTF:" help="Reference GTF">
              <option value="/seq/regev_genome_portal/RESOURCES/human/Hg19/Annotations/hg19_ucsc_genomeStudio_genes/hg19_ucsc_genomeStudio_genes.gtf.no_unmapped.gtf">hg19_ucsc_genomeStudio_genes[Hg19]</option>
              <option value="/seq/regev_genome_portal/RESOURCES/human/Hg19/Annotations/Gencode_v19/Gencode_v19.GTF">Gencode_v19[Hg19]</option>
@@ -27,11 +28,12 @@
              <option value="/seq/regev_genome_portal/RESOURCES/mouse/mm10/Annotations/mm10_ucsc_genomestudio_genes/mm10.ucsc_genomestudio.genes.gtf">mm10_ucsc_genomeStudio_genes[mm10-mouse]</option>
              <option value="/seq/regev_genome_portal/RESOURCES/mouse/mm10_ensembl/Annotations/mm10.gtf">mm10_ensembl[mm10-mouse]</option>
       </param>
-    <inputs>
+    </inputs>
 
     <outputs>
-      <data format="gtf" name="stringtie.transcripts" label="${tool.name} on ${on_string}: Stringtie Transcripts" from_work_dir="stringtie_transcripts.gtf"/>
-    <outputs>
+      <data format="gtf" name="stringtie.transcripts.gtf" label="${tool.name} on ${on_string}: Stringtie Transcripts GTF" from_work_dir="transcripts_reconstructed.gtf"/>
+      <data format="bed" name="stringtie.transcripts.bed" label="${tool.name} on ${on_string}: Stringtie Transcripts BED" from_work_dir="transcripts_reconstructed.bed"/>   
+    </outputs>
 
     <help>
 StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts. It uses a novel network flow algorithm as well as an optional de novo assembly step to assemble and quantitate full-length transcripts representing multiple splice variants for each gene locus. Please read more here_.
