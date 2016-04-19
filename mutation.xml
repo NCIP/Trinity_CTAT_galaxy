@@ -12,7 +12,7 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/dc2/projects/galaxyshared/trinity/fusion/Modules/sammtools-1.2/build/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES} 
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES} 
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input

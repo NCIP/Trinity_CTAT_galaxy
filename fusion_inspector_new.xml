@@ -2,12 +2,13 @@
     <description>In silico Validation of Fusion Transcript Predictions</description>
     <requirements>
         <requirement type="set_environment">FUSION_RESOURCES</requirement>
+        <requirement type="set_environment">TRINTOOLS</requirement>
         <requirement type="package"></requirement>
     </requirements>
     <command>
-      \$FUSION_RESOURCES/FusionInspector_v0.3.2/FusionInspector 
+      \$TRINTOOLS/FusionInspector_v0.3.2/FusionInspector 
       --fusions $fusion_candidates_list
-      --genome_lib \$FUSION_RESOURCES/build_dir
+      --genome_lib \$FUSION_RESOURCES
       --left_fq $left_input
       --right $right_input
       --out_dir "subdir"

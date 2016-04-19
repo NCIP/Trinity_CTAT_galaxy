@@ -2,14 +2,15 @@
     <description>Fusion-finding Using De novo RNA-Seq Transcript Assemblies</description>
     <requirements>
         <requirement type="set_environment">FUSION_RESOURCES</requirement>
+        <requirement type="set_environment">TRINTOOLS</requirement>
         <requirement type="package"></requirement>
     </requirements>
     <command>
-      \$FUSION_RESOURCES/GMAP-fusion_v0.0.1/GMAP-fusion 
+      \$TRINTOOLS/GMAP-fusion_v0.0.1/GMAP-fusion 
       -T $discasm_trans 
       --left_fq $left_input
       --right_fq $right_input
-      --genome_lib_dir \$FUSION_RESOURCES/build_dir
+      --genome_lib_dir \$FUSION_RESOURCES
       --output "subdir" 
     </command>
     <stdio>
