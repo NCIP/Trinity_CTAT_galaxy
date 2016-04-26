@@ -52,7 +52,7 @@
       <data format="bed" name="trinity_bed" label="trinity_bed" from_work_dir="subdir/finspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed">
             <filter>trinity_status['trinity'] == "true"</filter>
       </data>
-      <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/fusion_inspector_web.json"/>
+      <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/finspector.fusion_inspector_web.json"/>
     </outputs>
     <help>
 FusionInspector is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). FusionInspector assists in fusion transcript discovery by performing a supervised analysis of fusion predictions, attempting to recover and re-score evidence for such predictions. Please read more here_.
