@@ -1,11 +1,7 @@
 <tool id="fusion_annotator" name="Fusion Annotator" version="0.0.1">
     <description>Fusion Annotation</description>
-    <requirements>
-      <requirement type="package"></requirement>
-      <requirement type="set_environment">FUSION_ANNOTATOR</requirement>
-    </requirements>
     <command>
-    sh  \$FUSION_ANNOTATOR/fusion_annotator_wrapper.sh
+    bash  $__tool_directory__/fusion_annotator_wrapper.sh
     $fusion_candidate 
     </command>
     <macros>
