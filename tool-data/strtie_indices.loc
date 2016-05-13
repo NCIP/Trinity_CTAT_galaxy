@@ -1,0 +1,45 @@
+#This is a sample file distributed with Galaxy that enables tools
+#to use a directory of Bowtie2 indexed sequences data files. You will
+#need to create these data files and then create a bowtie_indices.loc
+#file similar to this one (store it in this directory) that points to
+#the directories in which those files are stored. The bowtie2_indices.loc
+#file has this format (longer white space characters are TAB characters):
+#
+#<unique_build_id>   <dbkey>   <display_name>   <file_base_path>
+#
+#So, for example, if you had hg18 indexed stored in
+#/depot/data2/galaxy/bowtie2/hg18/,
+#then the bowtie2_indices.loc entry would look like this:
+#
+#hg18	hg18	hg18	/depot/data2/galaxy/bowtie2/hg18/hg18
+#
+#and your /depot/data2/galaxy/bowtie2/hg18/ directory
+#would contain hg18.*.ebwt files:
+#
+#-rw-r--r--  1 james    universe 830134 2005-09-13 10:12 hg18.1.ebwt
+#-rw-r--r--  1 james    universe 527388 2005-09-13 10:12 hg18.2.ebwt
+#-rw-r--r--  1 james    universe 269808 2005-09-13 10:12 hg18.3.ebwt
+#...etc...
+#
+#Your bowtie2_indices.loc file should include an entry per line for each
+#index set you have stored. The "file" in the path does not actually
+#exist, but it is the prefix for the actual index files. For example:
+#
+#hg18canon			hg18	hg18 Canonical	/depot/data2/galaxy/bowtie2/hg18/hg18canon
+#hg18full			hg18	hg18 Full		/depot/data2/galaxy/bowtie2/hg18/hg18full
+#/orig/path/hg19	hg19	hg19			/depot/data2/galaxy/bowtie2/hg19/hg19
+#...etc...
+#
+#Note that for backwards compatibility with workflows, the unique ID of
+#an entry must be the path that was in the original loc file, because that
+#is the value stored in the workflow for that parameter. That is why the
+#hg19 entry above looks odd. New genomes can be better-looking.
+#
+hg19_ucsc	hg19_ucsc	hg19_ucsc_genomeStudio_genes[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/hg19_ucsc_genomeStudio_genes.gtf.no_unmapped.gtf
+Hg191	Hg192	Gencode_v19[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF
+/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF	Hg192	Gencode_v192[Hg19]	test
+mm9_ucsc	mm9_ucsc	mm9_ucsc_genomeStudio_genes[mm9-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm9_ucsc_genomeStudio_genes.gtf
+mm10_ucsc	mm10_ucsc	mm10_ucsc_genomeStudio_genes[mm10-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm10.ucsc_genomestudio.genes.gtf
+mm10_ensembl	mm10_ensembl	mm10_ensembl[mm10-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm10.gtf
+
+
