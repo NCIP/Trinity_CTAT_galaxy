@@ -2,10 +2,10 @@
     <description>Discordant and Unmapped Read De novo Transcriptome Assembly</description>
     <requirements>
         <requirement type="package"></requirement>
-        <requirement type="set_environment">FUSION_RESOURCES</requirement> 
+        <requirement type="set_environment">TRINTOOLS</requirement> 
     </requirements>
     <command>
-      \$FUSION_RESOURCES/DISCASM_v0.0.1/DISCASM
+      \$TRINTOOLS/DISCASM_v0.0.1/DISCASM
       --aligned_bam $bam 
       --chimeric_junctions $chimeric 
       --left_fq $left_input
