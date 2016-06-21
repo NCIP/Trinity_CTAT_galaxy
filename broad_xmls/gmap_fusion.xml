@@ -19,7 +19,7 @@
            level="fatal"
            description="Unknown error encountered" />
     <inputs>
-      <param format="fasta" name="discasm_trans" type="data" label="Discasm Transcript" help="Discasm generated transcript fasta"/>
+      <param format="fasta" name="discasm_trans" type="data" label="Discasm or Trinity reconstructed Transcripts" help="Trinity or Discasm generated transcript fasta"/>
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help="Forward strand reads"/>
       <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help="Reverse strand reads"/>
     </inputs>

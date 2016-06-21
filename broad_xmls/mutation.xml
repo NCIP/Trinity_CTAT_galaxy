@@ -106,6 +106,32 @@
 
 This service uses the GATK. The GATK is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here_. For more information about GATK and full documentation, please visit the GATK website_.
 
+.. class:: infomark
+
+**To Visualize Output**
+
+After completion, results can be visualized in galaxy. Click on the output json file name in the history (on the right). A more detailed view of that file will be shown. Click on the button in the middle that looks like a bar chart. The visualization should now open for you to explore results.
+
+
+**There are several output files for the CTAT Mutation Pipeline. Files of interest include:**
+
+1) **recalibrated.bam** - The processed bam from which the variants were called.
+
+2) **cancer.tab** - A tabular table version of the cancer.vcf .
+
+3) **cancer_variant.vcf** - A final short list of SNPs associated with cancer. This is a good first place to start but the other VCF files can be used depending on if you would like to perform your own variant filtering and prioritization.
+
+4) **variants_initial.vcf** - Variants after simple hard filtering.
+
+5) **variant.vcf** - All variants called (this will have many false positives).
+
+6) mutation_json -  A logistical file that enables the visualization.
+
+7) **bam file** - The original aligned bam before processing.
+
+8) Bed file - The associated bed file for the reference.
+
+9) **track file** - The log file.
 
 **Instructions to run:**
 

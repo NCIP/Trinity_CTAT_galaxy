@@ -52,11 +52,45 @@
       <data format="bed" name="trinity_bed" label="trinity_bed" from_work_dir="subdir/finspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed">
             <filter>trinity_status['trinity'] == "true"</filter>
       </data>
+      <data format="tabular" name="fusion_predictions" label="fusion_predictions.final" from_work_dir="subdir/finspector.fusion_predictions.final"/>
+      <data format="tabular" name="fusion_predictions_abridged" label="fusion_predictions_abridged" from_work_dir="subdir/finspector.fusion_predictions_abridged"/>
       <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/finspector.fusion_inspector_web.json"/>
     </outputs>
     <help>
+
+.. class:: infomark
+
 FusionInspector is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). FusionInspector assists in fusion transcript discovery by performing a supervised analysis of fusion predictions, attempting to recover and re-score evidence for such predictions. Please read more here_.
 
 .. _here: https://github.com/FusionInspector/FusionInspector/wiki
+
+**There are several output files for the CTAT Fusion Inspector Pipeline. Files of interest include:**
+
+1. **fidx**: Finspector_fasta index file (required for visualization).
+
+2. **cytoBand**: Cytogenetic information for hg19.
+
+3. **finspector_fasta**: The candidate fusion-gene contigs.
+
+4. **finspector_bed**: The reference gene structure annotations for fusion partners.
+
+5. **FusionJuncSpan**: Tabular details on junction reads and spanning reads.
+
+6. **junction_bed**: Alignments of the breakpoint-junction supporting reads.
+
+7. **junction_bam**: Alignments of the breakpoint-junction supporting reads.
+
+8. **spanning_bam**: Alignments of the breakpoint-spanning paired-end reads.
+
+9. **spanning_bed**: Alignments of the breakpoint-spanning paired-end reads.
+
+10. **trinity_bed**: Fusion-guided Trinity assembly.
+
+11. **fusion_predictions.final**: All fusion evidence described. 
+
+12. **fusion_predictions_abridged**: encompasses all information in fusion_predictions.final excluding the names of the reads.
+
+13. **fusion_json**: A logistical file that enables the visualization.
+
     </help>
 </tool>
