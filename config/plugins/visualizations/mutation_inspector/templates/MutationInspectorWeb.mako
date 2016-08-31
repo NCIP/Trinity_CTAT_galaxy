@@ -20,7 +20,8 @@
   <!--<link rel="stylesheet" type="text/css" href="http://igv.org/web/beta/igv.css">-->
   <link rel="stylesheet" type="text/css" href="http://www.broadinstitute.org/igv/projects/igv-web/css/igv.css">
   <!-- Spinner from http://www.css-spinners.com/spinner/spinner -->
-  <link rel="stylesheet" href="http://www.css-spinners.com/css/spinner/spinner.css">
+  <!-- <link rel="stylesheet" href="http://www.css-spinners.com/css/spinner/spinner.css">-->
+  <link rel="stylesheet" href="${h.url_for('/plugins/visualizations/mutation_inspector/static/css/spinner.css')}">
   <!-- Associated with the Data Table -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.8/css/dataTables.bootstrap.min.css">
   <!-- Specific CSS to inspectors -->
@@ -33,8 +34,8 @@
   <!-- Bootstrap -->
   <script type="text/javascript" src="${h.url_for('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')}"></script>
   <!-- IGV JS -->
-  <!-- <script type="text/javascript" src="${h.url_for('http://igv.org/web/beta/igv-beta.js')}"></script> -->
-  <script type="text/javascript" src="${h.url_for('/plugins/visualizations/igv/static/scripts/igv-all.js')}"></script> 
+  <script type="text/javascript" src="${h.url_for('http://igv.org/web/beta/igv-beta.js')}"></script> 
+  <!-- <script type="text/javascript" src="${h.url_for('/plugins/visualizations/mutation_inspector/static/scripts/igv-all.js')}"></script> --> 
   <!-- Data Table -->
   <script type="text/javascript" src="${h.url_for('https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js')}"></script>
   <script type="text/javascript" src="${h.url_for('https://cdn.datatables.net/1.10.8/js/dataTables.bootstrap.min.js')}"></script>
