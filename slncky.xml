@@ -23,10 +23,6 @@
      #if str($min_coding) != "":
          --min_coding "$min_coding"
      #end if
-     
-    #if str($min_noncoding) != "":
-        --min_noncoding "$min_noncoding"
-    #end if
 
     #if str($minMatch) != "":
         --minMatch "$minMatch"
@@ -53,26 +49,18 @@
     </command>
 
     <inputs>
-
-
-      <param name= "bedfile" format="bed" type="data" value="bedfile" label="Bed File:"/>
-
-      <param name= "assembly" type="select" label="Assembly:">
-
+      <param name= "bedfile" format="bed" type="data" value="bedfile" label="Bed File:" help="Reconstructed transcripts (ex. from StringTie or Trinity)"/>
+      <param name= "assembly" type="select" label="Assembly:" help="Reference Genome to be used">
              <option value="mm9">mm9</option>
              <option value="hg19">Hg19</option>
-
       </param>
-
-      <param name="min_overlap" type="float" value="0.0" label="Remove any transcript that overlap annotated coding gene greater than min_overlap" />
-      <param name="min_cluster" type="integer" value="2" label="Min size of duplication clusters to remove" />
-      <param name="min_coding" type="float" value="0" label="Min exonic identity to filter out transcript that aligns to orthologous coding gene" help="default is set by learning coding alignment distribution from data"/>
-      <param name="min_noncoding" type="float" value="0" label="min exonic identity to filter out transcript that aligns to orthologous noncoding gene" />
-      <param name="minMatch" type="float" value="0.1" label="minMatch parameter for liftover" />
-      <param name="pad" type="integer" value="0" label="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
+      <param name="min_overlap" type="float" value="0.0" label="Min overlap" help="Remove any transcript that overlap annotated coding gene greater than min_overlap" />
+      <param name="min_cluster" type="integer" value="2" label="Min cluster" help="Minimum size of duplication clusters to remove" />
+      <param name="min_coding" type="float" value="0.1" label="Min exonic identity to filter out transcript that aligns to orthologous coding gene" help="default is set by learning coding alignment distribution from data"/>
+      <param name="minMatch" type="float" value="0.1" label="Min match" help="Minimum match parameter for liftover" />
+      <param name="pad" type="integer" value="0" label="Pad" help="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
       <param name="gap_open" type="text" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
       <param name="gap_extend" type="text" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
-
     </inputs>
 
     <outputs>
@@ -95,23 +83,13 @@
     </stdio>
      <help>
 .. class:: infomark
- 
-**slncky : a tool for lncRNA and ortholog discovery**
- 
-For further details please visit
- 
- 
-.. class:: warningmark
- 
-**Intructions to run:**
- 
-Before running the pipeline please take note of the following:-
- 
-1) Create a directory for results (Eg: /broad/hptmp/[username]/galaxy_work) and give it 777 permission so Galaxy can write your results in the directory.
- 
-      - mkdir /broad/hptmp/[username]/galaxy_work
- 
-      - chmod -R 777 /broad/hptmp/[username]/galaxy_work
- 
+
+slncky is a tool for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution.
+
+To learn more about slncky read their paper_ or visit their website_ .
+
+.. _paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0880-9
+.. _website: https://github.com/slncky/slncky
+
 </help>
 </tool>

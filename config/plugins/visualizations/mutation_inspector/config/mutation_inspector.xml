@@ -5,6 +5,9 @@
                <data_source>
                       <model_class>HistoryDatasetAssociation</model_class>
                        <test type="isinstance" test_attr="datatype" result_type="datatype">text.Json</test>
+		       <test test_attr="creating_job.tool_id">
+			 toolshed.g2.bx.psu.edu/repos/bhaas/mutation/0.0.1
+		       </test>
                        <to_param param_attr="id">dataset_id</to_param>
                 </data_source>
            </data_sources>

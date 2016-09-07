@@ -12,7 +12,7 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES} 
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES},STAR:/N/dc2/projects/galaxyshared/trinity/third_party_applications/STAR_2.3.0
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input
@@ -24,7 +24,7 @@ rnaseq_mutation_pipeline.py
 --darned \${MUTATION_RESOURCES}/darned_hg19.txt
 --radar \${MUTATION_RESOURCES}/radar_hg19_v2.txt
 --tissue_type $tissue_type
---email cganote@iu.edu
+--email ttickle@broadinstitute.org
 --is_hg19
  >> $log
 
@@ -75,12 +75,45 @@ rnaseq_mutation_pipeline.py
     <tests>
     </tests>
     <help>
-
 .. class:: warningmark
 
-This service uses the GATK. The GATK is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here_. For more information about GATK and full documentation, please visit the GATK website_.
+This service uses the GATK_. The GATK_ is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here_. For more information about GATK and full documentation, please visit the GATK_ website.
 
-.. _website: https://www.broadinstitute.org
+.. class:: infomark
+
+Mutation detection in RNA-Seq highlights the GATK_ Best Practices in RNA-Seq variant calling, several sources of variant annotation, filtering based on CRAVAT_, and interactive data exploration using IGV_ web. Initially a 2-pass STAR_ alignment is performed followed by a series of GATK_ tools for variant calling. To aid in interpretation, variants are further annotated using several RNA editing databases, cancer specific features, and general variant information. CRAVAT_ is then used to score variants as cancer drivers (CHASM scores) or pathogenic (VEST scores). The mutation detection system adds value to GATK_ variant calling with tiered filtering. Initially, a comprehensive VCF file with conservative filtering is created. A VCF file additionally filtered based on annotation sources is then provided (for example filtering known RNA editing events and common variants). Final filtering is focused on reducing variants to a short list of predicted cancer-focused variants (which is made available as a VCF file). To aid users in data exploration, an interactive IGV_ web browser has been integrated directly into Galaxy giving an immediate customized view of the final cancer-focused variants.
+
+**To Visualize Output**
+
+After completion, results can be visualized in galaxy. Click on the output json file name in the history (on the right). A more detailed view of that file will be shown. Click on the button in the middle that looks like a bar chart. The visualization should now open for you to explore results.
+
+**There are several output files for the CTAT Mutation Pipeline. Files of interest include:**
+
+1) **Bam used in haplotype calling** - The processed bam from which the variants were called.
+
+2) **Text file of variants filtered for Cancer Studies** - A tabular table version of the cancer.vcf .
+
+3) **Variant file filtered for Cancer Studies** - A final short list of SNPs associated with cancer. This is a good first place to start but the other VCF files can be used depending on if you would like to perform your own variant filtering and prioritization.
+
+4) **Variants file with minimal suggested filtering** - Variants after simple hard filtering.
+
+5) **Variant file filtered and annotated** - Variants with more filtering and annotation.
+
+6) **Raw variants file** - All variants called (this will have many false positives).
+
+7) **JSON pointing to data for the Inspector Visualization** - A logistical file that enables the visualization.
+
+8) **Sorted bam from alignment** - The original aligned bam before processing.
+
+9) **Bed file for reference genome** - The associated bed file for the reference.
+
+10) **Mutation on dataset log** - The log file.
+
+.. _CRAVAT: http://www.cravat.us/help.jsp
+.. _GATK: https://www.broadinstitute.org/gatk/
+.. _website: https://github.com/NCIP/Trinity_CTAT/wiki
 .. _here: https://www.broadinstitute.org/gatk/about/license.html
+.. _IGV: https://www.broadinstitute.org/igv/
+.. _STAR: https://github.com/alexdobin/STAR
     </help>
 </tool>

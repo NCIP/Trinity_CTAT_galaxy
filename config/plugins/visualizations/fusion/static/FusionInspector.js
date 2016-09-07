@@ -13,6 +13,7 @@ var fusionInspectorState = {
  */
 function makeIGVBrowser( curFusion )
 {
+    console.log(fusionInspectorState);
     // Load browser
     var divBrowser = $("#igvBrowser")[0],
     options = {
@@ -79,7 +80,8 @@ function makeIGVBrowser( curFusion )
                      indexed: true,
                      visibilityWindow: 2000000,
                      order: 55
-                 }]};
+                 }
+              ]};
     if( ! ( fusionInspectorState.cache.json.trinityBed === "NA" ) ){
         options.tracks.push({
             label: "Trinity_Fusion",
@@ -207,20 +209,47 @@ function loadFusionDataTable( ){
         fusionKeys.push( fusionKey );
       }
     }
-    fusionInspectorState.cache[ "fusionKeys" ] = orderTableKeysBeginning( forcedHeaderKeyOrder, fusionKeys );
+    // fusionInspectorState.cache[ "fusionKeys" ] = orderTableKeysBeginning( forcedHeaderKeyOrder, fusionKeys );
     // Make data table header and footer
     var fusionTable = $('#fusionTable');
-    var fusionHeader = fusionInspectorState.cache.fusionKeys.map( toTableRowHeaderElement );
+    // var fusionHeader = fusionInspectorState.cache.fusionKeys.map( toTableRowHeaderElement );
+    // For loop instead of map
+    var fusionHeader = [];
+    for (var header = 0; header < forcedHeaderKeyOrder.length; header++){
+         fusionHeader.push( '<th>' + forcedHeaderKeyOrder[header] + '</th>');
+    }
+    // console.log(fusionHeader);
     fusionTable.append( '<thead><tr>' + fusionHeader.join('') + '</tr></thead>' );
     fusionTable.append( '<tfoot><tr>' + fusionHeader.join('') + '</tr></tfoot>' );
 
+    // console.log("fusionKeys");   
+    // console.log(fusionKeys);
+    // console.log("forcedHeaderKeyOrder");
+    // console.log(forcedHeaderKeyOrder); 
+    fusionInspectorState.cache[ "fusionKeys" ] = orderTableKeysBeginning( forcedHeaderKeyOrder, fusionKeys );
+    // console.log("fusionInspectorState.cache.fusionKeys");
+    // console.log(fusionInspectorState.cache[ "fusionKeys" ]);  
+  
     // Add data table body
+    //fusionTable.append( '<tbody>' );
+    //for( var fusionIndex = 0; fusionIndex < fusionInspectorState.cache.json.fusions.length; fusionIndex++ ){
+    //  var fusionEntry = fusionInspectorState.cache.json.fusions[ fusionIndex ];
+    //  console.log("fusionEntry");
+    //  console.log(fusionEntry);
+    //  console.log("fusionInspectorState.cache.fusionKeys");
+    //  console.log(fusionInspectorState.cache.fusionKeys);
+    //  fusionTable.append( toTableBodyElement( fusionEntry, fusionInspectorState.cache.fusionKeys ) );
+    //}
+    //fusionTable.append( '</tbody>' );
+
+    // Add data table body (in order of forced fusion header)
     fusionTable.append( '<tbody>' );
     for( var fusionIndex = 0; fusionIndex < fusionInspectorState.cache.json.fusions.length; fusionIndex++ ){
-      var fusionEntry = fusionInspectorState.cache.json.fusions[ fusionIndex ];
-      fusionTable.append( toTableBodyElement( fusionEntry, fusionInspectorState.cache.fusionKeys ) );
+       var fusionEntry = fusionInspectorState.cache.json.fusions[ fusionIndex ];
+       fusionTable.append( toTableBodyElement( fusionEntry, forcedHeaderKeyOrder ) );
     }
     fusionTable.append( '</tbody>' );
+
 }
 
 /**

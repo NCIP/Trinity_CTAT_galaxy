@@ -36,17 +36,16 @@ def get_arguments():
     parser.add_argument('--threads', type=int, help='number of threads. default = 5', default=5)
     parser.add_argument('--min_overlap', type=float, help='remove any transcript that overlap annotated coding gene > min_overlap%%. default = 0%%', default=0)
     parser.add_argument('--min_cluster', type=int, help='min size of duplication clusters to remove. default=2', default=2)
-    parser.add_argument('--min_coding', type=float, help='min exonic identity to filter out transcript that aligns to orthologous coding gene. default is set by learning coding alignment distribution from data', default=None)
+    parser.add_argument('--min_coding', type=float, help='min exonic identity to filter out transcript that aligns to orthologous coding gene. default is set by learning coding alignment distribution from data', default=0.1)
     parser.add_argument('--no_overlap', action='store_true', help='flag if you don\'t want to overlap with coding')
     parser.add_argument('--no_collapse', action='store_true', help='flag if you don\'t want to collapse isoforms')
     parser.add_argument('--no_dup', action='store_true', help='flag if don\'t want to align to duplicates')
     parser.add_argument('--no_self', action='store_true', help='flag if you don\'t want to self-align for duplicates')
     parser.add_argument('--no_coding', action='store_true', help='flag if you don\'t want to align to orthologous coding')
-    parser.add_argument('--min_noncoding', type=float, help='min exonic identity to filter out transcript that aligns to orthologous noncoding gene. default=0', default=0.0)
     parser.add_argument('--no_bg', action='store_true', help='flag if you don\'t want to compare lnc-to-ortholog alignments to a background. This flag may be useful if you want to do a \'quick-and-dirty\' run of the ortholog search.')
     parser.add_argument('--no_orf', action='store_true', help='flag if you don\'t want to search for orfs')
     parser.add_argument('--minMatch', type=float, help='minMatch parameter for liftover. default=0.1', default=0.1)
-    parser.add_argument('--pad', type=int, help='# of basepairs to search up- and down-stream when lifting over lnc to ortholog', default=0)
+    parser.add_argument('--pad', type=int, help='# of basepairs to search up- and down-stream when lifting over lnc to ortholog', default=50000)
     parser.add_argument('--gap_open', type=str, default='200')
     parser.add_argument('--gap_extend', type=str, default='40')
     parser.add_argument('--web', action='store_true', help='flag if you want website written visualizing transcripts that were filtered out')
@@ -113,8 +112,7 @@ if __name__ == "__main__":
                       '--threads ' + str( args.threads ) + " \\",
                       '--min_overlap ' + str( args.min_overlap ) + " \\",
                       '--min_cluster ' + str( args.min_cluster ) + " \\",
-                      '--min_coding ' + str( args.min_coding ) + " \\", 
-                      '--min_noncoding ' + str( args.min_noncoding ) + " \\",
+                      '--min_coding ' + str( args.min_coding ) + " \\",                       
                       '--bedtools ' + BEDTOOLS + " \\",
                       '--liftover ' +  LIFTOVER + " \\",
                       '--minMatch ' + str( args.minMatch ) + " \\",

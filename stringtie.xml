@@ -6,7 +6,7 @@
     <command>
     python $__tool_directory__/ctat_stringtie_wrapper.py
     --bam_file $bam_file
-    --ref_annot $ref_annot
+    --ref_annot $ref_annot.fields.path
     --output_bed "transcripts_reconstructed.bed"
     --output_gtf "transcripts_reconstructed.gtf"
     </command>
@@ -35,6 +35,8 @@
     </outputs>
 
     <help>
+.. class:: infomark
+
 StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts. It uses a novel network flow algorithm as well as an optional de novo assembly step to assemble and quantitate full-length transcripts representing multiple splice variants for each gene locus. Please read more here_.
 
 .. _here: https://ccb.jhu.edu/software/stringtie/index.shtml

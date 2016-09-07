@@ -30,6 +30,13 @@ $right_input
     <tests>
     </tests>
     <help>
-        PRADA-fusion Pipeline draft
+.. class:: infomark 
+
+Use PRADA-fusion to detect fusion transcripts (chimeric transcripts identified by discordant read pairs and fusion-spanning reads).
+
+To learn more about PRADA-fusion read their paper_ or visit their website_.
+
+.. _paper: http://bioinformatics.oxfordjournals.org/content/early/2014/04/01/bioinformatics.btu169
+.. _website: http://bioinformatics.mdanderson.org/main/PRADA:Overview
     </help>
 </tool>

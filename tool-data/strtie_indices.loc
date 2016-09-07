@@ -35,11 +35,8 @@
 #is the value stored in the workflow for that parameter. That is why the
 #hg19 entry above looks odd. New genomes can be better-looking.
 #
-hg19_ucsc	hg19_ucsc	hg19_ucsc_genomeStudio_genes[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/hg19_ucsc_genomeStudio_genes.gtf.no_unmapped.gtf
-Hg191	Hg192	Gencode_v19[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF
-/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF	Hg192	Gencode_v192[Hg19]	test
+#hg19_ucsc	hg19_ucsc	hg19_ucsc_genomeStudio_genes[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/hg19_ucsc_genomeStudio_genes.gtf.no_unmapped.gtf
+Hg19	Hg19	Gencode_v19[Hg19]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF
 mm9_ucsc	mm9_ucsc	mm9_ucsc_genomeStudio_genes[mm9-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm9_ucsc_genomeStudio_genes.gtf
-mm10_ucsc	mm10_ucsc	mm10_ucsc_genomeStudio_genes[mm10-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm10.ucsc_genomestudio.genes.gtf
-mm10_ensembl	mm10_ensembl	mm10_ensembl[mm10-mouse]	/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/mm10.gtf
 
 
