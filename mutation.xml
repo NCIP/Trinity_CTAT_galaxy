@@ -53,8 +53,6 @@ rnaseq_mutation_pipeline.py
 	  <validator type="no_options" message="No indexes are available for the selected input dataset"/>
         </options>
       </param>
-      <!--<section name="adv" title="This service uses the GATK. The GATK is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here: https://www.broadinstitute.org/gatk/about/license.html. For more information about GATK and full documentation, please visit the GATK website: https://www.broadinstitute.org." expanded="False">
-      </section>-->
     </inputs>
     <outputs>
       <data format="txt" name="log" label="${tool.name} on ${on_string}: log" />
