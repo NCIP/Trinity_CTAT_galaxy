@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<tool_dependency>
-    <set_environment version="1.0">
-        <environment_variable action="set_to" name="FUSION_ANNOTATOR_LIB"></environment_variable>
-    </set_environment>
-</tool_dependency>

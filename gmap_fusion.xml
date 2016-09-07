@@ -3,7 +3,6 @@
     <requirements>
         <requirement type="set_environment">FUSION_RESOURCES</requirement>
         <requirement type="set_environment">TRINTOOLS</requirement>
-        <requirement type="package"></requirement>
     </requirements>
     <command>
       \$TRINTOOLS/GMAP-fusion_v0.0.1/GMAP-fusion 

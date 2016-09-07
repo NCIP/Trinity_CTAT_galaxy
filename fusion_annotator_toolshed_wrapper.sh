@@ -1,1 +1,0 @@
-trinity_fusion_toolshed/fusion_annotator_toolshed_wrapper.sh

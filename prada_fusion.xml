@@ -1,8 +1,5 @@
 <tool id="prada-fusion" name="Prada-fusion" version="0.0.1">
     <description>Fusion-finding Pipeline using PRADA</description>
-    <requirements>
-        <requirement type="package"></requirement>
-    </requirements>
     <command>
 run_PRADA.pl 
 $left_input

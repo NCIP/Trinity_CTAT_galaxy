@@ -1,8 +1,5 @@
 <tool id="mutation" name="Mutation Pipeline" version="0.0.1">
     <description>Mutation Pipeline for calling SNPs and variants</description>
-    <requirements>
-        <requirement type="package"></requirement>
-    </requirements>
     <command>
 rnaseq_mutation_pipeline.py 
 --index \${MUTATION_RESOURCES}/Hg19.fa_star_index 

@@ -1,10 +1,6 @@
 <tool id="expression" name="Kallisto" version="0.0.1">
 
     <description>Expression quantification for RNA-Seq Analysis</description>
-    <requirements>
-       <requirement type="set_environment">WRAPPERS</requirement>
-       <requirement type="package"></requirement>
-    </requirements>
     <command>
      
      python $__tool_directory__/ctat_expression_wrapper.py

@@ -1,4 +1,4 @@
-<tool id="fusion-inspector-new" name="Fusion Inspector" version="0.0.3">
+<tool id="fusion-inspector" name="Fusion Inspector" version="0.0.3">
     <description>In silico Validation of Fusion Transcript Predictions</description>
     <requirements>
         <requirement type="set_environment">FUSION_RESOURCES</requirement>

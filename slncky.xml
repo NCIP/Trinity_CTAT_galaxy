@@ -1,8 +1,6 @@
-<tool id="slncky_pipeline_test" name="slncky_pipeline" version="0.0.1">
+<tool id="slncky_pipeline" name="slncky_pipeline" version="0.0.1">
 
     <description>Running slncky</description>
-    <requirements>
-    </requirements>
     <command>
      #if str($bedfile) != "":
          python  $__tool_directory__/slncky_galaxy_wrapper.py --bedfile "$bedfile" 
