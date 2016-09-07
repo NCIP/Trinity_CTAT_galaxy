@@ -1,0 +1,34 @@
+<tool id="fusion_annotator" name="Fusion Annotator" version="0.0.1">
+    <description>Fusion Annotation</description>
+    <requirements>
+      <requirement type="package"></requirement>
+      <requirement type="set_environment">WRAPPERS</requirement>
+    </requirements>
+    <command>
+    python \$WRAPPERS/fusion_annotator_wrapper.py
+    --fusion_file $fusion_candidate >> $annotation_list 
+    </command>
+    <macros>
+    </macros>
+    <stdio>
+      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
+    </stdio>
+    <regex match="Must investigate error above."
+           source="stderr"
+           level="fatal"
+           description="Unknown error encountered" />
+    <inputs>
+      <param name="fusion_candidate" type="data" label="Fusion Candidate List:" help=""/>
+    </inputs>
+    <outputs>
+      <data format="tabular" name="annotation_list" label="${tool.name} on ${on_string}: annotation" from_work_dir="annotation.txt"/>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+Fusion Annotator gives basic annotations to human fusion genes based on the Cancer Genome Atlas, the Mitelman database, OMIM, and COSMIC. Please read more here_.
+
+.. _here: https://github.com/FusionAnnotator/FusionAnnotator/wiki
+
+    </help>
+</tool>

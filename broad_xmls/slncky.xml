@@ -1,0 +1,117 @@
+<tool id="slncky_pipeline_test" name="slncky_pipeline">
+
+    <description>Running slncky</description>
+    <requirements>
+       <requirement type="set_environment">WRAPPERS</requirement>
+       <requirement type="package"></requirement>
+    </requirements>
+    <command>
+     #if str($bedfile) != "":
+         python \$WRAPPERS/slncky_galaxy_wrapper.py --bedfile "$bedfile" 
+     #end if
+
+     #if str($assembly) != "":
+         --assembly "$assembly"
+     #end if
+
+     #if $min_overlap != "":
+         --min_overlap "$min_overlap"
+     #end if
+
+     #if str($min_cluster) != "":
+         --min_cluster "$min_cluster"
+     #end if
+
+     #if str($min_coding) != "":
+         --min_coding "$min_coding"
+     #end if
+     
+    #if str($minMatch) != "":
+        --minMatch "$minMatch"
+    #end if
+
+    #if str($pad) != "":
+        --pad "$pad"
+    #end if
+
+    #if str($gap_open) != "":
+        --gap_open "$gap_open"
+    #end if
+
+    #if str($gap_extend) != "":
+        --gap_extend "$gap_extend"
+    #end if
+
+    --web --html "$html_file" --html_files_path "$html_file.files_path"
+
+    --can_lncs "$canonical_to_lncs" --clust_info "$cluster_info" --filt_info "$filtered_info" 
+    
+    --lncs_bed "$lncs" --lncs_info "$lncs_info" --orfs "$orfs" --ortho_top "$orthologs_top" --ortho "$orthologs"
+
+    </command>
+
+    <inputs>
+
+
+      <param name= "bedfile" type="data" format="bed" value="bedfile" label="Bed File:" help="Reconstructed Transcripts (example: Trinity or StringTie)"/>
+
+      <param name= "assembly" type="select" label="Assembly:" help="Choose reference genome">
+
+             <option value="mm9">mm9</option>
+             <option value="hg19">Hg19</option>
+
+      </param>
+
+      <param name="min_overlap" type="float" value="0.0" label="Minimum Overlap" help="Remove any transcript that overlap annotated coding gene greater than min_overlap" />
+      <param name="min_cluster" type="integer" value="2" label="Minimum clusters" help="Min size of duplication clusters to remove" />
+      <param name="min_coding" type="float" value="0.1" label="Minimum coding" help="Min exonic identity to filter out transcript that aligns to orthologous coding gene.  Default is set by learning coding alignment distribution from data"/>
+      <param name="minMatch" type="float" value="0.1" label="Minimum match" help="minMatch parameter for liftover" />
+      <param name="pad" type="integer" value="50000" label="Pad" help="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
+      <param name="gap_open" type="text" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
+      <param name="gap_extend" type="text" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
+
+    </inputs>
+
+    <outputs>
+           <data format="html" name="html_file" label="web_report"/>
+           <data format="text" name="canonical_to_lncs" label="canonical_to_lncs" />
+           <data format="text" name="cluster_info" label="cluster_info" />
+           <data format="text" name="filtered_info" label="filtered_info" />
+           <data format="bed" name="lncs" label="lncs" />
+           <data format="text" name="lncs_info" label="lncs.info" />
+           <data format="text" name="orfs" label="orfs" />
+           <data format="text" name="orthologs_top" label="orthologs.top" />
+           <data format="text" name="orthologs" label="orthologs" /> 
+    </outputs>
+
+    <stdio>
+          <exit_code range="2"   level="fatal"   description="Out of Memory" />
+          <exit_code range="3:5" level="warning" description="Low disk space" />
+          <exit_code range="6:"  level="fatal"   description="Bad input dataset" />
+          <exit_code range="99"  level="fatal"   description="Bad input dataset" />
+    </stdio>
+     <help>
+
+.. class:: infomark
+
+slncky is a tool for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution.
+
+To learn more about slncky read their paper_ or visit their website_.
+
+.. class:: warningmark
+ 
+**Instructions to run:**
+ 
+Before running the pipeline please take note of the following:-
+ 
+1) Create a directory for results (Eg: /broad/hptmp/[username]/galaxy_work) and give it 777 permission so Galaxy can write your results in the directory.
+ 
+      - mkdir /broad/hptmp/[username]/galaxy_work
+ 
+      - chmod -R 777 /broad/hptmp/[username]/galaxy_work
+
+.. _paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0880-9
+.. _website: https://github.com/slncky/slncky
+ 
+</help>
+</tool>

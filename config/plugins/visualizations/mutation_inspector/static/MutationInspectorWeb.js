@@ -9,8 +9,8 @@
  */
 var mutationInspectorState = {
   cache : {},
-  abridged : false,
-  https_enabled : true,
+  abridged : true,
+  https_enabled : false,
   galaxy_mode : true,
   load_json_in_js : false
 };
@@ -201,7 +201,7 @@ function addSpecificTab( curRowChr, curRowPos, curRowRef, curRowAlt ){
   // If the the tab already exists, go to tab, do not make a new one.
   if( isExistingSpecificTab( curRowChr, curRowPos )){
     clickSpecificViewTab( newTabName )
-    retrieveCRAVATInfo( curRowChr, curRowPos, curRowRef, curRowAlt )
+    retrieveCRAVATInfo( curRowChr, curRowPos )
     return;
   }
   // Make a new tab.
@@ -222,7 +222,7 @@ function addSpecificTab( curRowChr, curRowPos, curRowRef, curRowAlt ){
   }
   // MuPIT link will be added by an asynchronous call
   mutationInspectorState.cache[ chromLocation ][ "MuPIT Link" ] = null
-  var currentCravatData = retrieveCRAVATInfo( curRowChr, curRowPos, curRowRef, curRowAlt );
+  var currentCravatData = retrieveCRAVATInfo( curRowChr, curRowPos );
   // Add click event for close button and tab.
   registerCloseEvent( closeButton, tabHeader, newTabName );
   registerOnClickEvent( tabHeader, chromLocation );
@@ -344,12 +344,16 @@ function createIGVBrowser( sampleInfo ){
   options = {
     showNavigation: true,
     genome: "hg19",
-    tracks: [{ url: sampleInfo.BAM,
+    tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
                indexURL: sampleInfo.BAM_INDEX,
-               type: "bam",
-               label: sampleInfo.SAMPLE,
+               name: sampleInfo.SAMPLE,
                maxHeight: 250 },
-             { url: sampleInfo.BED,
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
                indexURL: sampleInfo.BED_INDEX,
                name: "Genes",
                order: Number.MAX_VALUE,
@@ -361,12 +365,16 @@ function createIGVBrowser( sampleInfo ){
     options = {
       showNavigation: true,
       genome: "hg19",
-      tracks: [{ url: sampleInfo.BAM,
+      tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
                indexURL: sampleInfo.BAM_INDEX,
-               type: "bam",
-               label: sampleInfo.SAMPLE,
+               name: sampleInfo.SAMPLE,
                maxHeight: 250 },
-             { url: sampleInfo.BED,
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
                name: "Genes",
                indexed: false,
                order: Number.MAX_VALUE,
@@ -431,17 +439,16 @@ function setAnnotationTabToLoad( retrieveAnnotationTabName ){
  * Asyncronous call.
  * @param {string} retrieveChr - Chromosome of interest, used in the cravat call.
  * @param {string} retrievePos - Position of interest, used in the cravat call.
- * @param {string} retrieveRef - Reference base of interest, used in the cravat call.
- * @param {string} retrieveAlt - Alternative base of interest, used in the cravat call.
  */
-function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt ){
+function retrieveCRAVATInfo( retrieveChr, retrievePos ){
   // Performs an asynchronous call to the CRAVAT web service
   // Updates both the CRAVAT info header and the info tab
   // Puts a loading logo up while waiting
   var positionKey = retrieveChr + "_" + retrievePos
-  var cravat_prefix = "http://staging.cravat.us/rest/service/query?mutation="
+  var cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
   if( mutationInspectorState.https_enabled === true ){
-    cravat_prefix = "https://www.cravat.us/rest/service/query?mutation="
+    //cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
+    return null;
   }
   setAnnotationTabToLoad( positionKey );
   $.ajax({ type: 'GET',
@@ -453,7 +460,7 @@ function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt 
       mutationInspectorState.cache[ retrieveChr+':'+retrievePos ]["MuPIT Link"] = cravatData[ "MuPIT Link" ];
       }
     },
-           url: cravat_prefix+retrieveChr+"_"+retrievePos+"_+_"+retrieveRef+"_"+retrieveAlt
+           url: cravat_prefix+retrieveChr+":"+retrievePos
   });
   return null;
 }

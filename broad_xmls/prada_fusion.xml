@@ -1,0 +1,36 @@
+<tool id="prada-fusion" name="Prada-fusion" version="0.0.1">
+    <description>Fusion-finding Pipeline using PRADA</description>
+    <requirements>
+        <requirement type="package"></requirement>
+        <requirement type="set_environment">WRAPPERS</requirement>
+    </requirements>
+    <command>
+\$WRAPPERS/run_PRADA.pl 
+$left_input
+$right_input
+"subdir" 
+>> "$snp_log"
+    </command>
+    <macros>
+    </macros>
+    <stdio>
+      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
+    </stdio>
+    <regex match="Must investigate error above."
+           source="stderr"
+           level="fatal"
+           description="Unknown error encountered" />
+    <inputs>
+      <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
+      <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
+    </inputs>
+    <outputs>
+      <data format="txt" name="snp_log" label="${tool.name} on ${on_string}: log" />
+      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/prada_fusions/prada.fus.summary.txt"/> 
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+        PRADA-fusion Pipeline draft
+    </help>
+</tool>

@@ -1,0 +1,31 @@
+<tool id="validation_inspector_test" name="validation_inspector">
+     
+      <description>Mutation Validation Tool</description>
+      <requirements>
+          <requirement type="package"></requirement>
+          <requirement type="set_environment">WRAPPERS</requirement> 
+      </requirements>
+      <command>
+           python \$WRAPPERS/mutation_validation_wrapper.py
+           --input_json $input_json_path
+           --input_dna_bam $input_dna_bam_path
+           --input_rna_bam $input_rna_bam_path
+           --output_json $output_json_path
+           --output_dna_bam $output_dna_bam_path
+           --output_rna_bam $output_rna_bam_path
+      </command> 
+      <inputs>
+          <param name= "input_json_path" type="text" value="pipeline_json" label="Sample File:"/>
+          <param name= "input_dna_bam_path" type="text" value="dna_bam" label="DNA BAM PATH:"/>
+          <param name= "input_rna_bam_path" type="text" value="rna_bam" label="RNA BAM PATH:"/>
+      </inputs> 
+      <outputs>
+          <data format="json" name="output_json_path" label="pipeline_inspector"/>
+          <data format="bam" name="output_dna_bam_path" label="dna_bam"/>
+          <data format="bam" name="output_rna_bam_path" label="rna_bam"/>
+      </outputs>
+      <stdio>
+          <exit_code range="1:"  level="fatal" description="Error returned from pipeline" />
+      </stdio> 
+
+</tool>      
