@@ -24,6 +24,9 @@ SLNCKY
 In slncky_galaxy_wrapper.py, the following paths will need to be filled in:
 
 BEDTOOLS = ''
+
 LASTZ = ''
+
 LIFTOVER = ''
+
 SCIEDPIPER_HOME = ''
