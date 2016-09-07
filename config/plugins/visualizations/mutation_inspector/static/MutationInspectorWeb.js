@@ -9,7 +9,10 @@
  */
 var mutationInspectorState = {
   cache : {},
-  abridged : true
+  abridged : true,
+  https_enabled : false,
+  galaxy_mode : true,
+  load_json_in_js : false
 };
 
 
@@ -20,7 +23,7 @@ var mutationInspectorState = {
 
 /**
  * Read in the JSON object that points to the bams and variants of interest.
- * @param {string} mutationTabFile - The path / URL to the JSON object
+ * @param {string} mutation_json_data - The path / URL to the JSON object ( mutationInspectorState.load_json_in_js === true ) or object read in from json ( mutationInspectorState.load_json_in_js === false ) depending on mutationInspectorState.load_json_in_js
  */
 function loadMutationTable( mutation_json_data ) {
 
@@ -31,7 +34,11 @@ function loadMutationTable( mutation_json_data ) {
   mutationInspectorState.cache.hiddenCols = [];
 
   // Read in the JSON file
-  mutationInspectorView.json = mutation_json_data;
+  if( mutationInspectorState.load_json_in_js === true ){
+    readMutationJSON( mutation_json_data );
+  } else {
+    mutationInspectorView.json = mutation_json_data;
+  }
 
   // Forced order of the mutation table elements.
   // Any element in the table and not in this array
@@ -185,7 +192,7 @@ function updateHiddenColumns(){
  */
 function addSpecificTab( curRowChr, curRowPos, curRowRef, curRowAlt ){
   // Turn off the additional tab creation
-  if ( mutationInspectorState.abridged ){
+  if ( mutationInspectorState.abridged === true ){
     return( false );
   }
 
@@ -194,7 +201,7 @@ function addSpecificTab( curRowChr, curRowPos, curRowRef, curRowAlt ){
   // If the the tab already exists, go to tab, do not make a new one.
   if( isExistingSpecificTab( curRowChr, curRowPos )){
     clickSpecificViewTab( newTabName )
-    retrieveCRAVATInfo( curRowChr, curRowPos, curRowRef, curRowAlt )
+    retrieveCRAVATInfo( curRowChr, curRowPos )
     return;
   }
   // Make a new tab.
@@ -215,7 +222,7 @@ function addSpecificTab( curRowChr, curRowPos, curRowRef, curRowAlt ){
   }
   // MuPIT link will be added by an asynchronous call
   mutationInspectorState.cache[ chromLocation ][ "MuPIT Link" ] = null
-  var currentCravatData = retrieveCRAVATInfo( curRowChr, curRowPos, curRowRef, curRowAlt );
+  var currentCravatData = retrieveCRAVATInfo( curRowChr, curRowPos );
   // Add click event for close button and tab.
   registerCloseEvent( closeButton, tabHeader, newTabName );
   registerOnClickEvent( tabHeader, chromLocation );
@@ -290,7 +297,7 @@ function registerDefaultTabClick( tabHeader ){
   // This is a hack added in after the fact. We needed to remove elements associated
   // with webservices until they were resolved. This does not belong here but is a
   // place that is called once. (Could not change the html as well).
-  if( mutationInspectorState.abridged ){
+  if( mutationInspectorState.abridged === true ){
     $("#sampleHeader").children().children()[5].remove();
     $("#currentMupit").remove();
   }
@@ -315,7 +322,7 @@ function updateSNPInfo( curSNPChr, curSNPPos, curSNPRef, curSNPAlt ){
   $( '#currentPosition' ).text( curSNPPos );
   $( '#currentRef' ).text( curSNPRef );
   $( '#currentAlt' ).text( curSNPAlt );
-  if( ! mutationInspectorState.abridged ){
+  if( mutationInspectorState.abridged === false ){
     $( '#currentMupit' ).text( '' );
     $( '#currentMupit' ).append( '<div class=\"spinner-loader\">Loading...</div>' );
   }
@@ -337,18 +344,44 @@ function createIGVBrowser( sampleInfo ){
   options = {
     showNavigation: true,
     genome: "hg19",
-    tracks: [{ url: sampleInfo.BAM,
+    tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
                indexURL: sampleInfo.BAM_INDEX,
-               type: "bam",
-               label: sampleInfo.SAMPLE,
+               name: sampleInfo.SAMPLE,
                maxHeight: 250 },
-             { url: sampleInfo.BED,
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
+               indexURL: sampleInfo.BED_INDEX,
+               name: "Genes",
+               order: Number.MAX_VALUE,
+               displayMode: "EXPANDED",
+               maxHeight: 75 }]
+  };
+
+  if( mutationInspectorState.galaxy_mode === true ){
+    options = {
+      showNavigation: true,
+      genome: "hg19",
+      tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
+               indexURL: sampleInfo.BAM_INDEX,
+               name: sampleInfo.SAMPLE,
+               maxHeight: 250 },
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
                name: "Genes",
                indexed: false,
                order: Number.MAX_VALUE,
                displayMode: "EXPANDED",
                maxHeight: 75 }]
-  };
+    };
+  }
   igv.createBrowser( div, options );
 }
 
@@ -395,7 +428,7 @@ function readMutationJSON( readInFile ){
  */
 function setAnnotationTabToLoad( retrieveAnnotationTabName ){
   $( '#' + retrieveAnnotationTabName ).html( "" );
-  if( ! mutationInspectorState.abridged ){
+  if( mutationInspectorState.abridged === false ){
     $( '#' + retrieveAnnotationTabName ).append( "<div class=\"spinner-loader\">Loading...</div>" );
   }
 }
@@ -406,14 +439,17 @@ function setAnnotationTabToLoad( retrieveAnnotationTabName ){
  * Asyncronous call.
  * @param {string} retrieveChr - Chromosome of interest, used in the cravat call.
  * @param {string} retrievePos - Position of interest, used in the cravat call.
- * @param {string} retrieveRef - Reference base of interest, used in the cravat call.
- * @param {string} retrieveAlt - Alternative base of interest, used in the cravat call.
  */
-function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt ){
+function retrieveCRAVATInfo( retrieveChr, retrievePos ){
   // Performs an asynchronous call to the CRAVAT web service
   // Updates both the CRAVAT info header and the info tab
   // Puts a loading logo up while waiting
   var positionKey = retrieveChr + "_" + retrievePos
+  var cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
+  if( mutationInspectorState.https_enabled === true ){
+    //cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
+    return null;
+  }
   setAnnotationTabToLoad( positionKey );
   $.ajax({ type: 'GET',
            dataType: 'json',
@@ -424,7 +460,7 @@ function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt 
       mutationInspectorState.cache[ retrieveChr+':'+retrievePos ]["MuPIT Link"] = cravatData[ "MuPIT Link" ];
       }
     },
-           url: "//staging.cravat.us/rest/service/query?mutation="+retrieveChr+"_"+retrievePos+"_+_"+retrieveRef+"_"+retrieveAlt
+           url: cravat_prefix+retrieveChr+":"+retrievePos
   });
   return null;
 }
@@ -460,7 +496,7 @@ function updateCravatTab( updateTab, cravatItem ){
  */
 function updateMupitLink( cravatItem ){
 
-  if( mutationInspectorState.abridged ){
+  if( mutationInspectorState.abridged === true ){
     return( false );
   }
 
