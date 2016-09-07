@@ -1,0 +1,6 @@
+# Location of the STAR index for genomes supported by fusion tools
+#
+#id    dbkey    description    path
+hg19	hg19	hg19	/path/FUSION_ANNOTATOR_LIB/Hg19.fa_star_index
+
+

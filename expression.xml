@@ -48,7 +48,7 @@
       </conditional>
 
       <param name="annot" type="select" label="Choose Genome Annotation:" help="Select genome annotation to use">
-             <option value="/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.config">Gencode_v19[Hg19]</option>
+             <option value="/path/Gencode_v19.config">Gencode_v19[Hg19]</option>
       </param>
       
       <param name="bias" type="boolean" truevalue="True" falsevalue="False" label="Perform sequence based bias correction" help="learns parameters for a model of sequences specific bias and corrects the abundances accordlingly."/>

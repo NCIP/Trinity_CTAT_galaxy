@@ -1,0 +1,6 @@
+#Location of gtf files to be used in the expression pipeline for Trinity_CTAT
+# id    dbkey    description    path
+Hg19	Hg19	Gencode_v19[Hg19]	/path/to/Gencode_v19.GTF
+mm9_ucsc	mm9_ucsc	mm9_ucsc_genomeStudio_genes[mm9-mouse]	/path/to/mm9_ucsc_genomeStudio_genes.gtf
+
+

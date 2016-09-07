@@ -12,7 +12,7 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES},STAR:/N/dc2/projects/galaxyshared/trinity/third_party_applications/STAR_2.3.0
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:\${MUTATION_RESOURCES},bcftools:\${MUTATION_RESOURCES},snpEff.jar:\${MUTATION_RESOURCES},STAR:\${MUTATION_RESOURCES}
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input
@@ -24,7 +24,7 @@ rnaseq_mutation_pipeline.py
 --darned \${MUTATION_RESOURCES}/darned_hg19.txt
 --radar \${MUTATION_RESOURCES}/radar_hg19_v2.txt
 --tissue_type $tissue_type
---email ttickle@broadinstitute.org
+--email youremail@domain.com
 --is_hg19
  >> $log
 
@@ -65,10 +65,6 @@ rnaseq_mutation_pipeline.py
       <data format="tabular" name="cancertab" label="Text file of variants filtered for Cancer Studies" from_work_dir="output/cancer.tab"/> 
       <data format="bed" name="bed_path" label="Bed file for reference genome" from_work_dir="output/hg19.refGene.sort.bed"/>
       <data format="json" name="vizjson" label="JSON pointing to data for the Inspector Visualization" from_work_dir="output/mutation_inspector.json"/>  
-      <!--<data format="txt" name="cancerIndex" label="${tool.name} on ${on_string}: Cancer Index" from_work_dir="output/cancer.vcf.idx"/> 
-      
-      <data name="cravat" label="Annotated (lightly filtered) VCF file" from_work_dir="output/variants_filtered_clean_snp_RNAedit_dbsnp_cosmic_filtered_cravate_annotated_all.vcf.gz"/>
-      <data format="json" name="m_i_json" label="JSON File" from_work_dir="mutation_inspector.json"/> -->
     </outputs>
     <tests>
     </tests>
