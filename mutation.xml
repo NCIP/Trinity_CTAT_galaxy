@@ -76,6 +76,27 @@ rnaseq_mutation_pipeline.py
                <has_line_matching expression="^chr11.*" />
             </assert_contents>
         </output>
+        <output name="cancerVariants">
+            <assert_contents>
+               <has_line line="#CHROM&#009;POS&#009;ID&#009;REF&#009;ALT&#009;QUAL&#009;FILTER&#009;INFO&#009;FORMAT&#009;dataset_1" />
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="cancerIndex">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="allVariants">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="bamFile">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
       </test>
     </tests>
     <help>
