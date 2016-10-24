@@ -5,9 +5,11 @@ Files needed for Galaxy tools used to run Trinity_CTAT workflows.
 
 The following environment variables are needed by various tools in this suite:
 
-FUSION_RESOURCES - contains gencode19 gtf files, bowtie indices, Hg19 fasta and fai files, star indices and gmap indices files for Fusion tools
+FUSION_RESOURCES - contains gencode19 gtf files, bowtie indices, Hg19 fasta and fai files, star indices and gmap indices files for Fusion tools.
+(Not located in git; do not include in git).
 
 MUTATION_RESOURCES - contains jar files for mutation as well as Hg19 fasta, bed and star indices; required vcf files and cravat files.
+(Not located in git; do not include in git).
 
 TOOLS - the folder that contains Trinity_CTAT and SciEDPipeR
 
