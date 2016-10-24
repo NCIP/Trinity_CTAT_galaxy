@@ -4,6 +4,8 @@
         <requirement type="package"></requirement>
     </requirements>
     <command>
+<![CDATA[
+export PYTHONPATH= &&
 rnaseq_mutation_pipeline.py 
 --index \${MUTATION_RESOURCES}/Hg19.fa_star_index 
 --reference \${MUTATION_RESOURCES}/Hg19.fa 
@@ -12,7 +14,7 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES},STAR:/N/dc2/projects/galaxyshared/trinity/third_party_applications/STAR_2.3.0
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES},STAR:/N/dc2/projects/galaxyshared/trinity/third_party_applications/STAR-2.5.2a/bin/Linux_x86_64
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input
@@ -27,7 +29,7 @@ rnaseq_mutation_pipeline.py
 --email ttickle@broadinstitute.org
 --is_hg19
  >> $log
-
+]]>
     </command>
     <macros>
     </macros>

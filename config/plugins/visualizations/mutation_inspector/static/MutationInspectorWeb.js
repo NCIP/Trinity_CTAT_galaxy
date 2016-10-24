@@ -9,7 +9,7 @@
  */
 var mutationInspectorState = {
   cache : {},
-  abridged : true,
+  abridged : false,
   https_enabled : false,
   galaxy_mode : true,
   load_json_in_js : false
@@ -445,7 +445,7 @@ function retrieveCRAVATInfo( retrieveChr, retrievePos ){
   // Updates both the CRAVAT info header and the info tab
   // Puts a loading logo up while waiting
   var positionKey = retrieveChr + "_" + retrievePos
-  var cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
+  var cravat_prefix = "https://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
   if( mutationInspectorState.https_enabled === true ){
     //cravat_prefix = "http://mupit.icm.jhu.edu/MuPIT_Interactive?gm="
     return null;
