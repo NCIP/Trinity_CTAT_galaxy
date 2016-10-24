@@ -10,7 +10,6 @@
 var mutationInspectorState = {
   cache : {},
   abridged : false,
-  https_enabled : true,
   galaxy_mode : true,
   load_json_in_js : false
 };
@@ -44,7 +43,7 @@ function loadMutationTable( mutation_json_data ) {
   // Any element in the table and not in this array
   // will be after these elements in the table and will
   // be in no specific order
-  forceHeaderKeyOrder = ['CHROM', 'POS', 'GENE', 'REF', 'ALT', 'QUAL', 'CRAVAT_FDR', 'VEST_FDR']
+  forceHeaderKeyOrder = ['CHROM', 'POS', 'GENE', 'REF', 'ALT', 'QUAL', 'CHASM_PVALUE', 'VEST_PVALUE', 'CHASM_FDR', 'VEST_FDR']
 
   // Create table from json file
   // Get an array of the keys
@@ -79,7 +78,6 @@ function loadMutationTable( mutation_json_data ) {
       mutationTable.append( '<tr>' + mutationEntryValues.map( toTableRowBodyElement ) + '</tr>' );
   }
   mutationTable.append( '</tbody>' );
-
   // Add click event for column hiding
   $(".hide-glyph").on("click", function(e){
     e.preventDefault();
@@ -344,12 +342,16 @@ function createIGVBrowser( sampleInfo ){
   options = {
     showNavigation: true,
     genome: "hg19",
-    tracks: [{ url: sampleInfo.BAM,
+    tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
                indexURL: sampleInfo.BAM_INDEX,
-               type: "bam",
-               label: sampleInfo.SAMPLE,
+               name: sampleInfo.SAMPLE,
                maxHeight: 250 },
-             { url: sampleInfo.BED,
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
                indexURL: sampleInfo.BED_INDEX,
                name: "Genes",
                order: Number.MAX_VALUE,
@@ -361,12 +363,16 @@ function createIGVBrowser( sampleInfo ){
     options = {
       showNavigation: true,
       genome: "hg19",
-      tracks: [{ url: sampleInfo.BAM,
+      tracks: [{ type: 'alignment',
+               sourceType: 'file',
+               url: sampleInfo.BAM,
                indexURL: sampleInfo.BAM_INDEX,
-               type: "bam",
-               label: sampleInfo.SAMPLE,
+               name: sampleInfo.SAMPLE,
                maxHeight: 250 },
-             { url: sampleInfo.BED,
+             { type: 'annotation',
+               format: 'bed',
+               sourceType: 'file',
+               url: sampleInfo.BED,
                name: "Genes",
                indexed: false,
                order: Number.MAX_VALUE,
@@ -431,18 +437,13 @@ function setAnnotationTabToLoad( retrieveAnnotationTabName ){
  * Asyncronous call.
  * @param {string} retrieveChr - Chromosome of interest, used in the cravat call.
  * @param {string} retrievePos - Position of interest, used in the cravat call.
- * @param {string} retrieveRef - Reference base of interest, used in the cravat call.
- * @param {string} retrieveAlt - Alternative base of interest, used in the cravat call.
  */
 function retrieveCRAVATInfo( retrieveChr, retrievePos, retrieveRef, retrieveAlt ){
   // Performs an asynchronous call to the CRAVAT web service
   // Updates both the CRAVAT info header and the info tab
   // Puts a loading logo up while waiting
   var positionKey = retrieveChr + "_" + retrievePos
-  var cravat_prefix = "http://staging.cravat.us/rest/service/query?mutation="
-  if( mutationInspectorState.https_enabled === true ){
-    cravat_prefix = "https://www.cravat.us/rest/service/query?mutation="
-  }
+  var cravat_prefix = "//www.cravat.us/CRAVAT/rest/service/query?mutation="
   setAnnotationTabToLoad( positionKey );
   $.ajax({ type: 'GET',
            dataType: 'json',

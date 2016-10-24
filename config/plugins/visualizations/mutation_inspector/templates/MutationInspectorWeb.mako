@@ -17,9 +17,13 @@
   <!-- Font Awesome CSS -->
   <link rel="stylesheet" type="text/css" href="/static/mutation/font-awesome-4.4.0/css/font-awesome.min.css">
   <!-- IGV CSS -->
-  <link rel="stylesheet" type="text/css" href="/static/mutation/igv.css">
-  <!-- Spinner from //www.css-spinners.com/spinner/spinner -->
-  <link rel="stylesheet" href="/static/mutation/spinner.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/static/mutation/igv.css"> -->
+  <!-- Spinner from //www.css-spinners.com/spinner/spinner
+  <link rel="stylesheet" href="/static/mutation/spinner.css">-->
+  <!--<link rel="stylesheet" type="text/css" href="//www.broadinstitute.org/igv/projects/igv-web/css/igv.css">-->
+  <link rel="stylesheet" href="${h.url_for('/plugins/visualizations/mutation_inspector/static/css/igv.css')}">
+  <link rel="stylesheet" href="${h.url_for('/plugins/visualizations/mutation_inspector/static/css/spinner.css')}">
+
   <!-- Associated with the Data Table -->
   <link rel="stylesheet" type="text/css" href="/static/mutation/dataTables.bootstrap.min.css">
   <!-- Specific CSS to inspectors -->
@@ -32,8 +36,8 @@
   <!-- Bootstrap -->
   <script type="text/javascript" src="${h.url_for('//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')}"></script>
   <!-- IGV JS -->
-  <!-- <script type="text/javascript" src="${h.url_for('http://igv.org/web/beta/igv-beta.js')}"></script> -->
-  <script type="text/javascript" src="${h.url_for('/plugins/visualizations/igv/static/scripts/igv-all.js')}"></script> 
+  <script type="text/javascript" src="${h.url_for('https://igv.org/web/beta/igv-beta.js')}"></script> 
+  <!-- <script type="text/javascript" src="${h.url_for('/plugins/visualizations/mutation_inspector/static/scripts/igv-all.js')}"></script> --> 
   <!-- Data Table -->
   <script type="text/javascript" src="${h.url_for('//cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js')}"></script>
   <script type="text/javascript" src="${h.url_for('//cdn.datatables.net/1.10.8/js/dataTables.bootstrap.min.js')}"></script>
@@ -132,7 +136,7 @@
                        return Math.round( data * 1000 )/1000;
                      }
                    },
-                   'targets': [5,6,7,9,21]
+                   'targets': [5,6,7,8,9]
                  }]
              });
              // Add click events to the table rows
@@ -159,7 +163,7 @@
              
              // Update the hidden columns message
              updateHiddenColumns();
-             var initially_hide_elements = ["CRAVAT_PVALUE","KGPROD","MQ","NSF","NSM","NSN","PMC","SAO","TISSUE","TUMOR","VEST_PVALUE"];
+             var initially_hide_elements = ["CHASM_FDR","KGPROD","MQ","NSF","NSM","NSN","PMC","SAO","TISSUE","TUMOR","VEST_FDR"];
              initially_hide_elements.map( hideVariantColumn );
        } )
    } )
