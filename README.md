@@ -25,10 +25,7 @@ Make sure STAR is in your path when using fusion inspector.
 SLNCKY
 In slncky_galaxy_wrapper.py, the following paths will need to be filled in:
 
-BEDTOOLS = ''
-
-LASTZ = ''
-
-LIFTOVER = ''
-
-SCIEDPIPER_HOME = ''
+BEDTOOLS = ''    
+LASTZ = ''    
+LIFTOVER = ''    
+SCIEDPIPER_HOME = ''    
