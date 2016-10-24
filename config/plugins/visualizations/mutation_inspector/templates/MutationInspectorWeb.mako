@@ -136,7 +136,7 @@
                        return Math.round( data * 1000 )/1000;
                      }
                    },
-                   'targets': [5,6,7,9,21]
+                   'targets': [5,6,7,8,9]
                  }]
              });
              // Add click events to the table rows
@@ -163,7 +163,7 @@
              
              // Update the hidden columns message
              updateHiddenColumns();
-             var initially_hide_elements = ["CRAVAT_PVALUE","KGPROD","MQ","NSF","NSM","NSN","PMC","SAO","TISSUE","TUMOR","VEST_PVALUE"];
+             var initially_hide_elements = ["CHASM_FDR","KGPROD","MQ","NSF","NSM","NSN","PMC","SAO","TISSUE","TUMOR","VEST_FDR"];
              initially_hide_elements.map( hideVariantColumn );
        } )
    } )
