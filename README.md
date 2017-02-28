@@ -1,6 +1,7 @@
 # Trinity_CTAT_galaxy
 Files needed for Galaxy tools used to run Trinity_CTAT workflows.
 
+
 ## Environment Variables
 
 The following environment variables are needed by various tools in this suite:
@@ -29,3 +30,7 @@ BEDTOOLS = ''
 LASTZ = ''    
 LIFTOVER = ''    
 SCIEDPIPER_HOME = ''    
+
+IU specific changes have been saved here; be careful to test your own setup if you use these.
+
+

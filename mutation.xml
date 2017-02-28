@@ -2,6 +2,7 @@
     <description>Mutation Pipeline for calling SNPs and variants</description>
     <command>
 <![CDATA[
+export PYTHONPATH= &&
 rnaseq_mutation_pipeline.py 
 --index \${MUTATION_RESOURCES}/Hg19.fa_star_index 
 --reference \${MUTATION_RESOURCES}/Hg19.fa 
