@@ -58,7 +58,7 @@ def main(*args):
         chars = "\\`*_{}[]()>#+-.!$&;| "
         for c in chars:
             if c in cleandir:
-                cleandir = cleandir.replace(c, "_" + c)
+                cleandir = cleandir.replace(c, "_")
         rerunPath = "%s/%s/%s" % (args.fullpath, args.user, cleandir)
         print "Rerunpath is ",rerunPath
         try:

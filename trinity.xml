@@ -28,7 +28,7 @@
       --timing trinity_out_dir/Trinity.timing
       --user $__user_id__
       --fullpath /N/dc2/scratch/tstrnity/rerun
-      --dir $adv.rerundir
+      --dir '$adv.rerundir'
       --log $trinity_log
 
  ]]>
