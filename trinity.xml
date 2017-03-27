@@ -1,0 +1,76 @@
+<tool id="trinityrnaseq" name="Trinity" version="2.4.0">
+  
+    <!-- Written by Jeremy Goecks, now maintained here by bhaas -->
+    <description>De novo assembly of RNA-Seq data using Trinity on the Karst cluster</description>
+    <requirements>
+        <requirement type="package">trinity</requirement>
+    </requirements>
+    <command>
+      <![CDATA[
+      python $__tool_directory__/trinity_wrapper.py --mem_per_cpu 31
+      --CPU \${GALAXY_SLOTS:-4}
+      #if str($inputs.paired_or_single) == "paired":
+       --left $inputs.left_input --right $inputs.right_input
+       #if $inputs.left_input.ext == 'fasta':
+        --seqType fa
+       #else:
+        --seqType fq
+       #end if
+      #else:
+       --single $inputs.input
+       #if $inputs.input.ext == 'fasta':
+        --seqType fa
+       #else:
+        --seqType fq
+       #end if
+      #end if
+      ## direct to output
+      --timing trinity_out_dir/Trinity.timing
+      --user $__user_id__
+      --fullpath /N/dc2/scratch/tstrnity/rerun
+      --dir $adv.rerundir
+      --log $trinity_log
+
+ ]]>
+    </command>
+    <stdio>
+      <exit_code range="1:"   level="fatal"   description="Program failed" />
+      <exit_code range=":-1"   level="fatal"   description="DRM killed job" />
+    </stdio>
+    <inputs>
+      <conditional name="inputs">
+	<param name="paired_or_single" type="select" label="Paired or Single-end data?">
+          <option value="paired">Paired</option>
+          <option value="single">Single</option>
+        </param>
+        <when value="paired">
+          <param format="fasta,fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
+          <param format="fasta,fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
+        </when>
+        <when value="single">
+          <param format="fasta,fastq" name="input" type="data" label="Single-end reads" help=""/>
+        </when>
+      </conditional>
+      <section name="adv" title="Allow Job Rerun" expanded="False">
+	<param name="rerundir" type="text" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
+    </section>
+    </inputs>
+    <outputs>
+      <data format="txt" name="trinity_log" label="${tool.name} on ${on_string}: log" />
+      <data format="fasta" name="assembled_transcripts" label="${tool.name} on ${on_string}: Assembled Transcripts" from_work_dir="trinity_out_dir/Trinity.fasta"/>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+This instance is running Trinity version 2.4.0 and uses the following command:
+
+	 Trinity --max_memory 240G --CPU 8 --seqType seq_type --single singlefile or --left left_file --right right_file
+
+.. class:: infomark
+
+Trinity_, developed at the Broad Institute and the Hebrew University of Jerusalem, represents a novel method for the efficient and robust de novo reconstruction of transcriptomes from RNA-seq data. Trinity combines three independent software modules: Inchworm, Chrysalis, and Butterfly, applied sequentially to process large volumes of RNA-seq reads. Trinity partitions the sequence data into many individual de Bruijn graphs, each representing the transcriptional complexity at a given gene or locus, and then processes each graph independently to extract full-length splicing isoforms and to tease apart transcripts derived from paralogous genes. For more information, visit Trinity's wiki page here_.
+
+.. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
+.. _here: https://github.com/trinityrnaseq/trinityrnaseq/wiki
+    </help>
+</tool>
