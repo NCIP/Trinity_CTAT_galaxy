@@ -30,6 +30,45 @@
       <data format="tabular" name="chimeric_junc" label="${tool.name} on ${on_string}: Chimeric.out.junction" from_work_dir="subdir/Chimeric.out.junction"/> 
     </outputs>
     <tests>
+      <test>
+        <param name="left_input" value="StarFusion/reads_1.fq.gz" />
+        <param name="right_input" value="StarFusion/reads_2.fq.gz" />
+        <!--
+        <param name="left_input" value="reads.left.simPE.fq" />
+        <param name="right_input" value="reads.right.simPE.fq" />
+        -->
+        <!--
+        <output name="aligned_bam" file="SF_out_aligned.bam" />
+        <output name="candidates" file="SF_out_fusion_candidates.dat" />
+        <output name="chimeric_junc" file="SF_out_chimeric.junction" />
+        <output name="starfusion_log" file="SF_out.log" />
+        -->
+        <output name="starfusion_log">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line line="ALL DONE!" />
+            </assert_contents>
+        </output>
+        <output name="aligned_bam">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of the bam file -->
+               <has_text_matching expression="\x8B\x1F" />
+            </assert_contents>
+        </output>
+        <output name="candidates">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;Long_double_anchor_support" />
+            </assert_contents>
+        </output>
+        <output name="chimeric_junc">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line_matching expression="^chr20.*" />
+            </assert_contents>
+        </output>
+      </test>
     </tests>
     <help>
 .. class:: infomark
