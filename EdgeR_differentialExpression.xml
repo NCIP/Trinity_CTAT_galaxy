@@ -1,0 +1,64 @@
+<tool id="EdgeR_differentialExpression" name="EdgeR_differentialExpression" version="0.0.1">
+
+    <description>Identify Differentially Expressed Transcripts Using EdgeR</description>
+    <requirements>
+        <requirement type="package">trinity</requirement>
+    </requirements>
+    <command interpreter="python">
+
+ 		EdgeR_differentialExpression_wrapper.py 
+			$counts_matrix 
+			$dispersion
+			
+    </command>
+    <inputs>
+		
+		<param type="data" format="text" name="counts_matrix" label="Matrix of RNA-Seq fragment counts for transcripts per condition" />
+		<param type="data" format="fasta" name="transcripts_fasta_file" label="Transcripts fasta file corresponding to matrix" />
+		<param type="float" name="dispersion" value="0.1" min="0" label="dispersion value" help="Dispersion value to be used in the negative binomial" />
+	
+    </inputs>
+    <outputs>
+        
+        <data format="tar.gz" name="EdgeR_Archive" label="${tool.name} on ${on_string}: EdgeR_Results.tar.gz" from_work_dir="edgeR_results.tar.gz" />
+			
+    </outputs>
+    <tests>
+        <!-- Original test definition -->
+        <!--
+	<test>
+	    <param name="counts_matrix" value="matrix_text_file" />
+	    <param name="transcripts_fasta_file" value="fasta_file" />
+	    <param name="dispersion" value="0.1" />
+	    <output name="EdgeR_Archive" file="EdgeR_Results.tar.gz" />
+        </test>
+        -->
+        <!-- The transcripts_fasta_file does not seem to be used for anything. -->
+	<test>
+	    <param name="counts_matrix" value="Sp.counts.matrix" />
+	    <param name="transcripts_fasta_file" value="Sp.Trinity.fasta" />
+	    <param name="dispersion" value="0.1" />
+
+	    <output name="EdgeR_Archive" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+.. class:: infomark
+
+edgeR is a Bioconductor package focusing on the analysis of digital gene expression data derived from RNA-Seq sequencing technologies.
+
+To learn more about edgeR read their paper_, visit their website_ , or read this user_ guide_ .
+If you are following the Trinity RNA-seq protocol please go here_ for a galaxy tool walk through or the Nature Protocols publication_ .
+
+.. _paper: http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/
+.. _publication: http://www.nature.com/nprot/journal/v8/n8/full/nprot.2013.084.html
+.. _user: https://bioconductor.org/packages/devel/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf
+.. _guide: https://bioconductor.org/packages/devel/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf
+.. _website: http://bioinf.wehi.edu.au/edgeR/
+.. _here: https://github.com/trinityrnaseq/GalaxyTrinityProtocol/wiki
+    </help>
+</tool>
