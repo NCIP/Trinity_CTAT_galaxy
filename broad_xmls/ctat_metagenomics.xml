@@ -1,0 +1,92 @@
+<tool id="metagenomics" name="Trinity_CTAT_Metagenomics">
+
+    <description>Centrifuge - Classifier for metagenomic sequences (RNA-Seq)</description>
+    <requirements>
+       <requirement type="set_environment">WRAPPERS</requirement>
+       <requirement type="package"></requirement>
+    </requirements>
+    <command>
+     
+     python \$WRAPPERS/ctat_metagenomics_wrapper.py
+ 
+     --index $index --out_dir "centrifuge"
+
+     #if $format_type.format == "fasta" 
+          --format fasta --unpaired_reads $format_type.fasta_file
+     #end if
+
+     #if $format_type.format == "fastq"
+          --format fastq
+          #if $format_type.read_type.type == "single"
+              --read_type "single" --unpaired_reads $format_type.read_type.left_fq_single
+          #end if
+
+          #if $format_type.read_type.type == "paired"
+               --read_type "paired" --left_fq $format_type.read_type.left_fq --right_fq $format_type.read_type.right_fq  
+          #end if 
+     #end if
+
+     --threads 4 
+
+    </command>
+
+    <inputs>
+
+      <conditional name="format_type">
+                   <param name= "format" type="select" label="Choose input format" help="Choose fasta for Trinity assembled reads">
+                          <option value="fasta" selected="true">FASTA</option>
+                          <option value="fastq" selected="false">FASTQ</option>
+                   </param>
+                   <when value="fasta">
+                         <param name="fasta_file" type="data" format="fasta" label="Fasta file:" help="Trinity assembled reads in fasta format"/>
+                   </when>
+                   <when value="fastq">
+                         <conditional name="read_type">
+                                      <param name= "type" type="select" label="Choose read type" help="Choose read type">
+                                             <option value="single" selected="true">SINGLE END DATA</option>
+                                             <option value="paired" selected="false">PAIRED END DATA</option>
+                                      </param>
+                                      <when value="single">
+                                            <param name="left_fq_single" type="data" format="fastq" label="Left_fq:" help="Left fastq"/>
+                                      </when>
+                                      <when value="paired">
+                                            <param name="left_fq" type="data" format="fastq" label="Left_fq:" help="Left fastq"/>
+                                            <param name="right_fq" type="data" format="fastq" label="Right_fq:" help="Right fastq"/>
+                                      </when>
+                         </conditional>
+                   </when>
+      </conditional>
+
+      <param name="index" type="select" label="Choose reference genome index :" help="Select genome index">
+             <option value="/seq/regev_genome_portal/RESOURCES/centrifuge/indexes/abvh">Bacteria, Aarchaea, Viruses, Human</option>
+      </param>
+      
+    </inputs>
+
+    <outputs>
+           <data format="text" name="classification_results" label="Centrifuge classification output" from_work_dir="centrifuge/classification.results.txt"/>
+           <data format="text" name="classification_report" label="Centrifuge summary output" from_work_dir="centrifuge/classification.report.txt"/>
+           <data format="text" name="kraken_style_report" label="Kraken-style report" from_work_dir="centrifuge/kraken_style_report.txt"/>
+    </outputs>
+
+    <stdio>
+          <exit_code range="2"   level="fatal"   description="Out of Memory" />
+          <exit_code range="3:5" level="warning" description="Low disk space" />
+          <exit_code range="6:"  level="fatal"   description="Bad input dataset" />
+          <exit_code range="99"  level="fatal"   description="Bad input dataset" />
+    </stdio>
+     <help>
+.. class:: infomark
+ 
+**Centrifuge is a novel microbial classification engine that enables rapid, accurate, and sensitive labeling of reads and quantification of species**
+
+For more information:
+
+https://ccb.jhu.edu/software/centrifuge/manual.shtml#what-is-centrifuge
+
+The publication documenting Centrifuge can be found here:
+
+http://genome.cshlp.org/content/early/2016/11/16/gr.210641.116.abstract
+
+</help>
+</tool>
