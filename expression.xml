@@ -5,29 +5,28 @@
        <requirement type="set_environment">WRAPPERS</requirement>
     </requirements>
     <command>
-     
-     python $__tool_directory__/ctat_expression_wrapper.py
+      python \${TOOLS}/dev/Trinity_CTAT/expression/trinity_ctat_expression.py
  
-     --annot_config $annot 
-
-     #if $type_data.end == "single" 
-         --left_fq $type_data.left_fq --right_fq "None"
-     #end if
-
-     #if $type_data.end == "pair"
-         --left_fq $type_data.left_fq --right_fq $type_data.right_fq 
-     #end if
-
-     --bootstrap_samples $bootstrap 
-
-     #if $bias:
-        --bias
-     #end if
+      --annot_config $annot 
+      
+      #if $type_data.end == "single" 
+      --left_fq $type_data.left_fq
+      #end if
+      
+      #if $type_data.end == "pair"
+      --left_fq $type_data.left_fq --right_fq $type_data.right_fq 
+      #end if
+      
+      --bootstrap_samples $bootstrap 
+      
+      #if $bias:
+      --bias
+      #end if
      
-     --threads $threads 
+      --threads \${GALAXY_SLOTS:-4}
 
-     --seed $seed 
-     
+      --seed $seed 
+      --update kallisto_script:\${EXTLIBS}/kallisto/kallisto_linux-v0.42.5
     </command>
 
     <inputs>
@@ -52,7 +51,7 @@
       
       <param name="bias" type="boolean" truevalue="True" falsevalue="False" label="Perform sequence based bias correction" help="learns parameters for a model of sequences specific bias and corrects the abundances accordlingly."/>
       <param name="bootstrap" type="integer" value="0" default="0" label="Number of bootstrap samples" help="Number of times analyses is repeated after resampling with replacement from the data" />
-      <param name="threads" type="integer" value="1" default="1" label="Number of threads to use for bootstraping" help="default:1"/>
+
       <param name="seed" type="integer" value="42" default="42" label="Seed for the bootstrap sampling" help="default: 42"/>
 
     </inputs>
