@@ -34,4 +34,48 @@ GMAP-fusion is a utility for identifying candidate fusion transcripts based on t
 
 .. _here: https://github.com/GMAP-fusion/GMAP-fusion/wiki
     </help>
+    <tests>
+      <test>
+        <param name="left_input" value="GMAP/reads_1.fq.gz" />
+        <param name="right_input" value="GMAP/reads_2.fq.gz" />
+        <param name="assembled_trans" value="GMAP/transcripts.fa" />
+        <output name="gmapfusion_candidates">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <!--
+        <param name="left_input" value="FLI1.left.fq" />
+        <param name="right_input" value="FLI1.right.fq" />
+        <param name="assembled_trans" value="FIX- Need output file here" />
+        <output name="cancertab">
+            <assert_contents>
+               <has_line line="CHROM&#009;POS&#009;REF&#009;ALT&#009;GENE&#009;DP&#009;QUAL&#009;MQ&#009;SAO&#009;NSF&#009;NSM&#009;NSN&#009;TUMOR&#009;TISSUE&#009;COSMIC_ID&#009;KGPROD&#009;RS&#009;PMC&#009;CRAVAT_PVALUE&#009;CRAVAT_FDR&#009;VEST_PVALUE&#009;VEST_FDR" />
+               <has_line_matching expression="^chr11.*" />
+            </assert_contents>
+        </output>
+        <output name="cancerVariants">
+            <assert_contents>
+               <has_line line="#CHROM&#009;POS&#009;ID&#009;REF&#009;ALT&#009;QUAL&#009;FILTER&#009;INFO&#009;FORMAT&#009;dataset_1" />
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="cancerIndex">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="allVariants">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="bamFile">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        -->
+      </test>
+    </tests>
 </tool>

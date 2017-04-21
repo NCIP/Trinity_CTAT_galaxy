@@ -44,7 +44,6 @@ def stop_err( msg ):
     sys.exit()
 
 def __main__():
-    print "LD_LIBRARY_PATH is {:s}".format(str(os.getenv("LD_LIBRARY_PATH")))
     # Get command-line arguments
     args = sys.argv
     # Remove name of calling program, i.e. ./stderr_wrapper.py

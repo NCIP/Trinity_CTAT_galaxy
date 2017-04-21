@@ -53,7 +53,10 @@
             <assert_contents>
                <has_line_matching expression=".+" />
                <!-- The following checks for the magic number at the start of the bam file -->
-               <has_text_matching expression="\x8B\x1F" />
+               <!-- At first I thought "\x8B\x1F" was the number, but it turns out the file
+                    produced by the StarFusion test had that sequence in the file somewhere else.
+               -->
+               <has_text_matching expression="\x1F\x8B" />
             </assert_contents>
         </output>
         <output name="candidates">

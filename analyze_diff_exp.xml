@@ -37,7 +37,10 @@
         </test>
         -->
 	<test>
+                <!-- The following line was tested and worked, but the file currently uses _ instead of .
+                     Need to retest with underbars, or change the filename to use dots and retest... -->
 		<param name="EdgeRTarGz" value="Sp.edgeR.tar.gz" ftype="tar" />
+		<!-- <param name="EdgeRTarGz" value="Sp_edgeR_tar_gz" ftype="tar" /> -->
 		<param name="TMM_Matrix_FPKM" value="Sp.TMM.EXPR.matrix" />
 		<param name="Pvalue" value="0.05" />
 		<param name="Cvalue" value="0.0" />
