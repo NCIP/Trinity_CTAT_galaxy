@@ -12,7 +12,7 @@ STRINGTIE_SCRIPT = os.path.realpath( os.path.join( EXTLIBS, 'stringtie-1.2.2.Lin
 STRINGTIE_DIR = os.path.join( TOOLS,"Trinity_CTAT","genome_guided_transcript_reconstruction" )
 STRINGTIE_CTAT_SCRIPT = os.path.join( TOOLS,"Trinity_CTAT","genome_guided_transcript_reconstruction","transcript_reconstruction.py" )
 
-SCIEDPIPER_HOME = os.path.realpath( os.path.join( TOOLS,'SciEDPipeR-0.1.5','sciedpiper') )
+#SCIEDPIPER_HOME = os.path.realpath( os.path.join( TOOLS,'SciEDPipeR-0.1.5','sciedpiper') )
 
 KCOPIPE_RUNNER_SCRIPT = "kcopipe_runner.sh"
 KCOPIPE_ERR = "kcopipe_runner.err"
@@ -25,8 +25,7 @@ def get_arguments( ):
     parser = argparse.ArgumentParser( )
     parser.add_argument("--bam_file", required=True ,help ="Aligned Bam file" )
     parser.add_argument("--ref_annot", required=True , help="Reference annotation")
-    parser.add_argument("--output_gtf", required=True , help="Output GTF")
-    parser.add_argument("--output_bed", required=True , help="Output BED")
+    parser.add_argument("--output_dir", required=True , help="Output directory")
     parser.add_argument("--grid", default="uger", help="uger|lsf")
     parser.add_argument("--memory_required", default="20", help="memory required for grid")
     parser.add_argument("--queue", default="short", help="UGER: -q (short|long)")
@@ -39,8 +38,7 @@ def make_cmd( args ):
     stringtie_cmd = [ STRINGTIE_CTAT_SCRIPT, 
                      "--ref_annot",args.ref_annot,
                      "--bam_file",args.bam_file,
-                     "--output_gtf",args.output_gtf,
-                     "--output_bed",args.output_bed,
+                     "--output_dir",args.output_dir,
                      "--update",
                      ( "stringtie:" + STRINGTIE_SCRIPT + ",gtf2bed.py:" + STRINGTIE_DIR ) ]
 
