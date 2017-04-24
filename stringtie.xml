@@ -1,4 +1,4 @@
-<tool id="stringtie" name="STRINGTIE" version="0.0.1">
+<tool id="stringtie_admindev" name="STRINGTIE" version="0.0.1">
     <description>Assembling RNA-Seq alignments into potential transcripts</description>
     <requirements>
     </requirements>
