@@ -1,4 +1,4 @@
-<tool id="expression_admindev" name="Kallisto" version="0.0.1">
+<tool id="expression" name="Kallisto" version="0.0.1">
 
     <description>Expression quantification for RNA-Seq Analysis</description>
     <requirements>

@@ -1,9 +1,11 @@
-<tool id="slncky_admindev" name="slncky_pipeline" version="0.0.1">
+<tool id="slncky_pipeline" name="slncky_pipeline" version="0.0.1">
 
     <description>Running slncky</description>
     <command>
+      <![CDATA[
      #if str($bedfile) != "":
-     \$SLNCKY_PIPELINE_SCRIPT --bedfile "$bedfile" 
+     \$SLNCKY_PIPELINE_SCRIPT --bedfile $bedfile 
+     --config \$CONFIGSTR
      --bedtools \$BEDTOOLS
      --liftover \$LIFTOVER
      --lastz \$LASTZ
@@ -43,6 +45,8 @@
 
     --web 
     --update slncky.v1.0:\$SLNCKY_DIR
+     && cp -r slncky.EvolutionBrowser $html_file.files_path
+]]>
     </command>
 
     <inputs>
@@ -61,8 +65,8 @@
     </inputs>
 
     <outputs>
-           <data format="html" name="html_file" label="web_report" from_work_dir="working/slncky.EvolutionBrowser"/>
-           <data format="text" name="canonical_to_lncs" label="canonical_to_lncs" from_work_dir="working/slncky.canonical_to_lncs.txt"/>
+           <data format="html" name="html_file" label="web_report" from_work_dir="slncky.EvolutionBrowser/browse.html"/>
+           <data format="text" name="canonical_to_lncs" label="canonical_to_lncs" from_work_dir="slncky.canonical_to_lncs.txt"/>
            <data format="text" name="cluster_info" label="cluster_info" from_work_dir="slncky.cluster_info.txt"/>
            <data format="text" name="filtered_info" label="filtered_info" from_work_dir="slncky.filtered_info.txt"/>
            <data format="bed" name="lncs" label="lncs" from_work_dir="slncky.lncs.bed"/>
