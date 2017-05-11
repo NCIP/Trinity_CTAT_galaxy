@@ -72,11 +72,13 @@
 	    <output name="trinity_log" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
                 </assert_contents>
             </output>
 	    <output name="assembled_transcripts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
                 </assert_contents>
             </output>
         </test>
@@ -100,11 +102,13 @@
   	    <output name="trinity_log" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
                 </assert_contents>
             </output>
   	    <output name="assembled_transcripts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
                 </assert_contents>
             </output>
         </test>

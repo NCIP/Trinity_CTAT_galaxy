@@ -80,12 +80,14 @@
 	    <output name="transcripts_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
                 </assert_contents>
             </output>
 
 	    <output name="gene_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="gene_id&#009;transcript_id(s)&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM" />
                 </assert_contents>
             </output>
         </test>
@@ -99,12 +101,14 @@
 	    <output name="transcripts_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
                 </assert_contents>
             </output>
 
 	    <output name="gene_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="gene_id&#009;transcript_id(s)&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM" />
                 </assert_contents>
             </output>
         </test>
@@ -118,12 +122,14 @@
 	    <output name="transcripts_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
                 </assert_contents>
             </output>
 
 	    <output name="gene_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <has_line line="gene_id&#009;transcript_id(s)&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM" />
                 </assert_contents>
             </output>
         </test>

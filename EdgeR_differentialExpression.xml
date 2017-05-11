@@ -24,24 +24,23 @@
 			
     </outputs>
     <tests>
-        <!-- Original test definition -->
-        <!--
-	<test>
-	    <param name="counts_matrix" value="matrix_text_file" />
-	    <param name="transcripts_fasta_file" value="fasta_file" />
-	    <param name="dispersion" value="0.1" />
-	    <output name="EdgeR_Archive" file="EdgeR_Results.tar.gz" />
-        </test>
-        -->
-        <!-- The transcripts_fasta_file does not seem to be used for anything. -->
 	<test>
 	    <param name="counts_matrix" value="Sp.counts.matrix" />
+            <!-- The transcripts_fasta_file does not seem to be used for anything. -->
 	    <param name="transcripts_fasta_file" value="Sp.Trinity.fasta" />
 	    <param name="dispersion" value="0.1" />
 
+            <!-- One could create more detailed tests if the output files were explicitly
+                 saved rather than placed into an archive. We had a case where the archive
+                 was being created, but it was missing one of the files, or one of the
+                 files was empty. There is no easy way to look into the archive file to
+                 test this.
+            -->
 	    <output name="EdgeR_Archive" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
+                    <!-- The following is the magic number for all gzip files. -->
+                    <has_text_matching expression="\x1F\x8B" />
                 </assert_contents>
             </output>
         </test>

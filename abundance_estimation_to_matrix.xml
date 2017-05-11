@@ -38,11 +38,17 @@
 	        <output name="counts_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
+                        <has_line line="&#009;Sp_ds&#009;Sp_hs" />
+                        <has_n_columns n="3" />
+                        <has_line_matching expression="TRINITY_DN.+" />
                     </assert_contents>
                 </output>
 	        <output name="tmm_expr_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
+                        <has_line line="&#009;Sp_ds&#009;Sp_hs" />
+                        <has_n_columns n="3" />
+                        <has_line_matching expression="TRINITY_DN.+" />
                     </assert_contents>
                 </output>
         </test>

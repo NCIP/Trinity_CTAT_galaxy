@@ -57,14 +57,37 @@
     </inputs>
 
     <outputs>
-           <data format="tabular" name="abundance" label="Abundance" from_work_dir="kallisto/kallisto/abundance.tsv"/>
-           <data format="json" name="run_info" label="Run Info" from_work_dir="kallisto/kallisto/run_info.json"/>
+           <data format="tabular" name="abundance" label="Abundance" from_work_dir="kallisto/abundance.tsv"/>
+           <data format="json" name="run_info" label="Run Info" from_work_dir="kallisto/run_info.json"/>
     </outputs>
 
     <stdio>
           <exit_code range="1:"   level="fatal"   description="Run failed" />
     </stdio>
-     <help>
+
+    <tests>
+      <test>
+        <param name="end" value="pair" />
+        <param name="left_fq" value="reads.left.simPE.fq" />
+        <param name="right_fq" value="reads.right.simPE.fq" />
+        <param name="annot" value="/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.config" />
+        <param name="bias" value="False" />
+        <param name="bootstrap" value="0" />
+        <param name="seed" value="42" />
+
+        <output name="abundance" file="kallisto.abundance.tsv" />
+        <output name="run_info">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line line="&#009;&quot;n_targets&quot;: 196520," />
+               <has_line line="&#009;&quot;n_bootstraps&quot;: 0," />
+               <has_line line="&#009;&quot;n_processed&quot;: 56517," />
+            </assert_contents>
+        </output>
+      </test>
+    </tests>
+
+    <help>
 .. class:: infomark
  
 **KALLISTO - Quantifying abundances of transcripts from RNA-Seq data with pseudoalignments**
@@ -77,5 +100,5 @@ The paper for documentating Kallisto can be found here:
 
 http://arxiv.org/abs/1505.02710
 
-</help>
+    </help>
 </tool>

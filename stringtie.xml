@@ -35,16 +35,20 @@
     </outputs>
     <tests>
       <test>
-        <param name="bam_file" value="StarFusion.reads.Aligned.sortedByCoord.out.bam" />
+        <param name="bam_file" value="mir-17-92.aligned.bam" />
         <param name="ref_annot.fields.path" value="/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF" />
-        <!--
-        <param name="gtf" value="Hg19" />
-        -->
-        <output name="stringtie.transcripts.bed" file="StringTie_transcripts.bed" >
+        <output name="stringtie.transcripts.bed" file="mir-17-92.transcripts.bed" />
+        <output name="stringtie.transcripts.gtf">
             <assert_contents>
                <has_line_matching expression=".+" />
+               <has_line_matching expression="#.+?StringTie.+?" />
             </assert_contents>
         </output>
+      </test>
+      <test>
+        <param name="bam_file" value="StarFusion.reads.Aligned.sortedByCoord.out.bam" /> 
+        <param name="ref_annot.fields.path" value="/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/expression/Gencode_v19.GTF" />
+        <output name="stringtie.transcripts.bed" file="StringTie_transcripts.bed" />
         <output name="stringtie.transcripts.gtf">
             <assert_contents>
                <has_line_matching expression=".+" />

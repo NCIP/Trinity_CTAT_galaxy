@@ -35,13 +35,10 @@
         <output name="snp_log">
             <assert_contents>
                <has_line_matching expression=".+" />
+               <has_text_matching expression="step done" />
             </assert_contents>
         </output>
-        <output name="candidates">
-            <assert_contents>
-               <has_line_matching expression=".+" />
-            </assert_contents>
-        </output>
+        <output name="candidates" file="PradaFusion.reads_left_right.summary.txt" />
       </test>
     </tests>
     <help>
