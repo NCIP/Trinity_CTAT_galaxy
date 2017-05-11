@@ -2,7 +2,7 @@
 import argparse
 import sys
 import os
-import sciedpiper.Commandline as commandline
+#import sciedpiper.Commandline as commandline
 import shutil
 
 TOOLS = os.environ.get( 'TOOLS' )
