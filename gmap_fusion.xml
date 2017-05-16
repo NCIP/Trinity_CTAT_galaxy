@@ -33,7 +33,7 @@
         <param name="left_input" value="GMAP/reads_1.fq.gz" />
         <param name="right_input" value="GMAP/reads_2.fq.gz" />
         <param name="assembled_trans" value="GMAP/transcripts.fa" />
-        <output name="gmapfusion_candidates" fiole="GMAP-fusion.reads_1_2.final" \>
+        <output name="gmapfusion_candidates" file="GMAP/fusion.reads_1_2.final" />
       </test>
     </tests>
 

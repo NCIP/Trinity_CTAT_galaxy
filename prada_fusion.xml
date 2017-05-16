@@ -38,7 +38,7 @@
                <has_text_matching expression="step done" />
             </assert_contents>
         </output>
-        <output name="candidates" file="PradaFusion.reads_left_right.summary.txt" />
+        <output name="candidates" file="reads.simPE.PradaFusion.summary.txt" />
       </test>
     </tests>
     <help>

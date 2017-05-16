@@ -31,31 +31,24 @@
     </outputs>
     <tests>
       <test>
-        <!-- These ones work (The Aligned and Chimeric were created when I ran the StarFusion test):
+        <!-- The aligned and chimeric I got off of the website don't work with these reads_[1|2].fq.gz inputs.
+             These aligned and chimeric were created when I ran the StarFusion test on these inputs.
         -->
         <param name="left_input" value="DISCASM/SF2/reads_1.fq.gz" />
         <param name="right_input" value="DISCASM/SF2/reads_2.fq.gz" />
         <param name="bam" value="DISCASM/SF2/Aligned.sortedByCoord.out.bam" />
         <param name="chimeric" value="DISCASM/SF2/Chimeric.out.junction" />
-        <output name="oases.transcripts" file="DISCASM.reads_1_2.oases.transcripts.fa" />
+        <output name="oases.transcripts" file="DISCASM/reads_1_2.oases.transcripts.fa" />
       </test> 
       <test>
-        <!-- These ones work (The Aligned and Chimeric came from a StarFusion test on the left/right inputs):
+        <!-- The Aligned and Chimeric came from a StarFusion test on the reads.[left|right].simPE.fq inputs.
 	-->
-        <param name="left_input" value="DISCASM/SF/reads.left.simPE.fq" />
-        <param name="right_input" value="DISCASM/SF/reads.right.simPE.fq" />
-        <param name="bam" value="DISCASM/SF/SF_out_aligned.bam" />
-        <param name="chimeric" value="DISCASM/SF/SF_out_chimeric.junction" />
-        <output name="oases.transcripts" file="DISCASM.reads_left_right.oases.transcripts.fa" />
+        <param name="left_input" value="DISCASM/SF1/reads.left.simPE.fq" />
+        <param name="right_input" value="DISCASM/SF1/reads.right.simPE.fq" />
+        <param name="bam" value="DISCASM/SF1/SF_out_aligned.bam" />
+        <param name="chimeric" value="DISCASM/SF1/SF_out_chimeric.junction" />
+        <output name="oases.transcripts" file="DISCASM/reads.simPE.oases.transcripts.fa" />
       </test>
-      <!-- These ones I got off of the website don't work:
-      <test>
-        <param name="left_input" value="DISCASM/reads_1.fq.gz" />
-        <param name="right_input" value="DISCASM/reads_2.fq.gz" />
-        <param name="bam" value="DISCASM/Aligned.sortedByCoord.out.bam" />
-        <param name="chimeric" value="DISCASM/Chimeric.out.junction" />
-      </test>
-      -->
     </tests>
     <help>
 .. class:: infomark

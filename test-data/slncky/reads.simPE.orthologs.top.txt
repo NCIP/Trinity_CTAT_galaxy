@@ -1,0 +1,9 @@
+#lnc	lncGeneSymbol	ortholog	orthologGeneSymbol	alignScore	exonID	locusID	indelRate(exon)	indelRate(intron)	lncExonsAligned	orthExonsAligned	spliceConserved	spliceTotal	category(hg19)	category(mm9)
+STRG.25.1	MALAT1	uc008gfj.2	Malat1	455430	0.63	0.63	0.049	NA	1,	1,	0.0	0	intergenic	intergenic
+STRG.5.1	Unannotated	uc009vfa.1	Atpase6	281595	0.00	0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.52.1	JA760615	uc012hdm.1	BC071253	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.48.2	OK/SW-cl.16	uc009vez.1	Cox2	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.44.1	TVAS5	uc009vew.1	AK018753	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.49.1	OK/SW-cl.16	uc009vfa.1	Atpase6	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.45.1	TVAS5	uc009vew.1	AK018753	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic
+STRG.51.1	MTND5	uc009vfc.1	Cytb	726896	0.00	-0.00	NA	NA	NA	NA	0.0	0	intergenic	intergenic

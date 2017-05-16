@@ -1,0 +1,49 @@
+STRG.10.1	aligns to STRG.43.1 with 89.5% identity and 99.3% coverage. Appears to be duplication.
+STRG.10.1	aligns to STRG.7.1 with 90.1% identity and 98.9% coverage. Appears to be duplication.
+STRG.11.1	transcript entirely within coding transcript NM_173666
+STRG.1.1	aligns to STRG.46.1 with 98.5% identity and 99.9% coverage. Appears to be duplication.
+STRG.12.1	transcript entirely within coding transcript uc011dmq.2
+STRG.13.1	100.0% exonic overlap with coding transcript NM_005345
+STRG.14.1	100.0% exonic overlap with coding transcript uc003nxk.2
+STRG.15.2	aligns to STRG.22.1 with 99.4% identity and 100.0% coverage. Appears to be duplication.
+STRG.15.2	aligns to STRG.6.1 with 97.0% identity and 100.0% coverage. Appears to be duplication.
+STRG.16.1	100.0% exonic overlap with coding transcript NM_001003806
+STRG.17.1	aligns to mm9 coding transcript NM_133900 with 65.4% exonic identity
+STRG.17.1	aligns to mm9 coding transcript uc008zth.2 with 65.4% exonic identity
+STRG.18.1	100.0% exonic overlap with coding transcript uc003tzi.4
+STRG.19.1	200.0% exonic overlap with coding transcript uc003ubx.4
+STRG.20.1	99.8% exonic overlap with coding transcript NM_198085
+STRG.21.1	transcript entirely within coding transcript NM_001164750
+STRG.21.2	transcript entirely within coding transcript uc011leg.2
+STRG.2.1	aligns to STRG.47.1 with 98.6% identity and 99.9% coverage. Appears to be duplication.
+STRG.22.1	aligns to STRG.15.2 with 99.4% identity and 100.0% coverage. Appears to be duplication.
+STRG.22.1	aligns to STRG.6.1 with 97.1% identity and 100.0% coverage. Appears to be duplication.
+STRG.24.1	32.7% exonic overlap with coding transcript uc001ocx.3
+STRG.26.1	100.0% exonic overlap with coding transcript uc001oiw.2
+STRG.27.1	100.0% exonic overlap with coding transcript uc001oja.3
+STRG.29.1	100.0% exonic overlap with coding transcript NM_001014449
+STRG.30.1	37.4% exonic overlap with coding transcript uc002fnn.2
+STRG.31.1	transcript entirely within coding transcript NM_000978
+STRG.31.2	transcript entirely within coding transcript uc002hqx.1
+STRG.31.3	71.4% exonic overlap with coding transcript uc002hqy.1
+STRG.3.1	aligns to STRG.48.1 with 98.2% identity and 99.9% coverage. Appears to be duplication.
+STRG.32.1	40.2% exonic overlap with coding transcript uc002hrq.1
+STRG.33.1	97.7% exonic overlap with coding transcript NM_198993
+STRG.34.1	35.7% exonic overlap with coding transcript uc002hsq.3
+STRG.35.1	transcript entirely within coding transcript NM_001075099
+STRG.36.1	20.8% exonic overlap with coding transcript uc002iyw.4
+STRG.37.1	99.8% exonic overlap with coding transcript uc002klr.3
+STRG.38.1	transcript entirely within coding transcript NM_001003652
+STRG.39.1	32.6% exonic overlap with coding transcript NM_004152
+STRG.40.1	88.6% exonic overlap with coding transcript NM_002967
+STRG.41.1	99.6% exonic overlap with coding transcript NM_014649
+STRG.43.1	aligns to STRG.10.1 with 89.5% identity and 99.3% coverage. Appears to be duplication.
+STRG.43.1	aligns to STRG.7.1 with 90.7% identity and 100.0% coverage. Appears to be duplication.
+STRG.46.1	aligns to STRG.1.1 with 98.5% identity and 99.9% coverage. Appears to be duplication.
+STRG.47.1	aligns to STRG.2.1 with 98.6% identity and 99.9% coverage. Appears to be duplication.
+STRG.48.1	aligns to STRG.3.1 with 98.2% identity and 99.9% coverage. Appears to be duplication.
+STRG.6.1	aligns to STRG.15.2 with 97.0% identity and 100.0% coverage. Appears to be duplication.
+STRG.6.1	aligns to STRG.22.1 with 97.1% identity and 100.0% coverage. Appears to be duplication.
+STRG.7.1	aligns to STRG.10.1 with 90.1% identity and 98.9% coverage. Appears to be duplication.
+STRG.7.1	aligns to STRG.43.1 with 90.7% identity and 100.0% coverage. Appears to be duplication.
+STRG.9.1	transcript entirely within coding transcript NM_020357

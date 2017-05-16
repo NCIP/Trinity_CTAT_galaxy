@@ -71,16 +71,16 @@
         <param name="trinity" value="false" />
 
         <!-- <data format="text" name="finspector_idx" label="fidx" from_work_dir="subdir/finspector.fa.fai"/> -->
-	<output name="finspector_idx" file="finspector.test_reads_1_2.fa.fai" />
+	<output name="finspector_idx" file="FusionInspector/test.reads_1_2.fa.fai" />
 
         <!-- <data format="text" name="cytoBand" label="cytoBand" from_work_dir="subdir/cytoBand.txt"/> -->
-	<output name="cytoBand" file="finspector.test_reads_1_2.cytoBand.tail.txt" compare="contains" />
+	<output name="cytoBand" file="FusionInspector/test.reads_1_2.cytoBand.tail.txt" compare="contains" />
 
         <!-- <data format="fasta" name="finspector_fa" label="finspector_fasta" from_work_dir="subdir/finspector.fa"/> -->
-	<output name="finspector_fa" file="finspector.test_reads_1_2.fa" />
+	<output name="finspector_fa" file="FusionInspector/test.reads_1_2.fa" />
 
         <!-- <data format="bed" name="finspector_bed" label="finspector_bed" from_work_dir="subdir/finspector.bed"/> -->
-	<output name="finspector_bed" file="finspector.test_reads_1_2.bed.sorted" sort="true" />
+	<output name="finspector_bed" file="FusionInspector/test.reads_1_2.bed.sorted" sort="true" />
 
         <!-- <data format="tabular" name="FusionJuncSpan" label="FusionJuncSpan" from_work_dir="subdir/finspector.igv.FusionJuncSpan"/> -->
 	<output name="FusionJuncSpan" >
@@ -92,7 +92,7 @@
 
         <!-- <data format="bed" name="junction_bed" label="junction_bed" from_work_dir="subdir/finspector.junction_reads.bam.bed"/> -->
         <!-- sorted output sometimes matches, but simetimes not, so now I just test for similar size. -->
-	<output name="junction_bed" file="finspector.test_reads_1_2.junction_reads.bam.bed.sorted" sort="true" compare="sim_size" >
+	<output name="junction_bed" file="FusionInspector/test.reads_1_2.junction_reads.bam.bed.sorted" sort="true" compare="sim_size" >
              <assert_contents>
                 <has_line_matching expression=".+" />
                 <has_n_columns n="12" />
@@ -118,7 +118,7 @@
         </output>
 
         <!-- <data format="bed" name="spanning_bed" label="spanning_bed" from_work_dir="subdir/finspector.spanning_reads.bam.bed"/> -->
-	<output name="spanning_bed" file="finspector.test_reads_1_2.spanning_reads.bam.bed.sorted" sort="true" />
+	<output name="spanning_bed" file="FusionInspector/test.reads_1_2.spanning_reads.bam.bed.sorted" sort="true" />
 
         <!--
              <data format="bed" name="trinity_bed" label="trinity_bed" from_work_dir="subdir/finspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed">
@@ -149,7 +149,9 @@
         </output>
 
         <!-- <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/finspector.fusion_inspector_web.json"/> -->
-	<output name="fusion_json" file="finspector.test_reads_1_2.web.json" lines_diff="12" />
+        <!-- So far in my testing of this test, I have had up to 18 different lines 
+             (9 positions values switched between two entries)- 64 gives some padding. -->
+	<output name="fusion_json" file="FusionInspector/test.reads_1_2.web.json" lines_diff="64" />
 
       </test>
     </tests>
