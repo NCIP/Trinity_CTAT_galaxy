@@ -60,6 +60,58 @@
       <data format="fasta" name="assembled_transcripts" label="${tool.name} on ${on_string}: Assembled Transcripts" from_work_dir="trinity_out_dir/Trinity.fasta"/>
     </outputs>
     <tests>
+            <!-- Not testing with the following inputs anymore.
+            <param name="left_input" value="FLI1.left.fq" />
+            <param name="right_input" value="FLI1.right.fq" />
+            -->
+        <test>
+	    <param name="paired_or_single" value="paired" />
+            <param name="left_input" value="reads.left.simPE.fq" />
+            <param name="right_input" value="reads.right.simPE.fq" />
+            <param name="adv.rerundir" value="planemo_test_1" />
+	    <output name="trinity_log" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
+                </assert_contents>
+            </output>
+	    <output name="assembled_transcripts" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+  	    <param name="paired_or_single" value="paired" />
+            <param name="left_input" value="Sp.cat_ds_hs.left.fq" />
+            <param name="right_input" value="Sp.cat_ds_hs.right.fq" />
+            <param name="adv.rerundir" value="planemo_test_2" />
+            <!-- Following are not being used in this version of trinity.xml -->
+            <!--
+ 	    <param name="paired_or_single" value="paired" />
+            <param name="left_input" file="cat_Sp.left.fq" />
+            <param name="right_input" file="cat_Sp.right.fq" />
+            <param name="JM" value="50G" />
+            <param name="CPU" value="2" />
+            <param name="library_type" value="None" />
+            <param name="group_pairs_distance" value="500" />
+            <param name="path_reinforcement_distance" va;ue="75" />
+            <param name="use_additional" value="no" />
+            -->
+  	    <output name="trinity_log" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
+                </assert_contents>
+            </output>
+  	    <output name="assembled_transcripts" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
+                </assert_contents>
+            </output>
+        </test>
     </tests>
     <help>
 This instance is running Trinity version 2.4.0 and uses the following command:
