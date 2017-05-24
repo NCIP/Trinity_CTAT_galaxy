@@ -1,0 +1,14 @@
+Some of the below files have been removed from this version of this file because of their size. 
+
+ Paired end for direct centrifuge testing
+ SRR073747_1.fastq
+ SRR073747_2.fastq
+
+ Single end for direct centrifuge testing
+ SRR2219890_1.adj.fastq
+ 
+ Paired end for via Trinity centrifuge testing
+ TrinitySRR073747.fasta
+  
+ Single end for via Trinity centrifuge testing
+ TrinitySRR2219890.fasta
