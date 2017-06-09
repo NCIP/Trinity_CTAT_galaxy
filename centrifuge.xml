@@ -68,7 +68,58 @@
     <stdio>
           <exit_code range="1:"  level="fatal"   description="Error running centrifuge" />
     </stdio>
-     <help>
+    <tests>
+        <test>
+            <!-- The following test uses one file that is unpaired reads.
+            -->
+            <param name="format" value="fastq" />
+            <param name="type" value="single" />
+            <param name="left_fq_single" value="centrifuge/SRR2219890_1.adj.fastq" />
+            <param name="index" value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv" />
+            <output name="classification_results" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="readID&#009;seqID&#009;taxID&#009;score&#009;2ndBestScore&#009;hitLength&#009;queryLength&#009;numMatches" />
+                </assert_contents>
+            </output>
+            <output name="classification_report" file="centrifuge/SRR2219890_1.classification.report.txt" />
+            <output name="kraken_style_report" file="centrifuge/SRR2219890_1.kraken_style_report.txt" />
+        </test>
+        <test>
+            <!-- The following test uses two files that are left/right paired reads.
+            -->
+            <param name="format" value="fastq" />
+            <param name="type" value="paired" />
+            <param name="left_fq" value="centrifuge/SRR073747_1.fastq" />
+            <param name="right_fq" value="centrifuge/SRR073747_2.fastq" />
+            <param name="index" value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv" />
+            <output name="classification_results" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="readID&#009;seqID&#009;taxID&#009;score&#009;2ndBestScore&#009;hitLength&#009;queryLength&#009;numMatches" />
+                </assert_contents>
+            </output>
+            <output name="classification_report" file="centrifuge/SRR073747_1_2.classification.report.txt" />
+            <output name="kraken_style_report" file="centrifuge/SRR073747_1_2.kraken_style_report.txt" />
+        </test>
+        <test>
+            <!-- The following test uses an unpaired Trinity fasta file.
+            -->
+            <param name="format_type.format" value="fasta" />
+            <param name="fasta_file" value="centrifuge/TrinitySRR2219890.fasta" />
+            <param name="index" value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv" />
+            <output name="classification_results" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="readID&#009;seqID&#009;taxID&#009;score&#009;2ndBestScore&#009;hitLength&#009;queryLength&#009;numMatches" />
+                </assert_contents>
+            </output>
+            <output name="classification_report" file="centrifuge/TrinitySRR2219890.classification.report.txt" />>
+            <output name="kraken_style_report" file="centrifuge/TrinitySRR2219890.kraken_style_report.txt" />
+        </test>
+    </tests>
+
+    <help>
 .. class:: infomark
  
 **Centrifuge is a novel microbial classification engine that enables rapid, accurate, and sensitive labeling of reads and quantification of species**
@@ -81,6 +132,6 @@ The publication documenting Centrifuge can be found here:
 
 http://genome.cshlp.org/content/early/2016/11/16/gr.210641.116.abstract
 
-</help>
+    </help>
 </tool>
 
