@@ -35,6 +35,6 @@
 #is the value stored in the workflow for that parameter. That is why the
 #hg19 entry above looks odd. New genomes can be better-looking.
 #
-hg19	hg19	hg19	/N/dc2/projects/galaxyshared/trinity/tools/FUSION_ANNOTATOR_LIB/Hg19.fa_star_index
+hg19	hg19	hg19	/N/dc2/projects/galaxyshared/trinity/resources/mutation/Hg19.fa_star_index
 
 

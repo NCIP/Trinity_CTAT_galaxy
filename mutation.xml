@@ -120,10 +120,10 @@ rnaseq_mutation_pipeline.py
         </output>
 
         <!-- <data format="vcf" name="rawvar" label="Raw variants file" from_work_dir="output/variants.vcf"/> -->
-        <output name="rawvar" file="mutation/FLI1.variants.vcf" lines_diff="2" />
+        <output name="rawvar" file="mutation/FLI1.variants.vcf" lines_diff="4" />
 
         <!-- <data format="vcf" name="filtvar" label="Variants file with minimal suggested filtering" from_work_dir="output/variants_initial_filtering.vcf"/> -->
-        <output name="filtvar" file="mutation/FLI1.variants_initial_filtering.vcf" lines_diff="4" />
+        <output name="filtvar" file="mutation/FLI1.variants_initial_filtering.vcf" lines_diff="6" />
 
         <!-- <data name="filtannotvar" label="Variant file filtered and annotated" from_work_dir="output/annotated_min_filtered.vcf.gz"/> -->
         <output name="filtnotvar">
