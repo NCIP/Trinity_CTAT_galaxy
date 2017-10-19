@@ -1,0 +1,36 @@
+  0.00	0	0	U	0	unclassified
+100.00	2000	0	-	1	root
+ 99.95	1999	0	-	131567	  cellular organisms
+ 99.95	1999	0	D	2759	    Eukaryota
+ 99.95	1999	0	-	33154	      Opisthokonta
+ 99.95	1999	0	K	33208	        Metazoa
+ 99.95	1999	0	-	6072	          Eumetazoa
+ 99.95	1999	0	-	33213	            Bilateria
+ 99.95	1999	0	-	33511	              Deuterostomia
+ 99.95	1999	0	P	7711	                Chordata
+ 99.95	1999	0	-	89593	                  Craniata
+ 99.95	1999	0	-	7742	                    Vertebrata
+ 99.95	1999	0	-	7776	                      Gnathostomata
+ 99.95	1999	0	-	117570	                        Teleostomi
+ 99.95	1999	0	-	117571	                          Euteleostomi
+ 99.95	1999	0	-	8287	                            Sarcopterygii
+ 99.95	1999	0	-	1338369	                              Dipnotetrapodomorpha
+ 99.95	1999	0	-	32523	                                Tetrapoda
+ 99.95	1999	0	-	32524	                                  Amniota
+ 99.95	1999	0	C	40674	                                    Mammalia
+ 99.95	1999	0	-	32525	                                      Theria
+ 99.95	1999	0	-	9347	                                        Eutheria
+ 99.95	1999	0	-	1437010	                                          Boreoeutheria
+ 99.95	1999	0	-	314146	                                            Euarchontoglires
+ 99.95	1999	0	O	9443	                                              Primates
+ 99.95	1999	0	-	376913	                                                Haplorrhini
+ 99.95	1999	0	-	314293	                                                  Simiiformes
+ 99.95	1999	0	-	9526	                                                    Catarrhini
+ 99.95	1999	0	-	314295	                                                      Hominoidea
+ 99.95	1999	0	F	9604	                                                        Hominidae
+ 99.95	1999	0	-	207598	                                                          Homininae
+ 99.95	1999	0	G	9605	                                                            Homo
+ 99.95	1999	1999	S	9606	                                                              Homo sapiens
+  0.05	1	0	-	28384	  other sequences
+  0.05	1	0	-	81077	    artificial sequences
+  0.05	1	1	S	32630	      synthetic construct
