@@ -1,8 +1,8 @@
-<tool id="trinityrnaseq" name="Trinity" version="2.4.0">
+<tool id="trinityrnaseq" name="trinity" version="1.0.0" profile="17.05">
   
-    <!-- Original written by Jeremy Goecks,
+    <!-- Original tool written by Jeremy Goecks,
         later development/maintenance by (in chronological order)
-            bhaas, Ben Fulton, Cicada Dennis 
+            Brian Haas, Ben Fulton, Cicada Dennis 
     -->
     <description>De novo assembly of RNA-Seq data using Trinity 2.4.0</description>
     <requirements>
@@ -12,7 +12,7 @@
         <requirement type="package">bzip2</requirement>
         <requirement type="package" version="2.4.0">trinity</requirement>
     </requirements>
-    <command>
+    <command detect_errors="default">
       <![CDATA[
       python $__tool_directory__/trinity_wrapper.py 
       --CPU \${GALAXY_SLOTS:-4}

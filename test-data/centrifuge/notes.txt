@@ -1,0 +1,43 @@
+New test data for the centrifuge tool:
+
+
+Paired end for direct centrifuge testing
+-rw-r--r-- 1 tstrnity uits  921264 Oct 13 13:31 SRR073747_1_20000reads.fastq
+-rw-r--r-- 1 tstrnity uits  921264 Oct 13 13:31 SRR073747_2_20000reads.fastq
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     261 Oct 19 15:39 SRR073747_1_2_20000reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    2580 Oct 19 15:39 SRR073747_1_2_20000reads.kraken_style_report.txt
+
+Single end for direct centrifuge testing
+-rw-r--r-- 1 tstrnity uits 1024365 Oct 13 13:35 SRR2219890_1_adj_20000reads.fastq
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     429 Oct 19 15:38 SRR2219890_1_20000reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    3259 Oct 19 15:38 SRR2219890_1_20000reads.kraken_style_report.txt
+
+Paired end for via Trinity centrifuge testing
+-rw-r--r-- 1 tstrnity uits 1113867 Oct 13 14:13 TrinitySRR073747_2000reads.fasta
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     164 Oct 19 15:40 TrinitySRR073747_2000reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    2207 Oct 19 15:41 TrinitySRR073747_2000reads.kraken_style_report.txt
+
+Single end for via Trinity centrifuge testing
+-rw-r--r-- 1 tstrnity uits  947707 Oct 13 14:14 TrinitySRR2219890_2000reads.fasta
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     397 Oct 19 15:40 TrinitySRR2219890_2000reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    3305 Oct 19 15:40 TrinitySRR2219890_2000reads.kraken_style_report.txt
+
+
+The original testing files have been removed because of their size. 
+
+ Paired end for direct centrifuge testing
+ SRR073747_1.fastq
+ SRR073747_2.fastq
+
+ Single end for direct centrifuge testing
+ SRR2219890_1.adj.fastq
+ 
+ Paired end for via Trinity centrifuge testing
+ TrinitySRR073747.fasta
+  
+ Single end for via Trinity centrifuge testing
+ TrinitySRR2219890.fasta

@@ -1,0 +1,44 @@
+  1.88	94	94	U	0	unclassified
+ 98.12	4906	794	-	1	root
+ 81.88	4094	0	-	131567	  cellular organisms
+ 81.86	4093	0	D	2759	    Eukaryota
+ 81.86	4093	0	-	33154	      Opisthokonta
+ 81.86	4093	0	K	33208	        Metazoa
+ 81.86	4093	0	-	6072	          Eumetazoa
+ 81.86	4093	0	-	33213	            Bilateria
+ 81.86	4093	0	-	33511	              Deuterostomia
+ 81.86	4093	0	P	7711	                Chordata
+ 81.86	4093	0	-	89593	                  Craniata
+ 81.86	4093	0	-	7742	                    Vertebrata
+ 81.86	4093	0	-	7776	                      Gnathostomata
+ 81.86	4093	0	-	117570	                        Teleostomi
+ 81.86	4093	0	-	117571	                          Euteleostomi
+ 81.86	4093	0	-	8287	                            Sarcopterygii
+ 81.86	4093	0	-	1338369	                              Dipnotetrapodomorpha
+ 81.86	4093	0	-	32523	                                Tetrapoda
+ 81.86	4093	0	-	32524	                                  Amniota
+ 81.86	4093	0	C	40674	                                    Mammalia
+ 81.86	4093	0	-	32525	                                      Theria
+ 81.86	4093	0	-	9347	                                        Eutheria
+ 81.86	4093	0	-	1437010	                                          Boreoeutheria
+ 81.86	4093	0	-	314146	                                            Euarchontoglires
+ 81.86	4093	0	O	9443	                                              Primates
+ 81.86	4093	0	-	376913	                                                Haplorrhini
+ 81.86	4093	0	-	314293	                                                  Simiiformes
+ 81.86	4093	0	-	9526	                                                    Catarrhini
+ 81.86	4093	0	-	314295	                                                      Hominoidea
+ 81.86	4093	0	F	9604	                                                        Hominidae
+ 81.86	4093	0	-	207598	                                                          Homininae
+ 81.86	4093	0	G	9605	                                                            Homo
+ 81.86	4093	4093	S	9606	                                                              Homo sapiens
+  0.02	1	0	D	2	    Bacteria
+  0.02	1	0	-	1783272	      Terrabacteria group
+  0.02	1	0	P	201174	        Actinobacteria
+  0.02	1	0	C	1760	          Actinobacteria
+  0.02	1	0	O	85011	            Streptomycetales
+  0.02	1	0	F	2062	              Streptomycetaceae
+  0.02	1	0	G	1883	                Streptomyces
+  0.02	1	1	S	29303	                  Streptomyces cattleya
+  0.36	18	0	-	28384	  other sequences
+  0.36	18	0	-	81077	    artificial sequences
+  0.36	18	18	S	32630	      synthetic construct

@@ -2,7 +2,7 @@
 import argparse
 import sys
 import os
-import sciedpiper.Commandline as commandline
+#import sciedpiper.Commandline as commandline
 import shutil
 
 TOOLS = os.environ.get( 'TOOLS' )
@@ -11,10 +11,10 @@ EXTLIBS = os.environ.get( 'EXTLIBS' )
 SLNCKY_DIR = os.path.join( TOOLS,'Trinity_CTAT','lncrna','slncky' )
 LNCRNA_DIR = os.path.join( TOOLS,'Trinity_CTAT','lncrna' )
 
-BEDTOOLS = ''
-LASTZ = ''
-LIFTOVER = ''
-SCIEDPIPER_HOME = ''
+BEDTOOLS = '/N/soft/rhel6/bedtools/2.20.1/bin'
+LASTZ = '/N/dc2/projects/galaxyshared/trinity/third_party_applications/lastz-distrib-1.03.73/bin'
+LIFTOVER = '/N/dc2/projects/galaxyshared/trinity/third_party_applications/liftover'
+SCIEDPIPER_HOME = '/N/dc2/projects/galaxyshared/trinity/SciEDPipeR-0.1.5/sciedpiper'
 
 SLNCKY_PIPELINE_SCRIPT = os.path.join( LNCRNA_DIR, 'lncrna_discovery.py' )
 CONFIGSTR = os.path.join( SLNCKY_DIR,'annotations.config' )

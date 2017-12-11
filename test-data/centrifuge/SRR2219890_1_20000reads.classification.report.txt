@@ -1,0 +1,8 @@
+name	taxID	taxRank	genomeSize	numReads	numUniqueReads	abundance
+root	1	no rank	0	370	370	0.0
+Bacillus	1386	genus	5402033	31	31	0.0
+Homo sapiens	9606	species	3238442024	4384	4384	0.00519472
+synthetic construct	32630	species	26537524	8	8	0.000787552
+Methanocaldococcus	196118	genus	1584277	1	1	0.0
+Methanocaldococcus jannaschii DSM 2661	243232	leaf	1739927	50	50	0.994018
+Leptotrichia buccalis C-1013-b	523794	leaf	2465610	1	1	0.0

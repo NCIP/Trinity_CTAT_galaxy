@@ -1,0 +1,2 @@
+STRG.2.11	Unannotated	intergenic
+STRG.2.6	MIR17HG	mir_host_exon

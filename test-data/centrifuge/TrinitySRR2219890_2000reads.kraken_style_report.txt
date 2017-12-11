@@ -1,0 +1,59 @@
+  0.10	2	2	U	0	unclassified
+ 99.90	1998	3	-	1	root
+ 99.55	1991	0	-	131567	  cellular organisms
+ 99.30	1986	0	D	2759	    Eukaryota
+ 99.30	1986	0	-	33154	      Opisthokonta
+ 99.30	1986	0	K	33208	        Metazoa
+ 99.30	1986	0	-	6072	          Eumetazoa
+ 99.30	1986	0	-	33213	            Bilateria
+ 99.30	1986	0	-	33511	              Deuterostomia
+ 99.30	1986	0	P	7711	                Chordata
+ 99.30	1986	0	-	89593	                  Craniata
+ 99.30	1986	0	-	7742	                    Vertebrata
+ 99.30	1986	0	-	7776	                      Gnathostomata
+ 99.30	1986	0	-	117570	                        Teleostomi
+ 99.30	1986	0	-	117571	                          Euteleostomi
+ 99.30	1986	0	-	8287	                            Sarcopterygii
+ 99.30	1986	0	-	1338369	                              Dipnotetrapodomorpha
+ 99.30	1986	0	-	32523	                                Tetrapoda
+ 99.30	1986	0	-	32524	                                  Amniota
+ 99.30	1986	0	C	40674	                                    Mammalia
+ 99.30	1986	0	-	32525	                                      Theria
+ 99.30	1986	0	-	9347	                                        Eutheria
+ 99.30	1986	0	-	1437010	                                          Boreoeutheria
+ 99.30	1986	0	-	314146	                                            Euarchontoglires
+ 99.30	1986	0	O	9443	                                              Primates
+ 99.30	1986	0	-	376913	                                                Haplorrhini
+ 99.30	1986	0	-	314293	                                                  Simiiformes
+ 99.30	1986	0	-	9526	                                                    Catarrhini
+ 99.30	1986	0	-	314295	                                                      Hominoidea
+ 99.30	1986	0	F	9604	                                                        Hominidae
+ 99.30	1986	0	-	207598	                                                          Homininae
+ 99.30	1986	0	G	9605	                                                            Homo
+ 99.30	1986	1986	S	9606	                                                              Homo sapiens
+  0.20	4	0	D	2157	    Archaea
+  0.20	4	0	P	28890	      Euryarchaeota
+  0.20	4	0	C	183939	        Methanococci
+  0.20	4	0	O	2182	          Methanococcales
+  0.20	4	0	F	196117	            Methanocaldococcaceae
+  0.20	4	0	G	196118	              Methanocaldococcus
+  0.20	4	0	S	2190	                Methanocaldococcus jannaschii
+  0.20	4	4	-	243232	                  Methanocaldococcus jannaschii DSM 2661
+  0.05	1	0	D	2	    Bacteria
+  0.05	1	0	-	1783272	      Terrabacteria group
+  0.05	1	0	P	1239	        Firmicutes
+  0.05	1	0	C	91061	          Bacilli
+  0.05	1	0	O	1385	            Bacillales
+  0.05	1	0	F	186817	              Bacillaceae
+  0.05	1	0	G	1386	                Bacillus
+  0.05	1	0	S	653685	                  Bacillus subtilis group
+  0.05	1	0	S	1423	                    Bacillus subtilis
+  0.05	1	1	-	135461	                      Bacillus subtilis subsp. subtilis
+  0.15	3	0	-	28384	  other sequences
+  0.15	3	0	-	81077	    artificial sequences
+  0.15	3	3	S	32630	      synthetic construct
+  0.05	1	0	D	10239	  Viruses
+  0.05	1	0	-	35237	    dsDNA viruses, no RNA stage
+  0.05	1	0	F	151340	      Papillomaviridae
+  0.05	1	0	G	333750	        Alphapapillomavirus
+  0.05	1	1	S	337041	          Alphapapillomavirus 9

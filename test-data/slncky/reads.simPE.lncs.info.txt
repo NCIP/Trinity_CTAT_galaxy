@@ -1,0 +1,13 @@
+STRG.45.1	TVAS5	intergenic
+STRG.28.1	Unannotated	intergenic
+STRG.25.1	MALAT1	intergenic
+STRG.44.1	TVAS5	intergenic
+STRG.50.1	AD	intergenic
+STRG.48.2	OK/SW-cl.16	intergenic
+STRG.42.1	Unannotated	intergenic
+STRG.51.1	MTND5	intergenic
+STRG.8.1	Unannotated	intergenic
+STRG.52.1	JA760615	intergenic
+STRG.5.1	Unannotated	intergenic
+STRG.23.1	Unannotated	intergenic
+STRG.49.1	OK/SW-cl.16	intergenic

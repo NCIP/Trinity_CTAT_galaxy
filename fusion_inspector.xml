@@ -1,11 +1,12 @@
-<tool id="fusion-inspector" name="Fusion Inspector" version="0.0.3">
+<tool id="fusion-inspector" name="Fusion Inspector" version="1.0.0" profile="17.05">
     <description>In silico Validation of Fusion Transcript Predictions</description>
     <requirements>
         <requirement type="set_environment">FUSION_RESOURCES</requirement>
         <requirement type="set_environment">TRINTOOLS</requirement>
         <requirement type="package"></requirement>
     </requirements>
-    <command>
+    <command detect_errors="default">
+      <![CDATA[
       FusionInspector 
       --fusions $fusion_candidates_list
       --genome_lib \$FUSION_RESOURCES
@@ -18,6 +19,7 @@
       #if $trinity_status.trinity=="true"
       --include_Trinity
       #end if
+      ]]>
     </command>
     <stdio>
       <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
@@ -44,7 +46,7 @@
       </conditional>
     </inputs>
     <outputs>
-      <data format="text" name="finsepector_idx" label="fidx" from_work_dir="subdir/finspector.fa.fai"/>
+      <data format="text" name="finspector_idx" label="fidx" from_work_dir="subdir/finspector.fa.fai"/>
       <data format="text" name="cytoBand" label="cytoBand" from_work_dir="subdir/cytoBand.txt"/>
       <data format="fasta" name="finspector_fa" label="finspector_fasta" from_work_dir="subdir/finspector.fa"/>
       <data format="bed" name="finspector_bed" label="finspector_bed" from_work_dir="subdir/finspector.bed"/>
@@ -60,6 +62,99 @@
       <data format="text" name="fusionPredictionsAbridged" label="fusion_predictions_abridged" from_work_dir="subdir/finspector.fusion_predictions.final.abridged"/>
       <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/finspector.fusion_inspector_web.json"/>
     </outputs>
+    <tests>
+      <test>
+        <param name="fusion_candidates_list" value="FusionInspector/fusion_targets.A.txt,FusionInspector/fusion_targets.B.txt,FusionInspector/fusion_targets.C.txt" />
+        <param name="left_input" value="FusionInspector/test.reads_1.fastq.gz" />
+        <param name="right_input" value="FusionInspector/test.reads_2.fastq.gz" />
+        <param name="method" value="STAR" />
+        <param name="trinity" value="false" />
+
+        <!-- <data format="text" name="finspector_idx" label="fidx" from_work_dir="subdir/finspector.fa.fai"/> -->
+	<output name="finspector_idx" file="FusionInspector/test.reads_1_2.fa.fai" />
+
+        <!-- <data format="text" name="cytoBand" label="cytoBand" from_work_dir="subdir/cytoBand.txt"/> -->
+	<output name="cytoBand" file="FusionInspector/test.reads_1_2.cytoBand.tail.txt" compare="contains" />
+
+        <!-- <data format="fasta" name="finspector_fa" label="finspector_fasta" from_work_dir="subdir/finspector.fa"/> -->
+	<output name="finspector_fa" file="FusionInspector/test.reads_1_2.fa" />
+
+        <!-- <data format="bed" name="finspector_bed" label="finspector_bed" from_work_dir="subdir/finspector.bed"/> -->
+	<output name="finspector_bed" file="FusionInspector/test.reads_1_2.bed.sorted" sort="true" />
+
+        <!-- <data format="tabular" name="FusionJuncSpan" label="FusionJuncSpan" from_work_dir="subdir/finspector.igv.FusionJuncSpan"/> -->
+	<output name="FusionJuncSpan" >
+            <assert_contents>
+                <has_line_matching expression=".+" />
+                <has_line line="#scaffold&#009;fusion_break_name&#009;break_left&#009;break_right&#009;num_junction_reads&#009;num_spanning_frags&#009;spanning_frag_coords" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bed" name="junction_bed" label="junction_bed" from_work_dir="subdir/finspector.junction_reads.bam.bed"/> -->
+        <!-- sorted output sometimes matches, but simetimes not, so now I just test for similar size. -->
+	<output name="junction_bed" file="FusionInspector/test.reads_1_2.junction_reads.bam.bed.sorted" sort="true" compare="sim_size" >
+             <assert_contents>
+                <has_line_matching expression=".+" />
+                <has_n_columns n="12" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bam" name="junction_bam" label="junction_bam" from_work_dir="subdir/finspector.junction_reads.bam"/> -->
+	<output name="junction_bam" >
+            <assert_contents>
+                <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of the bam file -->
+               <has_text_matching expression="\x1F\x8B" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bam" name="spanning_bam" label="spanning_bam" from_work_dir="subdir/finspector.spanning_reads.bam"/> -->
+	<output name="spanning_bam" >
+            <assert_contents>
+                <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of the bam file -->
+               <has_text_matching expression="\x1F\x8B" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bed" name="spanning_bed" label="spanning_bed" from_work_dir="subdir/finspector.spanning_reads.bam.bed"/> -->
+	<output name="spanning_bed" file="FusionInspector/test.reads_1_2.spanning_reads.bam.bed.sorted" sort="true" />
+
+        <!--
+             <data format="bed" name="trinity_bed" label="trinity_bed" from_work_dir="subdir/finspector.gmap_trinity_GG.fusions.gff3.bed.sorted.bed">
+                  <filter>trinity_status['trinity'] == "true"</filter>
+             </data>
+        Since trinity is false in this test, this file does not exist.
+	<output name="trinity_bed" />
+            <assert_contents>
+                <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        -->
+
+        <!-- <data format="text" name="fusionPredictions" label="fusion_predictions.final" from_work_dir="subdir/finspector.fusion_predictions.final"/> -->
+	<output name="fusionPredictions" >
+            <assert_contents>
+                <has_line_matching expression=".+" />
+                <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;JunctionReads&#009;SpanningFrags&#009;Annotations&#009;TrinityGG" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="text" name="fusionPredictionsAbridged" label="fusion_predictions_abridged" from_work_dir="subdir/finspector.fusion_predictions.final.abridged"/> -->
+	<output name="fusionPredictionsAbridged" >
+            <assert_contents>
+                <has_line_matching expression=".+" />
+                <has_line line="#fusion_name&#009;JunctionReads&#009;SpanningFrags&#009;Splice_type&#009;LeftGene&#009;LeftBreakpoint&#009;RightGene&#009;RightBreakpoint&#009;Annotations&#009;TrinityGG" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="json" name="fusion_json" label="fusion_json" from_work_dir="subdir/finspector.fusion_inspector_web.json"/> -->
+        <!-- So far in my testing of this test, I have had up to 18 different lines 
+             (9 positions values switched between two entries)- 64 gives some padding. -->
+	<output name="fusion_json" file="FusionInspector/test.reads_1_2.web.json" lines_diff="64" />
+
+      </test>
+    </tests>
     <help>
 .. class:: infomark
 
