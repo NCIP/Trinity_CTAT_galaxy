@@ -1,0 +1,6 @@
+<tables>
+    <table name="ctat_genome_ref_libs" comment_char="#" allow_duplicate_entries="False">
+        <columns>id, display_name, location</columns>
+        <file path="tool-data/ctat_genome_ref_libs.loc" />
+    </table>
+</tables>
