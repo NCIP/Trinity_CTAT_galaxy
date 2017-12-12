@@ -50,9 +50,9 @@ def download_from_BroadInst(destination):
 def main():
     #Parse Command Line
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--download', action="store_true" \
+    parser.add_argument('-d', '--download', action="store_true", \
         help='Do not use if you already have the CTAT Resource Library that this program downloads.')
-    parser.add_argument('-g', '--genome_name', default="GRCh38_gencode_v26" \
+    parser.add_argument('-g', '--genome_name', default="GRCh38_gencode_v26", \
         help='Is used as the selector text of the entry in the data table.')
     parser.add_argument('-p', '--destination_path', \
         help='Full path of the CTAT Resource Library location or destination.')
