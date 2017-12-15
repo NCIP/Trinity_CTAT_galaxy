@@ -8,10 +8,10 @@
     </requirements>
     <command detect_errors="default">
         <![CDATA[
-        python add_ctat_ref_lib.py ${download}
-            --ref_genome "${genome_name}"
+        python $__tool_directory__/add_ctat_ref_lib.py ${download}
+            --genome_name "${genome_name}"
             --destination_path "${destination}" 
-            -o "${out_file}"
+            --output_filename "${out_file}"
         ]]>
     </command>
     <inputs>

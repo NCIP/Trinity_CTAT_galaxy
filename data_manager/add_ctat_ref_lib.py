@@ -82,7 +82,7 @@ def main():
     data_manager_dict = {}
     data_manager_dict['data_tables'] = {}
     data_manager_dict['data_tables']['ctat_genome_ref_libs'] = []
-    data_table_entry = dict(id="CTAT_RESOURCE_LIB", display_name=genome_name, location=ctat_genome_resource_lib_path)
+    data_table_entry = dict(value="CTAT_RESOURCE_LIB", name=genome_name, path=ctat_genome_resource_lib_path)
     data_manager_dict['data_tables']['ctat_genome_ref_libs'].append(data_table_entry)
 
     # Save info to json file. This is used to transfer data from the DataManager tool, to the data manager,

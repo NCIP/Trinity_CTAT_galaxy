@@ -3,19 +3,19 @@
     <data_manager tool_file="data_manager/add_ctat_ref_lib.xml" id="ctat_genome_ref_lib_data_manager"> 
         <data_table name="ctat_genome_ref_libs">
             <output>
-                <column name="id" />
-                    <!-- id is used to uniquely identify this entry in the table.
+                <column name="value" />
+                    <!-- value is used to uniquely identify this entry in the table.
                     For now id is also the name of the environment variable that is used within tools to
                     access a CTAT Resource Library. 
                     FIX - Need to get rid of that and use command line params...
                     -->
-                <column name="display_name" />
-                    <!-- display_name is used as the selector in the pull down lists for items in this table.
+                <column name="name" />
+                    <!-- name is used as the selector in the pull down lists for items in this table.
                     -->
-                <column name="location">
-                    <!-- location is the absolute path of the corresponding CTAT Genome Reference Library.
+                <column name="path" />
+                    <!-- path is the absolute path of the corresponding CTAT Genome Reference Library.
                     -->
-                <!-- <column name="location" output_ref="out_file"> -->
+                <!-- <column name="path" output_ref="out_file"> -->
                     <!-- It is typical to move the data file, but because our tool gets the destination
                     location from the user, we do not want to move the data from that location.
                     The full path of the CTAT Resource library is returned in location. 
