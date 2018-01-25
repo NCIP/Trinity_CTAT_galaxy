@@ -1,22 +1,47 @@
 <tool id="ctat_genome_ref_lib_data_manager" 
     name="CTAT Genome Reference Library Data Manager" 
     version="1.0.0" tool_type="manage_data">
-    <description>Retrieve, and/or Specify the location of, a CTAT Genome Reference Library. 
+    <description>Retrieve, and/or specify the location of, a CTAT Genome Reference Library. 
     </description>
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package" version="0.3.0">gmap-fusion</requirement>
+        <!-- gmap-fusion is required in order to process downloaded libraries 
+             to create all of the required files and indexes. It includes gmap
+             and FusionFilter, programs from both of which are needed.
+        -->
     </requirements>
     <command detect_errors="default">
         <![CDATA[
-        python $__tool_directory__/add_ctat_ref_lib.py ${download}
+        python $__tool_directory__/add_ctat_ref_lib.py 
             --genome_name "${genome_name}"
             --destination_path "${destination}" 
             --output_filename "${out_file}"
+            #if str(${download}) == "true":
+                --download "${filename}"
+            #end if
         ]]>
     </command>
     <inputs>
+        <!--
         <param name="download" type="boolean" checked="false"
-             truevalue="--download" falsevalue="" label="Need to Download? (yes/no)" />
+             truevalue="- -download" falsevalue="" label="Need to Download? (yes/no)" />
+            <param name="download" type="select" label="Need to Download?">
+                <option value="single" selected="true">Single Dataset</option>
+                <option value="paired_collection">Paired Collection</option>
+            <when value="paired_collection">
+                 <param name="fastq_input" format="fastqsanger" type="data_collection" collection_type="paired" label="Select dataset pair" help="Specify paired dataset collection containing paired reads"/>
+            </when>
+        -->
+        <conditional name="download_question">
+            <param name="download" type="boolean" checked="false" label="Need to Download? (yes/no)" />
+            </param>
+            <when value="true">
+                 <param name="filename" type="select" label="Select File" display="radio" 
+                     dynamic_options="get_ctat_genome_filenames()" help="Select a CTAT Genome Reference Library to Download." />
+            </when>
+        </conditional>
+
         <param name="genome_name" type="text" label="Reference Genome name" />
         <param name="destination" type="text" label="Local Destination (full path)" />
     </inputs>
@@ -32,4 +57,5 @@
         The Reference Genome name may be left empty if downloading. The name will be used as the selector text of the entry in the data table.
         For more information on CTAT Genome Reference Libraries, see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
     </help>
+    <code file="add_ctat_ref_lib.py"
 </tool>

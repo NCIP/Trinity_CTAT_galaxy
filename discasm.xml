@@ -1,15 +1,8 @@
 <tool id="discasm" name="DISCASM" version="1.0.0" profile="17.05">
     <description>Discordant and Unmapped Read De novo Transcriptome Assembly</description>
     <requirements>
-        <!-- Added following requirement, but it does not exist in conda yet. -->
         <requirement type="package" version="0.1.2">discasm</requirement>
     </requirements>
-    <!--
-        <requirement type="set_environment">TRINTOOLS</requirement> 
-        echo $TRINTOOLS
-            /N/dc2/projects/galaxyshared/trinity/third_party_applications
-        But this is only on github. Looks like we need to create a conda package for this one.
-    -->
     <command detect_errors="default">
       DISCASM
       --aligned_bam $bam 

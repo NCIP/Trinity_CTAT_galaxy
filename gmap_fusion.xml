@@ -1,15 +1,14 @@
 <tool id="gmap-fusion" name="GMAP-fusion" version="1.0.0" profile="17.05">
     <description>Fusion-finding Using De novo RNA-Seq Transcript Assemblies</description>
     <requirements>
-        <requirement type="set_environment">FUSION_RESOURCES</requirement>
-        <requirement type="set_environment">TRINTOOLS</requirement>
+        <requirement type="package" version="0.3.0">gmap-fusion</requirement>
     </requirements>
     <command detect_errors="default">
-      \$TRINTOOLS/GMAP-fusion_v0.0.1/GMAP-fusion 
+      GMAP-fusion 
       -T $assembled_trans 
       --left_fq $left_input
       --right_fq $right_input
-      --genome_lib_dir \$FUSION_RESOURCES
+      --genome_lib_dir "${genome_ref_lib.fields.path}"
       --output "subdir" 
     </command>
     <stdio>
@@ -23,6 +22,12 @@
       <param format="fasta" name="assembled_trans" type="data" label="Assembled Transcripts (ie. Trinity or DISCASM output)" help="Trinity or DISCASM generated transcript fasta"/>
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help="Forward strand reads"/>
       <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help="Reverse strand reads"/>
+      <param name="genome_ref_lib" type="select" label="Select a reference genome">
+        <options from_data_table="ctat_genome_ref_libs">
+          <filter type="sort_by" column="2" />
+          <validator type="no_options" message="No indexes are available" />
+        </options>
+      </param>
     </inputs>
     <outputs>
       <data format="tabular" name="gmapfusion_candidates" label="${tool.name} on ${on_string}: GMAP-fusion candidates" from_work_dir="subdir/GMAP-fusion.final"/>

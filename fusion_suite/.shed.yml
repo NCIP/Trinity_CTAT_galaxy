@@ -18,3 +18,12 @@ suite:
       - name: discasm
         version: 1.0.0
         owner: trinity_ctat
+      - name: star_fusion
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: gmap_fusion
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: fusion_inspector
+        version: 1.0.0
+        owner: trinity_ctat
