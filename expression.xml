@@ -1,10 +1,10 @@
-<tool id="expression" name="Kallisto" version="0.0.1">
+<tool id="expression" name="Kallisto" version="1.0.0" profile="17.05">
 
     <description>Expression quantification for RNA-Seq Analysis</description>
     <requirements>
        <requirement type="set_environment">WRAPPERS</requirement>
     </requirements>
-    <command>
+    <command detect_errors="default">
       python \${TOOLS}/dev/Trinity_CTAT/expression/trinity_ctat_expression.py
  
       --annot_config $annot 

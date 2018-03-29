@@ -1,14 +1,22 @@
-<tool id="trinityrnaseq" name="Trinity" version="2.4.0">
+<tool id="trinityrnaseq" name="trinity" version="1.0.0" profile="17.05">
   
-    <!-- Written by Jeremy Goecks, now maintained here by bhaas -->
-    <description>De novo assembly of RNA-Seq data using Trinity on the Karst cluster</description>
+    <!-- Original tool written by Jeremy Goecks,
+        later development/maintenance by (in chronological order)
+            Brian Haas, Ben Fulton, Cicada Dennis 
+    -->
+    <description>De novo assembly of RNA-Seq data using Trinity 2.4.0</description>
     <requirements>
-        <requirement type="package">trinity</requirement>
+        <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package">subprocess32</requirement>
+        <requirement type="package">samtools</requirement>
+        <requirement type="package">bzip2</requirement>
+        <requirement type="package" version="2.4.0">trinity</requirement>
     </requirements>
-    <command>
+    <command detect_errors="default">
       <![CDATA[
-      python $__tool_directory__/trinity_wrapper.py --mem_per_cpu 31
+      python $__tool_directory__/trinity_wrapper.py 
       --CPU \${GALAXY_SLOTS:-4}
+      --max_memory \${TRINITY_MAX_MEMORY:-31G}
       #if str($inputs.paired_or_single) == "paired":
        --left $inputs.left_input --right $inputs.right_input
        #if $inputs.left_input.ext == 'fasta':
@@ -26,12 +34,17 @@
       #end if
       ## direct to output
       --timing trinity_out_dir/Trinity.timing
-      --user $__user_id__
-      --fullpath /N/dc2/scratch/trinity/rerun
-      --dir '$adv.rerundir'
       --log $trinity_log
 
  ]]>
+      <!-- The fullpath, dir, and user options (preceed with dashes) can be
+           used in the trinity_wrapper.py command to create rerunable jobs.
+           We are not supporting rerunable jobs in this release of this tool.
+        fullpath \${TRINITY_RERUN_PREFIX}
+        dir '$adv.rerundir'
+        user $__user_id__
+      mem_per_cpu 31
+      -->
     </command>
     <stdio>
       <exit_code range="1:"   level="fatal"   description="Program failed" />
@@ -51,9 +64,12 @@
           <param format="fasta,fastq" name="input" type="data" label="Single-end reads" help=""/>
         </when>
       </conditional>
+      <!-- The following section was used to aid in creating rerunable jobs.
+           We are not supporting rerunable jobs in this release of this tool.
       <section name="adv" title="Allow Job Rerun" expanded="False">
-	<param name="rerundir" type="text" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
-    </section>
+        <param name="rerundir" type="text" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
+      </section>
+      -->
     </inputs>
     <outputs>
       <data format="txt" name="trinity_log" label="${tool.name} on ${on_string}: log" />
@@ -87,16 +103,13 @@
             <param name="left_input" value="Sp.cat_ds_hs.left.fq" />
             <param name="right_input" value="Sp.cat_ds_hs.right.fq" />
             <param name="adv.rerundir" value="planemo_test_2" />
-            <!-- Following are not being used in this version of trinity.xml -->
+            <!-- Following parameters are not used in this version of this tool. -->
             <!--
- 	    <param name="paired_or_single" value="paired" />
-            <param name="left_input" file="cat_Sp.left.fq" />
-            <param name="right_input" file="cat_Sp.right.fq" />
             <param name="JM" value="50G" />
             <param name="CPU" value="2" />
             <param name="library_type" value="None" />
             <param name="group_pairs_distance" value="500" />
-            <param name="path_reinforcement_distance" va;ue="75" />
+            <param name="path_reinforcement_distance" value="75" />
             <param name="use_additional" value="no" />
             -->
   	    <output name="trinity_log" >
@@ -116,7 +129,9 @@
     <help>
 This instance is running Trinity version 2.4.0 and uses the following command:
 
-	 Trinity --max_memory 240G --CPU 8 --seqType seq_type --single singlefile or --left left_file --right right_file
+	 Trinity --max_memory 31G --CPU 4 --seqType seq_type --single singlefile or --left left_file --right right_file
+
+Define TRINITY_MAX_MEMORY and GALAXY_SLOTS to change the default values for --max_memory and --CPU, respectively.
 
 .. class:: infomark
 
@@ -125,4 +140,9 @@ Trinity_, developed at the Broad Institute and the Hebrew University of Jerusale
 .. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
 .. _here: https://github.com/trinityrnaseq/trinityrnaseq/wiki
     </help>
+
+        <citations>
+            <citation type="doi">10.1038/nbt.1883</citation>
+        </citations>
+
 </tool>

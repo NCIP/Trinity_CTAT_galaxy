@@ -1,0 +1,31 @@
+owner: "trinity_ctat"
+#type: repository_suite_definition
+# Put in the CTAT repository where this is defined. 
+# remote_repository_url: "https://github.com/galaxyproject/planemo/tree/master/tests/data/repos/
+# remote_repository_url: https://github.com/NCIP/Trinity_CTAT_galaxy ? Is that what it wants?
+# homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
+categories:
+    - "Assembly"
+    - "RNA"
+    - "Sequence Analysis"
+
+suite:
+    name: trinity_ctat_suite_trinity_test_repo
+    version: 1.0.0
+    description: "These tools were developed by ..... for the purpose of ..."
+    long_description: "Expand on this definition. We need something really good here. We also need to make sure we have the proper categories chosen in the above field. "
+    include_repositories:
+      - name: clean_headers
+        owner: trinity_ctat
+      - name: concatenate
+        owner: trinity_ctat
+      - name: trinity
+        owner: trinity_ctat
+      - name: align_and_estimate_abundance
+        owner: trinity_ctat
+      - name: abundance_estimation_to_matrix
+        owner: trinity_ctat
+      - name: edger_differential_expression
+        owner: trinity_ctat
+      - name: analyze_differential_expression
+        owner: trinity_ctat

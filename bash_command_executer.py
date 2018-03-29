@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 import sys, subprocess, os
 
 def stop_err( msg ):

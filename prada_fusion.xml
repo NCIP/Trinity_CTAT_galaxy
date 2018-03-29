@@ -1,6 +1,6 @@
-<tool id="prada-fusion" name="Prada-fusion" version="0.0.1">
+<tool id="prada-fusion" name="Prada-fusion" version="0.0.1" profile="17.05">
     <description>Fusion-finding Pipeline using PRADA</description>
-    <command>
+    <command detect_errors="default">
         <![CDATA[
         module unload java >& /dev/null &&
         module load java/1.7.0_51 >& /dev/null &&

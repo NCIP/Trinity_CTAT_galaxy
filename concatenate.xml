@@ -1,12 +1,18 @@
-<tool id="catbash" name="Concatenate datasets">
+<tool id="catbash" name="Concatenate datasets" version="1.0.0" profile="17.05">
     <description> concatenate datasets from tail to head</description>
-    <command interpreter="python">
-        bash_command_executer.py cat
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+    </requirements>
+
+    <command detect_errors="exit_code">
+      <![CDATA[
+        python $__tool_directory__/bash_command_executer.py cat
         $input1
         #for $q in $queries
             ${q.input2}
         #end for
         > $out_file1 
+      ]]>
     </command>
     <inputs>
         <param name="input1" type="data" label="Concatenate Dataset"/>
@@ -17,6 +23,7 @@
     <outputs>
         <data name="out_file1" format="input" metadata_source="input1"/>
     </outputs>
+
     <tests>
         <test>
             <param name="input1" value="Sp_ds.left.fq"/>

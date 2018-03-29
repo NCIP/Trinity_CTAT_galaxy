@@ -1,12 +1,16 @@
-<tool id="RSEM_abundance_estimation" name="RSEM_abundance_estimation" version="0.0.1">
+<tool id="RSEM_abundance_estimation" name="align_and_estimate_abundance" version="1.0.0" profile="17.05">
 
     <description>run RSEM to estimate transcript abundances</description>
+
     <requirements>
-        <requirement type="package">trinity</requirement>
+        <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package" version="1.3.0">rsem</requirement>
+        <requirement type="package" version="2.4.0">trinity</requirement>
     </requirements>
-    <command interpreter="python">
+
+    <command detect_errors="exit_code">
         <![CDATA[
-        trinityToolWrapper.py util/align_and_estimate_abundance.pl --transcripts $transcripts --est_method RSEM --aln_method bowtie --trinity_mode --prep_reference --output_dir  "subdir" 
+        python $__tool_directory__/trinityToolWrapper.py util/align_and_estimate_abundance.pl --transcripts $transcripts --est_method RSEM --aln_method bowtie2 --trinity_mode --prep_reference --output_dir  "subdir" 
 
         ## Inputs.
         #if str($inputs.paired_or_single) == "paired":
@@ -35,7 +39,7 @@
 
     </command>
     <inputs>
-		<param format="fasta" name="transcripts" type="data" label="Transcripts Fasta" help="Fasta sequences against which reads are aligned. This may be the Assembled Transcripts file from Trinity."  />
+	    <param format="fasta" name="transcripts" type="data" label="Transcripts Fasta" help="Fasta sequences against which reads are aligned. This may be the Assembled Transcripts file from Trinity."  />
 
 		<conditional name="inputs">
                     <param name="paired_or_single" type="select" label="Paired or Single-end data?">
@@ -65,8 +69,8 @@
     </inputs>
 
     <outputs>
-        <data format="text" name="transcript_counts" label="${tool.name} on ${on_string}: Isoform Counts" from_work_dir="subdir/RSEM.isoforms.results"/>
-	<data format="text" name="gene_counts" label="${tool.name} on ${on_string}: Gene counts" from_work_dir="subdir/RSEM.genes.results"/>
+        <data format="txt" name="transcript_counts" label="${tool.name} on ${on_string}: Isoform Counts" from_work_dir="subdir/RSEM.isoforms.results"/>
+	<data format="txt" name="gene_counts" label="${tool.name} on ${on_string}: Gene counts" from_work_dir="subdir/RSEM.genes.results"/>
     </outputs>
 
     <tests>
@@ -77,7 +81,7 @@
             <param name="right_input" value="reads.right.simPE.fq" />
             <param name="library_type" value="None" />
 
-	    <output name="transcripts_counts" >
+	    <output name="transcript_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
                     <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
@@ -98,7 +102,7 @@
             <param name="right_input" value="Sp_ds.right.fq" />
             <param name="library_type" value="None" />
 
-	    <output name="transcripts_counts" >
+	    <output name="transcript_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
                     <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
@@ -119,7 +123,7 @@
             <param name="right_input" value="Sp_hs.right.fq" />
             <param name="library_type" value="None" />
 
-	    <output name="transcripts_counts" >
+	    <output name="transcript_counts" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
                     <has_line line="transcript_id&#009;gene_id&#009;length&#009;effective_length&#009;expected_count&#009;TPM&#009;FPKM&#009;IsoPct" />
@@ -149,4 +153,9 @@ If you are following the Trinity RNA-seq protocol please go here_ for a galaxy t
 .. _website: http://deweylab.biostat.wisc.edu/rsem/README.html
 .. _here: https://github.com/trinityrnaseq/GalaxyTrinityProtocol/wiki
     </help>
+
+    <citations>
+        <citation type="doi">10.1038/nbt.1883</citation>
+    </citations>
+
 </tool>

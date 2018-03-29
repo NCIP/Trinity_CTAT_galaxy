@@ -1,0 +1,12 @@
+# This file lists the locations of CTAT Genome Reference Libraries
+# Usually there will only be one library, but it is concievable 
+# that there could be multiple libraries.
+# This file format is as follows
+# (white space characters are TAB characters):
+#
+#<unique_id>    <display_name>  <file_path>
+#
+#ctat_genome_ref_libs.loc could look like:
+#
+#CTAT_RESOURCE_LIB  GRCh38_gencode_v26   /ctat/genome/resource/lib/path
+#

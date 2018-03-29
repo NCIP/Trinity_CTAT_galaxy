@@ -1,7 +1,7 @@
-<tool id="slncky_pipeline" name="slncky_pipeline" version="0.0.1">
+<tool id="slncky_pipeline" name="slncky_pipeline" version="1.0.0" profile="17.05">
 
     <description>Running slncky</description>
-    <command>
+    <command detect_errors="default">
       <![CDATA[
      #if str($bedfile) != "":
      \$SLNCKY_PIPELINE_SCRIPT --bedfile $bedfile 

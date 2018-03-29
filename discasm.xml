@@ -1,11 +1,10 @@
-<tool id="discasm" name="DISCASM" version="0.0.1">
+<tool id="discasm" name="DISCASM" version="1.0.0" profile="17.05">
     <description>Discordant and Unmapped Read De novo Transcriptome Assembly</description>
     <requirements>
-        <requirement type="package"></requirement>
-        <requirement type="set_environment">TRINTOOLS</requirement> 
+        <requirement type="package" version="0.1.2">discasm</requirement>
     </requirements>
-    <command>
-      \$TRINTOOLS/DISCASM_v0.0.1/DISCASM
+    <command detect_errors="default">
+      DISCASM
       --aligned_bam $bam 
       --chimeric_junctions $chimeric 
       --left_fq $left_input
@@ -29,6 +28,7 @@
     <outputs>
       <data format="fasta" name="oases.transcripts" label="${tool.name} on ${on_string}: Oasis Transcripts" from_work_dir="subdir/oasesMultiK_out_dir/oases.transcripts.fa" />
     </outputs>
+
     <tests>
       <test>
         <!-- The aligned and chimeric I got off of the website don't work with these reads_[1|2].fq.gz inputs.
@@ -57,4 +57,6 @@ DISCASM is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTA
 
 .. _here: https://github.com/DISCASM/DISCASM/wiki
     </help>
+    <cite>
+    </cite>
 </tool>

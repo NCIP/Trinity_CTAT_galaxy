@@ -1,10 +1,20 @@
-<tool id="stringtie" name="STRINGTIE" version="0.0.1">
+<tool id="stringtie" name="STRINGTIE" version="1.0.0" profile="17.05">
     <description>Assembling RNA-Seq alignments into potential transcripts</description>
     <requirements>
     </requirements>
-
-    <command>
-      \$STRINGTIE_CTAT_SCRIPT
+    <!--
+    echo $STRINGTIE_CTAT_SCRIPT
+        /N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/genome_guided_transcript_reconstruction/transcript_reconstruction.py
+    echo $STRINGTIE_SCRIPT
+        /N/dc2/projects/galaxyshared/trinity/third_party_applications/stringtie-1.2.2.Linux_x86_64
+        The above is a directory with stringtie in it. sringtie could be a requirement, one would think...
+    echo $STRINGTIE_DIR
+        /N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/genome_guided_transcript_reconstruction
+    Trinity_CTAT would be another requirement, but don't know if there is a Trinity_CTAT package 
+        in conda...
+    -->
+    <command detect_errors="exit_code">
+    python \$STRINGTIE_CTAT_SCRIPT
     --bam_file $bam_file
     --ref_annot $ref_annot.fields.path
     --out_dir "subdir"
@@ -65,4 +75,7 @@ StringTie is a fast and highly efficient assembler of RNA-Seq alignments into po
 
 .. _here: https://ccb.jhu.edu/software/stringtie/index.shtml
     </help>
+
+    <cite>
+    </cite>
 </tool>

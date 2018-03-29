@@ -1,5 +1,9 @@
 # Trinity_CTAT_galaxy
 Files needed for Galaxy tools used to run Trinity_CTAT workflows.
+This repository is the source repository for the user trinity_ctat's
+tools uploaded to the Galaxy Toolshed.
+
+## FIX The below information is likely to be out of date at present. FIX ##
 
 
 ## Environment Variables
