@@ -1,7 +1,7 @@
-<tool id="gmap-fusion" name="GMAP-fusion" version="1.0.0" profile="17.05">
+<tool id="ctat_gmap_fusion" name="ctat_gmap_fusion" version="1.0.0" profile="17.05">
     <description>Fusion-finding Using De novo RNA-Seq Transcript Assemblies</description>
     <requirements>
-        <requirement type="package" version="0.3.0">gmap-fusion</requirement>
+        <requirement type="package" version="0.4.0">gmap-fusion</requirement>
     </requirements>
     <command detect_errors="default">
       GMAP-fusion 
@@ -38,6 +38,9 @@
         <param name="left_input" value="GMAP/reads_1.fq.gz" />
         <param name="right_input" value="GMAP/reads_2.fq.gz" />
         <param name="assembled_trans" value="GMAP/transcripts.fa" />
+        <!-- FIX - now that we added the CTAT ref lib path as a parameter, how do we find it for testing?
+        <param name="genome_ref_lib.fields.path" value="?????" />
+        -->
         <output name="gmapfusion_candidates" file="GMAP/fusion.reads_1_2.final" />
       </test>
     </tests>

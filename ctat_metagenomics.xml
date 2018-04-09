@@ -1,11 +1,15 @@
-<tool id="centrifuge" name="Trinity_CTAT_Metagenomics">
+<tool id="ctat-metagenomics" name="CTAT_Metagenomics" version=1.0.0 profile="17.05">
 
     <description>Centrifuge - Classifier for metagenomic sequences (RNA-Seq)</description>
+    <requirements>
+        <requirement type="package" version="1.0.1">ctat-metagenomics</requirement>
+    </requirements>
     <command>
       <![CDATA[     
-     python \$METAGENOMICS_SCRIPT
+     python metagenomics.py
  
-     --index $index --out_dir "centrifuge"
+     --index "${index.fields.path}" 
+     --out_dir "centrifuge"
 
      #if $format_type.format == "fasta" 
           --format fasta --unpaired_reads $format_type.fasta_file
@@ -54,15 +58,15 @@
       </conditional>
 
       <param name="index" type="select" label="Choose reference genome index :" help="Select genome index">
-             <option value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv">Bacteria, Aarchaea, Viruses, Human</option>
+        <options from_data_table="ctat_centrifuge_indexes">
       </param>
       
     </inputs>
 
     <outputs>
-           <data format="text" name="classification_results" label="Centrifuge classification output" from_work_dir="centrifuge/classification.results.txt"/>
-           <data format="text" name="classification_report" label="Centrifuge summary output" from_work_dir="centrifuge/classification.report.txt"/>
-           <data format="text" name="kraken_style_report" label="Kraken-style report" from_work_dir="centrifuge/kraken_style_report.txt"/>
+           <data format="txt" name="classification_results" label="Centrifuge classification output" from_work_dir="centrifuge/classification.results.txt"/>
+           <data format="txt" name="classification_report" label="Centrifuge summary output" from_work_dir="centrifuge/classification.report.txt"/>
+           <data format="txt" name="kraken_style_report" label="Kraken-style report" from_work_dir="centrifuge/kraken_style_report.txt"/>
     </outputs>
 
     <stdio>
@@ -92,7 +96,9 @@
             <param name="type" value="paired" />
             <param name="left_fq" value="centrifuge/SRR073747_1.fastq" />
             <param name="right_fq" value="centrifuge/SRR073747_2.fastq" />
-            <param name="index" value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv" />
+            <!-- FIX - How are we going to set the index value when we don't know what is in the table? How do we find it for testing?
+            <param name="index.fields.path" value="/N/dc2/projects/galaxyshared/trinity/dev/Trinity_CTAT/metagenomics/phv" />
+            -->
             <output name="classification_results" >
                 <assert_contents>
                     <has_line_matching expression=".+" />

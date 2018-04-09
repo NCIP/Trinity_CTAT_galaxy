@@ -1,0 +1,38 @@
+owner: "trinity_ctat"
+#type: repository_suite_definition
+# Put in the CTAT repository where this is defined. 
+# remote_repository_url: "https://github.com/galaxyproject/planemo/tree/master/tests/data/repos/
+# remote_repository_url: https://github.com/NCIP/Trinity_CTAT_galaxy ? Is that what it wants?
+# homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
+categories:
+    - "Assembly"
+    - "RNA"
+    - "Sequence Analysis"
+
+suite:
+    name: ctat_trinity_suite_test2
+    version: 1.0.0
+    description: "This is the Trinity suite of the Cancer Transcriptome Analysis Toolkit (CTAT)."
+    long_description: "This is the Trinity suite of the Cancer Transcriptome Analysis Toolkit (CTAT). Trinity, developed at the Broad Institute and the Hebrew University of Jerusalem, represents a novel method for the efficient and robust de novo reconstruction of transcriptomes from RNA-seq data. This is CTAT's implementation of our protocol for transcriptome assembly and downstream analysis as published in Nature Protocols - http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3875132/."
+    include_repositories:
+      - name: ctat_clean_headers
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_concatenate
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_trinity
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_align_and_estimate_abundance
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_abundance_estimation_to_matrix
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_edger_differential_expression
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_analyze_differential_expression
+        version: 1.0.0
+        owner: trinity_ctat

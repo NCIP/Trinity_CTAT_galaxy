@@ -32,7 +32,7 @@ for i in range(1, len(sys.argv), 2):
 
 # run the abundance estimation script
 
-cmd = os.path.dirname(sys.argv[0]) + "/trinityToolWrapper.py " + " util/abundance_estimates_to_matrix.pl --est_method RSEM --cross_sample_norm TMM " + " ".join(label_list)
+cmd = os.path.dirname(sys.argv[0]) + "/ctat_trinity_tool_wrapper.py " + " util/abundance_estimates_to_matrix.pl --gene_trans_map none --est_method RSEM --cross_sample_norm TMM " + " ".join(label_list)
 
 run_command(cmd)
 

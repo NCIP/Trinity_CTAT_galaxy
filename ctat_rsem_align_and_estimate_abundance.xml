@@ -1,16 +1,21 @@
-<tool id="RSEM_abundance_estimation" name="align_and_estimate_abundance" version="1.0.0" profile="17.05">
+<tool id="ctat_rsem_align_and_estimate_abundance" name="ctat_rsem_align_and_estimate_abundance" version="1.0.0" profile="17.05">
 
     <description>run RSEM to estimate transcript abundances</description>
 
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package">subprocess32</requirement>
+        <requirement type="package">samtools</requirement>
+        <requirement type="package">bzip2</requirement>
         <requirement type="package" version="1.3.0">rsem</requirement>
-        <requirement type="package" version="2.4.0">trinity</requirement>
+        <requirement type="package" version="3">bioconductor-edger</requirement>
+        <requirement type="package" version="2">bioconductor-qvalue</requirement>
+        <requirement type="package" version="2.5.1">trinity</requirement>
     </requirements>
 
     <command detect_errors="exit_code">
         <![CDATA[
-        python $__tool_directory__/trinityToolWrapper.py util/align_and_estimate_abundance.pl --transcripts $transcripts --est_method RSEM --aln_method bowtie2 --trinity_mode --prep_reference --output_dir  "subdir" 
+        python $__tool_directory__/ctat_trinity_tool_wrapper.py util/align_and_estimate_abundance.pl --transcripts $transcripts --est_method RSEM --aln_method bowtie2 --trinity_mode --prep_reference --output_dir  "subdir" 
 
         ## Inputs.
         #if str($inputs.paired_or_single) == "paired":

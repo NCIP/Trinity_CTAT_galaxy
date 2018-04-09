@@ -1,7 +1,7 @@
-<tool id="fusion-inspector" name="Fusion Inspector" version="1.0.0" profile="17.05">
+<tool id="ctat_fusion_inspector" name="ctat_fusion_inspector" version="1.0.0" profile="17.05">
     <description>In silico Validation of Fusion Transcript Predictions</description>
     <requirements>
-        <requirement type="package" version="1.1.0">fusion-inspector</requirement>
+        <requirement type="package" version="1.2.0">fusion-inspector</requirement>
     </requirements>
     <command detect_errors="default">
       <![CDATA[
@@ -76,6 +76,9 @@
         <param name="method" value="STAR" />
         -->
         <param name="trinity" value="false" />
+        <!-- FIX - now that we added the CTAT ref lib path as a parameter, how do we find it for testing?
+        <param name="genome_ref_lib.fields.path" value="?????" />
+        -->
         <output name="finspector_idx" file="FusionInspector/test.reads_1_2.fa.fai" />
         <output name="cytoBand" file="FusionInspector/test.reads_1_2.cytoBand.tail.txt" compare="contains" />
         <output name="finspector_fa" file="FusionInspector/test.reads_1_2.fa" />

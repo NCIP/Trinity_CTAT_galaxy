@@ -1,4 +1,4 @@
-<tool id="clean_headers" name="Clean Headers" version="1.0.0" profile="17.05">
+<tool id="ctat_clean_headers" name="ctat_clean_headers" version="1.0.0" profile="17.05">
     <description>Clean read headers of fastq files</description>
     <requirements>
         <requirement type="package" version="5">perl</requirement>

@@ -3,4 +3,8 @@
         <columns>value, name, path</columns>
         <file path="tool-data/ctat_genome_ref_libs.loc" />
     </table>
+    <table name="ctat_centrifuge_indexes" comment_char="#" allow_duplicate_entries="False">
+        <columns>value, name, path</columns>
+        <file path="tool-data/ctat_centrifuge_indexes.loc" />
+    </table>
 </tables>

@@ -1,4 +1,4 @@
-<tool id="catbash" name="Concatenate datasets" version="1.0.0" profile="17.05">
+<tool id="ctat_concatenate" name="ctat_concatenate" version="1.0.0" profile="17.05">
     <description> concatenate datasets from tail to head</description>
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
@@ -6,7 +6,7 @@
 
     <command detect_errors="exit_code">
       <![CDATA[
-        python $__tool_directory__/bash_command_executer.py cat
+        python $__tool_directory__/ctat_bash_command_executer.py cat
         $input1
         #for $q in $queries
             ${q.input2}

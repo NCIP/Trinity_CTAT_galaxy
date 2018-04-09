@@ -1,4 +1,4 @@
-<tool id="trinityrnaseq" name="trinity" version="1.0.0" profile="17.05">
+<tool id="ctat_trinity_rnaseq" name="ctat_trinity_rnaseq" version="1.0.0" profile="17.05">
   
     <!-- Original tool written by Jeremy Goecks,
         later development/maintenance by (in chronological order)
@@ -10,11 +10,14 @@
         <requirement type="package">subprocess32</requirement>
         <requirement type="package">samtools</requirement>
         <requirement type="package">bzip2</requirement>
-        <requirement type="package" version="2.4.0">trinity</requirement>
+        <requirement type="package" version="1.3.0">rsem</requirement>
+        <requirement type="package" version="3">bioconductor-edger</requirement>
+        <requirement type="package" version="2">bioconductor-qvalue</requirement>
+        <requirement type="package" version="2.5.1">trinity</requirement>
     </requirements>
     <command detect_errors="default">
       <![CDATA[
-      python $__tool_directory__/trinity_wrapper.py 
+      python $__tool_directory__/ctat_trinity_wrapper.py 
       --CPU \${GALAXY_SLOTS:-4}
       --max_memory \${TRINITY_MAX_MEMORY:-31G}
       #if str($inputs.paired_or_single) == "paired":
@@ -38,7 +41,7 @@
 
  ]]>
       <!-- The fullpath, dir, and user options (preceed with dashes) can be
-           used in the trinity_wrapper.py command to create rerunable jobs.
+           used in the ctat_trinity_wrapper.py command to create rerunable jobs.
            We are not supporting rerunable jobs in this release of this tool.
         fullpath \${TRINITY_RERUN_PREFIX}
         dir '$adv.rerundir'
@@ -67,7 +70,7 @@
       <!-- The following section was used to aid in creating rerunable jobs.
            We are not supporting rerunable jobs in this release of this tool.
       <section name="adv" title="Allow Job Rerun" expanded="False">
-        <param name="rerundir" type="text" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
+        <param name="rerundir" type="txt" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
       </section>
       -->
     </inputs>

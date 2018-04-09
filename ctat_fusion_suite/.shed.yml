@@ -10,22 +10,20 @@ categories:
     - "Sequence Analysis"
 
 suite:
-    name: trinity_ctat_suite_trinity_test_repo
+    name: ctat_fusion_suite_test2
     version: 1.0.0
-    description: "These tools were developed by ..... for the purpose of ..."
-    long_description: "Expand on this definition. We need something really good here. We also need to make sure we have the proper categories chosen in the above field. "
+    description: "This is the Fusion suite of the Cancer Transcriptome Analysis Toolkit (CTAT)."
+    long_description: "This suite of tools perform trinity Cancer Transcriptome Analysis Toolkit (CTAT) gene fusion analyses. For information on use of this tool suite, see - https://github.com/NCIP/Trinity_CTAT_galaxy/wiki"
     include_repositories:
-      - name: clean_headers
+      - name: ctat_discasm
+        version: 1.0.0
         owner: trinity_ctat
-      - name: concatenate
+      - name: ctat_star_fusion
+        version: 1.0.0
         owner: trinity_ctat
-      - name: trinity
+      - name: ctat_gmap_fusion
+        version: 1.0.0
         owner: trinity_ctat
-      - name: align_and_estimate_abundance
-        owner: trinity_ctat
-      - name: abundance_estimation_to_matrix
-        owner: trinity_ctat
-      - name: edger_differential_expression
-        owner: trinity_ctat
-      - name: analyze_differential_expression
+      - name: ctat_fusion_inspector
+        version: 1.0.0
         owner: trinity_ctat

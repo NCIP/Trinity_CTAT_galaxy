@@ -1,0 +1,12 @@
+# This file lists the locations of CTAT Centrifuge Indexes
+# Usually there will only be one index, but it is concievable 
+# that there could be multiple indexes.
+# This file format is as follows
+# (white space characters are TAB characters):
+#
+#<unique_id>    <display_name>  <file_path>
+#
+#ctat_centrifuge_indexes.loc could look like:
+#
+#CTAT_CENTRIFUGE_INDEX  p_compressed_plus_h_plus_v   /ctat/centrifuge/index/path
+#
