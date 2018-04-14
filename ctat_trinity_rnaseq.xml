@@ -87,7 +87,9 @@
 	    <param name="paired_or_single" value="paired" />
             <param name="left_input" value="reads.left.simPE.fq" />
             <param name="right_input" value="reads.right.simPE.fq" />
+            <!-- Not using in public version of tool
             <param name="adv.rerundir" value="planemo_test_1" />
+            -->
 	    <output name="trinity_log" >
                 <assert_contents>
                     <has_line_matching expression=".+" />
@@ -105,7 +107,9 @@
   	    <param name="paired_or_single" value="paired" />
             <param name="left_input" value="Sp.cat_ds_hs.left.fq" />
             <param name="right_input" value="Sp.cat_ds_hs.right.fq" />
+            <!-- Not using in public version of tool
             <param name="adv.rerundir" value="planemo_test_2" />
+            -->
             <!-- Following parameters are not used in this version of this tool. -->
             <!--
             <param name="JM" value="50G" />

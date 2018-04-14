@@ -13,7 +13,7 @@
     </requirements>
     <command detect_errors="exit_code">
         <![CDATA[
-        python $__tool_directory__/ctat_analyze_diff_exp_wrapper.py $EdgeRTarGz $TMM_Matrix_FPKM $Pvalue $Cvalue 
+        python $__tool_directory__/ctat_analyze_differential_expression.py $EdgeRTarGz $TMM_Matrix_FPKM $Pvalue $Cvalue 
         ]]>
     </command>
     <inputs>

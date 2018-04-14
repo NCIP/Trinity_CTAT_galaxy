@@ -4,9 +4,12 @@
 # This file format is as follows
 # (white space characters are TAB characters):
 #
-#<unique_id>    <display_name>  <file_path>
+#<value>    <name>  <path>
+# value is a unique id
+# name is the display name
+# path is the directory where the index files are stored
 #
 #ctat_centrifuge_indexes.loc could look like:
 #
-#CTAT_CENTRIFUGE_INDEX  p_compressed_plus_h_plus_v   /ctat/centrifuge/index/path
+#p_compressed+h+v CTAT_CentrifugeIndex_p_compressed+h+v  /ctat/centrifuge/index/path/p_compressed+h+v
 #

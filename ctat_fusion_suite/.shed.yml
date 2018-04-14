@@ -19,7 +19,7 @@ suite:
         version: 1.0.0
         owner: trinity_ctat
       - name: ctat_star_fusion
-        version: 1.0.0
+        version: 1.0.1
         owner: trinity_ctat
       - name: ctat_gmap_fusion
         version: 1.0.0

@@ -5,21 +5,20 @@
             <output>
                 <column name="value" />
                     <!-- value is used to uniquely identify this entry in the table.
-                    For now id is also the name of the environment variable that is used within tools to
-                    access a CTAT Resource Library. 
-                    FIX - Need to get rid of that and use command line params...
                     -->
                 <column name="name" />
                     <!-- name is used as the selector in the pull down lists for items in this table.
                     -->
                 <column name="path" />
-                    <!-- path is the absolute path of the corresponding CTAT Genome Reference Library.
+                    <!-- path is the absolute path of the top level directory of the CTAT Genome Reference Library.
                     -->
                 <!-- <column name="path" output_ref="out_file"> -->
                     <!-- It is typical to move the data file, but because our tool gets the destination
                     location from the user, we do not want to move the data from that location.
                     The full path of the CTAT Resource library is returned in location. 
                     So no need to change the value either.
+                    The files are so big we do not want to be making copies of them.
+                    They are created where we want them.
                     -->
                     <!-- <move type="file" relativize_symlinks="False"> -->
                         <!--<source>${path}</source> -->
@@ -41,34 +40,15 @@
             <output>
                 <column name="value" />
                     <!-- value is used to uniquely identify this entry in the table.
-                    For now id is also the name of the environment variable that is used within tools to
-                    access a centrifuge index. 
-                    FIX - Need to get rid of that and use command line params...
                     -->
                 <column name="name" />
                     <!-- name is used as the selector in the pull down lists for items in this table.
                     -->
                 <column name="path" />
-                    <!-- path is the absolute path of the corresponding centrifuge index.
+                    <!-- path is the absolute path of the directory containing the centrifuge index files.
                     -->
-                <!-- <column name="path" output_ref="out_file"> -->
-                    <!-- It is typical to move the data file, but because our tool gets the destination
-                    location from the user, we do not want to move the data from that location.
-                    The full path of the centrifuge index is returned in location. 
-                    So no need to change the value either.
-                    -->
-                    <!-- <move type="file" relativize_symlinks="False"> -->
-                        <!--<source>${path}</source> -->
-                        <!--<target base="${GALAXY_DATA_MANAGER_DATA_PATH}">ctat_centrifuge_index_build_dir</target> -->
-                    <!--</move> -->
-                    <!--
-                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/ctat_centrifuge_index_build_dir
-                    </value_translation>
-                    -->
-                    <!-- The location returned by the tool should already be an absolute path.
-                    <value_translation type="function">abspath</value_translation>
-                    -->
-                <!--</column> -->
+                <!-- Same as the Genome Reference Library, we create the Centrifuge Index files where we want them.
+                -->
             </output>
         </data_table>
     </data_manager>

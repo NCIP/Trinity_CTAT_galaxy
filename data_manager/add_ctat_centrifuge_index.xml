@@ -1,21 +1,14 @@
-<tool id="ctat_genome_ref_lib_data_manager" 
-    name="CTAT Genome Reference Library Data Manager" 
+<tool id="ctat_centrifuge_indexes_data_manager" 
+    name="CTAT Centrifuge Indexes Data Manager" 
     version="1.0.0" tool_type="manage_data">
-    <description>Retrieve, and/or specify the location of, a CTAT Genome Reference Library. 
+    <description>Retrieve, and/or specify the location of, a CTAT Centrifuge Index. 
     </description>
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
-        <requirement type="package" version="0.5.0">fusion-filter</requirement>
-        <!-- gmap-fusion used to be required in order to process downloaded libraries 
-             to create all of the required files and indexes. It includes gmap
-             and FusionFilter, programs from both of which are needed.
-             Now there is a bioconda FusionFilter recipe. Lets try using that instead.
-        <requirement type="package" version="0.3.0">gmap-fusion</requirement>
-        -->
     </requirements>
     <command detect_errors="default">
         <![CDATA[
-        python $__tool_directory__/add_ctat_ref_lib.py 
+        python $__tool_directory__/add_ctat_centrifuge_index.py 
             --display_name "${display_name}" 
             --destination_path "${destination}" 
             --output_filename "${out_file}" 
@@ -24,12 +17,6 @@
             #end if
             #if str(${force_download}) == "true":
                 --force_download 
-            #end if
-            #if str(${rebuild}) == "true":
-                --build 
-            #end if
-            #if str(${gmap_build}) == "true":
-                --gmap_build 
             #end if
         ]]>
     </command>
@@ -56,28 +43,25 @@
                      this data_manager.
                 -->
                 <param name="filename" type="select" label="Select File" display="radio" 
-                    dynamic_options="get_ctat_genome_filenames()" help="Select a CTAT Genome Reference Library to Download." />
+                    dynamic_options="get_ctat_centrifuge_index_locations()" help="Select a CTAT Centrifuge Index to Download." />
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>
 
-        <param name="display_name" type="text" label="Reference Genome Display Name" />
+        <param name="display_name" type="text" label="Centrifuge Index Display Name" />
         <param name="destination" type="text" label="Local Destination (full path)" />
-        <param name="rebuild" type="boolean" checked="false" label="Force rebuild of Library?" />
-        <param name="gmap_build" type="boolean" checked="false" label="Do a gmap_build on the Library?" />
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json" />
     </outputs>
     <help>
-        Retrieve, and/or specify the location of, a CTAT Genome Reference Library.
-        When download is true, the files at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
-        are used as selectors for the user to choose among.
-        Specify the Full Path of the location where the CTAT Reference Library should be placed.
-        You will need approximately 60GB of space for this library.
-        If you already have the library, specify the full path of the location where it exists and leave the download box unchecked.
-        The Reference Genome name may be left empty if downloading. The name will be used as the selector text of the entry in the data table.
-        For more information on CTAT Genome Reference Libraries, see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
+        Retrieve, and/or specify the location of, a CTAT Centrifuge Index.
+        When download is true, the file at ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
+        will be the URL from which the index is downloaded. Currently that is the only supported index.
+        Specify the Full Path of the destination where the CTAT Reference Library should be placed.
+        If you already have the index, specify the full path of the location where it exists and leave the download box unchecked.
+        The display_name may be left empty if downloading. 
+        The display_name will be used as the selector text of the entry in the data table.
     </help>
-    <code file="add_ctat_ref_lib.py" />
+    <code file="add_ctat_centrifuge_index.py" />
 </tool>

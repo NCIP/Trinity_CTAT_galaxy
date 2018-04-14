@@ -4,9 +4,12 @@
 # This file format is as follows
 # (white space characters are TAB characters):
 #
-#<unique_id>    <display_name>  <file_path>
+#<value>    <name>  <path>
+# value is a unique id
+# name is the display name
+# path is the directory where the genome lib files are stored
 #
 #ctat_genome_ref_libs.loc could look like:
 #
-#CTAT_RESOURCE_LIB  GRCh38_gencode_v26   /ctat/genome/resource/lib/path
+#GRCh38_v27_CTAT_lib_Feb092018	CTAT_GenomeRefLib_GRCh38_v27_CTAT_lib_Feb092018	/ctat/genome/reference/lib/path
 #

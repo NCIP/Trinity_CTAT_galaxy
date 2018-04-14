@@ -21,10 +21,10 @@ suite:
       - name: ctat_concatenate
         version: 1.0.0
         owner: trinity_ctat
-      - name: ctat_trinity
+      - name: ctat_trinity_rnaseq
         version: 1.0.0
         owner: trinity_ctat
-      - name: ctat_align_and_estimate_abundance
+      - name: ctat_rsem_align_and_estimate_abundance
         version: 1.0.0
         owner: trinity_ctat
       - name: ctat_abundance_estimation_to_matrix

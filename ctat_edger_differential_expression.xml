@@ -13,7 +13,7 @@
     </requirements>
     <command detect_errors="exit_code">
         <![CDATA[
- 		python $__tool_directory__/ctat_edger_differential_expression_wrapper.py 
+ 		python $__tool_directory__/ctat_edger_differential_expression.py 
 			$counts_matrix 
 			$dispersion
         ]]>

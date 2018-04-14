@@ -1,13 +1,32 @@
-<tool id="ctat_star_fusion" name="ctat_star_fusion" version="1.0.0" profile="17.05">
+<tool id="ctat_star_fusion" name="ctat_star_fusion" version="1.0.1" profile="17.05">
+
     <description>Fusion-finding Pipeline Using the STAR Aligner</description>
     <requirements>
 	<requirement type="package" version="1.3.2">star-fusion</requirement>
         <!--
+        FIX - the following may get added to the Star-Fusion recipe, but
+        are not in it at the current time.
+        -->
+	<requirement type="package">perl-carp</requirement>
+	<requirement type="package">perl-json-xs</requirement>
+	<requirement type="package">perl-io-gzip</requirement>
+        <requirement type="package">samtools</requirement>
+        <!--
         FIX - If samtools is really a requirement, shouldn't it be a star-fusion dependency?
         Also, the current version of samtools is up to 1.8.3. 1.3.0 is quite old. Why that version?
+        I am trying it without pinning to a particular version.
         <requirement type="package" version="1.3">samtools</requirement>
         -->
     </requirements>
+    <!-- Using command's detect_errors instead of below.
+    <stdio>
+      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
+    </stdio>
+    <regex match="Must investigate error above."
+           source="stderr"
+           level="fatal"
+           description="Unknown error encountered" />
+    -->
     <command detect_errors="default">
       <![CDATA[
       STAR-Fusion
@@ -17,13 +36,7 @@
         --output_dir subdir
       ]]>
     </command>
-    <stdio>
-      <exit_code range="1:"  level="fatal"   description="Error returned from pipeline" />
-    </stdio>
-    <regex match="Must investigate error above."
-           source="stderr"
-           level="fatal"
-           description="Unknown error encountered" />
+
     <inputs>
       <param format="fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
       <param format="fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
@@ -33,8 +46,8 @@
           <validator type="no_options" message="No indexes are available" />
         </options>
       </param>
-
     </inputs>
+
     <outputs>
       <data format="txt" name="starfusion_log" label="${tool.name} on ${on_string}: log" from_work_dir="subdir/Log.out"/>
       <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/Aligned.sortedByCoord.out.bam"/>

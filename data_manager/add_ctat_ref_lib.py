@@ -30,6 +30,7 @@ from HTMLParser import HTMLParser
 _CTAT_ResourceLib_URL = 'https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/'
 _CTAT_BuildDir_Name = 'ctat_genome_lib_build_dir'
 _NumBytesNeededForBuild = 64424509440 # 60 Gigabytes. FIX - This might not be correct.
+_Download_TestFile = "write_testfile.txt"
 _DownloadSuccessFile = 'download_succeeded.txt'
 
 class FileListParser(HTMLParser):
@@ -74,6 +75,8 @@ def get_ctat_genome_filenames():
 #    return trained_url
 
 def download_from_BroadInst(src_filename, destination, force_download):
+    # Doesn't always do the download, so returns whether download occurred.
+    lib_was_downloaded = False
     # ctat_resource_lib_url is the full URL of the file we want to download.
     ctat_resource_lib_url = _CTAT_ResourceLib_URL + src_filename
     # Get the root filename of the Genome Directory.
@@ -107,7 +110,9 @@ def download_from_BroadInst(src_filename, destination, force_download):
                       "{:s}".format(cannonical_destination))
     test_writing_file = "{:s}/{:s}".format(cannonical_destination, _Download_TestFile)
     try:
-        filehandle = open(test_writing_filee, "w")
+        filehandle = open(test_writing_file, "w")
+        filehandle.write("Testing writing to this file.")
+        filehandle.close()
     except IOError:
         print "The destination directory could not be written into: " + \
                       "{:s}".format(cannonical_destination))
@@ -160,6 +165,8 @@ def download_from_BroadInst(src_filename, destination, force_download):
         except subprocess.CalledProcessError:
             print "ERROR: Trying to run the following command:\n\t{:s}".format(command)
             raise
+        else:
+            lib_was_downloaded = True
 
     # Some code to help us if errors occur.
     print "\n*******************************\nFinished download and extraction."
@@ -187,7 +194,7 @@ def download_from_BroadInst(src_filename, destination, force_download):
 
     downloaded_directory = "{:s}/{:s}".format(cannonical_destination, root_genome_dirname)
 
-    if (os.path.exists(downloaded_directory):
+    if (os.path.exists(downloaded_directory)):
         try:
             # Create a file to indicate that the download succeeded.
             subprocess.check_call("touch {:s}".format(download_success_file_path), shell=True)
@@ -202,7 +209,7 @@ def download_from_BroadInst(src_filename, destination, force_download):
         raise ValueError("ERROR: Could not find the extracted file in the destination directory:" + \
                              "\n\t{:s}".format(cannonical_destination))
 
-    return (downloaded_directory, download_has_source_data, genome_build_directory)
+    return (downloaded_directory, download_has_source_data, genome_build_directory, lib_was_downloaded)
         
 def gmap_the_library(genome_build_directory):
         # This is the processing that needs to happen for gmap-fusion to work.
@@ -302,14 +309,14 @@ def main():
     # target_directory = params['output_data'][0]['extra_files_path']
     # os.mkdir(target_directory)
 
+    # FIX - not sure the lib_was_downloaded actually serves a purpose...
     lib_was_downloaded = False
     download_has_source_data = False
     if (args.download_file != ""):
-        downloaded_directory, download_has_source_data, genome_build_directory = \
+        downloaded_directory, download_has_source_data, genome_build_directory, lib_was_downloaded = \
             download_from_BroadInst(src_filename=args.download_file, \
                                     destination=args.destination_path, \
                                     force_download=args.force_download)
-        lib_was_downloaded = True
     else:
         genome_build_directory = args.destination_path
         if not os.path.exists(genome_build_directory)
@@ -341,7 +348,7 @@ def main():
     data_manager_dict = {}
     data_manager_dict['data_tables'] = {}
     data_manager_dict['data_tables']['ctat_genome_ref_libs'] = []
-    data_table_entry = dict(value=table_entry_value, name=genome_name, path=genome_build_directory)
+    data_table_entry = dict(unique_id=table_entry_value, display_name=genome_name, dir_path=genome_build_directory)
     data_manager_dict['data_tables']['ctat_genome_ref_libs'].append(data_table_entry)
 
     # Temporarily the output file's dictionary is written for debugging:
