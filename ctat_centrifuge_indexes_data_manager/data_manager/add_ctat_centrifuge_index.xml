@@ -43,7 +43,7 @@
                      this data_manager.
                 -->
                 <param name="filename" type="select" label="Select File" display="radio" 
-                    dynamic_options="get_ctat_centrifuge_index_locations()" help="Select a CTAT Centrifuge Index to Download." />
+                    dynamic_options="get_ctat_centrifuge_index_locations()" help="Select a Centrifuge Index to Download." />
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>

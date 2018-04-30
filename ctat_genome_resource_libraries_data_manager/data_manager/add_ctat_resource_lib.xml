@@ -1,7 +1,7 @@
-<tool id="ctat_genome_ref_lib_data_manager" 
-    name="CTAT Genome Reference Library Data Manager" 
+<tool id="ctat_genome_resource_lib_data_manager" 
+    name="CTAT Genome Resource Library Data Manager" 
     version="1.0.0" tool_type="manage_data">
-    <description>Retrieve, and/or specify the location of, a CTAT Genome Reference Library. 
+    <description>Retrieve, and/or specify the location of, a CTAT Genome Resource Library. 
     </description>
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
@@ -15,7 +15,7 @@
     </requirements>
     <command detect_errors="default">
         <![CDATA[
-        python $__tool_directory__/add_ctat_ref_lib.py 
+        python $__tool_directory__/add_ctat_resource_lib.py 
             --display_name "${display_name}" 
             --destination_path "${destination}" 
             --output_filename "${out_file}" 
@@ -56,7 +56,7 @@
                      this data_manager.
                 -->
                 <param name="filename" type="select" label="Select File" display="radio" 
-                    dynamic_options="get_ctat_genome_filenames()" help="Select a CTAT Genome Reference Library to Download." />
+                    dynamic_options="get_ctat_genome_filenames()" help="Select a CTAT Genome Resource Library to Download." />
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>
@@ -70,14 +70,14 @@
         <data name="out_file" format="data_manager_json" />
     </outputs>
     <help>
-        Retrieve, and/or specify the location of, a CTAT Genome Reference Library.
+        Retrieve, and/or specify the location of, a CTAT Genome Resource Library.
         When download is true, the files at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
         are used as selectors for the user to choose among.
-        Specify the Full Path of the location where the CTAT Reference Library should be placed.
+        Specify the Full Path of the location where the CTAT Resource Library should be placed.
         You will need approximately 60GB of space for this library.
         If you already have the library, specify the full path of the location where it exists and leave the download box unchecked.
         The Reference Genome name may be left empty if downloading. The name will be used as the selector text of the entry in the data table.
-        For more information on CTAT Genome Reference Libraries, see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
+        For more information on CTAT Genome Resource Libraries, see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
     </help>
-    <code file="add_ctat_ref_lib.py" />
+    <code file="add_ctat_resource_lib.py" />
 </tool>

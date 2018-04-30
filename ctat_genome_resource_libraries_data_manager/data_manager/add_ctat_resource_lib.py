@@ -4,7 +4,7 @@
 # Rewritten by H.E. Cicada Brokaw Dennis from a source downloaded from the toolshed and
 # other example code on the web.
 # This now allows downloading of a user selected library
-# but only from the CTAT Genome Reference Library website.
+# but only from the CTAT Genome Resource Library website.
 # Ultimately we might want to allow the user to specify any location 
 # from which to download.
 # Users can create or download other libraries and use this tool to add them if they don't want

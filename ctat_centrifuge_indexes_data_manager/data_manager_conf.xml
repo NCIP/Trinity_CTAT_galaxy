@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<data_managers>
+    <data_manager tool_file="data_manager/add_ctat_centrifuge_index.xml" id="ctat_centrifuge_index_data_manager"> 
+        <data_table name="ctat_centrifuge_indexes">
+            <output>
+                <column name="value" />
+                    <!-- value is used to uniquely identify this entry in the table.
+                    -->
+                <column name="name" />
+                    <!-- name is used as the selector in the pull down lists for items in this table.
+                    -->
+                <column name="path" />
+                    <!-- path is the absolute path of the directory containing the centrifuge index files.
+                    -->
+                <!-- Same as the Genome Reference Library, we create the Centrifuge Index files where we want them.
+                -->
+            </output>
+        </data_table>
+    </data_manager>
+</data_managers>
