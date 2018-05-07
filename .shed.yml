@@ -5,9 +5,9 @@ owner: "trinity_ctat"
 # homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
 
 categories:
-    - "Assembly"
-    - "RNA"
-    - "Sequence Analysis"
+  - "Assembly"
+  - "RNA"
+  - "Sequence Analysis"
 
 repositories:
   ctat_clean_headers:
@@ -92,7 +92,7 @@ repositories:
     include:
       - ctat_gmap_fusion.xml
       - tool_data_table_conf.xml.sample
-      - tool-data/ctat_genome_ref_libs.loc.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
       - test-data/GMAP/reads_1.fq.gz
       - test-data/GMAP/reads_2.fq.gz
       - test-data/GMAP/transcripts.fa
@@ -103,7 +103,7 @@ repositories:
     include:
       - ctat_fusion_inspector.xml
       - tool_data_table_conf.xml.sample
-      - tool-data/ctat_genome_ref_libs.loc.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
       - test-data/FusionInspector/fusion_targets.A.txt
       - test-data/FusionInspector/fusion_targets.B.txt
       - test-data/FusionInspector/fusion_targets.C.txt
@@ -115,7 +115,7 @@ repositories:
     include:
       - ctat_star_fusion.xml
       - tool_data_table_conf.xml.sample
-      - tool-data/ctat_genome_ref_libs.loc.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
       - test-data/StarFusion/reads_1.fq.gz
       - test-data/StarFusion/reads_2.fq.gz
   ctat_metagenomics:
@@ -125,20 +125,12 @@ repositories:
      - ctat_metagenomics.xml
      - tool_data_table_conf.xml.sample
      - tool-data/ctat_centrifuge_indexes.loc.sample
-  # These test files are not the right ones. They are the ones that are too big. Not putting into the repo for now.
-  #      - test-data/centrifuge/SRR2219890_1.adj.fastq
-  #      - test-data/centrifuge/SRR2219890_1.classification.report.txt
-  #      - test-data/centrifuge/SRR2219890_1.kraken_style_report.txt
-  #      - test-data/centrifuge/SRR073747_1.fastq
-  #      - test-data/centrifuge/SRR073747_2.fastq
-  #      - test-data/centrifuge/SRR073747_1_2.classification.report.txt
-  #      - test-data/centrifuge/SRR073747_1_2.kraken_style_report.txt
-  #      - test-data/centrifuge/TrinitySRR2219890.fasta
-  #      - test-data/centrifuge/TrinitySRR2219890.classification.report.txt
-  #      - test-data/centrifuge/TrinitySRR2219890.kraken_style_report.txt
+     - test-data/centrifuge/SRR2219890_1_adj_20k_reads.fastq
+     - test-data/centrifuge/SRR2219890_1_20k_reads.classification.report.txt
+     - test-data/centrifuge/SRR2219890_1_20k_reads.kraken_style_report.txt
 
 suite:
-  name: ctat_galaxy_tools_test_repo8
+  name: ctat_tools_suite_tst1
   version: 1.0.0
   description: "These tools were developed by The Broad Institute as the Cancer Transcriptome Analysis Toolkit (CTAT)."
   long_description: "The Cancer Transcriptome Analysis Toolkit (CTAT) aims to provide tools for leveraging RNA-Seq to gain insights into the biology of cancer transcriptomes. Bioinformatics tool support is provided for mutation detection, fusion transcript identification, de novo transcript assembly of cancer-specific transcripts, lincRNA classification, and foreign transcript detection (viruses, microbes). CTAT is funded by the National Cancer Institute Informatics Technology for Cancer Research (NCI ITCR) program. "

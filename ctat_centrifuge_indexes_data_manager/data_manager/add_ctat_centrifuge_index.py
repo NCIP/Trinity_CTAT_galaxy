@@ -14,6 +14,9 @@ import os
 #import urllib
 import subprocess
 
+# The following is used to generate a unique_id value
+from datetime import *
+
 # Remove the following line when testing without galaxy package:
 from galaxy.util.json import to_json_string
 # Am not using the following:
@@ -30,8 +33,10 @@ from HTMLParser import HTMLParser
 
 _CTAT_CentrifugeIndexPage_URL = 'https://ccb.jhu.edu/software/centrifuge/'
 _CTAT_CentrifugeDownload_URL = 'ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz'
+_CTAT_CentrifugeIndexTableName = 'ctat_centrifuge_indexes'
 _CTAT_CentrifugeDir_Name = 'p_compressed+h+v'
 _CTAT_Centrifuge_DisplayNamePrefix = 'CTAT_CentrifugeIndex_'
+_CentrifugeIndexFileExtension = 'cf'
 _NumBytesNeededForIndex = 7400130287 # 6.9 GB
 #_DownloadFileSize = 5790678746 # 5.4 Gigabytes.
 _Download_TestFile = 'write_testfile.txt'
@@ -58,19 +63,36 @@ class FileListParser(HTMLParser):
 # End of class FileListParser
 
 def get_ctat_centrifuge_index_locations():
+    # For dynamic options need to return an interable with contents that are tuples with 3 items.
+    # Item one is a string that is the display name put into the option list.
+    # Item two is the value that is put into the parameter associated with the option list.
+    # Item three is a True or False value, indicating whether the item is selected.
+    options = []
     # open the url and retrieve the filenames of the files in the directory.
     resource = urllib2.urlopen(_CTAT_CentrifugeIndexPage_URL)
     theHTML = resource.read()
     filelist_parser = FileListParser()
     filelist_parser.feed(theHTML)
-    # return a tuple of the filenames
-    # return tuple(filelist_parser.filenames)
-    # For now, I am printing the list, just so I can see what was returned, 
+    # This is what was returned on 2018-04-23
+    # ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed_2018_4_15.tar.gz
+    # ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/nt_2018_3_3.tar.gz
+    # ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
+    # ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p+h+v.tar.gz
+    # Which could be hard coded:
+    # options.append(("p_compressed+h+v", "ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz", True))
+    # options.append(("p+h+v", "ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p+h+v.tar.gz", False))
+    # options.append(("nt_2018_3_3", "ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/nt_2018_3_3.tar.gz", False))
+    # options.append(("p_compressed_2018_4_15", "ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed_2018_4_15.tar.gz", False))
     # but only returning the one we want, which for now is assumed to be present.
-    print "FYI: The URL's that were found on Centrifuge's page are:"
-    print "\t" + "\n\t".join(filelist_parser.filenames)
-    # Instead of sending back the list of found URL's, send back the one URL we want.
-    return tuple(_CTAT_CentrifugeDownload_URL,)
+    # For now, I am printing the list, just so I can see what was returned, 
+    # print "FYI: The URL's that were found on Centrifuge's page are:"
+    # print "\t" + "\n\t".join(filelist_parser.filenames)
+    # For now instead of sending back the list of found URL's, send back the one URL we want.
+    # Currently, only one of the options is supported.
+    options.append((_CTAT_CentrifugeDir_Name, _CTAT_CentrifugeDownload_URL, True))
+    print "The list of items being returned for the option menu is:"
+    print str(options)
+    return options 
 
 # The following was used by the example program to get input parameters through the json.
 # Just leaving here for reference.
@@ -169,7 +191,8 @@ def download_index(src_location, destination, force_download):
         # We want to transfer and untar the file without storing the tar file, because that
         # adds all that much more space to the needed amount of free space on the disk.
         # Use subprocess to pipe the output of curl into tar.
-        command = "curl {:s} | tar -xzvf - -C {:s}".format(src_location, cannonical_destination)
+        # Make curl silent so progress is not printed to stderr.
+        command = "curl --silent {:s} | tar -xzf - -C {:s}".format(src_location, cannonical_destination)
         try: # to send the command that downloads and extracts the file.
             command_output = subprocess.check_output(command, shell=True)
             # FIX - not sure check_output is what we want to use. If we want to have an error raised on
@@ -182,7 +205,8 @@ def download_index(src_location, destination, force_download):
 
     # Some code to help us if errors occur.
     print "\n*******************************\nFinished download and extraction."
-    subprocess.check_call("ls -lad {:s}/*".format(cannonical_destination), shell=True)
+    if os.path.exists(cannonical_destination) and os.path.isdir(cannonical_destination):
+        subprocess.check_call("ls -lad {:s}/* 2>&1".format(cannonical_destination), shell=True)
     
     files_in_destdir = set(os.listdir(cannonical_destination))
     found_filenames = set()
@@ -215,6 +239,7 @@ def download_index(src_location, destination, force_download):
         
 def main():
     #Parse Command Line
+    # print "At start before parsing arguments."
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--download_location', default="", \
         help='This is the download location of the centrifuge index.')
@@ -237,8 +262,13 @@ def main():
     # target_directory = params['output_data'][0]['extra_files_path']
     # os.mkdir(target_directory)
 
+    # print "Arguments are parsed."
+    print "\ndownload_location is {:s}".format(str(args.download_location))
+    print "display_name is {:s}".format(str(args.display_name))
+    print "destination_path is {:s}\n".format(str(args.destination_path))
     root_index_dirname = None
     # FIX - Prob don't need index_was_downloaded. Not doing anything with it.
+    # But it indicates success downloading the index, so maybe should be checking it.
     index_was_downloaded = False
     if (args.download_location != ""):
         index_directory, root_index_dirname, index_was_downloaded = \
@@ -246,14 +276,45 @@ def main():
                            destination=args.destination_path, \
                            force_download=args.force_download)
     else:
-        index_directory = args.destination_path
-        if not os.path.exists(index_directory):
-            raise ValueError("Cannot find the Centrifuge Index. " + \
+        cannonical_destination = os.path.realpath(args.destination_path)
+        if not os.path.exists(cannonical_destination):
+            raise ValueError("Cannot find the Centrifuge Index.\n" + \
                 "The directory does not exist:\n\t{:s}".format(index_directory))
-        # FIX - Check if there is an actual Centrifuge Index in there.
+        # If args.destination_path is a directory containing 
+        # a subdirectory that contains the index files,
+        # then we need to set the index_directory to be that subdirectory.
+        files_in_destination_path = os.listdir(cannonical_destination)
+        if (len(files_in_destination_path) == 1):
+            path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
+            if os.path.isdir(path_to_file):
+                index_directory = path_to_file
+            else:
+                index_directory = cannonical_destination
+        else:
+            index_directory = cannonical_destination
+        # Get the root_index_dirname of the index from the index_directory name.
+        root_index_dirname = index_directory.split("/")[-1].split(".")[0]
 
+    # Check if there is an actual Centrifuge Index file in the index_directory.
     print "\nThe location of the Centrifuge Index is {:s}.\n".format(index_directory)
+    files_in_index_directory = set(os.listdir(index_directory))
+    index_file_found = False
+    index_file_path = index_directory
+    for filename in files_in_index_directory:
+        # The current index is split into 3 files.
+        # filenames are in the form: index_root_name.#.cf,
+        # where # is a numeral (1, 2, or 3)
+        # indicating the order of the files.
+        if filename.split(".")[-1] == _CentrifugeIndexFileExtension:
+            index_file_found = True
+            # The centrifuge program wants the root name of the files to be final part of the path.
+            index_file_path = "{:s}/{:s}".format(index_directory, filename.split(".")[0])
+    if not index_file_found:
+        raise ValueError("Cannot find any Centrifuge Index files.\n" + \
+            "The contents of the directory {:s} are:\n\t".format(index_directory) + \
+            "\n\t".join(files_in_index_directory))
 
+    # Set the display_name
     if (args.display_name is None) or (args.display_name == ""):
         # Use the root_index_dirname.
         if (root_index_dirname != None) and (root_index_dirname != ""):
@@ -262,20 +323,25 @@ def main():
             display_name = _CTAT_Centrifuge_DisplayNamePrefix + _CTAT_CentrifugeDir_Name
             print "WARNING: Did not set the display name. Using the default: {:s}".format(display_name_value)
     else:
-        display_name = args.display_name
+        display_name = _CTAT_Centrifuge_DisplayNamePrefix + args.display_name
+    display_name = display_name.replace(" ","_")
+
+    # Set the unique_id
+    datetime_stamp = datetime.now().strftime("_%Y_%m_%d_%H_%M_%S_%f")
     if (root_index_dirname != None) and (root_index_dirname != ""):
-        unique_id = root_index_dirname
+        unique_id = root_index_dirname + datetime_stamp
     else:
-        unique_id = _CTAT_CentrifugeDir_Name
+        unique_id = _CTAT_CentrifugeDir_Name + datetime_stamp
+
     print "The Index's display_name will be set to: {:s}\n".format(display_name)
     print "Its unique_id will be set to: {:s}\n".format(unique_id)
-    print "Its dir_path will be set to: {:s}\n".format(index_directory)
+    print "Its dir_path will be set to: {:s}\n".format(index_file_path)
 
     data_manager_dict = {}
     data_manager_dict['data_tables'] = {}
-    data_manager_dict['data_tables']['ctat_centrifuge_index'] = []
-    data_table_entry = dict(value=unique_id, name=display_name, path=index_directory)
-    data_manager_dict['data_tables']['ctat_centrifuge_index'].append(data_table_entry)
+    data_manager_dict['data_tables'][_CTAT_CentrifugeIndexTableName] = []
+    data_table_entry = dict(value=unique_id, name=display_name, path=index_file_path)
+    data_manager_dict['data_tables'][_CTAT_CentrifugeIndexTableName].append(data_table_entry)
 
     # Temporarily the output file's dictionary is written for debugging:
     print "The dictionary for the output file is:\n\t{:s}".format(str(data_manager_dict))

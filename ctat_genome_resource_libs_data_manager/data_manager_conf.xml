@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <data_managers>
-    <data_manager tool_file="data_manager/add_ctat_resource_lib.xml" id="ctat_genome_resource_lib_data_manager"> 
+    <data_manager tool_file="data_manager/add_ctat_resource_lib.xml" id="ctat_genome_resource_libs_data_manager"> 
         <data_table name="ctat_genome_resource_libs">
             <output>
                 <column name="value" />

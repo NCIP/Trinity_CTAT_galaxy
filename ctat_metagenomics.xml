@@ -1,12 +1,13 @@
 <tool id="ctat_metagenomics" name="ctat_metagenomics" version="1.0.0" profile="17.05">
 
-    <description>Centrifuge - Classifier for metagenomic sequences (RNA-Seq)</description>
+    <description>Centrifuge classifier for metagenomic sequences (RNA-Seq)</description>
     <requirements>
+        <requirement type="package" version="1.0.3=py27pl5.22.0_2">centrifuge</requirement>
         <requirement type="package" version="1.0.1">ctat-metagenomics</requirement>
     </requirements>
     <command detect_errors="default">
       <![CDATA[     
-      metagenomics.py
+      metagenomics
  
       --index "${index.fields.path}" 
       --out_dir "centrifuge"
@@ -94,7 +95,7 @@
     <help>
 .. class:: infomark
  
-**Centrifuge is a novel microbial classification engine that enables rapid, accurate, and sensitive labeling of reads and quantification of species**
+ctat_metagenomics is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). CTAT's metagenomics is a classifier for metagenomic sequences (RNA-Seq) for foreign transcript detection. It leverages Centrifuge, a novel microbial classification engine that enables rapid, accurate, and sensitive labeling of reads and quantification of species, and Kraken. As well, we are leveraging RNA-Seq reads and Trinity-reconstructed transcripts. Our efforts here are being carried out in collaboration with the group of Steven Salzberg at JHU.
 
 For more information:
 

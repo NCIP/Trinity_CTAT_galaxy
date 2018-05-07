@@ -12,11 +12,11 @@
             --display_name "${display_name}" 
             --destination_path "${destination}" 
             --output_filename "${out_file}" 
-            #if str(${download}) == "true":
-                --download_file "${filename}" 
-            #end if
-            #if str(${force_download}) == "true":
-                --force_download 
+            #if str( $download_question.download ) == "true":
+                --download_location "\"${download_question.filename}\"" 
+                #if str( $download_question.force_download ) == "true":
+                    --force_download 
+                #end if
             #end if
         ]]>
     </command>
@@ -33,7 +33,6 @@
         -->
         <conditional name="download_question">
             <param name="download" type="boolean" checked="false" label="Need to Download?" />
-            </param>
             <when value="true">
                 <!-- The use of a code block to get dynamic options is now deprecated and discouraged.
                      I am still using it here. The only other way I can think of to do this is to
@@ -41,9 +40,21 @@
                      data_table, that is then used to get the filenames. That would require the admin
                      to first run the data_manager that builds the filename data_table before running
                      this data_manager.
-                -->
+                     However, I have not been able to figure out how to send information back correctly
+                     from the function and there is no documentation that I have found showing how to do it.
                 <param name="filename" type="select" label="Select File" display="radio" 
-                    dynamic_options="get_ctat_centrifuge_index_locations()" help="Select a Centrifuge Index to Download." />
+                    dynamic_options="get_ctat_centrifuge_index_locations()" 
+                    help="Select a Centrifuge Index to Download." />
+                Hard coded version.
+                <param name="filename" type="text" value="ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz">
+                    <option value="ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz">
+                        p_compressed+h+v
+                    </option>
+                </param>
+                -->
+                <param name="filename" type="select" label="Select File"
+                    dynamic_options="get_ctat_centrifuge_index_locations()" 
+                    help="Select a Centrifuge Index to Download." />
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>
