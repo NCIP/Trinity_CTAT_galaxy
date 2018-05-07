@@ -1,0 +1,2 @@
+#lnc	lncGeneSymbol	ortholog	orthologGeneSymbol	alignScore	exonID	locusID	indelRate(exon)	indelRate(intron)	lncExonsAligned	orthExonsAligned	spliceConserved	spliceTotal	category(hg19)	category(mm9)
+STRG.2.6	MIR17HG	gene.v2.1_1000.0_chr14_2.203.ADD	Mir17hg	388605	0.29	0.32	0.059	0.073	2,3,	1,2,	0.0	1	mir_host_exon	mir_host_exon

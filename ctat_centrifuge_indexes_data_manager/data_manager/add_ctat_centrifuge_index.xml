@@ -1,0 +1,78 @@
+<tool id="ctat_centrifuge_indexes_data_manager" 
+    name="CTAT Centrifuge Indexes Data Manager" 
+    version="1.0.0" tool_type="manage_data">
+    <description>Retrieve, and/or specify the location of, a CTAT Centrifuge Index. 
+    </description>
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+    </requirements>
+    <command detect_errors="default">
+        <![CDATA[
+        python $__tool_directory__/add_ctat_centrifuge_index.py 
+            --display_name "${display_name}" 
+            --destination_path "${destination}" 
+            --output_filename "${out_file}" 
+            #if str( $download_question.download ) == "true":
+                --download_location "\"${download_question.filename}\"" 
+                #if str( $download_question.force_download ) == "true":
+                    --force_download 
+                #end if
+            #end if
+        ]]>
+    </command>
+    <inputs>
+        <!-- The following are left in here, just as examples of various ways of doing options.
+            <param name="force_download" type="boolean" checked="false"
+                truevalue="- -force_download" falsevalue="" label="Force New Download? (yes/no)" />
+            <param name="download" type="select" label="Need to Download?">
+                <option value="single" selected="true">Single Dataset</option>
+                <option value="paired_collection">Paired Collection</option>
+            <when value="paired_collection">
+                 <param name="fastq_input" format="fastqsanger" type="data_collection" collection_type="paired" label="Select dataset pair" help="Specify paired dataset collection containing paired reads"/>
+            </when>
+        -->
+        <conditional name="download_question">
+            <param name="download" type="boolean" checked="false" label="Need to Download?" />
+            <when value="true">
+                <!-- The use of a code block to get dynamic options is now deprecated and discouraged.
+                     I am still using it here. The only other way I can think of to do this is to
+                     create another data_manager that gets the list of files and puts them into a
+                     data_table, that is then used to get the filenames. That would require the admin
+                     to first run the data_manager that builds the filename data_table before running
+                     this data_manager.
+                     However, I have not been able to figure out how to send information back correctly
+                     from the function and there is no documentation that I have found showing how to do it.
+                <param name="filename" type="select" label="Select File" display="radio" 
+                    dynamic_options="get_ctat_centrifuge_index_locations()" 
+                    help="Select a Centrifuge Index to Download." />
+                Hard coded version.
+                <param name="filename" type="text" value="ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz">
+                    <option value="ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz">
+                        p_compressed+h+v
+                    </option>
+                </param>
+                -->
+                <param name="filename" type="select" label="Select File"
+                    dynamic_options="get_ctat_centrifuge_index_locations()" 
+                    help="Select a Centrifuge Index to Download." />
+                <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+            </when>
+        </conditional>
+
+        <param name="display_name" type="text" label="Centrifuge Index Display Name" />
+        <param name="destination" type="text" label="Local Destination (full path)" />
+    </inputs>
+    <outputs>
+        <data name="out_file" format="data_manager_json" />
+    </outputs>
+    <help>
+        Retrieve, and/or specify the location of, a CTAT Centrifuge Index.
+        When download is true, the file at ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
+        will be the URL from which the index is downloaded. Currently that is the only supported index.
+        Specify the Full Path of the destination where the CTAT Reference Library should be placed.
+        If you already have the index, specify the full path of the location where it exists and leave the download box unchecked.
+        The display_name may be left empty if downloading. 
+        The display_name will be used as the selector text of the entry in the data table.
+    </help>
+    <code file="add_ctat_centrifuge_index.py" />
+</tool>

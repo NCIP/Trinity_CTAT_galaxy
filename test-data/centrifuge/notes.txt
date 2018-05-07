@@ -1,0 +1,54 @@
+Removed comments from .shed.yml:
+  # These test files are not being used in tests at this point. Not putting into the repo yet.
+  #      - test-data/centrifuge/SRR_73747_1_20k_reads.fastq
+  #      - test-data/centrifuge/SRR_73747_1_2_20k_reads.classification.report.txt
+  #      - test-data/centrifuge/SRR_73747_1_2_20k_reads.kraken_style_report.txt
+  #      - test-data/centrifuge/SRR_73747_2_20k_reads.fastq
+  #      - test-data/centrifuge/TrinitySRR2219890_2k_reads.classification.report.txt
+  #      - test-data/centrifuge/TrinitySRR2219890_2k_reads.fasta
+
+New test data for the centrifuge tool:
+Also, because a leading zero followed by a digit was causing a problem during planemo upload to the toolshed, seemingly getting interpretted as an octal number, causing wierd problems, the names have been changed from their original names:
+The part of names containing SRR073747 have been changed to SRR_73747 
+The part of names containing 20000 and 2000 have been changed to 20k_ and 2k_, respectively.
+
+Paired end for direct centrifuge testing
+-rw-r--r-- 1 tstrnity uits  921264 Oct 13 13:31 SRR_73747_1_20k_reads.fastq
+-rw-r--r-- 1 tstrnity uits  921264 Oct 13 13:31 SRR_73747_2_20k_reads.fastq
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     261 Oct 19 15:39 SRR_73747_1_2_20k_reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    2580 Oct 19 15:39 SRR_73747_1_2_20k_reads.kraken_style_report.txt
+
+Single end for direct centrifuge testing
+-rw-r--r-- 1 tstrnity uits 1024365 Oct 13 13:35 SRR2219890_1_adj_20k_reads.fastq
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     429 Oct 19 15:38 SRR2219890_1_20k_reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    3259 Oct 19 15:38 SRR2219890_1_20k_reads.kraken_style_report.txt
+
+Paired end for via Trinity centrifuge testing
+-rw-r--r-- 1 tstrnity uits 1113867 Oct 13 14:13 TrinitySRR_73747_2k_reads.fasta
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     164 Oct 19 15:40 TrinitySRR_73747_2k_reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    2207 Oct 19 15:41 TrinitySRR_73747_2k_reads.kraken_style_report.txt
+
+Single end for via Trinity centrifuge testing
+-rw-r--r-- 1 tstrnity uits  947707 Oct 13 14:14 TrinitySRR2219890_2k_reads.fasta
+and resulting files for comparisons
+-rw-r--r-- 1 tstrnity uits     397 Oct 19 15:40 TrinitySRR2219890_2k_reads.classification.report.txt
+-rw-r--r-- 1 tstrnity uits    3305 Oct 19 15:40 TrinitySRR2219890_2k_reads.kraken_style_report.txt
+
+
+The original testing files have been removed because of their size. 
+
+ Paired end for direct centrifuge testing
+ SRR073747_1.fastq
+ SRR073747_2.fastq
+
+ Single end for direct centrifuge testing
+ SRR2219890_1.adj.fastq
+ 
+ Paired end for via Trinity centrifuge testing
+ TrinitySRR073747.fasta
+  
+ Single end for via Trinity centrifuge testing
+ TrinitySRR2219890.fasta

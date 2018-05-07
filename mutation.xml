@@ -1,6 +1,12 @@
-<tool id="mutation" name="Mutation Pipeline" version="0.0.1">
+<tool id="mutation" name="Mutation Pipeline" version="1.0.0" profile="17.05">
     <description>Mutation Pipeline for calling SNPs and variants</description>
-    <command>
+    <requirements>
+        <requirement type="package"></requirement>
+    </requirements>
+    <command detect_errors="default">
+<![CDATA[
+module unload java >& /dev/null &&
+module load java/1.7.0_51 >& /dev/null &&
 rnaseq_mutation_pipeline.py 
 --index \${MUTATION_RESOURCES}/Hg19.fa_star_index 
 --reference \${MUTATION_RESOURCES}/Hg19.fa 
@@ -9,7 +15,7 @@ rnaseq_mutation_pipeline.py
 --threads \${GALAXY_SLOTS:-8}
 --log $log
 --vcf \${MUTATION_RESOURCES}/dbsnp_138.b37_Hg19.vcf 
---update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:\${MUTATION_RESOURCES},bcftools:\${MUTATION_RESOURCES},snpEff.jar:\${MUTATION_RESOURCES},STAR:\${MUTATION_RESOURCES}
+--update AddOrReplaceReadGroups.jar:\${MUTATION_RESOURCES},MarkDuplicates.jar:\${MUTATION_RESOURCES},SortSam.jar:\${MUTATION_RESOURCES},GenomeAnalysisTK.jar:\${MUTATION_RESOURCES}/GenomeAnalysisTK-3.1-1-g07a4bf8,samtools:/N/soft/rhel6/samtools/1.2/bin,bcftools:/N/soft/rhel6/samtools/1.2/bin,snpEff.jar:\${MUTATION_RESOURCES},STAR:/N/dc2/projects/galaxyshared/trinity/third_party_applications/STAR-2.5.2a/bin/Linux_x86_64
 --cravat_annotation_header \${MUTATION_RESOURCES}/cravat_annotation.txt 
 --cosmic_vcf \${MUTATION_RESOURCES}/CosmicCodingMuts_v72_grch37_updated_chr.vcf.gz
 --left $left_input
@@ -21,10 +27,10 @@ rnaseq_mutation_pipeline.py
 --darned \${MUTATION_RESOURCES}/darned_hg19.txt
 --radar \${MUTATION_RESOURCES}/radar_hg19_v2.txt
 --tissue_type $tissue_type
---email youremail@domain.com
+--email ttickle@broadinstitute.org
 --is_hg19
  >> $log
-
+]]>
     </command>
     <macros>
     </macros>
@@ -53,7 +59,8 @@ rnaseq_mutation_pipeline.py
     </inputs>
     <outputs>
       <data format="txt" name="log" label="${tool.name} on ${on_string}: log" />
-      <data format="bam" name="alignbam" label="Sorted bam from alignment" from_work_dir="output/misc/Aligned.sorted.bam"/>
+      <!-- Moved Aligned.sorted.bam to Aligned.sortedByCoord.out.bam on 1/5/17 - I hope those are the same things.-->
+      <data format="bam" name="alignbam" label="Sorted bam from alignment" from_work_dir="output/misc/Aligned.sortedByCoord.out.bam"/>
       <data format="bam" name="recalibrated_bam" label="Bam used in haplotype calling" from_work_dir="output/misc/recalibrated.bam"/>
       <data format="vcf" name="rawvar" label="Raw variants file" from_work_dir="output/variants.vcf"/> 
       <data format="vcf" name="filtvar" label="Variants file with minimal suggested filtering" from_work_dir="output/variants_initial_filtering.vcf"/> 
@@ -62,8 +69,114 @@ rnaseq_mutation_pipeline.py
       <data format="tabular" name="cancertab" label="Text file of variants filtered for Cancer Studies" from_work_dir="output/cancer.tab"/> 
       <data format="bed" name="bed_path" label="Bed file for reference genome" from_work_dir="output/hg19.refGene.sort.bed"/>
       <data format="json" name="vizjson" label="JSON pointing to data for the Inspector Visualization" from_work_dir="output/mutation_inspector.json"/>  
+      <!--<data format="txt" name="cancerIndex" label="${tool.name} on ${on_string}: Cancer Index" from_work_dir="output/cancer.vcf.idx"/> 
+      
+      <data name="cravat" label="Annotated (lightly filtered) VCF file" from_work_dir="output/variants_filtered_clean_snp_RNAedit_dbsnp_cosmic_filtered_cravate_annotated_all.vcf.gz"/>
+      <data format="json" name="m_i_json" label="JSON File" from_work_dir="mutation_inspector.json"/> -->
     </outputs>
     <tests>
+      <test>
+        <param name="left_input" value="FLI1.left.fq" />
+        <param name="right_input" value="FLI1.right.fq" />
+        <!-- The following parameter, index, does not seem to be used in the command. -->
+        <param name="index" value="hg19" />
+        <!-- Cicada added the next param. I was getting an error that it was not defined. -->
+        <!-- See http://www.cravat.us/CRAVAT/help.jsp#input for valid input values. 
+             The short names seem to be the ones that are valid. 
+             don't work:
+                <param name="tissue_type" value="General purpose" />
+                <param name="tissue_type" value="Breast Invasive Carcinoma" />
+             do work:
+                <param name="tissue_type" value="Other" />
+                <param name="tissue_type" value="Breast" />
+                <param name="index" value="hg19" />
+        -->
+        <param name="tissue_type" value="Other" />
+
+        <!-- <data format="txt" name="log" label="${tool.name} on ${on_string}: log" /> -->
+        <output name="log">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_text_matching expression="Successfully ended pipeline" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bam" name="alignbam" label="Sorted bam from alignment" from_work_dir="output/misc/Aligned.sortedByCoord.out.bam"/> -->
+        <output name="alignbam">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of the bam file -->
+               <has_text_matching expression="\x1F\x8B" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bam" name="recalibrated_bam" label="Bam used in haplotype calling" from_work_dir="output/misc/recalibrated.bam"/> -->
+        <output name="recalibrated_bam">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of the bam file -->
+               <has_text_matching expression="\x1F\x8B" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="vcf" name="rawvar" label="Raw variants file" from_work_dir="output/variants.vcf"/> -->
+        <output name="rawvar" file="mutation/FLI1.variants.vcf" lines_diff="2" />
+
+        <!-- <data format="vcf" name="filtvar" label="Variants file with minimal suggested filtering" from_work_dir="output/variants_initial_filtering.vcf"/> -->
+        <output name="filtvar" file="mutation/FLI1.variants_initial_filtering.vcf" lines_diff="4" />
+
+        <!-- <data name="filtannotvar" label="Variant file filtered and annotated" from_work_dir="output/annotated_min_filtered.vcf.gz"/> -->
+        <output name="filtnotvar">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <!-- The following checks for the magic number at the start of a gzip file -->
+               <has_text_matching expression="\x1F\x8B" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="vcf" name="cancerVariants" label="Variant file filtered for Cancer Studies" from_work_dir="output/cancer.vcf"/>  -->
+        <output name="cancerVariants">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line line="#CHROM&#009;POS&#009;ID&#009;REF&#009;ALT&#009;QUAL&#009;FILTER&#009;INFO&#009;FORMAT&#009;dataset_1" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="tabular" name="cancertab" label="Text file of variants filtered for Cancer Studies" from_work_dir="output/cancer.tab"/>  -->
+        <output name="cancertab" file="mutation/FLI1.cancer.tab" >
+            <assert_contents>
+               <has_line_matching expression=".+" />
+               <has_line line="CHROM&#009;POS&#009;REF&#009;ALT&#009;GENE&#009;DP&#009;QUAL&#009;MQ&#009;SAO&#009;NSF&#009;NSM&#009;NSN&#009;TUMOR&#009;TISSUE&#009;COSMIC_ID&#009;KGPROD&#009;RS&#009;PMC&#009;CHASM_PVALUE&#009;CHASM_FDR&#009;VEST_PVALUE&#009;VEST_FDR" />
+               <has_line_matching expression="^chr11.*" />
+            </assert_contents>
+        </output>
+
+        <!-- <data format="bed" name="bed_path" label="Bed file for reference genome" from_work_dir="output/hg19.refGene.sort.bed"/> -->
+        <output name="bed_path" file="mutation/hg19.refGene.sort.bed" />
+
+        <!-- <data format="json" name="vizjson" label="JSON pointing to data for the Inspector Visualization" from_work_dir="output/mutation_inspector.json"/>  -->
+        <!-- The differences between the files could be the locations(paths) of the files. -->
+        <output name="vizjson" file="mutation/FLI1.inspector.json" lines_diff="10" />
+
+        <!-- The following outputs do not seem to be in the output list above, so I removed them. Cicada. -->
+        <!-- 
+        <output name="cancerIndex">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="allVariants">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        <output name="bamFile">
+            <assert_contents>
+               <has_line_matching expression=".+" />
+            </assert_contents>
+        </output>
+        -->
+      </test>
     </tests>
     <help>
 .. class:: warningmark

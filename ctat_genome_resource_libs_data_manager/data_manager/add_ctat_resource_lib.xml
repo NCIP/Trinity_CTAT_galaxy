@@ -1,0 +1,116 @@
+<tool id="ctat_genome_resource_libs_data_manager" 
+    name="CTAT Genome Resource Libraries Data Manager" 
+    version="1.0.0" tool_type="manage_data">
+    <description>Retrieve, and/or specify the location of, a CTAT Genome Resource Library. 
+    </description>
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package" version="0.5.0">fusion-filter</requirement>
+        <!-- gmap-fusion used to be required in order to process downloaded libraries 
+             to create all of the required files and indexes. It includes gmap
+             and FusionFilter, programs from both of which are needed.
+             Now there is a bioconda FusionFilter recipe. Lets try using that instead.
+        <requirement type="package" version="0.3.0">gmap-fusion</requirement>
+        -->
+    </requirements>
+    <command detect_errors="default">
+        <![CDATA[
+        python $__tool_directory__/add_ctat_resource_lib.py 
+            --display_name "${display_name}" 
+            --destination_path "${destination}" 
+            --output_filename "${out_file}" 
+            #if str( $download_question.download ) == "true":
+                --source_url "\"${download_question.source_url}\"" 
+                #if str( $download_question.force_download ) == "true":
+                    --force_download
+                #end if
+            #end if
+            #if str( $rebuild ) == "true":
+                --build 
+            #end if
+            #if str( $gmap_build ) == "true":
+                --gmap_build 
+            #end if
+        ]]>
+    </command>
+    <inputs>
+        <!-- The following are left in here, just as examples of various ways of doing options.
+            <param name="force_download" type="boolean" checked="false"
+                truevalue="- -force_download" falsevalue="" label="Force New Download? (yes/no)" />
+            <param name="download" type="select" label="Need to Download?">
+                <option value="single" selected="true">Single Dataset</option>
+                <option value="paired_collection">Paired Collection</option>
+            <when value="paired_collection">
+                 <param name="fastq_input" format="fastqsanger" type="data_collection" collection_type="paired" label="Select dataset pair" help="Specify paired dataset collection containing paired reads"/>
+            </when>
+        -->
+        <conditional name="download_question">
+            <param name="download" type="boolean" checked="false" label="Need to Download?">
+            </param>
+            <when value="true">
+                <!-- The use of a code block to get dynamic options is now deprecated and discouraged.
+                     I am still using it here. The only other way I can think of to do this is to
+                     create another data_manager that gets the list of files and puts them into a
+                     data_table, that is then used to get the filenames. That would require the admin
+                     to first run the data_manager that builds the filename data_table before running
+                     this data_manager.
+                This is the dynamic way to get the options filled.
+                <param name="filename" type="select" label="Select File" display="radio" 
+                    dynamic_options="get_ctat_genome_filenames()" 
+                    help="Select a CTAT Genome Resource Library to Download." />
+                Here is the static method for what is online in April 2017:
+                <param name="filename" type="select" label="Choose which library to download.">
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/GRCh37_v19_CTAT_lib_Feb092018.plug-n-play.tar.gz">
+                        GRCh37_v19_CTAT_lib_Feb092018.plug-n-play.tar.gz
+                    </option>
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/                        GRCh37_v19_CTAT_lib_Feb092018.source_data.tar.gz">
+                        GRCh37_v19_CTAT_lib_Feb092018.source_data.tar.gz
+                    </option>                        
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/                        GRCh38_v27_CTAT_lib_Feb092018.plug-n-play.tar.gz">
+                        GRCh38_v27_CTAT_lib_Feb092018.plug-n-play.tar.gz
+                    </option>
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/                        GRCh38_v27_CTAT_lib_Feb092018.source_data.tar.gz">
+                        GRCh38_v27_CTAT_lib_Feb092018.source_data.tar.gz
+                    </option>
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/                        Mouse_M16_CTAT_lib_Feb202018.plug-n-play.tar.gz">
+                        Mouse_M16_CTAT_lib_Feb202018.plug-n-play.tar.gz
+                    </option>
+                    <option value="https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/                        Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz">
+                        Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz
+                    </option>
+                -->
+                <param name="source_url" type="select" label="Select a File"
+                    dynamic_options="get_ctat_genome_urls()" 
+                    help="Select a CTAT Genome Resource Library to Download.">
+                </param>
+                <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+            </when>
+        </conditional>
+
+        <param name="display_name" type="text" label="Reference Genome Display Name" />
+        <param name="destination" type="text" label="Local Destination (full path)" />
+        <param name="rebuild" type="boolean" checked="false" label="Force rebuild of Library?" />
+        <param name="gmap_build" type="boolean" checked="true" label="Do a gmap_build on the Library?" />
+    </inputs>
+    <outputs>
+        <data name="out_file" format="data_manager_json" />
+    </outputs>
+    <help>
+        Retrieve, and/or specify the location of, a CTAT Genome Resource Library.
+        When download is true, the files at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
+        are used as selectors for the user to choose among.
+        Specify the Full Path of the location where the CTAT Resource Library should be placed.
+        You will need approximately 62GB of space for this library.
+        The installation of this tool takes some time, due to building a conda environment for the dependencies.
+        The download extracts the files during the download. The "source_data" files download faster, but then must be built.
+        Building the library from the "source_data" files can take many hours, depending on the resources of your machine.
+        The "plug-n-play" can take considerable time to download, depending on your internet connection. Even with high speed,
+        it is about 25GB that is transfered, so plan accordingly.
+        Neither the "source_data" nor the "plug-n-play" versions have had their gmap index built. If you are not going to be
+        using gmap_fusion, then you can uncheck the gmap-build check box and save the space and time building the index consumes.
+        If you already have the library, specify the full path of the location where it exists and leave the download box unchecked.
+        The Reference Genome name may be left empty if downloading. The filename will then be used as the selector text of the entry in the data table.
+        For more information on CTAT Genome Resource Libraries, see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
+    </help>
+    <code file="add_ctat_resource_lib.py" />
+</tool>

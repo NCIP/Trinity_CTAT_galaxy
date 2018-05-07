@@ -1,0 +1,29 @@
+owner: "trinity_ctat"
+#type: repository_suite_definition
+# Put in the CTAT repository where this is defined. 
+# remote_repository_url: "https://github.com/galaxyproject/planemo/tree/master/tests/data/repos/
+# remote_repository_url: https://github.com/NCIP/Trinity_CTAT_galaxy ? Is that what it wants?
+# homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
+categories:
+    - "Assembly"
+    - "RNA"
+    - "Sequence Analysis"
+
+suite:
+    name: ctat_fusion_suite_test2
+    version: 1.0.0
+    description: "This is the Fusion suite of the Cancer Transcriptome Analysis Toolkit (CTAT)."
+    long_description: "This suite of tools perform trinity Cancer Transcriptome Analysis Toolkit (CTAT) gene fusion analyses. For information on use of this tool suite, see - https://github.com/NCIP/Trinity_CTAT_galaxy/wiki"
+    include_repositories:
+      - name: ctat_discasm
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_star_fusion
+        version: 1.0.1
+        owner: trinity_ctat
+      - name: ctat_gmap_fusion
+        version: 1.0.0
+        owner: trinity_ctat
+      - name: ctat_fusion_inspector
+        version: 1.0.0
+        owner: trinity_ctat

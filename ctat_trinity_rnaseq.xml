@@ -1,0 +1,155 @@
+<tool id="ctat_trinity_rnaseq" name="ctat_trinity_rnaseq" version="1.0.0" profile="17.05">
+  
+    <!-- Original tool written by Jeremy Goecks,
+        later development/maintenance by (in chronological order)
+            Brian Haas, Ben Fulton, Cicada Dennis 
+    -->
+    <description>De novo assembly of RNA-Seq data using Trinity 2.4.0</description>
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+        <requirement type="package">subprocess32</requirement>
+        <requirement type="package">samtools</requirement>
+        <requirement type="package">bzip2</requirement>
+        <requirement type="package" version="1.3.0">rsem</requirement>
+        <requirement type="package" version="3">bioconductor-edger</requirement>
+        <requirement type="package" version="2">bioconductor-qvalue</requirement>
+        <requirement type="package" version="2.5.1">trinity</requirement>
+    </requirements>
+    <command detect_errors="default">
+      <![CDATA[
+      python $__tool_directory__/ctat_trinity_wrapper.py 
+      --CPU \${GALAXY_SLOTS:-4}
+      --max_memory \${TRINITY_MAX_MEMORY:-31G}
+      #if str($inputs.paired_or_single) == "paired":
+       --left $inputs.left_input --right $inputs.right_input
+       #if $inputs.left_input.ext == 'fasta':
+        --seqType fa
+       #else:
+        --seqType fq
+       #end if
+      #else:
+       --single $inputs.input
+       #if $inputs.input.ext == 'fasta':
+        --seqType fa
+       #else:
+        --seqType fq
+       #end if
+      #end if
+      ## direct to output
+      --timing trinity_out_dir/Trinity.timing
+      --log $trinity_log
+
+ ]]>
+      <!-- The fullpath, dir, and user options (preceed with dashes) can be
+           used in the ctat_trinity_wrapper.py command to create rerunable jobs.
+           We are not supporting rerunable jobs in this release of this tool.
+        fullpath \${TRINITY_RERUN_PREFIX}
+        dir '$adv.rerundir'
+        user $__user_id__
+      mem_per_cpu 31
+      -->
+    </command>
+    <stdio>
+      <exit_code range="1:"   level="fatal"   description="Program failed" />
+      <exit_code range=":-1"   level="fatal"   description="DRM killed job" />
+    </stdio>
+    <inputs>
+      <conditional name="inputs">
+	<param name="paired_or_single" type="select" label="Paired or Single-end data?">
+          <option value="paired">Paired</option>
+          <option value="single">Single</option>
+        </param>
+        <when value="paired">
+          <param format="fasta,fastq" name="left_input" type="data" label="Left/Forward strand reads" help=""/>
+          <param format="fasta,fastq" name="right_input" type="data" label="Right/Reverse strand reads" help=""/>
+        </when>
+        <when value="single">
+          <param format="fasta,fastq" name="input" type="data" label="Single-end reads" help=""/>
+        </when>
+      </conditional>
+      <!-- The following section was used to aid in creating rerunable jobs.
+           We are not supporting rerunable jobs in this release of this tool.
+      <section name="adv" title="Allow Job Rerun" expanded="False">
+        <param name="rerundir" type="txt" size="10" label="To make a job rerunnable, you will need to specify a unique tag to label the job, with no spaces or wierd characters." />
+      </section>
+      -->
+    </inputs>
+    <outputs>
+      <data format="txt" name="trinity_log" label="${tool.name} on ${on_string}: log" />
+      <data format="fasta" name="assembled_transcripts" label="${tool.name} on ${on_string}: Assembled Transcripts" from_work_dir="trinity_out_dir/Trinity.fasta"/>
+    </outputs>
+    <tests>
+            <!-- Not testing with the following inputs anymore.
+            <param name="left_input" value="FLI1.left.fq" />
+            <param name="right_input" value="FLI1.right.fq" />
+            -->
+        <test>
+	    <param name="paired_or_single" value="paired" />
+            <param name="left_input" value="reads.left.simPE.fq" />
+            <param name="right_input" value="reads.right.simPE.fq" />
+            <!-- Not using in public version of tool
+            <param name="adv.rerundir" value="planemo_test_1" />
+            -->
+	    <output name="trinity_log" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
+                </assert_contents>
+            </output>
+	    <output name="assembled_transcripts" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
+                </assert_contents>
+            </output>
+        </test>
+        <test>
+  	    <param name="paired_or_single" value="paired" />
+            <param name="left_input" value="Sp.cat_ds_hs.left.fq" />
+            <param name="right_input" value="Sp.cat_ds_hs.right.fq" />
+            <!-- Not using in public version of tool
+            <param name="adv.rerundir" value="planemo_test_2" />
+            -->
+            <!-- Following parameters are not used in this version of this tool. -->
+            <!--
+            <param name="JM" value="50G" />
+            <param name="CPU" value="2" />
+            <param name="library_type" value="None" />
+            <param name="group_pairs_distance" value="500" />
+            <param name="path_reinforcement_distance" value="75" />
+            <param name="use_additional" value="no" />
+            -->
+  	    <output name="trinity_log" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line line="Trinity exited with status 0" />
+                </assert_contents>
+            </output>
+  	    <output name="assembled_transcripts" >
+                <assert_contents>
+                    <has_line_matching expression=".+" />
+                    <has_line_matching expression=">TRINITY.+?len=.+?path=.+" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+This instance is running Trinity version 2.4.0 and uses the following command:
+
+	 Trinity --max_memory 31G --CPU 4 --seqType seq_type --single singlefile or --left left_file --right right_file
+
+Define TRINITY_MAX_MEMORY and GALAXY_SLOTS to change the default values for --max_memory and --CPU, respectively.
+
+.. class:: infomark
+
+Trinity_, developed at the Broad Institute and the Hebrew University of Jerusalem, represents a novel method for the efficient and robust de novo reconstruction of transcriptomes from RNA-seq data. Trinity combines three independent software modules: Inchworm, Chrysalis, and Butterfly, applied sequentially to process large volumes of RNA-seq reads. Trinity partitions the sequence data into many individual de Bruijn graphs, each representing the transcriptional complexity at a given gene or locus, and then processes each graph independently to extract full-length splicing isoforms and to tease apart transcripts derived from paralogous genes. For more information, visit Trinity's wiki page here_.
+
+.. _Trinity: https://github.com/trinityrnaseq/trinityrnaseq/wiki
+.. _here: https://github.com/trinityrnaseq/trinityrnaseq/wiki
+    </help>
+
+        <citations>
+            <citation type="doi">10.1038/nbt.1883</citation>
+        </citations>
+
+</tool>

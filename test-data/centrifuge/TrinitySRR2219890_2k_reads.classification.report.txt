@@ -1,0 +1,7 @@
+name	taxID	taxRank	genomeSize	numReads	numUniqueReads	abundance
+root	1	no rank	0	3	3	0.0
+Homo sapiens	9606	species	3238442024	1986	1986	0.00145003
+synthetic construct	32630	species	26537524	3	3	0.000297397
+Bacillus subtilis subsp. subtilis	135461	subspecies	28727929	1	1	0.0
+Methanocaldococcus jannaschii DSM 2661	243232	leaf	1739927	4	4	0.0
+Alphapapillomavirus 9	337041	species	7906	1	1	0.998253

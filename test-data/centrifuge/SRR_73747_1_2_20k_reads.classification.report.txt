@@ -1,0 +1,5 @@
+name	taxID	taxRank	genomeSize	numReads	numUniqueReads	abundance
+root	1	no rank	0	794	794	0.0
+Homo sapiens	9606	species	3238442024	4093	4093	0.00565017
+Streptomyces cattleya	29303	species	16188068	1	1	0.0
+synthetic construct	32630	species	26537524	18	18	0.99435

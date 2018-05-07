@@ -1,0 +1,14 @@
+<display id='FIweb' version='0.0.1' name='Fusion Inspector Web' >
+   <link id='main' name='main'>
+     <url>http://caique.broadinstitute.org/FIWeb_galaxy.cgi?dataset=${symtok.qp}</url>
+     <param type='data' name='my_param' />
+
+     <param type="template" name="symtok" strip="True" >
+        #set myfilename = $my_param.value.extra_files_path + "/symtok.txt"
+		#set code = open(myfilename).readline().rstrip()
+		${code}
+        
+     </param>
+
+   </link>
+</display>

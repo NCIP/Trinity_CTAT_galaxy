@@ -1,0 +1,137 @@
+owner: "trinity_ctat"
+# Put in the CTAT repository where this is defined. 
+# remote_repository_url: "https://github.com/galaxyproject/planemo/tree/master/tests/data/repos/
+# remote_repository_url: https://github.com/NCIP/Trinity_CTAT_galaxy ? Is that what it wants?
+# homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
+
+categories:
+  - "Assembly"
+  - "RNA"
+  - "Sequence Analysis"
+
+repositories:
+  ctat_clean_headers:
+    description: "Removes whitespace from the header of each selected fastq file."
+    long_description: "Removes whitespace from the header of each selected fastq file. If your Trinity run gives you errors with dying threads during the normalization step, try this tool on each input first."
+    include:
+      - ctat_clean_headers.xml
+  ctat_concatenate:
+    description: "A concatenate tool is included in this suite for completeness purposes. Concatenates multiple files to one file."
+    include:
+      - ctat_concatenate.xml
+      - ctat_bash_command_executer.py
+      - test-data/Sp_ds.left.fq
+      - test-data/Sp_ds.right.fq
+      - test-data/Sp_hs.left.fq
+      - test-data/Sp_hs.right.fq
+  ctat_trinity_rnaseq:
+    description: "Trinity assembles transcript sequences from Illumina RNA-Seq data."
+    long_description: "Trinity, developed at the Broad Institute and the [Hebrew University of Jerusalem] (http://www.cs.huji.ac.il), represents a novel method for the efficient and robust de novo reconstruction of transcriptomes from RNA-seq data. Trinity combines three independent software modules: Inchworm, Chrysalis, and Butterfly, applied sequentially to process large volumes of RNA-seq reads. Trinity partitions the sequence data into many individual de Bruijn graphs, each representing the transcriptional complexity at a given gene or locus, and then processes each graph independently to extract full-length splicing isoforms and to tease apart transcripts derived from paralogous genes."
+    include:
+      - ctat_trinity_rnaseq.xml
+      - ctat_trinity_wrapper.py
+      - test-data/reads.left.simPE.fq
+      - test-data/reads.right.simPE.fq
+      - test-data/Sp.cat_ds_hs.left.fq
+      - test-data/Sp.cat_ds_hs.right.fq
+  ctat_rsem_align_and_estimate_abundance:
+    description: "Align and Estimate Abundance generates transcript quantification for genes and isoforms using RSEM."
+    long_description: "Align and Estimate Abundance generates transcript quantification for genes and isoforms using RSEM. RSEM enables accurate transcript quantification for species without sequenced genomes."
+    include:
+      - ctat_rsem_align_and_estimate_abundance.xml
+      - ctat_trinity_tool_wrapper.py
+      - __add_to_PATH_setting.txt
+      - test-data/reads.simPE.Trinity.fasta
+      - test-data/reads.left.simPE.fq
+      - test-data/reads.right.simPE.fq
+      - test-data/Sp.Trinity.fasta
+      - test-data/Sp_hs.left.fq
+      - test-data/Sp_hs.right.fq
+  ctat_abundance_estimation_to_matrix:
+    description: "Abundance estimation to matrix joins RSEM-computed gene or isoform fragment counts into a matrix file."
+    include:
+      - ctat_abundance_estimation_to_matrix.xml
+      - ctat_abundance_estimation_to_matrix.py
+      - ctat_trinity_tool_wrapper.py
+      - __add_to_PATH_setting.txt
+      - test-data/Sp_ds.RSEM.genes.results
+      - test-data/Sp_hs.RSEM.genes.results
+  ctat_edger_differential_expression:
+    description: "EdgeR differential expression identifies differentially expressed transcripts."
+    long_description: "EdgeR differential expression uses the counts_matrix from abundance_estimation_to_matrix to identify differentially expressed transcripts."
+    include:
+      - ctat_edger_differential_expression.xml
+      - ctat_edger_differential_expression.py
+      - test-data/Sp.counts.matrix
+      - test-data/Sp.Trinity.fasta
+  ctat_analyze_differential_expression:
+    description: "Analyze differential expression creates anaylses files from the output from EdgeR differential expression."
+    include:
+      - ctat_analyze_differential_expression.xml
+      - ctat_analyze_differential_expression.py
+      - test-data/Sp.edgeR.tar.gz
+      - test-data/Sp.TMM.EXPR.matrix
+  ctat_discasm:
+    description: "DISCASM extracts reads that map to reference genomes in a discordant fashion and performs a de novo transcriptome assembly of these reads"
+    long_description: "DISCASM aims to extract reads that map to reference genomes in a discordant fashion and optionally include reads that do not map to the genome at all, and perform a de novo transcriptome assembly of these reads. DISCASM relies on the output from STAR (as run via STAR-Fusion), and supports de novo transcriptome assembly using Trinity or Oases. - https://github.com/DISCASM/DISCASM/wiki"
+    include:
+      - ctat_discasm.xml
+      - test-data/DISCASM/SF2/reads_1.fq.gz
+      - test-data/DISCASM/SF2/reads_2.fq.gz
+      - test-data/DISCASM/SF2/Aligned.sortedByCoord.out.bam
+      - test-data/DISCASM/SF2/Chimeric.out.junction
+      - test-data/DISCASM/reads_1_2.oases.transcripts.fa
+      - test-data/DISCASM/SF1/reads.left.simPE.fq
+      - test-data/DISCASM/SF1/reads.right.simPE.fq
+      - test-data/DISCASM/SF1/SF_out_aligned.bam
+      - test-data/DISCASM/SF1/SF_out_chimeric.junction
+      - test-data/DISCASM/reads.simPE.oases.transcripts.fa
+  ctat_gmap_fusion:
+    description: "GMAP-fusion is a utility for identifying candidate fusion transcripts."
+    long_description: "GMAP-fusion is a utility for identifying candidate fusion transcripts based on transcript sequences reconstructed via RNA-Seq de novo transcriptome assembly. - https://github.com/GMAP-fusion/GMAP-fusion/wiki"
+    include:
+      - ctat_gmap_fusion.xml
+      - tool_data_table_conf.xml.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
+      - test-data/GMAP/reads_1.fq.gz
+      - test-data/GMAP/reads_2.fq.gz
+      - test-data/GMAP/transcripts.fa
+      - test-data/GMAP/fusion.reads_1_2.final
+  ctat_fusion_inspector:
+    description: "FusionInspector performs a supervised analysis of fusion predictions, attempting to recover and re-score evidence for such predictions."
+    long_description: "FusionInspector is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). FusionInspector assists in fusion transcript discovery by performing a supervised analysis of fusion predictions, attempting to recover and re-score evidence for such predictions. Given a list of candidate fusion genes (as derived from running any fusion transcript prediction tool, such as Prada, FusionCatcher, SoapFuse, TophatFusion, DISCASM/GMAP-Fusion, STAR-Fusion, or other), FusionInspector extracts the genomic regions for the fusion partners and constructs mini-fusion-contigs containing the pairs of genes in their proposed fused orientation. - https://github.com/FusionInspector/FusionInspector/wiki"
+    include:
+      - ctat_fusion_inspector.xml
+      - tool_data_table_conf.xml.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
+      - test-data/FusionInspector/fusion_targets.A.txt
+      - test-data/FusionInspector/fusion_targets.B.txt
+      - test-data/FusionInspector/fusion_targets.C.txt
+      - test-data/FusionInspector/test.reads_1.fastq.gz
+      - test-data/FusionInspector/test.reads_2.fastq.gz
+  ctat_star_fusion:
+    description: "STAR-Fusion uses the STAR aligner to identify candidate fusion transcripts supported by Illumina reads."
+    long_description: "STAR-Fusion is a component of the Trinity Cancer Transcriptome Analysis Toolkit (CTAT). STAR-Fusion uses the STAR aligner to identify candidate fusion transcripts supported by Illumina reads. STAR-Fusion further processes the output generated by the STAR aligner to map junction reads and spanning reads to a reference annotation set. - https://github.com/STAR-Fusion/STAR-Fusion/wiki"
+    include:
+      - ctat_star_fusion.xml
+      - tool_data_table_conf.xml.sample
+      - tool-data/ctat_genome_resource_libs.loc.sample
+      - test-data/StarFusion/reads_1.fq.gz
+      - test-data/StarFusion/reads_2.fq.gz
+  ctat_metagenomics:
+    description: "Classifier for metagenomic sequences (RNA-Seq)"
+    long_description: "Classifier for metagenomic sequences (RNA-Seq). For foreign transcript detection, we leverage Centrifuge and Kraken, leveraging RNA-Seq reads and Trinity-reconstructed transcripts. Our efforts here are being carried out in collaboration with the group of Steven Salzberg at JHU."
+    include:
+     - ctat_metagenomics.xml
+     - tool_data_table_conf.xml.sample
+     - tool-data/ctat_centrifuge_indexes.loc.sample
+     - test-data/centrifuge/SRR2219890_1_adj_20k_reads.fastq
+     - test-data/centrifuge/SRR2219890_1_20k_reads.classification.report.txt
+     - test-data/centrifuge/SRR2219890_1_20k_reads.kraken_style_report.txt
+
+suite:
+  name: ctat_tools_suite_tst1
+  version: 1.0.0
+  description: "These tools were developed by The Broad Institute as the Cancer Transcriptome Analysis Toolkit (CTAT)."
+  long_description: "The Cancer Transcriptome Analysis Toolkit (CTAT) aims to provide tools for leveraging RNA-Seq to gain insights into the biology of cancer transcriptomes. Bioinformatics tool support is provided for mutation detection, fusion transcript identification, de novo transcript assembly of cancer-specific transcripts, lincRNA classification, and foreign transcript detection (viruses, microbes). CTAT is funded by the National Cancer Institute Informatics Technology for Cancer Research (NCI ITCR) program. "
+

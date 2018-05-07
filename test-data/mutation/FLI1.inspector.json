@@ -1,0 +1,33 @@
+{
+  "BAM": "/N/dc2/scratch/tstrnity/planemo_jobs/mutat.2017-05-04.14-43-58.170479922/tmpLZToAe/job_working_directory/000/3/working/output/misc/recalibrated.bam", 
+  "BAM_INDEX": "/N/dc2/scratch/tstrnity/planemo_jobs/mutat.2017-05-04.14-43-58.170479922/tmpLZToAe/job_working_directory/000/3/working/output/misc/recalibrated.bai", 
+  "BED": "/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/mutation/trinity_ctat_mutation_resources_2015/hg19.refGene.sort.bed", 
+  "BED_INDEX": "/N/dc2/projects/galaxyshared/trinity/Trinity_CTAT/mutation/trinity_ctat_mutation_resources_2015/hg19.refGene.sort.bed.idx", 
+  "SAMPLE": "output", 
+  "SNV": [
+    {
+      "ALT": "T", 
+      "CHASM_FDR": "NA", 
+      "CHASM_PVALUE": "0.0208", 
+      "CHROM": "chr11", 
+      "COSMIC_ID": "NA", 
+      "DP": "18", 
+      "GENE": "FLI1", 
+      "KGPROD": "NA", 
+      "MQ": "60", 
+      "NSF": "NA", 
+      "NSM": "true", 
+      "NSN": "NA", 
+      "PMC": "NA", 
+      "POS": "128628194", 
+      "QUAL": "561.77", 
+      "REF": "G", 
+      "RS": "201118331", 
+      "SAO": "0", 
+      "TISSUE": "NA", 
+      "TUMOR": "NA", 
+      "VEST_FDR": "NA", 
+      "VEST_PVALUE": "0.00775152"
+    }
+  ]
+}
