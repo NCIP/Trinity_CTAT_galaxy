@@ -1,0 +1,15 @@
+# This file lists the locations of CTAT lncrna annotations
+# Usually there will only be one index, but it is concievable 
+# that there could be multiple annotations.
+# This file format is as follows
+# (white space characters are TAB characters):
+#
+#<value>    <name>  <path>
+# value is a unique id
+# name is the display name
+# path is the directory where the index files are stored
+#
+#ctat_lncrna_annotations.loc could look like:
+#
+#slncky_annotations	CTAT_lncrna_annotations	/path/to/lncrna/annotations
+#

@@ -1,14 +1,14 @@
-<tool id="slncky_pipeline" name="slncky_pipeline" version="1.0.0" profile="17.05">
+<tool id="ctat_lncrna" name="ctat_lncrna" version="1.0.0" profile="17.05">
 
-    <description>Running slncky</description>
+    <description>Filters a high-quality set of lncRNA from reconstructed RNA-seq data</description>
+    <requirements>
+    <requirement type="package">ctat-lncrna</requirement>
+    </requirements>
     <command detect_errors="default">
       <![CDATA[
      #if str($bedfile) != "":
-     \$SLNCKY_PIPELINE_SCRIPT --bedfile $bedfile 
-     --config \$CONFIGSTR
-     --bedtools \$BEDTOOLS
-     --liftover \$LIFTOVER
-     --lastz \$LASTZ
+     lncrna --bedfile $bedfile
+     --config "${annotations.fields.path}" 
      #end if
 
      #if str($assembly) != "":
@@ -44,8 +44,7 @@
     #end if
 
     --web 
-    --update slncky.v1.0:\$SLNCKY_DIR
-     && cp -r slncky.EvolutionBrowser $html_file.files_path
+    && cp -r slncky.EvolutionBrowser $html_file.files_path
 ]]>
     </command>
 
@@ -62,6 +61,9 @@
       <param name="pad" type="integer" value="0" label="Pad" help="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
       <param name="gap_open" type="txt" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
       <param name="gap_extend" type="txt" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
+      <param name="annotations" type="select" label="Choose annotation:" help="Select annotation">
+            <options from_data_table="ctat_lncrna_annotations" />
+      </param>
     </inputs>
 
     <outputs>

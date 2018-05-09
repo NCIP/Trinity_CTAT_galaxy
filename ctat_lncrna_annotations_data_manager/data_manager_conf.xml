@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<data_managers>
+    <data_manager tool_file="data_manager/add_ctat_lncrna_annotations.xml" id="ctat_lncrna_annotations_data_manager"> 
+        <data_table name="ctat_lncrna_annotations">
+            <output>
+                <column name="value" />
+                    <!-- value is used to uniquely identify this entry in the table.
+                    -->
+                <column name="name" />
+                    <!-- name is used as the selector in the pull down lists for items in this table.
+                    -->
+                <column name="path" />
+                    <!-- path is the absolute path of the directory containing the lncrna annotations files.
+                    -->
+                <!-- Same as the Genome Reference Library, we create the lncrna annotations files where we want them.
+                -->
+            </output>
+        </data_table>
+    </data_manager>
+</data_managers>

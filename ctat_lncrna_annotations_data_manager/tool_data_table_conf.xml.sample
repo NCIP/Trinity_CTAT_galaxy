@@ -1,0 +1,6 @@
+<tables>
+    <table name="ctat_lncrna_annotations" comment_char="#" allow_duplicate_entries="False">
+        <columns>value, name, path</columns>
+        <file path="tool-data/ctat_lncrna_annotations.loc" />
+    </table>
+</tables>

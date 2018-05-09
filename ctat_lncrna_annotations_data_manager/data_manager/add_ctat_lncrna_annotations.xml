@@ -1,0 +1,50 @@
+<tool id="ctat_lncrna_annotations_data_manager" 
+    name="CTAT lncrna annotations Data Manager" 
+    version="1.0.0" tool_type="manage_data">
+    <description>Retrieve, and/or specify the location of CTAT lncrna annotations. 
+    </description>
+    <requirements>
+        <requirement type="package" version="2.7">python</requirement>
+    </requirements>
+    <command detect_errors="default">
+        <![CDATA[
+        python $__tool_directory__/add_ctat_lncrna_annotations.py 
+            --display_name "${display_name}" 
+            --destination_path "${destination}" 
+            --output_filename "${out_file}" 
+            #if str( $download_question.download ) == "true":
+                --download_location "\"${download_question.filename}\"" 
+                #if str( $download_question.force_download ) == "true":
+                    --force_download 
+                #end if
+            #end if
+        ]]>
+    </command>
+    <inputs>
+        <conditional name="download_question">
+            <param name="download" type="boolean" checked="false" label="Need to Download?" />
+            <when value="true">
+                <param name="filename" type="select" label="Select File"
+                    dynamic_options="get_ctat_lncrna_annotations_locations()" 
+                    help="Select a lncrna annotations to Download." />
+                <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+            </when>
+        </conditional>
+
+        <param name="display_name" type="text" label="lncrna annotations Display Name" />
+        <param name="destination" type="text" label="Local Destination (full path)" />
+    </inputs>
+    <outputs>
+        <data name="out_file" format="data_manager_json" />
+    </outputs>
+    <help>
+        Retrieve, and/or specify the location of, a CTAT lncrna annotations.
+        When download is true, the file at 
+        will be the URL from which the annotations is downloaded. Currently that is the only supported annotations.
+        Specify the Full Path of the destination where the CTAT lncrna annotations should be placed.
+        If you already have the annotations, specify the full path of the location where it exists and leave the download box unchecked.
+        The display_name may be left empty if downloading. 
+        The display_name will be used as the selector text of the entry in the data table.
+    </help>
+    <code file="add_ctat_lncrna_annotations.py" />
+</tool>

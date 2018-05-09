@@ -40,7 +40,6 @@ repositories:
     include:
       - ctat_rsem_align_and_estimate_abundance.xml
       - ctat_trinity_tool_wrapper.py
-      - __add_to_PATH_setting.txt
       - test-data/reads.simPE.Trinity.fasta
       - test-data/reads.left.simPE.fq
       - test-data/reads.right.simPE.fq
@@ -53,7 +52,6 @@ repositories:
       - ctat_abundance_estimation_to_matrix.xml
       - ctat_abundance_estimation_to_matrix.py
       - ctat_trinity_tool_wrapper.py
-      - __add_to_PATH_setting.txt
       - test-data/Sp_ds.RSEM.genes.results
       - test-data/Sp_hs.RSEM.genes.results
   ctat_edger_differential_expression:
