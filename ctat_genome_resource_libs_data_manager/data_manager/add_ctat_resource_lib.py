@@ -35,6 +35,7 @@ import urllib2
 from HTMLParser import HTMLParser
 
 _CTAT_ResourceLib_URL = 'https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/'
+_CTAT_MutationIndex_URL = 'https://data.broadinstitute.org/Trinity/CTAT/mutation/'
 _CTAT_Build_dirname = 'ctat_genome_lib_build_dir'
 _CTAT_ResourceLib_DisplayNamePrefix = 'CTAT_GenomeResourceLib_'
 _CTAT_ResourceLib_DefaultGenome = 'Unspecified_Genome'
@@ -42,9 +43,12 @@ _CTAT_HumanFusionLib_FilenamePrefix = 'CTAT_HumanFusionLib'
 _CTAT_RefGenome_Filename = 'ref_genome.fa'
 _CTAT_MouseGenome_Prefix = 'Mouse'
 _CTAT_HumanGenome_Prefix = 'GRCh'
-_NumBytesNeededForBuild = 64424509440 # 60 Gigabytes. FIX - This might not be correct.
+_NumBytesNeededForBuild = 66571993088 # 62 Gigabytes. FIX - This might not be correct.
+_NumBytesNeededForIndexes = 21474836480 # 20 Gigabytes. FIX - This might not be correct.
 _Download_TestFile = "write_testfile.txt"
 _DownloadSuccessFile = 'download_succeeded.txt'
+_LibBuiltSuccessFile = 'build_succeeded.txt'
+_MutationDownloadSuccessFile = 'mutation_index_download_succeeded.txt'
 
 class FileListParser(HTMLParser):
     def __init__(self):
@@ -81,7 +85,7 @@ def get_ctat_genome_urls():
         # The urls should look like: 
         # https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/GRCh37_v19_CTAT_lib_Feb092018.plug-n-play.tar.gz
         # https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz
-        # But is actuality, they are coming in looking like:
+        # But in actuality, they are coming in looking like:
         # GRCh37_v19_CTAT_lib_Feb092018.plug-n-play.tar.gz
         # Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz
         # Write code to handle both situations, or an ftp: url.
@@ -91,11 +95,44 @@ def get_ctat_genome_urls():
             # Assume the path is relative to the page location.
             full_url_path = "{:s}/{:s}".format(_CTAT_ResourceLib_URL, url)
         filename = url.split("/")[-1]
+        # if filename.split("_")[0] != _CTAT_MouseGenome_Prefix:
+        #     # Don't put in the mouse genome options for now.
+        #     # The mouse genome option is not handled correctly yet
+        #     options.append((filename, full_url_path, i == 0))
+        # Mouse genomes should work now (we hope) - FIX - still not tested.
+        options.append((filename, full_url_path, i == 0))
+    options.sort() # So the list will be in alphabetical order.
+    # return a tuple of the urls
+    print "The list being returned as options is:"
+    print "{:s}\n".format(str(options))
+    return options
 
-        if filename.split("_")[0] != _CTAT_MouseGenome_Prefix:
-            # Take out the mouse genome options for now.
-            # The mouse genome option is not handled correctly yet
-            options.append((filename, full_url_path, i == 0))
+def get_mutation_index_urls():
+    # open the url and retrieve the urls of the files in the directory.
+    resource = urllib2.urlopen(_CTAT_MutationIndex_URL)
+    theHTML = resource.read()
+    filelist_parser = FileListParser()
+    filelist_parser.feed(theHTML)
+    # For dynamic options need to return an interable with contents that are tuples with 3 items.
+    # Item one is a string that is the display name put into the option list.
+    # Item two is the value that is put into the parameter associated with the option list.
+    # Item three is a True or False value, indicating whether the item is selected.
+    options = []
+    for i, url in enumerate(filelist_parser.urls):
+        # The urls should look like: 
+        # https://data.broadinstitute.org/Trinity/CTAT/mutation/mc7.tar.gz
+        # https://data.broadinstitute.org/Trinity/CTAT/mutation/hg19.tar.gz
+        # But in actuality, they are coming in looking like:
+        # hg19.tar.gz
+        # mc7.tar.gz
+        # Write code to handle both situations, or an ftp: url.
+        if (url.split(":")[0] == "http") or (url.split(":")[0] == "https") or (url.split(":")[0] == "ftp"):
+            full_url_path = url
+        else:
+            # Assume the path is relative to the page location.
+            full_url_path = "{:s}/{:s}".format(_CTAT_MutationIndex_URL, url)
+        filename = url.split("/")[-1]
+        options.append((filename, full_url_path, i == 0))
     options.sort() # So the list will be in alphabetical order.
     # return a tuple of the urls
     print "The list being returned as options is:"
@@ -114,6 +151,7 @@ def get_ctat_genome_urls():
 #    trained_url = params['param_dict']['trained_url']
 #    return trained_url
 
+# The following procedure is used to help with debugging and for user information.
 def print_directory_contents(dir_path, num_levels):
     if num_levels > 0:
         if os.path.exists(dir_path) and os.path.isdir(dir_path):
@@ -154,9 +192,10 @@ def download_from_BroadInst(source, destination, force_download):
     #     Since it doesn't always do the download, the function returns whether download occurred.
     lib_was_downloaded = False
     if len(source.split(":")) == 1:
-        # Might want to check that it is one of "http", "ftp", "file" or other accepted url starts.
+        # Then we were given a source_url without a leading https: or similar.
         # Assume we only were given the filename and that it exists at _CTAT_ResourceLib_URL.
         source = "{:s}/{:s}".format(_CTAT_ResourceLib_URL, source)
+    # else we might want to check that it is one of "http", "ftp", "file" or other accepted url starts.
     
     print "In download_from_BroadInst(). The source_url is:\n\t{:s}".format(str(source))
 
@@ -192,7 +231,7 @@ def download_from_BroadInst(source, destination, force_download):
         # in the code, something is wrong. Raise an error.
         raise OSError("The destination directory could not be created: " + \
                       "{:s}".format(cannonical_destination))
-    test_writing_file = "{:s}/{:s}".format(cannonical_destination, _Download_TestFile)
+    test_writing_file = "{:s}/{:s}.{:s}".format(cannonical_destination, root_genome_dirname, _Download_TestFile)
     try:
         filehandle = open(test_writing_file, "w")
         filehandle.write("Testing writing to this file.")
@@ -207,8 +246,13 @@ def download_from_BroadInst(source, destination, force_download):
     # We use it to check for a previous download or extraction among other things.
     orig_files_in_destdir = set(os.listdir(cannonical_destination))
     # See whether the file has been downloaded already.
-    download_success_file_path = "{:s}/{:s}".format(cannonical_destination, _DownloadSuccessFile)
-    if ((_DownloadSuccessFile not in orig_files_in_destdir) \
+    # FIX - Try looking one or two directories above, as well as current directory,
+    #     and maybe one directory below,
+    #     for the download success file? 
+    #     Not sure about this though...
+    download_success_file = "{:s}.{:s}".format(root_genome_dirname, _DownloadSuccessFile)
+    download_success_file_path = "{:s}/{:s}".format(cannonical_destination, download_success_file)
+    if ((download_success_file not in orig_files_in_destdir) \
         or (root_genome_dirname not in orig_files_in_destdir) \
         or force_download):
         # Check whether there is enough space on the device for the library.
@@ -239,7 +283,7 @@ def download_from_BroadInst(source, destination, force_download):
         #try: 
         #    tarfile.open(full_filepath, mode='r:*').extractall()
     
-        if (_DownloadSuccessFile in orig_files_in_destdir):
+        if (download_success_file in orig_files_in_destdir):
             # Since we are redoing the download, 
             # the success file needs to be removed
             # until the download has succeeded.
@@ -328,6 +372,74 @@ def gmap_the_library(genome_build_directory):
             print_directory_contents(genome_build_directory, 2)
             print "*******************************\n"
 
+def download_mutation_indexes(source_url, genome_build_directory, force_download):
+    print "\n*****************************************************************"
+    print "* The real mutation indexes have not yet been created. Just testing. *"
+    print "*****************************************************************\n"
+    # It is assumed that this procedure is only called with a valid genome_build_directory.
+    # No checks are made to see whether it exists, whether we can write to it, etc.
+    index_was_downloaded = False
+    if len(source_url.split(":")) == 1:
+        # Then we were given a source_url without a leading https: or similar.
+        # Assume we only were given the filename and that it exists at _CTAT_MutationIndex_URL.
+        source_url = "{:s}/{:s}".format(_CTAT_MutationIndex_URL, source_url)
+    
+    print "In download_mutation_indexes(). The source_url is:\n\t{:s}".format(str(source_url))
+
+    # Get the root filename of the Genome Directory.
+    src_filename = source.split("/")[-1]
+    root_genome_dirname = src_filename.split(".")[0]
+    print "The mutation index file to be downloaded and extracted is {:s}".format(src_filename)
+
+    # Get the list of files in the directory,
+    # We use it to check for a previous download or extraction among other things.
+    orig_files_in_destdir = set(os.listdir(genome_build_directory))
+    # See whether the index file has been downloaded already.
+    download_success_file = "{:s}.{:s}".format(root_genome_dirname, _MutationDownloadSuccessFile)
+    download_success_file_path = "{:s}/{:s}".format(genome_build_directory, download_success_file)
+    if ((download_success_file not in orig_files_in_destdir) or force_download):
+        # Check whether there is enough space on the device for the library.
+        statvfs = os.statvfs(genome_build_directory)
+        # fs_size = statvfs.f_frsize * statvfs.f_blocks          # Size of filesystem in bytes
+        # num_free_bytes = statvfs.f_frsize * statvfs.f_bfree    # Actual number of free bytes
+        num_avail_bytes = statvfs.f_frsize * statvfs.f_bavail    # Number of free bytes that ordinary users
+                                                                 # are allowed to use (excl. reserved space)
+        if (num_avail_bytes < _NumBytesNeededForIndexes):
+            raise OSError("There is insufficient space ({:s} bytes)".format(str(num_avail_bytes)) + \
+                          " for the indexes on the device of the destination directory: " + \
+                          "{:s}".format(cannonical_destination))
+        if (download_success_file in orig_files_in_destdir):
+            # Since we are redoing the download, 
+            # the success file needs to be removed
+            # until the download has succeeded.
+            os.remove(download_success_file_path)
+        # We want to transfer and untar the file without storing the tar file, because that
+        # adds all that much more space to the needed amount of free space on the disk.
+        # Use subprocess to pipe the output of curl into tar.
+        command = "curl --silent {:s} | tar -xzf - -C {:s}".format(source_url, genome_build_directory)
+        try: # to send the command that downloads and extracts the file.
+            command_output = subprocess.check_output(command, shell=True)
+            # FIX - not sure check_output is what we want to use. If we want to have an error raised on
+            # any problem, maybe we should not be checking output.
+        except subprocess.CalledProcessError:
+            print "ERROR: Trying to run the following command:\n\t{:s}".format(command)
+            raise
+        else:
+            index_was_downloaded = True
+    # Some code to help us if errors occur.
+    print "/n*********************************************************"
+    print "* Finished download and extraction of Mutation Indexes. *"
+    print_directory_contents(genome_build_directory, 2)
+    print "*********************************************************\n"
+    try:
+        # Create a file to indicate that the download succeeded.
+        subprocess.check_call("touch {:s}".format(download_success_file_path), shell=True)
+    except IOError:
+        print "The download_success file could not be created: " + \
+                    "{:s}".format(download_success_file_path)
+        raise
+    return index_was_downloaded
+
 def build_the_library(genome_source_directory, genome_build_directory, build, gmap_build):
     """ genome_source_directory is the location of the source_data needed to build the library.
             Normally it is fully specified, but could be relative.
@@ -349,10 +461,23 @@ def build_the_library(genome_source_directory, genome_build_directory, build, gm
         gmap_build -D ctat_genome_lib_build_dir -d ref_genome.fa.gmap -k 13 ctat_genome_lib_build_dir/ref_genome.fa"
     """
 
+    # Get the root filename of the Genome Directory.
+    src_filename = genome_source_directory.split("/")[-1]
+    root_genome_dirname = src_filename.split(".")[0]
     print "Building the CTAT Genome Resource Library from source data at:\n\t{:s}".format(genome_source_directory)
-    if (genome_source_directory != "" ) and build:
+    # See whether the library has been built already. The success file is written into the source directory.
+    files_in_sourcedir = set(os.listdir(genome_source_directory))
+    build_success_file = "{:s}.{:s}".format(root_genome_dirname, _LibBuiltSuccessFile)
+    build_success_file_path = "{:s}/{:s}".format(genome_source_directory, build_success_file)
+    if (genome_source_directory != "" ) and \
+        ((build_success_file not in files_in_sourcedir) or build):
         if os.path.exists(genome_source_directory):
             os.chdir(genome_source_directory)
+            if (build_success_file in files_in_sourcedir):
+                # Since we are redoing the build, 
+                # the success file needs to be removed
+                # until the build has succeeded.
+                os.remove(build_success_file_path)
             # Create the command that builds the Genome Resource Library form the source data.
             command = "prep_genome_lib.pl --genome_fa ref_genome.fa --gtf ref_annot.gtf " + \
                       "--pfam_db PFAM.domtblout.dat.gz " + \
@@ -397,6 +522,13 @@ def build_the_library(genome_source_directory, genome_build_directory, build, gm
                 "The source directory does not exist:\n\t{:s}".format(genome_source_directory))
     elif gmap_build:
         gmap_the_library(genome_build_directory)
+    try:
+        # Create a file to indicate that the build succeeded.
+        subprocess.check_call("touch {:s}".format(build_success_file_path), shell=True)
+    except IOError:
+        print "The download_success file could not be created: " + \
+                    "{:s}".format(build_success_file_path)
+        raise
 
 def search_for_genome_build_dir(top_dir_path):
     # If we do not download the directory, the topdir_path could be the
@@ -562,14 +694,20 @@ def main():
         help='Is used as the display name for the entry of this Genome Resource Library in the data table.')
     parser.add_argument('-o', '--output_filename', \
         help='Name of the output file, where the json dictionary will be written.')
-    parser.add_argument('-f', '--force_download', 
+    parser.add_argument('-d', '--force_download', \
         help='Forces download of the Genome Resource Library, even if previously downloaded.', action='store_true')
-    parser.add_argument('-b', '--build', 
+    parser.add_argument('-b', '--build', \
         help='Forces build/rebuild the Genome Resource Library, even if previously built. ' + \
              'Must have downloaded source_data for this to work.', action='store_true')
-    parser.add_argument('-m', '--gmap_build', 
+    parser.add_argument('-g', '--gmap_build', \
         help='Must be selected if you want the library to be gmapped. ' + \
              'Will force gmap_build of the Genome Resource Library, even if previously gmapped.', action='store_true')
+    parser.add_argument('-m', '--download_mutation_indexes', default='', \
+        help='Set to the url of the mutation indexes for the Library. ' + \
+             'Will download mutation indexes into the Genome Resource Library.', action='store_true')
+    parser.add_argument('-f', '--force_mutation_indexes_download', \
+        help='Forces the mutation indexes to download, ' + \
+             'even if previously downloaded to this Library.', action='store_true')
     requiredNamed = parser.add_argument_group('required named arguments')
     requiredNamed.add_argument('-p', '--destination_path', required=True, \
         help='Full path of the CTAT Resource Library location or destination, either where it is, or where it will be placed.')
@@ -586,7 +724,13 @@ def main():
     print "The value of source_url argument is:\n\t{:s}".format(str(args.source_url))
 
     # FIX - not sure lib_was_downloaded actually serves a purpose...
+    # The original intent was to check whether an attempted download actually succeeded before proceeding,
+    # but I believe that in those situations, currently, exceptions are raised.
+    # FIX - Need to double check that. Sometimes, although we are told to download, the function
+    # could find that the files are already there, successfully downloaded from a prior attempt,
+    # and does not re-download them.
     lib_was_downloaded = False
+    lib_was_built = False
     download_has_source_data = False
     downloaded_directory = None
     genome_build_directory = None
@@ -604,17 +748,28 @@ def main():
     print "\nThe location of the CTAT Genome Resource Library is {:s}.\n".format(genome_build_directory)
 
     # FIX - We should leave a file indicating build success the same way we do for download success.
-    # To take out builds for testing, coment out the next four lines.
+    # To take out builds for testing, coment out the next six lines.
+    # The command that builds the ctat genome library also has an option for building the gmap indexes.
+    # That is why the gmap_build value is sent to build_the_library(), but if we are not building the
+    # library, the user might still be asking for a gmap_build.
     if (download_has_source_data or args.build or args.gmap_build):
         build_the_library(downloaded_directory, genome_build_directory, True, args.gmap_build)
-    elif (args.gmap_build):
-        gmap_the_library(genome_build_directory)
-
+        lib_was_built = True
     # The following looks to see if the library actually exists after the build,
     # and raises an error if it cannot find the library files.
     # The reassignment of genome_build_directory should be superfluous, 
+    # since genome_build_directory should already point to the correct directory,
     # unless I made a mistake in the build code.
     genome_build_directory = search_for_genome_build_dir(genome_build_directory)
+
+    if (args.gmap_build and not lib_was_built):
+        # If we did not build the genome resource library
+        # the user might still be asking for a gmap_build.
+        gmap_the_library(genome_build_directory)
+    if (args.download_mutation_indexes != ""):
+        download_mutation_indexes(source_url=args.download_mutation_indexes, \
+                                  genome_build_directory=genome_build_directory, \
+                                  force_download=args.force_mutation_indexes_download)
 
     # Need to get the genome name.
     genome_name = find_genome_name_in_path(args.source_url)
@@ -640,7 +795,7 @@ def main():
 
     # Create a unique_id for the library.
     datetime_stamp = datetime.now().strftime("_%Y_%m_%d_%H_%M_%S_%f")
-    unique_id = genome_name + datetime_stamp
+    unique_id = genome_name + "." + datetime_stamp
 
     print "The Genome Resource Library's display_name will be set to: {:s}\n".format(display_name)
     print "Its unique_id will be set to: {:s}\n".format(unique_id)
