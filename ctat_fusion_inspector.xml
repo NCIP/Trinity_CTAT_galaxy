@@ -1,3 +1,4 @@
+p
 <tool id="ctat_fusion_inspector" name="ctat_fusion_inspector" version="1.0.0" profile="17.05">
     <description>In silico Validation of Fusion Transcript Predictions</description>
     <requirements>
@@ -7,13 +8,12 @@
       <![CDATA[
       FusionInspector 
       --fusions $fusion_candidates_list
-      --genome_lib "${genome_ref_lib.fields.path}"
+      --genome_lib "${genome_resource_lib.fields.path}"
       --left_fq $left_input
       --right $right_input
       --out_dir "subdir"
       --out_prefix "finspector" 
       --prep_for_IGV 
-      --align_utils STAR
       #if $trinity_status.trinity=="true"
       --include_Trinity
       #end if
@@ -43,8 +43,8 @@
              <option value="false">False</option>
            </param>
       </conditional>
-      <param name="genome_ref_lib" type="select" label="Select a reference genome">
-        <options from_data_table="ctat_genome_ref_libs">
+      <param name="genome_resource_lib" type="select" label="Select a reference genome">
+        <options from_data_table="ctat_genome_resource_libs">
           <filter type="sort_by" column="2" />
           <validator type="no_options" message="No indexes are available" />
         </options>
@@ -76,8 +76,8 @@
         <param name="method" value="STAR" />
         -->
         <param name="trinity" value="false" />
-        <!-- FIX - now that we added the CTAT ref lib path as a parameter, how do we find it for testing?
-        <param name="genome_ref_lib.fields.path" value="?????" />
+        <!-- FIX - now that we added the CTAT resource lib path as a parameter, how do we find it for testing?
+        <param name="genome_resource_lib.fields.path" value="?????" />
         -->
         <output name="finspector_idx" file="FusionInspector/test.reads_1_2.fa.fai" />
         <output name="cytoBand" file="FusionInspector/test.reads_1_2.cytoBand.tail.txt" compare="contains" />
