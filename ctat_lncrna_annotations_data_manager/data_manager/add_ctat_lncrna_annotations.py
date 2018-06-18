@@ -13,7 +13,7 @@ import subprocess
 from datetime import *
 
 # Remove the following line when testing without galaxy package:
-from galaxy.util.json import to_json_string
+# from galaxy.util.json import to_json_string
 # Am not using the following:
 # from galaxy.util.json import from_json_string
 
@@ -27,16 +27,17 @@ import urllib2
 from HTMLParser import HTMLParser
 
 _CTAT_lncrnaIndexPage_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna'
-_CTAT_lncrnaDownload_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations'
+_CTAT_lncrnaDownload_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz'
 _CTAT_lncrnaTableName = 'ctat_lncrna_annotations'
 _CTAT_lncrnaDir_Name = 'annotations'
 _CTAT_lncrna_DisplayNamePrefix = 'CTAT_lncrna_annotations_'
 _lncrnaFileExtension = 'lc'
-_NumBytesNeededForAnnotations =  # Number of bytes
+_NumBytesNeededForAnnotations = 2147483648 # Number of bytes
 #_DownloadFileSize = 5790678746 # 5.4 Gigabytes.
 _Download_TestFile = 'write_testfile.txt'
 _DownloadSuccessFile = 'download_succeeded.txt'
 
+'''
 class FileListParser(HTMLParser):
     def __init__(self):
         # Have to use direct call to super class rather than using super():
@@ -56,6 +57,8 @@ class FileListParser(HTMLParser):
                         # Add the value to filenames.
                         self.filenames.add(attribute[1])            
 # End of class FileListParser
+'''
+
 
 def get_ctat_lncrna_annotations_locations():
     # For dynamic options need to return an interable with contents that are tuples with 3 items.
@@ -126,7 +129,7 @@ def download_annotations(src_location, destination, force_download):
         statvfs = os.statvfs(cannonical_destination)
         num_avail_bytes = statvfs.f_frsize * statvfs.f_bavail    # Number of free bytes that ordinary users
                                                                  # are allowed to use (excl. reserved space)
-        if (num_avail_bytes < _NumBytesNeededForIndex):
+        if (num_avail_bytes < _NumBytesNeededForAnnotations):
             raise OSError("There is insufficient space ({:s} bytes)".format(str(num_avail_bytes)) + \
                           " on the device of the destination directory: " + \
                           "{:s}".format(cannonical_destination))
@@ -141,7 +144,7 @@ def download_annotations(src_location, destination, force_download):
         # adds all that much more space to the needed amount of free space on the disk.
         # Use subprocess to pipe the output of curl into tar.
         # Make curl silent so progress is not printed to stderr.
-        command = "curl --silent {:s} | tar -xzf - -C {:s}".format(src_location, cannonical_destination)
+        command = "curl --silent {:s} | tar -xzf - -C {:s} --strip 1".format(src_location, cannonical_destination) 
         try: # to send the command that downloads and extracts the file.
             command_output = subprocess.check_output(command, shell=True)
             # FIX - not sure check_output is what we want to use. If we want to have an error raised on
@@ -168,8 +171,8 @@ def download_annotations(src_location, destination, force_download):
         if root_annotations_dirname in filename:
             found_filenames.add(filename)
     # print "The found_filenames are:\n\t{:s}".format(str(found_filenames))
-    ## TODO: check number of files it gets
-    if (len(found_filenames) >= 3):
+    ## Changed from found_filenames 
+    if (len(files_in_destdir) >= 4):
         # FIX - we could md5 the files to make sure they are correct.
         # Or at least check their sizes, to see if the download completed ok.
         # Also we could check the names of the files.
@@ -226,7 +229,7 @@ def main():
         # a subdirectory that contains the annotations files,
         # then we need to set the annotations_directory to be that subdirectory.
         files_in_destination_path = os.listdir(cannonical_destination)
-        if (len(files_in_destination_path) == 1):
+        if (len(files_in_destination_path) == 4):
             path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
             if os.path.isdir(path_to_file):
                 annotations_directory = path_to_file
@@ -241,55 +244,76 @@ def main():
     print "\nThe location of the Lncrna annotations is {:s}.\n".format(annotations_directory)
     files_in_annotations_directory = set(os.listdir(annotations_directory))
     annotations_file_found = False
-    annotations_file_path = annotations_directory
-    """
-    #Will need to change according to what you download for lncrna
-    for filename in files_in_annotations_directory:
-        if filename.split(".")[-1] == _lncrnaFileExtension:
-            annotations_file_found = True
-            # The centrifuge program wants the root name of the files to be final part of the path.
-            annotations_file_path = "{:s}/{:s}".format(annotations_directory, filename.split(".")[0])
-    """
-    if not annotations_file_found:
-        raise ValueError("Cannot find any Lncrna annotations files.\n" + \
-            "The contents of the directory {:s} are:\n\t".format(annotations_directory) + \
-            "\n\t".join(files_in_annotations_directory))
+    annotations_file_path_mm9 = annotations_directory+"/mm9"
+    annotations_file_path_mm10 = annotations_directory+"/mm10"
+    annotations_file_path_hg19 = annotations_directory+"/hg19"
+    annotations_file_path_hg38 = annotations_directory+"/hg38"
 
     # Set the display_name
     if (args.display_name is None) or (args.display_name == ""):
         # Use the root_annotations_dirname.
         if (root_annotations_dirname != None) and (root_annotations_dirname != ""):
-            display_name = _CTAT_lncrnaDisplayNamePrefix + root_annotations_dirname
+            display_name_hg19 = "hg19"
+            display_name_hg38 = "hg38"
+            display_name_mm10 = "mm10"
+            display_name_mm9 = "mm9"
         else:
-            display_name = _CTAT_lncrnaDisplayNamePrefix + _CTAT_lncrnaDir_Name
+            display_name = _CTAT_lncrna_DisplayNamePrefix + _CTAT_lncrnaDir_Name
             print "WARNING: Did not set the display name. Using the default: {:s}".format(display_name_value)
     else:
         display_name = _CTAT_lncrna_annotations_DisplayNamePrefix + args.display_name
-    display_name = display_name.replace(" ","_")
+    # display_name = display_name.replace(" ","_")
 
     # Set the unique_id
     datetime_stamp = datetime.now().strftime("_%Y_%m_%d_%H_%M_%S_%f")
     if (root_annotations_dirname != None) and (root_annotations_dirname != ""):
-        unique_id = root_annotations_dirname + datetime_stamp
+        hg19_unique_id = "ctat_lncrna_hg19" + datetime_stamp
+        mm10_unique_id = "ctat_lncrna_mm10" + datetime_stamp
+        mm9_unique_id = "ctat_lncrna_mm9" + datetime_stamp
+        hg38_unique_id = "ctat_lncrna_hg38" + datetime_stamp
     else:
         unique_id = _CTAT_lncrnaDir_Name + datetime_stamp
 
-    print "The Index's display_name will be set to: {:s}\n".format(display_name)
-    print "Its unique_id will be set to: {:s}\n".format(unique_id)
-    print "Its dir_path will be set to: {:s}\n".format(annotations_file_path)
+    print "The hg19 Index's display_name will be set to: {:s}\n".format(display_name_hg19)
+    print "Its hg19 unique_id will be set to: {:s}\n".format(hg19_unique_id)
+    print "Its hg19 dir_path will be set to: {:s}\n".format(annotations_file_path_hg19)
+
+
+    print "The hg38 Index's display_name will be set to: {:s}\n".format(display_name_hg38)
+    print "Its hg38 unique_id will be set to: {:s}\n".format(hg38_unique_id)
+    print "Its hg38 dir_path will be set to: {:s}\n".format(annotations_file_path_hg38)
+
+
+    print "The mm9 Index's display_name will be set to: {:s}\n".format(display_name_mm9)
+    print "Its mm9 unique_id will be set to: {:s}\n".format(mm9_unique_id)
+    print "Its mm9 dir_path will be set to: {:s}\n".format(annotations_file_path_mm9)
+
+
+    print "The mm10 Index's display_name will be set to: {:s}\n".format(display_name_mm10)
+    print "Its mm10 unique_id will be set to: {:s}\n".format(mm10_unique_id)
+    print "Its mm10 dir_path will be set to: {:s}\n".format(annotations_file_path_mm10)
 
     data_manager_dict = {}
     data_manager_dict['data_tables'] = {}
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName] = []
-    data_table_entry = dict(value=unique_id, name=display_name, path=annotations_file_path)
-    data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry)
+    data_table_entry_mm9 = dict(value=mm9_unique_id, name=display_name_mm9, path=annotations_file_path_mm9)
+    data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_mm9)
+
+    data_table_entry_mm10 = dict(value=mm10_unique_id, name=display_name_mm10, path=annotations_file_path_mm10)
+    data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_mm10)
+
+    data_table_entry_hg19 = dict(value=hg19_unique_id, name=display_name_hg19, path=annotations_file_path_hg19)
+    data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_hg19)
+
+    data_table_entry_hg38 = dict(value=hg38_unique_id, name=display_name_hg38, path=annotations_file_path_hg38)
+    data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_hg38)
 
     # Temporarily the output file's dictionary is written for debugging:
     print "The dictionary for the output file is:\n\t{:s}".format(str(data_manager_dict))
     # Save info to json file. This is used to transfer data from the DataManager tool, to the data manager,
     # which then puts it into the correct .loc file (I think).
     # Remove the following line when testing without galaxy package.
-    open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
+    # open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
 
 if __name__ == "__main__":
     main()
