@@ -127,6 +127,30 @@ repositories:
      - test-data/centrifuge/SRR2219890_1_20k_reads.classification.report.txt
      - test-data/centrifuge/SRR2219890_1_20k_reads.kraken_style_report.txt
 
+  ctat_lncrna:
+    description: "lncRNA discovery from RNA-Seq data"
+    long_description: "slncky is a tool for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution."
+    include:
+     - ctat_lncrna.xml
+     - tool_data_table_conf.xml.sample
+     - tool-data/ctat_lncrna_annotations.loc.sample
+     - test-data/slncky/reads.simPE.browse.html
+     - test-data/slncky/reads.simPE.canonical_to_lncs.txt
+     - test-data/slncky/reads.simPE.canonical_to_lncs.txt.sorted
+     - test-data/slncky/reads.simPE.cluster_info.txt
+     - test-data/slncky/reads.simPE.cluster_info.txt.sorted
+     - test-data/slncky/reads.simPE.filtered_info.txt
+     - test-data/slncky/reads.simPE.filtered_info.txt.sorted
+     - test-data/slncky/reads.simPE.lncs.bed
+     - test-data/slncky/reads.simPE.lncs.bed.sorted
+     - test-data/slncky/reads.simPE.lncs.info.txt
+     - test-data/slncky/reads.simPE.lncs.info.txt.sorted
+     - test-data/slncky/reads.simPE.orfs.txt
+     - test-data/slncky/reads.simPE.orthologs.top.txt
+     - test-data/slncky/reads.simPE.orthologs.top.txt.sorted
+     - test-data/slncky/reads.simPE.orthologs.txt
+     - test-data/slncky/reads.simPE.orthologs.txt.sorted
+
 suite:
   name: ctat_tools_suite_tst1
   version: 1.0.0
