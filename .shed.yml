@@ -17,7 +17,7 @@ repositories:
       - ctat_clean_headers.xml
   ctat_concatenate:
     description: "Concatenates multiple files to one file."
-    description: "A concatenate tool is included in this suite for completeness purposes. Concatenates multiple files to one file."
+    long_description: "A concatenate tool is included in this suite for completeness purposes. Concatenates multiple files to one file."
     include:
       - ctat_concatenate.xml
       - ctat_bash_command_executer.py
