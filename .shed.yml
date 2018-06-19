@@ -16,6 +16,7 @@ repositories:
     include:
       - ctat_clean_headers.xml
   ctat_concatenate:
+    description: "Concatenates multiple files to one file."
     description: "A concatenate tool is included in this suite for completeness purposes. Concatenates multiple files to one file."
     include:
       - ctat_concatenate.xml
@@ -48,6 +49,7 @@ repositories:
       - test-data/Sp_hs.right.fq
   ctat_abundance_estimation_to_matrix:
     description: "Abundance estimation to matrix joins RSEM-computed gene or isoform fragment counts into a matrix file."
+    long_description: "Abundance estimation to matrix joins RSEM-computed gene or isoform fragment counts into a matrix file."
     include:
       - ctat_abundance_estimation_to_matrix.xml
       - ctat_abundance_estimation_to_matrix.py
@@ -64,6 +66,7 @@ repositories:
       - test-data/Sp.Trinity.fasta
   ctat_analyze_differential_expression:
     description: "Analyze differential expression creates anaylses files from the output from EdgeR differential expression."
+    long_description: "Analyze differential expression creates anaylses files from the output from EdgeR differential expression."
     include:
       - ctat_analyze_differential_expression.xml
       - ctat_analyze_differential_expression.py
@@ -129,7 +132,7 @@ repositories:
 
   ctat_lncrna:
     description: "lncRNA discovery from RNA-Seq data"
-    long_description: "slncky is a tool for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution."
+    long_description: "This tool uses slncky for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution."
     include:
      - ctat_lncrna.xml
      - tool_data_table_conf.xml.sample
