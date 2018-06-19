@@ -14,7 +14,7 @@
             --destination_path "${destination}" 
             --output_filename "${out_file}" 
             #if str( $genome_resource_library.download ) == "true":
-                --source_url "\"${genome_resource_library.source_url}\"" 
+                --source_url "${genome_resource_library.source_url}" 
                 #if str( $genome_resource_library.force_download ) == "true":
                     --force_download
                 #end if
