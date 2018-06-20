@@ -13,7 +13,7 @@ import subprocess
 from datetime import *
 
 # Remove the following line when testing without galaxy package:
-# from galaxy.util.json import to_json_string
+from galaxy.util.json import to_json_string
 # Am not using the following:
 # from galaxy.util.json import from_json_string
 
@@ -26,7 +26,7 @@ from datetime import *
 import urllib2
 from HTMLParser import HTMLParser
 
-_CTAT_lncrnaIndexPage_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna'
+#_CTAT_lncrnaIndexPage_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz'
 _CTAT_lncrnaDownload_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz'
 _CTAT_lncrnaTableName = 'ctat_lncrna_annotations'
 _CTAT_lncrnaDir_Name = 'annotations'
@@ -67,10 +67,10 @@ def get_ctat_lncrna_annotations_locations():
     # Item three is a True or False value, indicating whether the item is selected.
     options = []
     # open the url and retrieve the filenames of the files in the directory.
-    resource = urllib2.urlopen(_CTAT_lncrnaIndexPage_URL)
-    theHTML = resource.read()
-    filelist_parser = FileListParser()
-    filelist_parser.feed(theHTML)
+    # resource = urllib2.urlopen(_CTAT_lncrnaIndexPage_URL)
+    # theHTML = resource.read()
+    # filelist_parser = FileListParser()
+    # filelist_parser.feed(theHTML)
     options.append((_CTAT_lncrnaDir_Name, _CTAT_lncrnaDownload_URL, True))
     print "The list of items being returned for the option menu is:"
     print str(options)
@@ -222,21 +222,22 @@ def main():
                            force_download=args.force_download)
     else:
         cannonical_destination = os.path.realpath(args.destination_path)
-        if not os.path.exists(cannonical_destination):
-            raise ValueError("Cannot find the Lncrna annotations.\n" + \
-                "The directory does not exist:\n\t{:s}".format(annotations_directory))
         # If args.destination_path is a directory containing 
         # a subdirectory that contains the annotations files,
         # then we need to set the annotations_directory to be that subdirectory.
+        if not os.path.exists(cannonical_destination):
+           raise ValueError("Cannot find the Lncrna annotations.\n" + \
+               "The directory does not exist:\n\t{:s}".format(cannonical_destination))
         files_in_destination_path = os.listdir(cannonical_destination)
         if (len(files_in_destination_path) == 4):
-            path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
-            if os.path.isdir(path_to_file):
-                annotations_directory = path_to_file
-            else:
-                annotations_directory = cannonical_destination
-        else:
+            #path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
+            #if os.path.isdir(path_to_file):
+            #    annotations_directory = path_to_file
+            #else:
             annotations_directory = cannonical_destination
+        else:
+            raise ValueError("Contents of destination directory not equal to expected - 4")
+            #annotations_directory = cannonical_destination
         # Get the root_annotations_dirname of the annotations from the annotations_directory name.
         root_annotations_dirname = annotations_directory.split("/")[-1].split(".")[0]
 
@@ -313,7 +314,7 @@ def main():
     # Save info to json file. This is used to transfer data from the DataManager tool, to the data manager,
     # which then puts it into the correct .loc file (I think).
     # Remove the following line when testing without galaxy package.
-    # open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
+    open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
 
 if __name__ == "__main__":
     main()
