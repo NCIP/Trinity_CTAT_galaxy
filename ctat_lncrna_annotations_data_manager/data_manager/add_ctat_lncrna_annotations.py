@@ -26,7 +26,7 @@ from datetime import *
 import urllib2
 from HTMLParser import HTMLParser
 
-_CTAT_lncrnaIndexPage_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna'
+#_CTAT_lncrnaIndexPage_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz'
 _CTAT_lncrnaDownload_URL = 'https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz'
 _CTAT_lncrnaTableName = 'ctat_lncrna_annotations'
 _CTAT_lncrnaDir_Name = 'annotations'
@@ -67,10 +67,10 @@ def get_ctat_lncrna_annotations_locations():
     # Item three is a True or False value, indicating whether the item is selected.
     options = []
     # open the url and retrieve the filenames of the files in the directory.
-    resource = urllib2.urlopen(_CTAT_lncrnaIndexPage_URL)
-    theHTML = resource.read()
-    filelist_parser = FileListParser()
-    filelist_parser.feed(theHTML)
+    # resource = urllib2.urlopen(_CTAT_lncrnaIndexPage_URL)
+    # theHTML = resource.read()
+    # filelist_parser = FileListParser()
+    # filelist_parser.feed(theHTML)
     options.append((_CTAT_lncrnaDir_Name, _CTAT_lncrnaDownload_URL, True))
     print "The list of items being returned for the option menu is:"
     print str(options)
@@ -208,35 +208,36 @@ def main():
     args = parser.parse_args()
 
     # print "Arguments are parsed."
-    print "\ndownload_location is {:s}".format(str(args.download_location))
+    print "\ndownload_location is {:s}".format(str(_CTAT_lncrnaDownload_URL))
     print "display_name is {:s}".format(str(args.display_name))
     print "destination_path is {:s}\n".format(str(args.destination_path))
     root_annotations_dirname = None
     # FIX - Prob don't need annotations_was_downloaded. Not doing anything with it.
     # But it indicates success downloading the annotations, so maybe should be checking it.
     annotations_was_downloaded = False
-    if (args.download_location != ""):
+    if (_CTAT_lncrnaDownload_URL != ""):
         annotations_directory, root_annotations_dirname, annotations_was_downloaded = \
-            download_annotations(src_location=args.download_location, \
+            download_annotations(src_location=_CTAT_lncrnaDownload_URL, \
                            destination=args.destination_path, \
                            force_download=args.force_download)
     else:
         cannonical_destination = os.path.realpath(args.destination_path)
-        if not os.path.exists(cannonical_destination):
-            raise ValueError("Cannot find the Lncrna annotations.\n" + \
-                "The directory does not exist:\n\t{:s}".format(annotations_directory))
         # If args.destination_path is a directory containing 
         # a subdirectory that contains the annotations files,
         # then we need to set the annotations_directory to be that subdirectory.
+        if not os.path.exists(cannonical_destination):
+           raise ValueError("Cannot find the Lncrna annotations.\n" + \
+               "The directory does not exist:\n\t{:s}".format(cannonical_destination))
         files_in_destination_path = os.listdir(cannonical_destination)
         if (len(files_in_destination_path) == 4):
-            path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
-            if os.path.isdir(path_to_file):
-                annotations_directory = path_to_file
-            else:
-                annotations_directory = cannonical_destination
-        else:
+            #path_to_file = "{:s}/{:s}".format(cannonical_destination, files_in_destination_path[0])
+            #if os.path.isdir(path_to_file):
+            #    annotations_directory = path_to_file
+            #else:
             annotations_directory = cannonical_destination
+        else:
+            raise ValueError("Contents of destination directory not equal to expected - 4")
+            #annotations_directory = cannonical_destination
         # Get the root_annotations_dirname of the annotations from the annotations_directory name.
         root_annotations_dirname = annotations_directory.split("/")[-1].split(".")[0]
 
@@ -252,7 +253,9 @@ def main():
     # Set the display_name
     if (args.display_name is None) or (args.display_name == ""):
         # Use the root_annotations_dirname.
+        print "display_name_ok$$$$$$$"
         if (root_annotations_dirname != None) and (root_annotations_dirname != ""):
+            print "root_annotations_ok%%%%"
             display_name_hg19 = "hg19"
             display_name_hg38 = "hg38"
             display_name_mm10 = "mm10"
@@ -261,7 +264,7 @@ def main():
             display_name = _CTAT_lncrna_DisplayNamePrefix + _CTAT_lncrnaDir_Name
             print "WARNING: Did not set the display name. Using the default: {:s}".format(display_name_value)
     else:
-        display_name = _CTAT_lncrna_annotations_DisplayNamePrefix + args.display_name
+        display_name = _CTAT_lncrna_DisplayNamePrefix + args.display_name
     # display_name = display_name.replace(" ","_")
 
     # Set the unique_id
