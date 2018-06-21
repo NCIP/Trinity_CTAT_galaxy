@@ -8,11 +8,11 @@
       <![CDATA[
      #if str($bedfile) != "":
      lncrna --bedfile $bedfile
-     --config "${annotations.fields.path}" 
+     --config "${assembly.fields.path}" 
      #end if
 
      #if str($assembly) != "":
-         --assembly "$assembly"
+         --assembly "${assembly.fields.value}"
      #end if
 
      #if $min_overlap != "":
@@ -57,7 +57,7 @@
       <param name="pad" type="integer" value="0" label="Pad" help="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
       <param name="gap_open" type="text" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
       <param name="gap_extend" type="text" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
-      <param name="annotations" type="select" label="Choose annotation:" help="Select annotation">
+      <param name="assembly" type="select" label="Choose annotation:" help="Select annotation">
             <options from_data_table="ctat_lncrna_annotations" />
       </param>
     </inputs>

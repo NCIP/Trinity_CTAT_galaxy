@@ -245,26 +245,27 @@ def main():
     print "\nThe location of the Lncrna annotations is {:s}.\n".format(annotations_directory)
     files_in_annotations_directory = set(os.listdir(annotations_directory))
     annotations_file_found = False
-    annotations_file_path_mm9 = annotations_directory+"/mm9"
-    annotations_file_path_mm10 = annotations_directory+"/mm10"
-    annotations_file_path_hg19 = annotations_directory+"/hg19"
-    annotations_file_path_hg38 = annotations_directory+"/hg38"
+    annotations_file_path_mm9 = annotations_directory+"/annotations.config"
+    annotations_file_path_mm10 = annotations_directory+"/annotations.config"
+    annotations_file_path_hg19 = annotations_directory+"/annotations.config"
+    annotations_file_path_hg38 = annotations_directory+"/annotations.config"
 
     # Set the display_name
-    if (args.display_name is None) or (args.display_name == ""):
+    # if (args.display_name is None) or (args.display_name == ""):
         # Use the root_annotations_dirname.
-        print "display_name_ok$$$$$$$"
-        if (root_annotations_dirname != None) and (root_annotations_dirname != ""):
-            print "root_annotations_ok%%%%"
-            display_name_hg19 = "hg19"
-            display_name_hg38 = "hg38"
-            display_name_mm10 = "mm10"
-            display_name_mm9 = "mm9"
-        else:
-            display_name = _CTAT_lncrna_DisplayNamePrefix + _CTAT_lncrnaDir_Name
-            print "WARNING: Did not set the display name. Using the default: {:s}".format(display_name_value)
+        # print "display_name_ok$$$$$$$"
+    
+    if (root_annotations_dirname != None) and (root_annotations_dirname != ""):
+        print "root_annotations_ok%%%%"
+        display_name_hg19 = "hg19"
+        display_name_hg38 = "hg38"
+        display_name_mm10 = "mm10"
+        display_name_mm9 = "mm9"
     else:
-        display_name = _CTAT_lncrna_DisplayNamePrefix + args.display_name
+        display_name = _CTAT_lncrna_DisplayNamePrefix + _CTAT_lncrnaDir_Name
+        print "WARNING: Did not set the display name. Using the default: {:s}".format(display_name_value)
+    #else:
+    #    display_name = _CTAT_lncrna_DisplayNamePrefix + args.display_name
     # display_name = display_name.replace(" ","_")
 
     # Set the unique_id
@@ -299,16 +300,16 @@ def main():
     data_manager_dict = {}
     data_manager_dict['data_tables'] = {}
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName] = []
-    data_table_entry_mm9 = dict(value=mm9_unique_id, name=display_name_mm9, path=annotations_file_path_mm9)
+    data_table_entry_mm9 = dict(value=display_name_mm9, name=display_name_mm9, path=annotations_file_path_mm9)
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_mm9)
 
-    data_table_entry_mm10 = dict(value=mm10_unique_id, name=display_name_mm10, path=annotations_file_path_mm10)
+    data_table_entry_mm10 = dict(value=display_name_mm10, name=display_name_mm10, path=annotations_file_path_mm10)
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_mm10)
 
-    data_table_entry_hg19 = dict(value=hg19_unique_id, name=display_name_hg19, path=annotations_file_path_hg19)
+    data_table_entry_hg19 = dict(value=display_name_hg19, name=display_name_hg19, path=annotations_file_path_hg19)
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_hg19)
 
-    data_table_entry_hg38 = dict(value=hg38_unique_id, name=display_name_hg38, path=annotations_file_path_hg38)
+    data_table_entry_hg38 = dict(value=display_name_hg38, name=display_name_hg38, path=annotations_file_path_hg38)
     data_manager_dict['data_tables'][_CTAT_lncrnaTableName].append(data_table_entry_hg38)
 
     # Temporarily the output file's dictionary is written for debugging:
