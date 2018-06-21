@@ -481,7 +481,7 @@ def build_the_library(genome_source_directory, genome_build_directory, build, gm
             # Create the command that builds the Genome Resource Library form the source data.
             command = "prep_genome_lib.pl --genome_fa ref_genome.fa --gtf ref_annot.gtf " + \
                       "--pfam_db PFAM.domtblout.dat.gz " + \
-                      "--output_dir {:s}".format(genome_build_directory)
+                      "--output_dir {:s} ".format(genome_build_directory)
             found_HumanFusionLib = False
             HumanFusionLib_filename = "NoFileFound"
             for filename in os.listdir(genome_source_directory):
@@ -748,11 +748,12 @@ def main():
     print "\nThe location of the CTAT Genome Resource Library is {:s}.\n".format(genome_build_directory)
 
     # FIX - We should leave a file indicating build success the same way we do for download success.
-    # To take out builds for testing, coment out the next six lines.
+    # To take out builds for testing, comment out the lines that do the building.
     # The command that builds the ctat genome library also has an option for building the gmap indexes.
     # That is why the gmap_build value is sent to build_the_library(), but if we are not building the
-    # library, the user might still be asking for a gmap_build.
-    if (download_has_source_data or args.build or args.gmap_build):
+    # library, the user might still be asking for a gmap_build. That is done after rechecking for the
+    # genome_build_directory.
+    if (download_has_source_data or args.build):
         build_the_library(downloaded_directory, genome_build_directory, True, args.gmap_build)
         lib_was_built = True
     # The following looks to see if the library actually exists after the build,
@@ -766,6 +767,7 @@ def main():
         # If we did not build the genome resource library
         # the user might still be asking for a gmap_build.
         gmap_the_library(genome_build_directory)
+
     if (args.download_mutation_indexes != ""):
         download_mutation_indexes(source_url=args.download_mutation_indexes, \
                                   genome_build_directory=genome_build_directory, \

@@ -13,7 +13,7 @@ import subprocess
 from datetime import *
 
 # Remove the following line when testing without galaxy package:
-# from galaxy.util.json import to_json_string
+from galaxy.util.json import to_json_string
 # Am not using the following:
 # from galaxy.util.json import from_json_string
 
@@ -316,7 +316,7 @@ def main():
     # Save info to json file. This is used to transfer data from the DataManager tool, to the data manager,
     # which then puts it into the correct .loc file (I think).
     # Remove the following line when testing without galaxy package.
-    # open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
+    open(args.output_filename, 'wb').write(to_json_string(data_manager_dict))
 
 if __name__ == "__main__":
     main()
