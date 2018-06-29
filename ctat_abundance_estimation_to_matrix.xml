@@ -13,9 +13,9 @@
     <command detect_errors="exit_code">
         <![CDATA[
         python $__tool_directory__/ctat_abundance_estimation_to_matrix.py 
-		#for $q in $RSEM_samples
-			${q.file} "${q.column_label}"
-		#end for
+#for $q in $RSEM_samples
+${q.file} "${q.column_label}"
+#end for
         ]]>
 
     </command>
@@ -28,11 +28,11 @@
 
     </inputs>
     <outputs>
-        <data format="txt" name="counts_matrix" label="${tool.name} on ${on_string}: Counts Matrix" from_work_dir="matrix.counts.matrix"/>
-        <data format="txt" name="tmm_expr_matrix" label="${tool.name} on ${on_string}: TMM EXPR Matrix" from_work_dir="matrix.TMM.EXPR.matrix"/>
-	</outputs>
+        <data format="tabular" name="counts_matrix" label="${tool.name} on ${on_string}: Counts Matrix" from_work_dir="RSEM.isoform.counts.matrix"/>
+        <data format="tabular" name="tmm_expr_matrix" label="${tool.name} on ${on_string}: TMM EXPR Matrix" from_work_dir="RSEM.isoform.TMM.EXPR.matrix"/>
+</outputs>
     <tests>
-	<test>
+<test>
                 <repeat name="RSEM_samples">
                     <param name="file" value="Sp_ds.RSEM.genes.results" />
                     <param name="column_label" value="Sp_ds" />
@@ -42,7 +42,7 @@
                     <param name="column_label" value="Sp_hs" />
                 </repeat>
 
-	        <output name="counts_matrix" >
+        <output name="counts_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
                         <has_line line="&#009;Sp_ds&#009;Sp_hs" />
@@ -50,7 +50,7 @@
                         <has_line_matching expression="TRINITY_DN.+" />
                     </assert_contents>
                 </output>
-	        <output name="tmm_expr_matrix" >
+        <output name="tmm_expr_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
                         <has_line line="&#009;Sp_ds&#009;Sp_hs" />
@@ -60,7 +60,7 @@
                 </output>
         </test>
         <!-- The following test has not been tested to see if it works.
-	<test>
+<test>
                 <repeat name="RSEM_samples">
                     <param name="file" value="Sp_ds.RSEM.isoforms.results" />
                     <param name="column_label" value="Sp_ds" />
@@ -70,12 +70,12 @@
                     <param name="column_label" value="Sp_hs" />
                 </repeat>
 
-	        <output name="counts_matrix" >
+        <output name="counts_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
                     </assert_contents>
                 </output>
-	        <output name="tmm_expr_matrix" >
+        <output name="tmm_expr_matrix" >
                     <assert_contents>
                         <has_line_matching expression=".+" />
                     </assert_contents>
