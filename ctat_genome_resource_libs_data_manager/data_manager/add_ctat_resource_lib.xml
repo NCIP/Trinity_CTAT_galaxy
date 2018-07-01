@@ -10,23 +10,28 @@
     <command detect_errors="default">
         <![CDATA[
         python $__tool_directory__/add_ctat_resource_lib.py 
-            --display_name "${display_name}" 
-            --destination_path "${destination}" 
             --output_filename "${out_file}" 
+            --display_name "${display_name}" 
             #if str( $genome_resource_library.download ) == "true":
-                --source_url "${genome_resource_library.source_url}" 
-                #if str( $genome_resource_library.force_download ) == "true":
-                    --force_download
+                --download_url "${genome_resource_library.download_url}" 
+                --download_location "${genome_resource_library.download_destination}"
+                #if str( $genome_resource_library.force_new_download ) == "true":
+                    --new_archive_download
                 #end if
-            #end if
-            #if str( $rebuild ) == "true":
-                --build 
+            #else
+                #if str( ${genome_resource_library.library_status.needs_build} ) == "true":
+                    --source_location "${genome_resource_library.library_status.source_location}"
+                    #if str( $genome_resource_library.library_status.rebuild ) == "true":
+                        --rebuild
+                    #end if
+                #endif
+                --build_location "${genome_resource_library.library_status.build_location}" 
             #end if
             #if str( $gmap_build ) == "true":
                 --gmap_build 
             #end if
             #if str( $mutation_indexes.download ) == "true":
-                --download_mutation_indexes "\"${mutation_indexes.source_url}\"" 
+                --download_mutation_indexes "${mutation_indexes.source_url}" 
                 #if str( $mutation_indexes.force_download ) == "true":
                     --force_mutation_indexes_download
                 #end if
@@ -79,20 +84,28 @@
                         Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz
                     </option>
                 -->
-                <param name="source_url" type="select" label="Select a File"
+                <param name="download_url" type="select" label="Select a File"
                     dynamic_options="get_ctat_genome_urls()" 
                     help="Select a CTAT Genome Resource Library to Download.">
                 </param>
-                <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+                <param name="download_destination" type="text" label="Download Destination (full path)" />
+                <param name="force_new_download" type="boolean" checked="false" label="Force New Download?" />
+            </when>
+            <when value="false">
+                <conditional name="library_status">
+                    <param name="needs_build" type="boolean" checked="false" label="Build Library from source files?">
+                    </param>
+                    <when value="true">
+                        <param name="source_location" type="text" label="Location of Source Files (full path)" />
+                        <param name="rebuild" type="boolean" checked="false" label="Force new build of Library?" />
+                    </when>
+                    <param name="built_library_location" type="text" label="Location of the Built Library (full path)" />
+                </conditional>
             </when>
         </conditional>
-
         <param name="display_name" type="text" label="Reference Genome Display Name" />
-        <param name="destination" type="text" label="Local Destination (full path)" />
-        <param name="rebuild" type="boolean" checked="false" label="Force rebuild of Library?" />
         <param name="gmap_build" type="boolean" checked="true" label="Do a gmap_build on the Library?" />
-        <!-- <param name="mutation_indexes" type="boolean" checked="true" label="Download mutation indexes into the Library?" />
-        -->
+        <!-- Below is the most recent interface for download of mutation indexes, but it is not being used yet...
         <conditional name="mutation_indexes">
             <param name="download" type="boolean" checked="true" label="Download mutation indexes into the Library?">
             </param>
@@ -104,6 +117,7 @@
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>
+        -->
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json" />
