@@ -108,11 +108,11 @@ origMatrixName= "diffExpr.P" + Pvalue + "_" + "C" + Cvalue + ".matrix"
 # diffExpr.P0.001_C2.0.matrix
 run_command("mv " + origMatrixName + " diffExpr.matrix")
 
-SampleCorName= "diffExpr.P" + Pvalue + "_" + "C" + Cvalue + ".matrix.log2.sample_cor.dat"
+SampleCorName= "diffExpr.P" + Pvalue + "_" + "C" + Cvalue + ".matrix.log2.centered.sample_cor.dat"
 # diffExpr.P0.001_C2.0.matrix.log2.sample_cor.dat
-run_command("mv " + SampleCorName + " diffExpr.matrix.log2.sample_cor.dat")
+run_command("mv " + SampleCorName + " diffExpr.matrix.log2..sample_cor.dat")
 
-CorMatrix= "diffExpr.P" + Pvalue + "_" + "C" + Cvalue + ".matrix.log2.sample_cor_matrix.pdf"
+CorMatrix= "diffExpr.P" + Pvalue + "_" + "C" + Cvalue + ".matrix.log2.centered.sample_cor_matrix.pdf"
 # diffExpr.P0.001_C2.0.matrix.log2.sample_cor_matrix.pdf
 run_command("mv " + CorMatrix + " diffExpr.matrix.log2.sample_cor_matrix.pdf")
 
