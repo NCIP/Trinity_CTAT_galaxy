@@ -160,10 +160,13 @@ def print_directory_contents(dir_path, num_levels):
         else:
             print "Path either does not exist, or is not a directory:\n\t{:s}.".format(dir_path)
     if num_levels > 1:
-        for filename in os.listdir(dir_path):
-            filename_path = "{:s}/{:s}".format(dir_path, filename)
-            if os.path.exists(filename_path) and os.path.isdir(filename_path):
-                print_directory_contents(filename_path, num_levels-1)
+        if os.path.exists(dir_path) and os.path.isdir(dir_path):
+            for filename in os.listdir(dir_path):
+                filename_path = "{:s}/{:s}".format(dir_path, filename)
+                if os.path.exists(filename_path) and os.path.isdir(filename_path):
+                    print_directory_contents(filename_path, num_levels-1)
+        else:
+            print "Path either does not exist, or is not a directory:\n\t{:s}.".format(dir_path)
 
 def download_from_BroadInst(source, destination, force_download):
     # Input Parameters
@@ -503,6 +506,7 @@ def build_the_library(genome_source_directory, genome_build_directory, build, gm
             # even though no error has occurred. We will depend on error code return in order
             # to know if an error occurred.
             command += " 2>&1"
+            print "About to run the following command:\n\t{:s}".format(command)
             try: # to send the prep_genome_lib command.
                 command_output = subprocess.check_call(command, shell=True)
             except subprocess.CalledProcessError:
@@ -685,32 +689,49 @@ def find_genome_name_in_path(path):
     return genome_name
 
 def main():
-    #Parse Command Line
+    #Parse Command Line. There are three basic ways to use this tool.
+    # 1) Download and Build the CTAT Genome Resource Library from an archive.
+    # 2) Build the library from source data files that are already downloaded.
+    # 3) Specify the location of an already built library.
+    # Any of these methods can be incorporate or be followed by a gmap build.
+    # Choose arguments for only one method.
+    # Do not use arguments in a mixed manner. I am not writing code to handle that at this time.
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--source_url', default='', \
-        help='This is the url of a file with the data. ' + \
-            'They come from https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/.')
-    parser.add_argument('-n', '--display_name', default='', \
-        help='Is used as the display name for the entry of this Genome Resource Library in the data table.')
+    # Arguments for all methods:
     parser.add_argument('-o', '--output_filename', \
         help='Name of the output file, where the json dictionary will be written.')
-    parser.add_argument('-d', '--force_download', \
-        help='Forces download of the Genome Resource Library, even if previously downloaded.', action='store_true')
-    parser.add_argument('-b', '--build', \
-        help='Forces build/rebuild the Genome Resource Library, even if previously built. ' + \
-             'Must have downloaded source_data for this to work.', action='store_true')
+    parser.add_argument('-y', '--display_name', default='', \
+        help='Is used as the display name for the entry of this Genome Resource Library in the data table.')
     parser.add_argument('-g', '--gmap_build', \
         help='Must be selected if you want the library to be gmapped. ' + \
              'Will force gmap_build of the Genome Resource Library, even if previously gmapped.', action='store_true')
-    parser.add_argument('-m', '--download_mutation_indexes', default='', \
+    parser.add_argument('-m', '--download_mutation_indexes_url', default='', \
         help='Set to the url of the mutation indexes for the Library. ' + \
              'Will download mutation indexes into the Genome Resource Library.', action='store_true')
-    parser.add_argument('-f', '--force_mutation_indexes_download', \
+    parser.add_argument('-i', '--new_mutation_indexes_download', \
         help='Forces the mutation indexes to download, ' + \
              'even if previously downloaded to this Library.', action='store_true')
-    requiredNamed = parser.add_argument_group('required named arguments')
-    requiredNamed.add_argument('-p', '--destination_path', required=True, \
-        help='Full path of the CTAT Resource Library location or destination, either where it is, or where it will be placed.')
+    # Method 1) arguments - Download and Build.
+    download_and_build_args = parser.add_argument_group('Download and Build arguments')
+    download_and_build_args.add_argument('-u', '--download_url', default='', \
+        help='This is the url of am archive file containing the library files. ' + \
+            'These are located at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/.')
+    download_and_build_args.add_argument('-d', '--download_location', default='', \
+        help='Full path of the CTAT Resource Library download location, where the download will be placed. If the archive file has already had been successfully downloaded, it will only be downloaded again if --new_download is selected.')
+    download_and_build_args.add_argument('-a', '--new_archive_download', \
+        help='Forces download of the Genome Resource Library, even if previously downloaded to the download_destination.', action='store_true')
+    # Method 2) arguments - Specify location of source and build.
+    specify_source_and_build_args = parser.add_argument_group('Specify Source and Build arguments')
+    specify_source_and_build_args.add_argument('-s', '--source_location', default='', \
+        help='Full path to the location of CTAT Resource Library source files. The --build_location must also be set.')
+    specify_source_and_build_args.add_argument('-r', '--rebuild', \
+        help='Forces build/rebuild the CTAT Genome Resource Library, even if previously built. ' + \
+             'Must specify location of the source_data for this to work.', action='store_true')
+    # Method 3) arguments - Specify the location of a built library.
+    built_lib_location_arg = parser.add_argument_group('Specify location of built library arguments')
+    built_lib_location_arg.add_argument('-b', '--build_location', default='', \
+        help='Full path to the location of a built CTAT Genome Resource Library, either where it is, or where it will be placed.')
+
     args = parser.parse_args()
 
     # All of the input parameters are written by default to the output file prior to
@@ -721,7 +742,7 @@ def main():
     # target_directory = params['output_data'][0]['extra_files_path']
     # os.mkdir(target_directory)
 
-    print "The value of source_url argument is:\n\t{:s}".format(str(args.source_url))
+    print "The value of download_url argument is:\n\t{:s}".format(str(args.download_url))
 
     # FIX - not sure lib_was_downloaded actually serves a purpose...
     # The original intent was to check whether an attempted download actually succeeded before proceeding,
@@ -731,21 +752,48 @@ def main():
     # and does not re-download them.
     lib_was_downloaded = False
     lib_was_built = False
-    download_has_source_data = False
     downloaded_directory = None
+    source_data_directory = None
     genome_build_directory = None
     # FIX - need to make sure we are handling all "possible" combinations of arguments.
     # Probably would be good if we could simplify/remove some of them.
     # But I think the current interface is using them all.
-    if (args.source_url != ""):
-        downloaded_directory, download_has_source_data, genome_build_directory, lib_was_downloaded = \
-            download_from_BroadInst(source=args.source_url, \
-                                    destination=args.destination_path, \
-                                    force_download=args.force_download)
-    else:
-        genome_build_directory = search_for_genome_build_dir(args.destination_path)
 
-    print "\nThe location of the CTAT Genome Resource Library is {:s}.\n".format(genome_build_directory)
+    if (args.download_url != ""):
+        if (args.source_location):
+            raise ValueError("Argument --source_location cannot be used in combination with --download_url.")
+        if (args.build_location):
+            raise ValueError("Argument --build_location cannot be used in combination with --download_url.")
+        if (args.download_location is None) or (args.download_location == ""):
+            raise ValueError("Argument --download_url requires that --download_location be specified.")
+        downloaded_directory, download_has_source_data, genome_build_directory, lib_was_downloaded = \
+            download_from_BroadInst(source=args.download_url, \
+                                    destination=args.download_location, \
+                                    force_download=args.new_archive_download)
+        print "\nThe location of the downloaded_directory is {:s}.\n".format(str(downloaded_directory))
+        if download_has_source_data:
+            print "It is source data."
+            source_data_directory = downloaded_directory
+            if (genome_build_directory == None) or (genome_build_directory == ""):
+                raise ValueError("Programming Error: The location for building the genome_build_directory " + \
+                    "was not returned by download_from_BroadInst()")
+        else:
+            print "It is plug-n-play data."
+            genome_build_directory = search_for_genome_build_dir(downloaded_directory)
+    elif (args.source_location):
+        # Then the user wants to build the directory from the source data.
+        if (args.build_location is None) or (args.build_location == ""):
+            raise ValueError("Argument --source_location requires that --build_location be specified.")
+        source_data_directory = os.path.realpath(args.source_location)
+        genome_build_directory = os.path.realpath(args.build_location)
+        print "\nThe location of the source data is {:s}.\n".format(str(source_data_directory))
+    elif (args.build_location is not None) and (args.build_location != ""):
+        genome_build_directory = args.build_location
+    else:
+        raise ValueError("One of --download_url, --source_location, or --build_location must be specified.")
+        
+    print "\nThe location where the CTAT Genome Resource Library exists " + \
+        "or will be built is {:s}.\n".format(genome_build_directory)
 
     # FIX - We should leave a file indicating build success the same way we do for download success.
     # To take out builds for testing, comment out the lines that do the building.
@@ -753,14 +801,23 @@ def main():
     # That is why the gmap_build value is sent to build_the_library(), but if we are not building the
     # library, the user might still be asking for a gmap_build. That is done after rechecking for the
     # genome_build_directory.
-    if (download_has_source_data or args.build):
-        build_the_library(downloaded_directory, genome_build_directory, True, args.gmap_build)
+    if (source_data_directory is not None):
+        build_the_library(source_data_directory, \
+                          genome_build_directory, \
+                          args.rebuild, \
+                          args.gmap_build)
         lib_was_built = True
+    elif genome_build_directory is None:
+        raise ValueError("No CTAT Genome Resource Library was downloaded, " + \
+            "there is no source data specified, " + \
+            "and no build location has been set. " + \
+            "This line of code should never execute.")
     # The following looks to see if the library actually exists after the build,
     # and raises an error if it cannot find the library files.
     # The reassignment of genome_build_directory should be superfluous, 
     # since genome_build_directory should already point to the correct directory,
-    # unless I made a mistake in the build code.
+    # unless I made a mistake somewhere above.
+
     genome_build_directory = search_for_genome_build_dir(genome_build_directory)
 
     if (args.gmap_build and not lib_was_built):
@@ -768,19 +825,21 @@ def main():
         # the user might still be asking for a gmap_build.
         gmap_the_library(genome_build_directory)
 
-    if (args.download_mutation_indexes != ""):
-        download_mutation_indexes(source_url=args.download_mutation_indexes, \
+    if (args.download_mutation_indexes_url != ""):
+        download_mutation_indexes(source_url=args.download_mutation_indexes_url, \
                                   genome_build_directory=genome_build_directory, \
-                                  force_download=args.force_mutation_indexes_download)
+                                  force_download=args.new_mutation_indexes_download)
 
     # Need to get the genome name.
-    genome_name = find_genome_name_in_path(args.source_url)
+    genome_name = find_genome_name_in_path(args.download_url)
     if genome_name is None:
         genome_name = find_genome_name_in_path(genome_build_directory)
     if genome_name is None:
         genome_name = find_genome_name_in_path(downloaded_directory)
     if genome_name is None:
-        genome_name = find_genome_name_in_path(args.destination_path)
+        genome_name = find_genome_name_in_path(args.source_location)
+    if genome_name is None:
+        genome_name = find_genome_name_in_path(args.download_location)
     if genome_name is None:
         genome_name = find_genome_name_in_path(args.display_name)
     if genome_name is None:

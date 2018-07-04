@@ -1,1 +1,4 @@
 ctat_*_data_manager/*.tar.gz
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store

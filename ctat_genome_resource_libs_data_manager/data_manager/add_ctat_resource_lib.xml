@@ -9,27 +9,25 @@
     </requirements>
     <command detect_errors="default">
         <![CDATA[
-        python $__tool_directory__/add_ctat_resource_lib.py 
-            --display_name "${display_name}" 
-            --destination_path "${destination}" 
-            --output_filename "${out_file}" 
-            #if str( $genome_resource_library.download ) == "true":
-                --source_url "${genome_resource_library.source_url}" 
-                #if str( $genome_resource_library.force_download ) == "true":
-                    --force_download
-                #end if
+          python $__tool_directory__/add_ctat_resource_lib.py 
+            --output_filename="${out_file}" 
+            --display_name="${display_name}" 
+            #if str($genome_resource_library.build_type) == "download_and_build":
+              --download_url="${genome_resource_library.download_url}" 
+              --download_location="${genome_resource_library.download_destination}"
+              #if str($genome_resource_library.force_new_download) == "true":
+                --new_archive_download
+              #end if
             #end if
-            #if str( $rebuild ) == "true":
-                --build 
+            #if str($genome_resource_library.build_type) == "build_from_source":
+              --source_location "${genome_resource_library.source_location}"
+              --build_location "${genome_resource_library.built_library_location}" 
+              #if str($genome_resource_library.rebuild) == "true":
+                --rebuild
+              #end if
             #end if
-            #if str( $gmap_build ) == "true":
-                --gmap_build 
-            #end if
-            #if str( $mutation_indexes.download ) == "true":
-                --download_mutation_indexes "\"${mutation_indexes.source_url}\"" 
-                #if str( $mutation_indexes.force_download ) == "true":
-                    --force_mutation_indexes_download
-                #end if
+            #if str($genome_resource_library.build_type) == "specify_built_location":
+              --build_location="${genome_resource_library.built_library_location}"
             #end if
         ]]>
     </command>
@@ -45,9 +43,12 @@
             </when>
         -->
         <conditional name="genome_resource_library">
-            <param name="download" type="boolean" checked="false" label="Download CTAT Genome Resource Library?">
+            <param name="build_type" type="select" label="Download CTAT Genome Resource Library?">
+                <option value="download_and_build" selected="true">Download from CTAT and build if needed</option>
+                <option value="build_from_source">Build library from local source data</option>
+                <option value="specify_built_location">Specify location of built library</option>
             </param>
-            <when value="true">
+            <when value="download_and_build">
                 <!-- The use of a code block to get dynamic options is now deprecated and discouraged.
                      I am still using it here. The only other way I can think of to do this is to
                      create another data_manager that gets the list of files and puts them into a
@@ -79,20 +80,25 @@
                         Mouse_M16_CTAT_lib_Feb202018.source_data.tar.gz
                     </option>
                 -->
-                <param name="source_url" type="select" label="Select a File"
+                <param name="download_url" type="select" label="Select a File"
                     dynamic_options="get_ctat_genome_urls()" 
                     help="Select a CTAT Genome Resource Library to Download.">
                 </param>
-                <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+                <param name="download_destination" type="text" label="Download Destination (full path)" />
+                <param name="force_new_download" type="boolean" checked="false" label="Force New Download?" />
+            </when>
+            <when value="build_from_source">
+                <param name="source_location" type="text" label="Location of Source Files (full path)" />
+                <param name="built_library_location" type="text" label="Location of the Built Library (full path)" />
+                <param name="rebuild" type="boolean" checked="false" label="Force new build of Library?" />
+            </when>
+            <when value="specify_built_location">
+                <param name="built_library_location" type="text" label="Location of the Built Library (full path)" />
             </when>
         </conditional>
-
         <param name="display_name" type="text" label="Reference Genome Display Name" />
-        <param name="destination" type="text" label="Local Destination (full path)" />
-        <param name="rebuild" type="boolean" checked="false" label="Force rebuild of Library?" />
         <param name="gmap_build" type="boolean" checked="true" label="Do a gmap_build on the Library?" />
-        <!-- <param name="mutation_indexes" type="boolean" checked="true" label="Download mutation indexes into the Library?" />
-        -->
+        <!-- Below is the most recent interface for download of mutation indexes, but it is not being used yet...
         <conditional name="mutation_indexes">
             <param name="download" type="boolean" checked="true" label="Download mutation indexes into the Library?">
             </param>
@@ -104,6 +110,7 @@
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
             </when>
         </conditional>
+        -->
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json" />
