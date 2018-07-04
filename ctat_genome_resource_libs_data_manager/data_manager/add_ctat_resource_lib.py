@@ -506,6 +506,7 @@ def build_the_library(genome_source_directory, genome_build_directory, build, gm
             # even though no error has occurred. We will depend on error code return in order
             # to know if an error occurred.
             command += " 2>&1"
+            print "About to run the following command:\n\t{:s}".format(command)
             try: # to send the prep_genome_lib command.
                 command_output = subprocess.check_call(command, shell=True)
             except subprocess.CalledProcessError:
@@ -783,8 +784,8 @@ def main():
         # Then the user wants to build the directory from the source data.
         if (args.build_location is None) or (args.build_location == ""):
             raise ValueError("Argument --source_location requires that --build_location be specified.")
-        source_data_directory = args.source_location
-        genome_build_directory = args.build_location
+        source_data_directory = os.path.realpath(args.source_location)
+        genome_build_directory = os.path.realpath(args.build_location)
         print "\nThe location of the source data is {:s}.\n".format(str(source_data_directory))
     elif (args.build_location is not None) and (args.build_location != ""):
         genome_build_directory = args.build_location
