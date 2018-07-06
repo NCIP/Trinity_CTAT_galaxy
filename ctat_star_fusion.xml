@@ -20,6 +20,7 @@
         --left_fq  "${left_input}"
         --right_fq "${right_input}"
         --output_dir subdir
+        --STAR_SortedByCoordinate
       ]]>
     </command>
 
