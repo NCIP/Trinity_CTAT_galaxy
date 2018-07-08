@@ -10,7 +10,7 @@ categories:
     - "Sequence Analysis"
 
 suite:
-    name: ctat_fusion_suite_test2
+    name: ctat_fusion_suite_test3
     version: 1.0.0
     description: "This is the Fusion suite of the Cancer Transcriptome Analysis Toolkit (CTAT)."
     long_description: "This suite of tools perform trinity Cancer Transcriptome Analysis Toolkit (CTAT) gene fusion analyses. For information on use of this tool suite, see - https://github.com/NCIP/Trinity_CTAT_galaxy/wiki"
