@@ -2,25 +2,7 @@
 
     <description>Fusion-finding Pipeline Using the STAR Aligner</description>
     <requirements>
-	<requirement type="package" version="1.3.2">star-fusion</requirement>
-        <!-- Added the following, because the 2.6 version of star does not
-        work with 1.3.2 star-fusion.
-        -->
-	<requirement type="package" version="2.5.4a">star</requirement>
-        <!--
-        FIX - the following may get added to the Star-Fusion recipe, but
-        are not in it at the current time.
-        -->
-	<requirement type="package">perl-carp</requirement>
-	<requirement type="package">perl-json-xs</requirement>
-	<requirement type="package">perl-io-gzip</requirement>
-        <requirement type="package">samtools</requirement>
-        <!--
-        FIX - If samtools is really a requirement, shouldn't it be a star-fusion dependency?
-        Also, the current version of samtools is up to 1.8.3. 1.3.0 is quite old. Why that version?
-        I am trying it without pinning to a particular version.
-        <requirement type="package" version="1.3">samtools</requirement>
-        -->
+	<requirement type="package" version="1.4.0">star-fusion</requirement>
     </requirements>
     <!-- Using command's detect_errors instead of below.
     <stdio>
@@ -38,6 +20,7 @@
         --left_fq  "${left_input}"
         --right_fq "${right_input}"
         --output_dir subdir
+        --STAR_SortedByCoordinate
       ]]>
     </command>
 
@@ -54,9 +37,9 @@
 
     <outputs>
       <data format="txt" name="starfusion_log" label="${tool.name} on ${on_string}: log" from_work_dir="subdir/Log.out"/>
-      <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/Aligned.sortedByCoord.out.bam"/>
-      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/star-fusion.fusion_candidates.final.abridged"/>
-      <data format="tabular" name="chimeric_junc" label="${tool.name} on ${on_string}: Chimeric.out.junction" from_work_dir="subdir/Chimeric.out.junction"/> 
+      <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/std.STAR.bam"/>
+      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/star-fusion.fusion_predictions.abridged.tsv"/>
+      <data format="tabular" name="chimeric_junc" label="${tool.name} on ${on_string}: Chimeric.out.junction" from_work_dir="subdir/std.Chimeric.out.junction"/> 
     </outputs>
     <tests>
       <test>
