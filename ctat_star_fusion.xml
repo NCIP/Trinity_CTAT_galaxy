@@ -37,9 +37,9 @@
 
     <outputs>
       <data format="txt" name="starfusion_log" label="${tool.name} on ${on_string}: log" from_work_dir="subdir/Log.out"/>
-      <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/Aligned.sortedByCoord.out.bam"/>
-      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/star-fusion.fusion_candidates.final.abridged"/>
-      <data format="tabular" name="chimeric_junc" label="${tool.name} on ${on_string}: Chimeric.out.junction" from_work_dir="subdir/Chimeric.out.junction"/> 
+      <data format="bam" name="aligned_bam" label="${tool.name} on ${on_string}: Aligned Bam" from_work_dir="subdir/std.STAR.bam"/>
+      <data format="tabular" name="candidates" label="${tool.name} on ${on_string}: Fusion candidates" from_work_dir="subdir/star-fusion.fusion_predictions.abridged.tsv"/>
+      <data format="tabular" name="chimeric_junc" label="${tool.name} on ${on_string}: Chimeric.out.junction" from_work_dir="subdir/std.Chimeric.out.junction"/> 
     </outputs>
     <tests>
       <test>
