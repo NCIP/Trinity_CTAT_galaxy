@@ -2,7 +2,7 @@
 
     <description>Filters a high-quality set of lncRNA from reconstructed RNA-seq data</description>
     <requirements>
-    <requirement type="package">ctat-lncrna</requirement>
+    <requirement type="package" version="1.0.1">ctat-lncrna</requirement>
     </requirements>
     <command detect_errors="default">
       <![CDATA[
@@ -42,7 +42,6 @@
     #if str($gap_extend) != "":
         --gap_extend "$gap_extend"
     #end if
-
     --web 
     && cp -r slncky.EvolutionBrowser $html_file.files_path
 ]]>
