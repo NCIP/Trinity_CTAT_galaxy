@@ -29,6 +29,9 @@
             #if str($genome_resource_library.build_type) == "specify_built_location":
               --build_location="${genome_resource_library.built_library_location}"
             #end if
+            #if str($gmap_build) == "true":
+              --gmap_build 
+            #end if
         ]]>
     </command>
     <inputs>
