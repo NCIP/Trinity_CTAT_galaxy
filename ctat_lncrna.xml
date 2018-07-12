@@ -54,8 +54,8 @@
       <param name="min_coding" type="float" value="0.1" label="Min exonic identity to filter out transcript that aligns to orthologous coding gene" help="default is set by learning coding alignment distribution from data"/>
       <param name="minMatch" type="float" value="0.1" label="Min match" help="Minimum match parameter for liftover" />
       <param name="pad" type="integer" value="0" label="Pad" help="No. of basepairs to search up- and down-stream when lifting over lnc to ortholog" />
-      <param name="gap_open" type="text" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
-      <param name="gap_extend" type="text" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
+      <param name="gap_open" type="integer" value="200" label="Gap open penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search"/>
+      <param name="gap_extend" type="integer" value="40" label="Gap extend penalty to pass to lastz" help="Decreasing this parameter will increase sensitivity of orthology search."/>
       <param name="assembly" type="select" label="Choose annotation:" help="Select annotation">
             <options from_data_table="ctat_lncrna_annotations" />
       </param>
@@ -63,14 +63,14 @@
 
     <outputs>
            <data format="html" name="html_file" label="web_report" from_work_dir="slncky.EvolutionBrowser/browse.html"/>
-           <data format="text" name="canonical_to_lncs" label="canonical_to_lncs" from_work_dir="slncky.canonical_to_lncs.txt"/>
-           <data format="text" name="cluster_info" label="cluster_info" from_work_dir="slncky.cluster_info.txt"/>
-           <data format="text" name="filtered_info" label="filtered_info" from_work_dir="slncky.filtered_info.txt"/>
+           <data format="tabular" name="canonical_to_lncs" label="canonical_to_lncs" from_work_dir="slncky.canonical_to_lncs.txt"/>
+           <data format="tabular" name="cluster_info" label="cluster_info" from_work_dir="slncky.cluster_info.txt"/>
+           <data format="tabular" name="filtered_info" label="filtered_info" from_work_dir="slncky.filtered_info.txt"/>
            <data format="bed" name="lncs" label="lncs" from_work_dir="slncky.lncs.bed"/>
-           <data format="text" name="lncs_info" label="lncs.info" from_work_dir="slncky.lncs.info.txt"/>
-           <data format="text" name="orfs" label="orfs" from_work_dir="slncky.orfs.txt"/>
-           <data format="text" name="orthologs_top" label="orthologs.top" from_work_dir="slncky.orthologs.top.txt"/>
-           <data format="text" name="orthologs" label="orthologs" from_work_dir="slncky.orthologs.txt"/>
+           <data format="tabular" name="lncs_info" label="lncs.info" from_work_dir="slncky.lncs.info.txt"/>
+           <data format="tabular" name="orfs" label="orfs" from_work_dir="slncky.orfs.txt"/>
+           <data format="tabular" name="orthologs_top" label="orthologs.top" from_work_dir="slncky.orthologs.top.txt"/>
+           <data format="tabular" name="orthologs" label="orthologs" from_work_dir="slncky.orthologs.txt"/>
     </outputs>
 
     <stdio>
