@@ -168,10 +168,14 @@
 
 slncky is a tool for lncRNA discovery from RNA-Seq data. slncky filters a high-quality set of noncoding transcripts, discovers lncRNA orthologs, and characterizes conserved lncRNA evolution.
 
-To learn more about slncky read their paper_ or visit their website_ .
+To learn more about slncky visit their website_ .
 
-.. _paper: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0880-9
 .. _website: https://github.com/slncky/slncky
 
 </help>
+
+<citations>
+        <citation type="doi">10.1186/s13059-016-0880-9</citation>
+</citations>
+
 </tool>
