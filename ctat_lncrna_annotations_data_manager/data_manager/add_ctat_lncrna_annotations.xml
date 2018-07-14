@@ -38,13 +38,21 @@
         <data name="out_file" format="data_manager_json" />
     </outputs>
     <help>
+        .. class:: infomark	
         Retrieve, and/or specify the location of, a CTAT lncrna annotations.
-        When download is true, the file at 
-        will be the URL from which the annotations is downloaded. Currently that is the only supported annotations.
+        When download is true, the annotations from this website_ will be downloaded.
+ 
+        Currently mm9,mm10,hg19,hg38 are supported.
+
+        .. class:: infomark
         Specify the Full Path of the destination where the CTAT lncrna annotations should be placed.
         If you already have the annotations, specify the full path of the location where it exists and leave the download box unchecked.
+
+        .. class:: infomark
         The display_name may be left empty if downloading. 
         The display_name will be used as the selector text of the entry in the data table.
+
+        .. _website: https://data.broadinstitute.org/Trinity/CTAT/lncrna/annotations.tar.gz         
     </help>
     <code file="add_ctat_lncrna_annotations.py" />
 </tool>

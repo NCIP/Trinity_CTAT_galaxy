@@ -66,13 +66,22 @@
         <data name="out_file" format="data_manager_json" />
     </outputs>
     <help>
+        .. class:: infomark	
         Retrieve, and/or specify the location of, a CTAT Centrifuge Index.
-        When download is true, the file at ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
-        will be the URL from which the index is downloaded. Currently that is the only supported index.
+        When download is true, Centrifuge index on this FTP link_ will be downloaded.
+        
+        Currently that is the only supported index.
+
+        .. class:: infomark
         Specify the Full Path of the destination where the CTAT Reference Library should be placed.
         If you already have the index, specify the full path of the location where it exists and leave the download box unchecked.
+        
+        .. class:: infomark 
         The display_name may be left empty if downloading. 
         The display_name will be used as the selector text of the entry in the data table.
+ 
+        .. _link: ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz
+
     </help>
     <code file="add_ctat_centrifuge_index.py" />
 </tool>
