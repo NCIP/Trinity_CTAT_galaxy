@@ -1,8 +1,6 @@
 owner: "trinity_ctat"
-# Put in the CTAT repository where this is defined. 
-# remote_repository_url: "https://github.com/galaxyproject/planemo/tree/master/tests/data/repos/
-# remote_repository_url: https://github.com/NCIP/Trinity_CTAT_galaxy ? Is that what it wants?
-# homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/blob/master/README.md" ? Is that what it wants?
+remote_repository_url: "https://github.com/NCIP/Trinity_CTAT_galaxy"
+homepage_url: "https://github.com/NCIP/Trinity_CTAT_galaxy/wiki"
 
 categories:
   - "Assembly"
@@ -155,7 +153,7 @@ repositories:
      - test-data/slncky/reads.simPE.orthologs.txt.sorted
 
 suite:
-  name: ctat_tools_suite_tst1
+  name: suite_ctat_tools
   version: 1.0.0
   description: "These tools were developed by The Broad Institute as the Cancer Transcriptome Analysis Toolkit (CTAT)."
   long_description: "The Cancer Transcriptome Analysis Toolkit (CTAT) aims to provide tools for leveraging RNA-Seq to gain insights into the biology of cancer transcriptomes. Bioinformatics tool support is provided for mutation detection, fusion transcript identification, de novo transcript assembly of cancer-specific transcripts, lincRNA classification, and foreign transcript detection (viruses, microbes). CTAT is funded by the National Cancer Institute Informatics Technology for Cancer Research (NCI ITCR) program. "
