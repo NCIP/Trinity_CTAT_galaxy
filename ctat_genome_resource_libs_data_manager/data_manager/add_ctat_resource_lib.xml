@@ -1,50 +1,67 @@
 <tool id="ctat_genome_resource_libs_data_manager" 
     name="CTAT Genome Resource Libraries Data Manager" 
-    version="1.0.0" tool_type="manage_data">
+    version="2.0.0" tool_type="manage_data">
+    <!-- This Data Manager tool was written by Cicada Dennis of Indiana University for the Broad Institute.
+    -->
     <description>Retrieve, and/or specify the location of, a CTAT Genome Resource Library. 
     </description>
     <requirements>
         <requirement type="package" version="2.7">python</requirement>
         <requirement type="package" version="0.5.0">fusion-filter</requirement>
+        <requirement type="package" version="2.0.1">ctat-mutations</requirement>
     </requirements>
-    <command detect_errors="default">
+    <command detect_errors="exit_code">
         <![CDATA[
           python $__tool_directory__/add_ctat_resource_lib.py 
             --output_filename="${out_file}" 
-            --display_name="${display_name}" 
-            #if str($genome_resource_library.build_type) == "download_and_build":
+            --display_name="${display_name}"            
+            #if str( $genome_resource_library.build_type ) == "download_and_build":
               --download_url="${genome_resource_library.download_url}" 
               --download_location="${genome_resource_library.download_destination}"
-              #if str($genome_resource_library.force_new_download) == "true":
+              #if str( $genome_resource_library.force_new_download ) == "true":
                 --new_archive_download
               #end if
-            #end if
-            #if str($genome_resource_library.build_type) == "build_from_source":
-              --source_location "${genome_resource_library.source_location}"
-              --build_location "${genome_resource_library.built_library_location}" 
-              #if str($genome_resource_library.rebuild) == "true":
-                --rebuild
+              #if str( $genome_resource_library.keep_archive ) == "true":
+                --keep_archive
               #end if
-            #end if
-            #if str($genome_resource_library.build_type) == "specify_built_location":
+              #if str( $genome_resource_library.rebuild ) == "true":
+                --new_library_build
+              #end if
+              #if str( $genome_resource_library.specify_build_location.build_location ) == "true":
+                  --build_location="${genome_resource_library.specify_build_location.different_build_location}"
+              #end if
+            #elif str( $genome_resource_library.build_type ) == "build_from_source":
+              --source_location "${genome_resource_library.source_location}"
+              #if str( $genome_resource_library.rebuild ) == "true":
+                --new_library_build
+              #end if
+              #if str( $genome_resource_library.specify_build_location.build_location ) == "true":
+                  --build_location="${genome_resource_library.specify_build_location.different_build_location}"
+              #end if
+            #elif str( $genome_resource_library.build_type ) == "specify_built_location":
               --build_location="${genome_resource_library.built_library_location}"
             #end if
-            #if str($gmap_build) == "true":
+            
+            #if str( $gmap_options.gmap_build ) == "true":
               --gmap_build 
+              #if str( $gmap_options.force_gmap_build ) == "true":
+                  --force_gmap_build
+              #end if
+            #end if
+            
+            #if str( $mutation_lib_options.mutation_build ) == "true":
+              --download_mutation_resources_url="${mutation_lib_options.source_url}" 
+              --cosmic_resources_location="${mutation_lib_options.cosmic_files_location}"
+              #if str( $mutation_lib_options.force_download ) == "true":
+                  --new_mutation_download
+              #end if
+              #if str( $mutation_lib_options.redo_integration ) == "true":
+                  --new_mutation_integration
+              #end if
             #end if
         ]]>
     </command>
     <inputs>
-        <!-- The following are left in here, just as examples of various ways of doing options.
-            <param name="force_download" type="boolean" checked="false"
-                truevalue="- -force_download" falsevalue="" label="Force New Download? (yes/no)" />
-            <param name="download" type="select" label="Need to Download?">
-                <option value="single" selected="true">Single Dataset</option>
-                <option value="paired_collection">Paired Collection</option>
-            <when value="paired_collection">
-                 <param name="fastq_input" format="fastqsanger" type="data_collection" collection_type="paired" label="Select dataset pair" help="Specify paired dataset collection containing paired reads"/>
-            </when>
-        -->
         <conditional name="genome_resource_library">
             <param name="build_type" type="select" label="Download CTAT Genome Resource Library?">
                 <option value="download_and_build" selected="true">Download from CTAT and build if needed</option>
@@ -60,7 +77,7 @@
                      this data_manager.
                 This is the dynamic way to get the options filled.
                 <param name="filename" type="select" label="Select File" display="radio" 
-                    dynamic_options="get_ctat_genome_filenames()" 
+                    dynamic_options="get_ctat_genome_urls()" 
                     help="Select a CTAT Genome Resource Library to Download." />
                 Here is the static method for what is online in April 2017:
                 <param name="filename" type="select" label="Choose which library to download.">
@@ -89,59 +106,105 @@
                 </param>
                 <param name="download_destination" type="text" label="Download Destination (full path)" />
                 <param name="force_new_download" type="boolean" checked="false" label="Force New Download?" />
+                <param name="keep_archive" type="boolean" checked="true" label="Keep downloaded archive rather than deleting after build?" />
+                <param name="rebuild" type="boolean" checked="false" label="Force new build of Library?" />
+                <conditional name="specify_build_location">
+                    <param name="build_location" type="boolean" checked="false" label="Is the build location different than the source location?" />
+                    <when value="true">
+                        <param name="different_build_location" type="text" label="Build Location (full path)" />
+                    </when>
+                </conditional>
             </when>
             <when value="build_from_source">
                 <param name="source_location" type="text" label="Location of Source Files (full path)" />
-                <param name="built_library_location" type="text" label="Location of the Built Library (full path)" />
                 <param name="rebuild" type="boolean" checked="false" label="Force new build of Library?" />
+                <conditional name="specify_build_location">
+                    <param name="build_location" type="boolean" checked="false" label="Is the build location different than the source location?" />
+                    <when value="true">
+                        <param name="different_build_location" type="text" label="Build Location (full path)" />
+                    </when>
+                </conditional>
             </when>
             <when value="specify_built_location">
                 <param name="built_library_location" type="text" label="Location of the Built Library (full path)" />
             </when>
         </conditional>
         <param name="display_name" type="text" label="Reference Genome Display Name" />
-        <param name="gmap_build" type="boolean" checked="true" label="Do a gmap_build on the Library?" />
-        <!-- Below is the most recent interface for download of mutation indexes, but it is not being used yet...
-        <conditional name="mutation_indexes">
-            <param name="download" type="boolean" checked="true" label="Download mutation indexes into the Library?">
+        <conditional name="gmap_options">
+            <param name="gmap_build" type="boolean" checked="true" label="Do a gmap_build on the Library?" />
+            <when value="true">
+                <param name="force_gmap_build" type="boolean" checked="false" label="Force a new build even if previously done?" />
+            </when>
+        </conditional>
+        <conditional name="mutation_lib_options">
+            <param name="mutation_build" type="boolean" checked="false" label="Download and integrate mutation library?">
             </param>
             <when value="true">
                 <param name="source_url" type="select" label="Select a File"
-                    dynamic_options="get_mutation_index_urls()" 
-                    help="Select CTAT Mutation Indexes File to Download.\nMake sure it is the right one for your CTAT Genome Resource Library!">
+                    dynamic_options="get_mutation_resource_urls()" 
+                    help="Select CTAT Mutation Library File to Download.\nMake sure it is the right one for your CTAT Genome Resource Library!">
                 </param>
                 <param name="force_download" type="boolean" checked="false" label="Force New Download?" />
+                <param name="redo_integration" type="boolean" checked="false" label="Redo Library Integration?" />
+                <param name="cosmic_files_location" type="text" label="Location of the COSMIC files (See Tool Notes)." />
             </when>
         </conditional>
-        -->
     </inputs>
     <outputs>
         <data name="out_file" format="data_manager_json" />
     </outputs>
     <help>
         Retrieve, and/or specify the location of, a CTAT Genome Resource Library.
-        When download is true, the files at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
-        are used as selectors for the user to choose among.
-        Specify the Full Path of the location where the CTAT Resource Library should be placed.
-        You will need approximately 62GB of space for this library.
+        
+        There are three options: 1) Download from CTAT and build if needed; 2) Build library from local source data; 3) Specify location of built library.
+        
+        1) Download from CTAT and build if needed: 
+           This option uses the files at https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
+           as selectors for the user to choose among.
+           Specify the Full Path of the location where the CTAT Genome Resource Library should be placed.
+           The other options should be self-explanatory.
+        2) Build library from local source data:
+           This assumes that you have already downloaded the source data for a build and you want to build it.
+        3) Specify location of built library:
+           This assumes you already have a build library and need tell galaxy where it is.
+
+        All options allow the user to do a gmap_build on the library 
+        and also to integrate ctat-mutation resources into the library.
+
+        You will need approximately 62GB of space for a human genome resource library, once it is built, 
+        but if downloading and building, to be safe provide at least 75GB.
+
         The installation of this tool takes some time, due to building a conda environment for the dependencies.
-        The download extracts the files during the download. The "source_data" files download faster, but then must be built.
+        The "source_data" files download faster, but then must be built.
         Building the library from the "source_data" files can take many hours, depending on the resources of your machine.
         The "plug-n-play" can take considerable time to download, depending on your internet connection. Even with high speed,
         it is about 25GB that is transfered, so plan accordingly.
+        If you have a good speed internet connection, downloading the plug-n-play will usually be faster than building.
+
+        **If a download or a build is interrupted, re-running the job should pick up where it left off.**
+
         Neither the "source_data" nor the "plug-n-play" versions have had their gmap index built. If you are not going to be
-        using gmap_fusion, then you can uncheck the gmap-build check box and save the space and time building the index consumes.
-        Neither the "source_data" nor the "plug-n-play" versions have mutation indexes included. Those must be downloaded
-        separately. If you are not going to be using the mutation tool, uncheck the Download mutation indexes check box and
-        save the space and time it takes to include the mutation index files. 
-        - FIX - 
-        This version of the tool does not yet implement the download of mutation indexes.
-        - FIX -
-        If you already have a CTAT Genome Resource library installed on your system, 
-        specify the full path of the location where it exists and leave the download box unchecked.
-        The Reference Genome name may be left empty if downloading. The filename will then be used as the selector text of the entry in the data table.
+        using gmap_fusion, then you can uncheck the gmap_build check box and save the space and time building the index consumes.
+
+        Neither the "source_data" nor the "plug-n-play" versions have Mutation Resources included. 
+        Those must be downloaded separately and integrated into the Library. If you are going to be using the 
+        ctat_mutations tool, check the Download Mutation Library check box.
+
+        In order to integrate the Mutation Resources into a CTAT Genome Resource Library, you must have previously downloaded
+        COSMIC resources (See Step 2 from https://github.com/NCIP/ctat-mutations/tree/master/mutation_lib_prep )
+        You can place them directly into the Genome Resource Library location, or if the Library is 
+        not built yet, or you do not know the full path to it, specify the directory where the COSMIC files are, so they can be 
+        integrated into the Library. 
+
+        The Mouse genome is not currently supported by ctat_mutations.
+
+        If the Reference Genome Display Name is left empty a name will be created, 
+        but any text that will best guide the user can be entered here. 
+        It will be the text that is used for selecting the library in pull down lists 
+        requiring a Genome Reference Library resource (These are stored in the ctat_genome_resource_libs table).
+
         For more information on CTAT Genome Resource Libraries, 
-        see <a http="https://github.com/FusionFilter/FusionFilter/wiki">FusionFilter</a>
+        see https://github.com/FusionFilter/FusionFilter/wiki
     </help>
     <code file="add_ctat_resource_lib.py" />
 </tool>
