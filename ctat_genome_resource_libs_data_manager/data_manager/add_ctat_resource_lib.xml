@@ -14,7 +14,8 @@
         <![CDATA[
           python $__tool_directory__/add_ctat_resource_lib.py 
             --output_filename="${out_file}" 
-            --display_name="${display_name}"            
+            --display_name="${display_name}"
+            --cravat_tissues_filepath="${__tool_directory__}/../tool-data/ctat_cravat_tissues.loc.sample"           
             #if str( $genome_resource_library.build_type ) == "download_and_build":
               --download_url="${genome_resource_library.download_url}" 
               --download_location="${genome_resource_library.download_destination}"
@@ -188,7 +189,8 @@
 
         Neither the "source_data" nor the "plug-n-play" versions have Mutation Resources included. 
         Those must be downloaded separately and integrated into the Library. If you are going to be using the 
-        ctat_mutations tool, check the Download Mutation Library check box.
+        ctat_mutations tool, check the Download Mutation Library check box. Whether or not you check this box, the
+        ctat_cravat_tissues table needed by the ctat_mutations tool will be created.
 
         In order to integrate the Mutation Resources into a CTAT Genome Resource Library, you must have previously downloaded
         COSMIC resources (See Step 2 from https://github.com/NCIP/ctat-mutations/tree/master/mutation_lib_prep )

@@ -34,5 +34,21 @@
                 <!--</column> -->
             </output>
         </data_table>
+        <data_table name="ctat_cravat_tissues">
+            <output>
+                <column name="value" />
+                    <!-- value is used to uniquely identify this entry in the table.
+                    -->
+                <column name="name" />
+                    <!-- name is used as the selector in the pull down lists for items in this table.
+                    -->
+                <column name="code" />
+                    <!-- .
+                    -->
+                <column name="date" />
+                    <!-- .
+                    -->
+            </output>
+        </data_table>
     </data_manager>
 </data_managers>

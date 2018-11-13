@@ -1324,6 +1324,12 @@ def main():
              'Normally they are assumed to reside in the build directory, ' + \
              'but if that directory has not been created yet when this program ' + \
              'is called, you can specify the full path to the directory where they reside.')
+    parser.add_argument('-t', '--cravat_tissues_filepath', 
+        default='', \
+        help='Specify a non-default location where the Cosmic files reside. ' + \
+             'Normally they are assumed to reside in the build directory, ' + \
+             'but if that directory has not been created yet when this program ' + \
+             'is called, you can specify the full path to the directory where they reside.')
     # Method 1) arguments - Download and Build. 
     # - One can optionally utilize --build_location argument with this group of arguments.
     download_and_build_args = parser.add_argument_group('Download and Build arguments')
@@ -1546,6 +1552,20 @@ def main():
     data_manager_dict['data_tables']['ctat_genome_resource_libs'] = []
     data_table_entry = dict(value=unique_id, name=display_name, path=genome_build_directory)
     data_manager_dict['data_tables']['ctat_genome_resource_libs'].append(data_table_entry)
+    
+    # Create the data table for the cravat_tissues, if the file is given:
+    print "The cravat tissues file is: {:s}".format(str(args.cravat_tissues_filepath))
+    if (args.cravat_tissues_filepath is not None) and (args.cravat_tissues_filepath != ""):
+        data_manager_dict['data_tables']['ctat_cravat_tissues'] = []
+        cravat_file = open(args.cravat_tissues_filepath, 'r')
+        for line in cravat_file:
+            # print line
+            if line[0] != '#':
+                # The line is not a comment, so parse it.
+                items = [item.strip() for item in line.split("\t")]
+                print items
+                data_table_entry = dict(value=items[0], name=items[1], code=items[2], date=items[3])
+                data_manager_dict['data_tables']['ctat_cravat_tissues'].append(data_table_entry)
 
     # Temporarily the output file's dictionary is written for debugging:
     print "The dictionary for the output file is:\n\t{:s}".format(str(data_manager_dict))
