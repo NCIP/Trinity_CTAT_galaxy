@@ -1,0 +1,27 @@
+Bladder 	Bladder Urothelial Carcinoma 	BLCA (TCGA) 	Jun 2013
+Blood-Lymphocyte 	Chronic Lymphocytic Leukemia 	CLL (ICGC) 	Mar 2013
+Blood-Myeloid 	Acute Myeloid Leukemia 	LAML (TCGA) 	Jun 2013
+Brain-Cerebellum 	Medulloblastoma 	MB (mixed source) 	Dec 2010
+Brain-Glioblastoma-Multiforme 	Glioblastoma Multiforme 	GBM (TCGA) 	Jun 2013
+Brain-Lower-Grade-Glioma	Brain Lower Grade Glioma	LGG (TCGA)	Jun 2013
+Breast	Breast Invasive Carcinoma	BRCA (TCGA)	Jun 12012
+Cervix	Cervical Squamous Cell Carcinoma and Endocervical Adenocarcinoma	CESC (TCGA)	Jun 2013
+Colon	Colon Adenocarcinoma	COAD (TCGA)	Jun 2013
+Head and Neck	Head and Neck Squamous Cell Carcinoma	HNSC (TCGA)	Jun 2013
+Kidney-Chromophobe	Kidney Chromophobe	KICH (TCGA)	Jun 2013
+Kidney-Clear-Cell	Kidney Renal Clear Cell Carcinoma	KIRC (TCGA)	Jun 2013
+Kidney-Papillary-Cell	Kidney Renal Papillary Cell Carcinoma	KIRP (TCGA)	Jun 2013
+Liver-Nonviral	Hepatocellular Carcinoma (Secondary to Alcohol and Adiposity)	HCCA (ICGC)	Mar 2013
+Liver-Viral	Hepatocellular Carcinoma (Viral)	HCCV (ICGC)	Mar 2013
+Lung-Adenocarcinoma	Lung Adenocarcinoma	LUAD (TCGA)	Jun 2013
+Lung-Squamous Cell	Lung Squamous Cell Carcinoma	LUSC (TCGA)	Jun 2013
+Melanoma	Melanoma	ML (Yardena Samuels lab)	Dec 2011
+Other	 General purpose	OV (TCGA)	Jun 2013
+Ovary	Ovarian Serous Cystadenocarcinoma	OV (TCGA)	Jun 2013
+Pancreas	Pancreatic Cancer	PNCC (ICGC))	Mar 2013
+Prostate-Adenocarcinoma	Prostate Adenocarcinoma	PRAD (TCGA)	Jun 2013
+Rectum	Rectum Adenocarcinoma	READ (TCGA)	Jun 2013
+Skin	Skin Cutaneous Melanoma	SKCM (TCGA)	Jun 2013
+Stomach	Stomach Adenocarcinoma	STAD (TCGA)	Jun 2013
+Thyroid	Thyroid Carcinoma	THCA (TCGA)	Jun 2013
+Uterus	Uterine Corpus Endometriod Carcinoma	UCEC (TCGA)	Jun 2013

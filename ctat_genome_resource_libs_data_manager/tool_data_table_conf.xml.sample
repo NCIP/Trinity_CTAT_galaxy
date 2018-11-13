@@ -3,4 +3,8 @@
         <columns>value, name, path</columns>
         <file path="tool-data/ctat_genome_resource_libs.loc" />
     </table>
+    <table name="ctat_cravat_tissues" comment_char="#" allow_duplicate_entries="False">
+        <columns>value, name, code, date</columns>
+        <file path="tool-data/ctat_cravat_tissues.loc" />
+    </table>
 </tables>
