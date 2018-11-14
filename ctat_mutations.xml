@@ -1,0 +1,68 @@
+<tool id="ctat_mutations" name="ctat_mutations" version="1.0.0" profile="17.05">
+    <description>Mutation Pipeline for calling SNPs and variants</description>
+    <requirements>
+        <requirement type="package" version="2.0.1">ctat-mutations</requirement>
+    </requirements>
+    <command detect_errors="default">
+      <![CDATA[
+            ctat_mutations \
+                   --plot \
+                   --out_dir varcalling.outdir \
+                   --threads 8 \
+                   --variant_filtering_mode GATK \
+                   --left "$left" \
+                   --right "$right" \
+                   --genome_lib_dir "${genome_resource_lib.fields.path}" \
+                   --variant_call_mode GATK \
+                   --tissue_type "$tissue_type" \
+                   --email "$cravat_email"
+      ]]>
+    </command>
+    <inputs>
+      <param format="fastq" name="left" type="data" label="Left/Forward strand reads" help="Left read"/>
+      <param format="fastq" name="right" type="data" label="Right/Reverse strand reads" help="Right read"/>
+      <param name="tissue_type" type="select" label="Select a pathology" help="If you don't know, just choose 'General Purpose'">
+        <options from_data_table="ctat_cravat_tissues">
+  <filter type="sort_by" column="1"/>
+  <validator type="no_options" message="No indexes are available for the selected input dataset"/>
+        </options>
+      </param>
+      <param name="genome_resource_lib" type="select" label="Select a reference genome">
+        <options from_data_table="ctat_genome_resource_libs">
+          <filter type="sort_by" column="2" />
+          <validator type="no_options" message="No indexes are available" />
+        </options>
+      </param>
+      <param name="cravat_email" type="text" label="CRAVAT email" help="CRAVAT registered email id"/>      
+      <section name="adv" title="This service uses the GATK4. GATK4 is licensed by the Broad Institute and is made available to academic users of this service for non-commercial use only. The full text of the license is available here: https://www.broadinstitute.org/gatk/about/license.html. For more information about GATK and full documentation, please visit the GATK website: https://www.broadinstitute.org." expanded="False">
+      </section>
+    </inputs>
+    <outputs>
+      <data format="tabular" name="cancertab" label="${tool.name} on ${on_string}: Cancer Tab" from_work_dir="varcalling.outdir/cancer.tab"/> 
+      <data format="vcf" name="cancerVariants" label="${tool.name} on ${on_string}: Cancer VCF" from_work_dir="varcalling.outdir/cancer.vcf"/> 
+      <data format="vcf" name="allVariants" label="${tool.name} on ${on_string}: All Variants VCF" from_work_dir="varcalling.outdir/variants.vcf"/> 
+      <data format="bam" name="bamfile" label="Bam used in haplotype calling" from_work_dir="varcalling.outdir/misc/recalibrated.bam"/>
+      <data format="txt" name="cravat" label="Annotated (lightly filtered) VCF file" from_work_dir="varcalling.outdir/variants_initial_filtering_clean_snp_RNAedit.vcf_snpeff_updated.vcf.gz"/>
+    </outputs>
+    <tests>
+        <test>
+           <param name="left" value="reads_1.fastq.gz"/>
+           <param name="right" value="reads_2.fastq.gz"/>
+           <param name="tissue_type" value="Other"/>
+           <output name="cancertab" file="varcalling.outdir/cancer.tab" />
+           <output name="cancerVariants" file="varcalling.outdir/cancer.vcf" />
+           <output name="allVariants" file="varcalling.outdir/variants.vcf" />
+           <output name="bamfile" file="varcalling.outdir/misc/recalibrated.bam" />
+           <output name="cravat" file="varcalling.outdir/variants_initial_filtering_clean_snp_RNAedit.vcf_snpeff_updated.vcf.gz"/>
+        </test>
+    </tests>
+    <help>
+
+.. class:: warningmark
+
+Mutation detection in RNA-Seq highlights the GATK Best Practices in RNA-Seq variant calling, several sources of variant annotation, and filtering based on CRAVAT.
+
+    </help>
+    <citations>
+    </citations>
+</tool>

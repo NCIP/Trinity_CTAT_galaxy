@@ -1,0 +1,14 @@
+CHROM	POS	REF	ALT	GENE	DP	QUAL	MQ	SAO	NSF	NSM	NSN	TUMOR	TISSUE	COSMIC_ID	KGPROD	RS	PMC	CHASM_PVALUE	CHASM_FDR	VEST_PVALUE	VEST_FDR
+chr5	474989	A	G	LOC100288152,SLC9A3	4	96.03	60	NA	NA	NA	NA	carcinoma_--_NS	urinary_tract	COSM4006021	NA	NA	NA	0.1114	0.2	0.96802	1
+chr5	181224474	G	A	TRIM41	45	349.77	60	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0.0694	0.15	0.48052	1
+chr8	143923759	G	A	PLEC	66	838.77	60	NA	NA	NA	NA	carcinoma_--_adenocarcinoma	large_intestine	COSM3750086	NA	NA	NA	0.0344	0.1	0.84202	1
+chr12	56420869	G	A	TIMELESS	48	384.77	60	NA	NA	NA	NA	carcinoma_--_adenocarcinoma	large_intestine	COSM3753397	NA	NA	NA	0.0744	0.15	0.18439	0.95
+chr17	7673767	C	T	TP53	61	1848.77	60	NA	NA	NA	NA	Ewings_sarcoma-peripheral_primitive_neuroectodermal_tumour_--_NS	bone	COSM3717625	NA	NA	NA	0	0.05	0.01447	0.15
+chr17	7676154	G	C	TP53	80	2161.77	60	NA	NA	NA	NA	haematopoietic_neoplasm_--_acute_myeloid_leukaemia	haematopoietic_and_lymphoid_tissue	COSM3766193	NA	NA	NA	0.087	0.15	0.52717	1
+chr17	43071077	T	C	BRCA1	4	92.03	60	NA	NA	NA	NA	haematopoietic_neoplasm_--_acute_myeloid_leukaemia	haematopoietic_and_lymphoid_tissue	COSM3755560	NA	NA	NA	0.0372	0.1	0.3446	1
+chr17	43091983	T	C	BRCA1	4	84.03	60	NA	NA	NA	NA	haemangioblastoma_--_NS	soft_tissue	COSM3755561	NA	NA	NA	0.0002	0.05	0.64447	1
+chr17	43092919	G	A	BRCA1	2	33.74	60	NA	NA	NA	NA	carcinoma_--_NS	prostate	COSM3755564	NA	NA	NA	0.0004	0.05	0.33539	1
+chr17	43093454	C	T	BRCA1	11	425.77	60	NA	NA	NA	NA	rhabdomyosarcoma_--_embryonal	soft_tissue	COSM4989394	NA	NA	NA	0.0014	0.05	0.51068	1
+chr19	39177761	G	C	PAK4	106	1134.77	60	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	0.0004	0.05	0.01093	0.15
+chr19	47271515	T	C	CCDC9	12	336.77	60	NA	NA	NA	NA	haematopoietic_neoplasm_--_acute_myeloid_leukaemia	haematopoietic_and_lymphoid_tissue	COSM3721172	NA	NA	NA	0.093	0.15	0.97622	1
+chr20	46687147	C	T	TP53RK	26	423.77	60	NA	NA	NA	NA	carcinoma_--_ductal_carcinoma	pancreas	COSM3758608	NA	NA	NA	0.0834	0.15	0.88584	1
